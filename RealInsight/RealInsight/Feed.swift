@@ -41,6 +41,8 @@ struct Feed: View {
                         }
                         
                         Spacer()
+                        
+                        
                     }
                 }
             }
