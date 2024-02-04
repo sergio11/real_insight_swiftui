@@ -13,6 +13,7 @@
 		3DF6EA012B6FABAC00CE0D95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6EA002B6FABAC00CE0D95 /* Preview Assets.xcassets */; };
 		3DF6EA082B6FABE900CE0D95 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA072B6FABE900CE0D95 /* Feed.swift */; };
 		3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */; };
+		3DF6EA0E2B6FB49500CE0D95 /* ThreeDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		3DF6EA002B6FABAC00CE0D95 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3DF6EA072B6FABE900CE0D95 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDots.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		3DF6E9F82B6FABAA00CE0D95 /* RealInsight */ = {
 			isa = PBXGroup;
 			children = (
+				3DF6EA0C2B6FB48000CE0D95 /* Helpers */,
 				3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */,
 				3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */,
 				3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */,
@@ -71,6 +74,14 @@
 				3DF6EA002B6FABAC00CE0D95 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3DF6EA0C2B6FB48000CE0D95 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */,
+				3DF6EA0E2B6FB49500CE0D95 /* ThreeDots.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */,
 				3DF6EA082B6FABE900CE0D95 /* Feed.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
