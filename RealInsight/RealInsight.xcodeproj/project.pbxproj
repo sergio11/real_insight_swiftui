@@ -11,6 +11,9 @@
 		3D33CFF12B7161E40053C59F /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF02B7161E40053C59F /* EditProfile.swift */; };
 		3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF32B7164D90053C59F /* Extensions.swift */; };
 		3D9A35B32B7182C2000F51AC /* TimeZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A35B22B7182C2000F51AC /* TimeZoneView.swift */; };
+		3D9A35B62B718B22000F51AC /* LeftMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A35B52B718B22000F51AC /* LeftMenu.swift */; };
+		3D9A35B82B718B4D000F51AC /* LeftMenuTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A35B72B718B4D000F51AC /* LeftMenuTopView.swift */; };
+		3D9A35BC2B718BE9000F51AC /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A35BB2B718BE9000F51AC /* SearchBar.swift */; };
 		3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */; };
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
@@ -27,6 +30,9 @@
 		3D33CFF02B7161E40053C59F /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		3D33CFF32B7164D90053C59F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3D9A35B22B7182C2000F51AC /* TimeZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneView.swift; sourceTree = "<group>"; };
+		3D9A35B52B718B22000F51AC /* LeftMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenu.swift; sourceTree = "<group>"; };
+		3D9A35B72B718B4D000F51AC /* LeftMenuTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuTopView.swift; sourceTree = "<group>"; };
+		3D9A35BB2B718BE9000F51AC /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightApp.swift; sourceTree = "<group>"; };
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +64,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3D9A35B42B718B09000F51AC /* LeftMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3D9A35B52B718B22000F51AC /* LeftMenu.swift */,
+				3D9A35B72B718B4D000F51AC /* LeftMenuTopView.swift */,
+			);
+			path = LeftMenu;
+			sourceTree = "<group>";
+		};
+		3D9A35BA2B718BCF000F51AC /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				3D9A35BB2B718BE9000F51AC /* SearchBar.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
 		3DF6E9ED2B6FABAA00CE0D95 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +100,8 @@
 		3DF6E9F82B6FABAA00CE0D95 /* RealInsight */ = {
 			isa = PBXGroup;
 			children = (
+				3D9A35BA2B718BCF000F51AC /* Items */,
+				3D9A35B42B718B09000F51AC /* LeftMenu */,
 				3D33CFF22B7164C60053C59F /* Extensions */,
 				3DF6EA0C2B6FB48000CE0D95 /* Helpers */,
 				3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */,
@@ -185,6 +210,9 @@
 				3D33CFEF2B7159100053C59F /* Settings.swift in Sources */,
 				3D9A35B32B7182C2000F51AC /* TimeZoneView.swift in Sources */,
 				3DF6EA102B6FB6FF00CE0D95 /* Profile.swift in Sources */,
+				3D9A35B82B718B4D000F51AC /* LeftMenuTopView.swift in Sources */,
+				3D9A35B62B718B22000F51AC /* LeftMenu.swift in Sources */,
+				3D9A35BC2B718BE9000F51AC /* SearchBar.swift in Sources */,
 				3DF6EA0E2B6FB49500CE0D95 /* ThreeDots.swift in Sources */,
 				3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */,
