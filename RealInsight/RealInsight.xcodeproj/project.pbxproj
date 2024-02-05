@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D33CFEF2B7159100053C59F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFEE2B7159100053C59F /* Settings.swift */; };
 		3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */; };
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D33CFEE2B7159100053C59F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightApp.swift; sourceTree = "<group>"; };
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */,
 				3DF6EA0F2B6FB6FF00CE0D95 /* Profile.swift */,
 				3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */,
+				3D33CFEE2B7159100053C59F /* Settings.swift */,
 			);
 			path = RealInsight;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				3DF6EA122B6FB9BE00CE0D95 /* MemoryView.swift in Sources */,
 				3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */,
+				3D33CFEF2B7159100053C59F /* Settings.swift in Sources */,
 				3DF6EA102B6FB6FF00CE0D95 /* Profile.swift in Sources */,
 				3DF6EA0E2B6FB49500CE0D95 /* ThreeDots.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */,
