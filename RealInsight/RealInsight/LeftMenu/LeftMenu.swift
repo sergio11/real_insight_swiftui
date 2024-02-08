@@ -12,9 +12,8 @@ struct LeftMenu: View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                
                 LeftMenuTopView()
-                
+                Suggestions()
             }
         }
     }
