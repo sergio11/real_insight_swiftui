@@ -12,11 +12,13 @@ struct LeftMenu: View {
     @State var width = UIScreen.main.bounds.width
     @State var menu = "suggestions"
     
+    @Binding var mainMenu: String
+    
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                LeftMenuTopView()
+                LeftMenuTopView(mainMenu: $mainMenu)
                 
                 if menu == "suggestions" {
                     Suggestions()
@@ -92,6 +94,6 @@ struct LeftMenu: View {
 
 struct LeftMenu_Previews: PreviewProvider {
     static var previews: some View {
-        LeftMenu()
+        LeftMenu(mainMenu: .constant("left"))
     }
 }
