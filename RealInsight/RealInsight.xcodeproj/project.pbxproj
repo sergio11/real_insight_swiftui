@@ -24,6 +24,7 @@
 		3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */; };
 		3DD405202B7C00CE00C39D5C /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */; };
 		3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405212B7C027300C39D5C /* MemoriesView.swift */; };
+		3DD405242B7C0A5B00C39D5C /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405232B7C0A5B00C39D5C /* NotificationsView.swift */; };
 		3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */; };
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronButtonView.swift; sourceTree = "<group>"; };
 		3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
 		3DD405212B7C027300C39D5C /* MemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesView.swift; sourceTree = "<group>"; };
+		3DD405232B7C0A5B00C39D5C /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightApp.swift; sourceTree = "<group>"; };
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,21 @@
 			path = Items;
 			sourceTree = "<group>";
 		};
+		3DD405252B7C0C0900C39D5C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3D33CFEE2B7159100053C59F /* Settings.swift */,
+				3D33CFF02B7161E40053C59F /* EditProfile.swift */,
+				3D9A35B22B7182C2000F51AC /* TimeZoneView.swift */,
+				3DD405192B7BFBA800C39D5C /* OtherView.swift */,
+				3DD4051B2B7BFE9400C39D5C /* HelpView.swift */,
+				3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */,
+				3DD405212B7C027300C39D5C /* MemoriesView.swift */,
+				3DD405232B7C0A5B00C39D5C /* NotificationsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		3DF6E9ED2B6FABAA00CE0D95 = {
 			isa = PBXGroup;
 			children = (
@@ -137,14 +154,8 @@
 				3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */,
 				3DF6EA0F2B6FB6FF00CE0D95 /* Profile.swift */,
 				3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */,
-				3D33CFEE2B7159100053C59F /* Settings.swift */,
-				3D33CFF02B7161E40053C59F /* EditProfile.swift */,
-				3D9A35B22B7182C2000F51AC /* TimeZoneView.swift */,
-				3DD405192B7BFBA800C39D5C /* OtherView.swift */,
-				3DD4051B2B7BFE9400C39D5C /* HelpView.swift */,
+				3DD405252B7C0C0900C39D5C /* Settings */,
 				3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */,
-				3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */,
-				3DD405212B7C027300C39D5C /* MemoriesView.swift */,
 			);
 			path = RealInsight;
 			sourceTree = "<group>";
@@ -251,6 +262,7 @@
 				3DF6EA0E2B6FB49500CE0D95 /* ThreeDots.swift in Sources */,
 				3DD405182B7BF1F600C39D5C /* RequestsView.swift in Sources */,
 				3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */,
+				3DD405242B7C0A5B00C39D5C /* NotificationsView.swift in Sources */,
 				3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */,
 				3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */,
