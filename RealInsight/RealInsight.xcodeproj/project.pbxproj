@@ -19,6 +19,7 @@
 		3D9A35B82B718B4D000F51AC /* LeftMenuTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A35B72B718B4D000F51AC /* LeftMenuTopView.swift */; };
 		3D9A35BC2B718BE9000F51AC /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A35BB2B718BE9000F51AC /* SearchBar.swift */; };
 		3DD405182B7BF1F600C39D5C /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405172B7BF1F600C39D5C /* RequestsView.swift */; };
+		3DD4051A2B7BFBA800C39D5C /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405192B7BFBA800C39D5C /* OtherView.swift */; };
 		3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */; };
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		3D9A35B72B718B4D000F51AC /* LeftMenuTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMenuTopView.swift; sourceTree = "<group>"; };
 		3D9A35BB2B718BE9000F51AC /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		3DD405172B7BF1F600C39D5C /* RequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
+		3DD405192B7BFBA800C39D5C /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
 		3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightApp.swift; sourceTree = "<group>"; };
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				3D33CFEE2B7159100053C59F /* Settings.swift */,
 				3D33CFF02B7161E40053C59F /* EditProfile.swift */,
 				3D9A35B22B7182C2000F51AC /* TimeZoneView.swift */,
+				3DD405192B7BFBA800C39D5C /* OtherView.swift */,
 			);
 			path = RealInsight;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
 				3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */,
 				3D33CFF12B7161E40053C59F /* EditProfile.swift in Sources */,
+				3DD4051A2B7BFBA800C39D5C /* OtherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
