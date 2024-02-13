@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct Feed: View {
+    
+    @Binding var mainMenu: String
+    
+    
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -72,18 +76,32 @@ struct Feed: View {
             VStack {
                 VStack {
                     HStack {
-                        Image(systemName: "person.2.fill")
-                            .foregroundColor(.white)
+                        
+                        Button {
+                            withAnimation {
+                                self.mainMenu = "left"
+                            }
+                        } label: {
+                            Image(systemName: "person.2.fill")
+                                .foregroundColor(.white)
+                        }
+                        
                         Spacer()
                         Text("RealInsight.")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                             .font(.system(size: 22))
                         Spacer()
-                        Image("example")
-                            .resizable()
-                            .frame(width: 35, height: 35)
-                            .cornerRadius(17.5)
+                        Button {
+                            withAnimation {
+                                self.mainMenu = "profile"
+                            }
+                        } label: {
+                            Image("example")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .cornerRadius(17.5)
+                        }
                     }
                     .padding(.horizontal)
                     
@@ -108,6 +126,6 @@ struct Feed: View {
 
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
-        Feed()
+        Feed(mainMenu:.constant("feed"))
     }
 }
