@@ -20,6 +20,9 @@
 		3D9A35BC2B718BE9000F51AC /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A35BB2B718BE9000F51AC /* SearchBar.swift */; };
 		3DD405182B7BF1F600C39D5C /* RequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405172B7BF1F600C39D5C /* RequestsView.swift */; };
 		3DD4051A2B7BFBA800C39D5C /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405192B7BFBA800C39D5C /* OtherView.swift */; };
+		3DD4051C2B7BFE9500C39D5C /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4051B2B7BFE9400C39D5C /* HelpView.swift */; };
+		3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */; };
+		3DD405202B7C00CE00C39D5C /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */; };
 		3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */; };
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 		3D9A35BB2B718BE9000F51AC /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		3DD405172B7BF1F600C39D5C /* RequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsView.swift; sourceTree = "<group>"; };
 		3DD405192B7BFBA800C39D5C /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
+		3DD4051B2B7BFE9400C39D5C /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronButtonView.swift; sourceTree = "<group>"; };
+		3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
 		3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightApp.swift; sourceTree = "<group>"; };
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,6 +139,9 @@
 				3D33CFF02B7161E40053C59F /* EditProfile.swift */,
 				3D9A35B22B7182C2000F51AC /* TimeZoneView.swift */,
 				3DD405192B7BFBA800C39D5C /* OtherView.swift */,
+				3DD4051B2B7BFE9400C39D5C /* HelpView.swift */,
+				3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */,
+				3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */,
 			);
 			path = RealInsight;
 			sourceTree = "<group>";
@@ -233,9 +242,12 @@
 				3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */,
 				3D9A35B62B718B22000F51AC /* LeftMenu.swift in Sources */,
 				3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */,
+				3DD4051C2B7BFE9500C39D5C /* HelpView.swift in Sources */,
 				3D9A35BC2B718BE9000F51AC /* SearchBar.swift in Sources */,
+				3DD405202B7C00CE00C39D5C /* ContactUsView.swift in Sources */,
 				3DF6EA0E2B6FB49500CE0D95 /* ThreeDots.swift in Sources */,
 				3DD405182B7BF1F600C39D5C /* RequestsView.swift in Sources */,
+				3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */,
 				3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */,
 				3DF6EA082B6FABE900CE0D95 /* Feed.swift in Sources */,
