@@ -23,6 +23,7 @@
 		3DD4051C2B7BFE9500C39D5C /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4051B2B7BFE9400C39D5C /* HelpView.swift */; };
 		3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */; };
 		3DD405202B7C00CE00C39D5C /* ContactUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */; };
+		3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405212B7C027300C39D5C /* MemoriesView.swift */; };
 		3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */; };
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		3DD4051B2B7BFE9400C39D5C /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronButtonView.swift; sourceTree = "<group>"; };
 		3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsView.swift; sourceTree = "<group>"; };
+		3DD405212B7C027300C39D5C /* MemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesView.swift; sourceTree = "<group>"; };
 		3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightApp.swift; sourceTree = "<group>"; };
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				3DD4051B2B7BFE9400C39D5C /* HelpView.swift */,
 				3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */,
 				3DD4051F2B7C00CE00C39D5C /* ContactUsView.swift */,
+				3DD405212B7C027300C39D5C /* MemoriesView.swift */,
 			);
 			path = RealInsight;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				3DD405182B7BF1F600C39D5C /* RequestsView.swift in Sources */,
 				3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */,
 				3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */,
+				3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */,
 				3DF6EA082B6FABE900CE0D95 /* Feed.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
