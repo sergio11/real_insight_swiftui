@@ -11,7 +11,7 @@ struct SelectCountryView: View {
     
     var countries: [Country] = Country.allCountries
     
-    @State var countryChosen: Country = Country(isoCode: "")
+    @Binding var countryChosen: Country
     
     @Environment(\.dismiss) var dismiss
     
@@ -76,6 +76,6 @@ struct SelectCountryView: View {
 
 struct SelectCountryView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectCountryView()
+        SelectCountryView(countryChosen: .constant(Country(isoCode: "US")))
     }
 }
