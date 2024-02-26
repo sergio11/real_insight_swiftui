@@ -29,6 +29,10 @@
 		3DD405292B7C134600C39D5C /* WhiteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405282B7C134600C39D5C /* WhiteButtonView.swift */; };
 		3DEF786E2B8D01680081AFD9 /* EnterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF786D2B8D01680081AFD9 /* EnterNameView.swift */; };
 		3DEF78702B8D05980081AFD9 /* EnterAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF786F2B8D05980081AFD9 /* EnterAgeView.swift */; };
+		3DEF78732B8D0CD80081AFD9 /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 3DEF78722B8D0CD80081AFD9 /* CountryPicker */; };
+		3DEF78752B8D0DE10081AFD9 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DEF78742B8D0DE10081AFD9 /* countries.json */; };
+		3DEF78772B8D0E030081AFD9 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF78762B8D0E030081AFD9 /* Country.swift */; };
+		3DEF78792B8D10CB0081AFD9 /* SelectCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF78782B8D10CB0081AFD9 /* SelectCountryView.swift */; };
 		3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */; };
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
@@ -63,6 +67,9 @@
 		3DD405282B7C134600C39D5C /* WhiteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButtonView.swift; sourceTree = "<group>"; };
 		3DEF786D2B8D01680081AFD9 /* EnterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameView.swift; sourceTree = "<group>"; };
 		3DEF786F2B8D05980081AFD9 /* EnterAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterAgeView.swift; sourceTree = "<group>"; };
+		3DEF78742B8D0DE10081AFD9 /* countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		3DEF78762B8D0E030081AFD9 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		3DEF78782B8D10CB0081AFD9 /* SelectCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryView.swift; sourceTree = "<group>"; };
 		3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightApp.swift; sourceTree = "<group>"; };
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DEF78732B8D0CD80081AFD9 /* CountryPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +176,9 @@
 				3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */,
 				3DEF786D2B8D01680081AFD9 /* EnterNameView.swift */,
 				3DEF786F2B8D05980081AFD9 /* EnterAgeView.swift */,
+				3DEF78742B8D0DE10081AFD9 /* countries.json */,
+				3DEF78762B8D0E030081AFD9 /* Country.swift */,
+				3DEF78782B8D10CB0081AFD9 /* SelectCountryView.swift */,
 			);
 			path = RealInsight;
 			sourceTree = "<group>";
@@ -204,6 +215,9 @@
 			dependencies = (
 			);
 			name = RealInsight;
+			packageProductDependencies = (
+				3DEF78722B8D0CD80081AFD9 /* CountryPicker */,
+			);
 			productName = RealInsight;
 			productReference = 3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +246,9 @@
 				Base,
 			);
 			mainGroup = 3DF6E9ED2B6FABAA00CE0D95;
+			packageReferences = (
+				3DEF78712B8D0CD80081AFD9 /* XCRemoteSwiftPackageReference "CountryPicker" */,
+			);
 			productRefGroup = 3DF6E9F72B6FABAA00CE0D95 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -246,6 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DEF78752B8D0DE10081AFD9 /* countries.json in Resources */,
 				3DF6EA012B6FABAC00CE0D95 /* Preview Assets.xcassets in Resources */,
 				3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */,
 			);
@@ -279,6 +297,7 @@
 				3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */,
 				3DD405242B7C0A5B00C39D5C /* NotificationsView.swift in Sources */,
 				3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */,
+				3DEF78792B8D10CB0081AFD9 /* SelectCountryView.swift in Sources */,
 				3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */,
 				3DF6EA082B6FABE900CE0D95 /* Feed.swift in Sources */,
@@ -286,6 +305,7 @@
 				3DD405292B7C134600C39D5C /* WhiteButtonView.swift in Sources */,
 				3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */,
 				3D33CFF12B7161E40053C59F /* EditProfile.swift in Sources */,
+				3DEF78772B8D0E030081AFD9 /* Country.swift in Sources */,
 				3DD4051A2B7BFBA800C39D5C /* OtherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +507,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3DEF78712B8D0CD80081AFD9 /* XCRemoteSwiftPackageReference "CountryPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mobven/CountryPicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3DEF78722B8D0CD80081AFD9 /* CountryPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DEF78712B8D0CD80081AFD9 /* XCRemoteSwiftPackageReference "CountryPicker" */;
+			productName = CountryPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3DF6E9EE2B6FABAA00CE0D95 /* Project object */;
 }
