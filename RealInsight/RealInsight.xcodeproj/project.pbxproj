@@ -34,6 +34,7 @@
 		3DEF78772B8D0E030081AFD9 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF78762B8D0E030081AFD9 /* Country.swift */; };
 		3DEF78792B8D10CB0081AFD9 /* SelectCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF78782B8D10CB0081AFD9 /* SelectCountryView.swift */; };
 		3DEF787C2B8D144F0081AFD9 /* EnterPhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF787B2B8D144F0081AFD9 /* EnterPhoneNumberView.swift */; };
+		3DEF787E2B8D1B2E0081AFD9 /* EnterCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF787D2B8D1B2E0081AFD9 /* EnterCodeView.swift */; };
 		3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */; };
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
@@ -72,6 +73,7 @@
 		3DEF78762B8D0E030081AFD9 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		3DEF78782B8D10CB0081AFD9 /* SelectCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryView.swift; sourceTree = "<group>"; };
 		3DEF787B2B8D144F0081AFD9 /* EnterPhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberView.swift; sourceTree = "<group>"; };
+		3DEF787D2B8D1B2E0081AFD9 /* EnterCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeView.swift; sourceTree = "<group>"; };
 		3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightApp.swift; sourceTree = "<group>"; };
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				3DEF786F2B8D05980081AFD9 /* EnterAgeView.swift */,
 				3DEF78782B8D10CB0081AFD9 /* SelectCountryView.swift */,
 				3DEF787B2B8D144F0081AFD9 /* EnterPhoneNumberView.swift */,
+				3DEF787D2B8D1B2E0081AFD9 /* EnterCodeView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				3D33CFF12B7161E40053C59F /* EditProfile.swift in Sources */,
 				3DEF78772B8D0E030081AFD9 /* Country.swift in Sources */,
 				3DD4051A2B7BFBA800C39D5C /* OtherView.swift in Sources */,
+				3DEF787E2B8D1B2E0081AFD9 /* EnterCodeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
