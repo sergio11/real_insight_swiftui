@@ -10,11 +10,11 @@ import Combine
 
 struct EnterAgeView: View {
     
-    @State var day = ""
-    @State var month = ""
-    @State var year = ""
-    @State var buttonActive = false
+    @Binding var birthdate: Birthdate
+    @Binding var name: String
     @Binding var buttonClicked: Bool
+    
+    @State var buttonActive = false
     @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
@@ -35,84 +35,84 @@ struct EnterAgeView: View {
                 }
                 
                 VStack(alignment: .center, spacing: 8) {
-                    Text("Hi, when's your birthday?")
+                    Text("Hi \(name), when's your birthday?")
                         .foregroundColor(.white)
                         .fontWeight(.heavy)
                         .font(.system(size: 16))
                     
                     HStack(spacing: 4) {
                         Text("MM")
-                            .foregroundColor(month.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255) : Color.black)
+                            .foregroundColor(birthdate.month.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255) : Color.black)
                             .fontWeight(.heavy)
                             .font(.system(size: 40))
                             .frame(width: 72)
                             .overlay(
-                                TextField("", text: $month)
+                                TextField("", text: $birthdate.month)
                                     .foregroundColor(.white)
                                     .font(.system(size: 45, weight: .heavy))
                                     .multilineTextAlignment(.center)
                                     .keyboardType(.numberPad)
-                                    .onReceive(Just(month), perform: { newValue in
+                                    .onReceive(Just(birthdate.month), perform: { newValue in
                                         let filtered = newValue.filter {
                                             Set("0123456789").contains($0)}
                                             if filtered != newValue {
-                                                self.month = filtered
+                                                self.birthdate.month = filtered
                                             }
                                         }
-                                    ).onReceive(Just(month), perform: { _ in
-                                        if month.count > 2 {
-                                            month = String(month.prefix(2))
+                                              ).onReceive(Just(birthdate.month), perform: { _ in
+                                                  if birthdate.month.count > 2 {
+                                                      birthdate.month = String(birthdate.month.prefix(2))
                                         }
                                     })
                             )
                         
                         Text("DD")
-                            .foregroundColor(day.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
+                            .foregroundColor(birthdate.day.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
                             .fontWeight(.heavy)
                             .font(.system(size: 40))
                             .frame(width: 58)
                             .overlay(
-                                TextField("", text: $day)
+                                TextField("", text: $birthdate.day)
                                     .foregroundColor(.white)
                                     .font(.system(size: 45, weight: .heavy))
                                     .multilineTextAlignment(.center)
                                     .keyboardType(.numberPad)
-                                    .onReceive(Just(day), perform: { newValue in
+                                    .onReceive(Just(birthdate.day), perform: { newValue in
                                         let filtered = newValue.filter {
                                             Set("0123456789").contains($0)}
                                             if filtered != newValue {
-                                                self.day = filtered
+                                                self.birthdate.day = filtered
                                             }
                                         }
-                                    ).onReceive(Just(day), perform: { _ in
-                                        if day.count > 2 {
-                                            day = String(day.prefix(2))
+                                              ).onReceive(Just(birthdate.day), perform: { _ in
+                                                  if birthdate.day.count > 2 {
+                                                      birthdate.day = String(birthdate.day.prefix(2))
                                         }
                                     })
                                 
                             )
                         
                         Text("YYYY")
-                            .foregroundColor(year.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255) : Color.black)
+                            .foregroundColor(birthdate.year.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255) : Color.black)
                             .fontWeight(.heavy)
                             .font(.system(size: 40))
                             .frame(width: 120)
                             .overlay(
-                                TextField("", text: $year)
+                                TextField("", text: $birthdate.year)
                                     .foregroundColor(.white)
                                     .font(.system(size: 45, weight: .heavy))
                                     .multilineTextAlignment(.center)
                                     .keyboardType(.numberPad)
-                                    .onReceive(Just(year), perform: { newValue in
+                                    .onReceive(Just(birthdate.year), perform: { newValue in
                                         let filtered = newValue.filter {
                                             Set("0123456789").contains($0)}
                                             if filtered != newValue {
-                                                self.year = filtered
+                                                self.birthdate.year = filtered
                                             }
                                         }
-                                      ).onReceive(Just(year), perform: { _ in
-                                          if year.count > 4 {
-                                             year = String(year.prefix(4))
+                                              ).onReceive(Just(birthdate.year), perform: { _ in
+                                                  if birthdate.year.count > 4 {
+                                                      birthdate.year = String(birthdate.year.prefix(4))
                                           }
                                       })
                             )
@@ -131,7 +131,7 @@ struct EnterAgeView: View {
                         buttonClicked = true
                     } label: {
                         WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                            .onChange(of: month) { newValue in
+                            .onChange(of: birthdate.month) { newValue in
                                 buttonActive = !newValue.isEmpty
                             }
                     }
@@ -143,6 +143,6 @@ struct EnterAgeView: View {
 
 struct EnterAgeView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterAgeView(buttonClicked: .constant(true))
+        EnterAgeView(birthdate: .constant(Birthdate(day: "", month: "", year: "")), name: .constant(""), buttonClicked: .constant(true))
     }
 }
