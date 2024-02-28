@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EnterNameView: View {
     
-    @State var name: String = ""
+    @Binding var name: String
     @State var buttonActive: Bool = false
     @Binding var buttonClicked: Bool
     @EnvironmentObject var viewModel: AuthenticationViewModel
@@ -70,6 +70,6 @@ struct EnterNameView: View {
 
 struct EnterNameView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterNameView(buttonClicked: .constant(true))
+        EnterNameView(name:.constant("Test"), buttonClicked: .constant(true))
     }
 }

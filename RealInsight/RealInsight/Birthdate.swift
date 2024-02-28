@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct Year {
+public struct Birthdate {
     public var day: String
     public var month: String
     public var year: String
