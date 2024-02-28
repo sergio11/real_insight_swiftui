@@ -13,6 +13,8 @@ struct EnterPhoneNumberView: View {
     @State var showCountryList = false
     @State var phoneNumber = ""
     @State var buttonActive = false
+    @Binding var buttonClicked: Bool
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         VStack {
@@ -83,7 +85,7 @@ struct EnterPhoneNumberView: View {
                         .multilineTextAlignment(.center)
                     
                     Button {
-                        
+                        viewModel.sendOtp()
                     } label: {
                         WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
                             .onChange(of: phoneNumber) { newValue in
@@ -98,12 +100,19 @@ struct EnterPhoneNumberView: View {
         .sheet(isPresented: $showCountryList) {
             SelectCountryView(countryChosen: $country)
         }
+        .background {
+            NavigationLink(tag: "VERIFICATION", selection: $viewModel.navigationTag) {
+                EnterCodeView()
+                    .environmentObject(viewModel)
+            } label: {}
+                .labelsHidden()
+        }
         .environment(\.colorScheme, .dark)
     }
 }
 
 struct EnterPhoneNumberView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterPhoneNumberView()
+        EnterPhoneNumberView(buttonClicked: .constant(true))
     }
 }
