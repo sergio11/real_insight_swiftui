@@ -13,8 +13,9 @@ struct EnterAgeView: View {
     @State var day = ""
     @State var month = ""
     @State var year = ""
-    @State var ageButtonClicked = false
     @State var buttonActive = false
+    @Binding var buttonClicked: Bool
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         VStack {
@@ -127,9 +128,9 @@ struct EnterAgeView: View {
                         .fontWeight(.semibold)
                         .font(.system(size: 14))
                     Button {
-                        
+                        buttonClicked = true
                     } label: {
-                        WhiteButtonView(buttonActive: $ageButtonClicked, text: "Continue")
+                        WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
                             .onChange(of: month) { newValue in
                                 buttonActive = !newValue.isEmpty
                             }
@@ -142,6 +143,6 @@ struct EnterAgeView: View {
 
 struct EnterAgeView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterAgeView()
+        EnterAgeView(buttonClicked: .constant(true))
     }
 }

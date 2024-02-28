@@ -11,6 +11,9 @@ struct EnterNameView: View {
     
     @State var name: String = ""
     @State var buttonActive: Bool = false
+    @Binding var buttonClicked: Bool
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
     
     var body: some View {
         VStack {
@@ -51,10 +54,14 @@ struct EnterNameView: View {
                 
                 VStack {
                     Spacer()
-                    WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                        .onChange(of: name) { newValue in
-                            buttonActive = !newValue.isEmpty
-                        }
+                    Button {
+                        buttonClicked = true
+                    } label: {
+                        WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
+                            .onChange(of: name) { newValue in
+                                buttonActive = !newValue.isEmpty
+                            }
+                    }
                 }
             }
         }
@@ -63,6 +70,6 @@ struct EnterNameView: View {
 
 struct EnterNameView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterNameView()
+        EnterNameView(buttonClicked: .constant(true))
     }
 }
