@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct Settings: View {
+struct SettingsView: View {
     
     @State var width = UIScreen.main.bounds.width
     @Environment(\.dismiss) var dismiss
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         NavigationView {
@@ -49,11 +51,17 @@ struct Settings: View {
                                 EditProfile().navigationBarBackButtonHidden()
                             } label: {
                                 HStack {
-                                    Image("example")
-                                        .resizable()
-                                        .scaledToFit()
+
+                                    Circle()
                                         .frame(width: 60, height: 60)
                                         .cornerRadius(30)
+                                        .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
+                                        .overlay(
+                                            Text(viewModel.currentUser!.name.prefix(1).uppercased())
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 25))
+                                        )
+                                    
                                     VStack(alignment: .leading) {
                                         Text("Sergio")
                                             .foregroundColor(.white)
@@ -376,6 +384,6 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        SettingsView()
     }
 }

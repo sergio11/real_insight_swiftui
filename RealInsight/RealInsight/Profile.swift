@@ -11,6 +11,8 @@ struct Profile: View {
     
     @Binding var mainMenu: String
     
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
     var body: some View {
         VStack {
             ZStack {
@@ -35,7 +37,7 @@ struct Profile: View {
                         Spacer()
                         
                         NavigationLink {
-                            Settings().navigationBarBackButtonHidden()
+                            SettingsView().navigationBarBackButtonHidden()
                         } label:  {
                             ThreeDots(size: 4, color: .white)
                         }
@@ -46,11 +48,16 @@ struct Profile: View {
                 }
                 
                 VStack {
-                    Image("example")
-                        .resizable()
-                        .scaledToFit()
+                    
+                    Circle()
                         .frame(width: 130, height: 130)
                         .cornerRadius(75)
+                        .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
+                        .overlay(
+                            Text(viewModel.currentUser!.name.prefix(1).uppercased())
+                                .foregroundColor(.white)
+                                .font(.system(size: 55))
+                        )
                     
                     Text("Sergio")
                         .foregroundColor(.white)
