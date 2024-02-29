@@ -20,7 +20,10 @@ class AuthenticationViewModel: ObservableObject {
     @Published var verificationCode: String = ""
     @Published var errorMessage = ""
     @Published var showAlert = false
+    @Published var userSession: Firebase.User?
+    @Published var currentUser: User?
     
+    static let shared = AuthenticationViewModel()
     
     func sendOtp() async {
         print("sendOtp isLoading: \(isLoading) CALLED!")
@@ -47,9 +50,20 @@ class AuthenticationViewModel: ObservableObject {
             isLoading = true
             let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationCode, verificationCode: otpText)
             let result = try await Auth.auth().signIn(with: credential)
+            let db = Firestore.firestore()
+            db.collection("users").document(result.user.uid).setData([
+                "fullname": name,
+                "date": birthdate.date,
+                "id": result.user.uid
+            ]) { err in
+                if let err = err {
+                    print(err.localizedDescription)
+                }
+            }
             DispatchQueue.main.async {
                 self.isLoading = false
                 let user = result.user
+                self.userSession = user
                 print(user.uid)
             }
         }
@@ -58,8 +72,6 @@ class AuthenticationViewModel: ObservableObject {
             handleError(error: error.localizedDescription)
         }
     }
-    
-    
     
     private func handleError(error: String) {
         DispatchQueue.main.async {
