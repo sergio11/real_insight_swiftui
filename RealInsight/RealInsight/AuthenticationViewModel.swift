@@ -16,24 +16,17 @@ class AuthenticationViewModel: ObservableObject {
     @Published var phoneNumber = ""
     @Published var otpText = ""
     @Published var navigationTag: String?
-    @Published var isLoading: Bool = false
     @Published var verificationCode: String = ""
     @Published var errorMessage = ""
     @Published var showAlert = false
     @Published var currentUser: User?
+    @Published var isLoading: Bool = false
+    @Published var hasSession = false
     
     private var userSession: Firebase.User?
     
     static let shared = AuthenticationViewModel()
     
-    init() {
-        userSession = Auth.auth().currentUser
-        fetchUser()
-    }
-    
-    func hasSession() -> Bool {
-        return userSession != nil
-    }
     
     func sendOtp() async {
         print("sendOtp isLoading: \(isLoading) CALLED!")
@@ -76,7 +69,7 @@ class AuthenticationViewModel: ObservableObject {
                 self.isLoading = false
                 let user = result.user
                 self.userSession = user
-                self.currentUser = User(name: name, date: birthdate.date)
+                self.currentUser = User(fullname: name, date: birthdate.date)
                 print(user.uid)
             }
         }
@@ -91,29 +84,91 @@ class AuthenticationViewModel: ObservableObject {
         try? Auth.auth().signOut()
     }
     
-    func fetchUser() {
-        guard let uid = userSession?.uid else { return }
+    func verifySession() async {
+        onLoading()
+        guard let userSession = Auth.auth().currentUser else {
+            onNotActiveSessionFound()
+            return
+        }
+        self.userSession = userSession
         Firestore
             .firestore()
             .collection("users")
-            .document(uid)
-            .getDocument { sp, err in
+            .document(userSession.uid)
+            .getDocument { [weak self] sp, err in
+                guard let self = self else { return }
                 if let err = err {
                     print(err.localizedDescription)
+                    self.onNotActiveSessionFound()
                     return
                 }
                 
-                guard let user = try? sp?.data(as: User.self) else { return }
-                self.currentUser = user
-            
+                guard let user = try? sp?.data(as: User.self) else {
+                    self.onNotActiveSessionFound()
+                    return
+                }
+                self.onActiveSessionFound(user: user)
+            }
+    }
+    
+    func saveUserData(fullname: String, username: String?, location: String?, bio: String?) async {
+        guard let userId = userSession?.uid else { return }
+        do {
+            try await Firestore.firestore()
+                .collection("users")
+                .document(userId)
+                .updateData([
+                    "fullname": fullname,
+                    "username": username ?? "",
+                    "location": location ?? "",
+                    "bio": bio ?? ""
+                ])
+            updateUI { vm in
+                vm.currentUser?.fullname = fullname
+                vm.currentUser?.username = username
+                vm.currentUser?.location = location
+                vm.currentUser?.bio = bio
+            }
+        }
+        catch {
+            handleError(error: error.localizedDescription)
+        }
+    }
+
+    private func onLoading() {
+        updateUI { vm in
+            vm.isLoading = true
+        }
+    }
+
+    private func onNotActiveSessionFound() {
+        updateUI { vm in
+            vm.isLoading = false
+            vm.hasSession = false
+        }
+    }
+
+    private func onActiveSessionFound(user: User) {
+        updateUI { vm in
+            vm.isLoading = false
+            vm.hasSession = true
+            vm.currentUser = user
+        }
+    }
+
+    private func handleError(error: String) {
+        print(error)
+        updateUI { vm in
+            vm.isLoading = false
+            vm.errorMessage = error
+            vm.showAlert.toggle()
         }
     }
     
-    private func handleError(error: String) {
-        DispatchQueue.main.async {
-            self.isLoading = false
-            self.errorMessage = error
-            self.showAlert.toggle()
+    private func updateUI(with updates: @escaping (AuthenticationViewModel) -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            updates(self)
         }
     }
 }

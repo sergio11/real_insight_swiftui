@@ -10,13 +10,14 @@ import SwiftUI
 struct EditProfile: View {
     
     @State var width = UIScreen.main.bounds.width
-    @State var fullname = ""
-    @State var username = ""
-    @State var bio = ""
-    @State var location = ""
+    @State var fullname: String = ""
+    @State var username: String = ""
+    @State var bio: String = ""
+    @State var location: String = ""
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: AuthenticationViewModel
+
     
     var body: some View {
         VStack {
@@ -35,8 +36,13 @@ struct EditProfile: View {
                             
                             Spacer()
                             
-                            Text("Save")
-                                .foregroundColor(.gray)
+                            Button {
+                                saveData()
+                                dismiss()
+                            } label: {
+                                Text("Save")
+                                    .foregroundColor(.gray)
+                            }
                         }
                         .padding(.horizontal, width * 0.05)
                         
@@ -67,7 +73,7 @@ struct EditProfile: View {
                             .cornerRadius(60)
                             .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
                             .overlay(
-                                Text(viewModel.currentUser!.name.prefix(1).uppercased())
+                                Text(viewModel.currentUser!.fullname.prefix(1).uppercased())
                                     .foregroundColor(.white)
                                     .font(.system(size: 55))
                             )
@@ -112,7 +118,7 @@ struct EditProfile: View {
                                 TextField("", text: $fullname)
                                     .font(.system(size: 16))
                                     .placeholder(when: fullname.isEmpty) {
-                                        Text("Sergio").foregroundColor(.white).font(.system(size: 16))
+                                        Text("Name").foregroundColor(.white).font(.system(size: 16))
                                     }
                                     .foregroundColor(.white)
                                     .padding(.leading, width * 0.05)
@@ -140,10 +146,11 @@ struct EditProfile: View {
                             
                             
                             HStack {
-                                TextField("", text: $fullname)
+                                TextField("", text: $username)
                                     .font(.system(size: 16))
-                                    .placeholder(when: fullname.isEmpty) {
-                                        Text("dreamsoftware").foregroundColor(.white).font(.system(size: 16))
+                                    .placeholder(when: username.isEmpty) {
+                                        Text("Username")
+                                            .foregroundColor(.white).font(.system(size: 16))
                                     }
                                     .foregroundColor(.white)
                                     .padding(.leading, width * 0.05)
@@ -211,9 +218,9 @@ struct EditProfile: View {
                             
                             
                             HStack {
-                                TextField("", text: $fullname)
+                                TextField("", text: $location)
                                     .font(.system(size: 16))
-                                    .placeholder(when: fullname.isEmpty) {
+                                    .placeholder(when: location.isEmpty) {
                                         Text("Location").foregroundColor(.white).font(.system(size: 16))
                                     }
                                     .foregroundColor(.white)
@@ -233,9 +240,23 @@ struct EditProfile: View {
                 .padding(.top, UIScreen.main.bounds.height * 0.08)
                 
             }
+        }.onAppear {
+            initData()
         }
-        
     }
+    
+    private func initData() {
+        guard let user = viewModel.currentUser else { return }
+        self.fullname = user.fullname
+        self.username = user.username ?? ""
+        self.bio = user.bio ?? ""
+        self.location = user.location ?? ""
+    }
+    
+    private func saveData() {
+        Task { await viewModel.saveUserData(fullname: fullname, username: username, location: location, bio: bio) }
+    }
+    
 }
 
 struct EditProfile_Previews: PreviewProvider {

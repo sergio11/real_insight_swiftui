@@ -13,14 +13,20 @@ struct MainView: View {
     
     var body: some View {
         Group {
-            if !viewModel.hasSession() {
-                MainAuthenticationView()
-                    .environmentObject(viewModel)
+            if viewModel.isLoading {
+                LoadingView()
             } else {
-                if let user = viewModel.currentUser {
+                if viewModel.hasSession {
                     ContentView()
+                } else {
+                    MainAuthenticationView()
+                        .environmentObject(viewModel)
                 }
             }
+            
+        }
+        .onAppear {
+            Task { await viewModel.verifySession() }
         }
     }
 }
