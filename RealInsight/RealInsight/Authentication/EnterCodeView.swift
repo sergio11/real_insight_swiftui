@@ -10,9 +10,10 @@ import Combine
 
 struct EnterCodeView: View {
     
-    @State var otpCode: String = ""
     @State var buttonActive: Bool = false
     @State var timeReamining = 60
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -35,31 +36,31 @@ struct EnterCodeView: View {
                 VStack {
                     VStack {
                         VStack(alignment: .center, spacing: 8) {
-                            Text("Enter the code we sent to +39 389 939 02 12")
+                            Text("Enter the code we sent to \(viewModel.phoneNumber)")
                                 .foregroundColor(.white)
                                 .fontWeight(.medium)
                                 .font(.system(size: 16))
                             
                             Text(".......")
-                                .foregroundColor(otpCode.isEmpty ? .gray: .white)
+                                .foregroundColor(viewModel.otpText.isEmpty ? .gray: .white)
                                 .opacity(0.8)
                                 .font(.system(size: 70))
                                 .padding(.top, -40)
                                 .overlay(
-                                    TextField("", text: $otpCode)
-                                        .foregroundColor(otpCode.isEmpty ? .gray: .white)
+                                    TextField("", text: $viewModel.otpText)
+                                        .foregroundColor(viewModel.otpText.isEmpty ? .gray: .white)
                                         .multilineTextAlignment(.center)
                                         .font(.system(size: 24, weight: .heavy))
                                         .keyboardType(.numberPad)
-                                        .onReceive(Just(otpCode), perform: { _ in
+                                        .onReceive(Just(viewModel.otpText), perform: { _ in
                                             limitText(6)
                                         })
-                                        .onReceive(Just(otpCode), perform: { newValue in
+                                        .onReceive(Just(viewModel.otpText), perform: { newValue in
                                             let filtered = newValue.filter({
                                                 Set("0123456789").contains($0)
                                             })
                                             if filtered != newValue {
-                                                otpCode = filtered
+                                                viewModel.otpText = filtered
                                             }
                                         })
                                 )
@@ -75,12 +76,14 @@ struct EnterCodeView: View {
                             .fontWeight(.bold)
                         
                         Button {
-                            
+                            if buttonActive {
+                                Task { await self.viewModel.verifyOtp() }
+                            }
                         } label: {
-                            WhiteButtonView(buttonActive: $buttonActive, text: otpCode.count == 6 ? "Continue": "Resend in \(timeReamining) ")
+                            WhiteButtonView(buttonActive: $buttonActive, text: viewModel.otpText.count == 6 ? "Continue": "Resend in \(timeReamining) ")
                         }
                         .disabled(!buttonActive)
-                        .onChange(of: otpCode) { newValue in
+                        .onChange(of: viewModel.otpText) { newValue in
                             buttonActive = !newValue.isEmpty
                         }
                     }
@@ -98,12 +101,10 @@ struct EnterCodeView: View {
     }
     
     func limitText(_ upper: Int) {
-        if otpCode.count > upper {
-            otpCode = String(otpCode.prefix(upper))
+        if viewModel.otpText.count > upper {
+            viewModel.otpText = String(viewModel.otpText.prefix(upper))
         }
     }
-    
-    
 }
 
 struct EnterCodeView_Previews: PreviewProvider {
