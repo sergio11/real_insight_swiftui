@@ -13,7 +13,7 @@ struct MainView: View {
     
     var body: some View {
         Group {
-            if viewModel.userSession == nil {
+            if !viewModel.hasSession() {
                 MainAuthenticationView()
                     .environmentObject(viewModel)
             } else {

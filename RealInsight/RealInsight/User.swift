@@ -12,7 +12,7 @@ struct User: Decodable, Identifiable {
     @DocumentID var id: String?
     var username: String?
     var profileImageUrl: String?
-    var namee: String
+    var name: String
     var date: String
     var bio: String?
     var location: String?
