@@ -16,6 +16,7 @@ struct EditProfile: View {
     @State var location = ""
     
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         VStack {
@@ -60,11 +61,16 @@ struct EditProfile: View {
                     
                     
                     ZStack(alignment: .bottomTrailing) {
-                        Image("example")
-                            .resizable()
-                            .scaledToFit()
+                        
+                        Circle()
                             .frame(width: 120, height: 120)
                             .cornerRadius(60)
+                            .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
+                            .overlay(
+                                Text(viewModel.currentUser!.name.prefix(1).uppercased())
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 55))
+                            )
                         
                         ZStack {
                             ZStack {

@@ -17,7 +17,9 @@ struct MainView: View {
                 MainAuthenticationView()
                     .environmentObject(viewModel)
             } else {
-                ContentView()
+                if let user = viewModel.currentUser {
+                    ContentView()
+                }
             }
         }
     }
