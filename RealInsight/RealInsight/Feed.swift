@@ -104,7 +104,7 @@ struct Feed: View {
                                 .cornerRadius(17.5)
                                 .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
                                 .overlay(
-                                    Text((viewModel.currentUser?.name ?? "").prefix(1).uppercased())
+                                    Text(viewModel.currentUser!.fullname.prefix(1).uppercased())
                                         .foregroundColor(.white)
                                         .font(.system(size: 15))
                                 )
