@@ -21,6 +21,8 @@ struct ContentView: View {
     @State var width = UIScreen.main.bounds.width
     @State var menu = "feed"
     
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
     var body: some View {
         NavigationView {
             HStack(spacing: 0) {

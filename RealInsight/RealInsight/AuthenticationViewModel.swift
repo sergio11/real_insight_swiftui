@@ -20,10 +20,20 @@ class AuthenticationViewModel: ObservableObject {
     @Published var verificationCode: String = ""
     @Published var errorMessage = ""
     @Published var showAlert = false
-    @Published var userSession: Firebase.User?
     @Published var currentUser: User?
     
+    private var userSession: Firebase.User?
+    
     static let shared = AuthenticationViewModel()
+    
+    init() {
+        userSession = Auth.auth().currentUser
+        fetchUser()
+    }
+    
+    func hasSession() -> Bool {
+        return userSession != nil
+    }
     
     func sendOtp() async {
         print("sendOtp isLoading: \(isLoading) CALLED!")
@@ -34,7 +44,8 @@ class AuthenticationViewModel: ObservableObject {
             isLoading = true
             let result = try await PhoneAuthProvider.provider().verifyPhoneNumber("+\(country.phoneCode)\(phoneNumber)", uiDelegate: nil)
             print("sendOtp result \(result) CALLED!")
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.isLoading = false
                 self.verificationCode = result
                 self.navigationTag = "VERIFICATION"
@@ -60,16 +71,41 @@ class AuthenticationViewModel: ObservableObject {
                     print(err.localizedDescription)
                 }
             }
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.isLoading = false
                 let user = result.user
                 self.userSession = user
+                self.currentUser = User(name: name, date: birthdate.date)
                 print(user.uid)
             }
         }
         catch {
             print("ERROR")
             handleError(error: error.localizedDescription)
+        }
+    }
+    
+    func signOut() {
+        self.userSession = nil
+        try? Auth.auth().signOut()
+    }
+    
+    func fetchUser() {
+        guard let uid = userSession?.uid else { return }
+        Firestore
+            .firestore()
+            .collection("users")
+            .document(uid)
+            .getDocument { sp, err in
+                if let err = err {
+                    print(err.localizedDescription)
+                    return
+                }
+                
+                guard let user = try? sp?.data(as: User.self) else { return }
+                self.currentUser = user
+            
         }
     }
     
