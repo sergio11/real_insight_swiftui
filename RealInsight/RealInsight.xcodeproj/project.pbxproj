@@ -24,6 +24,7 @@
 		3D94873A2B9247A0001C5676 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9487392B9247A0001C5676 /* ImageUploader.swift */; };
 		3D94873C2B924B03001C5676 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94873B2B924B03001C5676 /* ImagePicker.swift */; };
 		3D94873F2B9254A0001C5676 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3D94873E2B9254A0001C5676 /* Kingfisher */; };
+		3D9487412B925E7C001C5676 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9487402B925E7C001C5676 /* CameraView.swift */; };
 		3D9A18492B8FB90D003D2447 /* MainAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A18482B8FB90D003D2447 /* MainAuthenticationView.swift */; };
 		3D9A184B2B8FBBC0003D2447 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A184A2B8FBBC0003D2447 /* AuthenticationViewModel.swift */; };
 		3D9A184D2B8FBBE5003D2447 /* Birthdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A184C2B8FBBE5003D2447 /* Birthdate.swift */; };
@@ -73,6 +74,7 @@
 		3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellView.swift; sourceTree = "<group>"; };
 		3D9487392B9247A0001C5676 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		3D94873B2B924B03001C5676 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		3D9487402B925E7C001C5676 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		3D9A18482B8FB90D003D2447 /* MainAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAuthenticationView.swift; sourceTree = "<group>"; };
 		3D9A184A2B8FBBC0003D2447 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		3D9A184C2B8FBBE5003D2447 /* Birthdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Birthdate.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				3DAE5C7E2B9104180019787D /* MainView.swift */,
 				3D4066F82B911B2D00785E5E /* LoadingView.swift */,
 				3D9487392B9247A0001C5676 /* ImageUploader.swift */,
+				3D9487402B925E7C001C5676 /* CameraView.swift */,
 			);
 			path = RealInsight;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				3D9A35B62B718B22000F51AC /* LeftMenu.swift in Sources */,
 				3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */,
 				3DD4051C2B7BFE9500C39D5C /* HelpView.swift in Sources */,
+				3D9487412B925E7C001C5676 /* CameraView.swift in Sources */,
 				3D9A35BC2B718BE9000F51AC /* SearchBar.swift in Sources */,
 				3DD405202B7C00CE00C39D5C /* ContactUsView.swift in Sources */,
 				3D94873C2B924B03001C5676 /* ImagePicker.swift in Sources */,
