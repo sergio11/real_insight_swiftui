@@ -53,10 +53,10 @@
 		3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */; };
 		3DF6E9FE2B6FABAC00CE0D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */; };
 		3DF6EA012B6FABAC00CE0D95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF6EA002B6FABAC00CE0D95 /* Preview Assets.xcassets */; };
-		3DF6EA082B6FABE900CE0D95 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA072B6FABE900CE0D95 /* Feed.swift */; };
+		3DF6EA082B6FABE900CE0D95 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA072B6FABE900CE0D95 /* FeedView.swift */; };
 		3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */; };
 		3DF6EA0E2B6FB49500CE0D95 /* ThreeDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */; };
-		3DF6EA102B6FB6FF00CE0D95 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA0F2B6FB6FF00CE0D95 /* Profile.swift */; };
+		3DF6EA102B6FB6FF00CE0D95 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA0F2B6FB6FF00CE0D95 /* ProfileView.swift */; };
 		3DF6EA122B6FB9BE00CE0D95 /* MemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,10 +103,10 @@
 		3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DF6EA002B6FABAC00CE0D95 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3DF6EA072B6FABE900CE0D95 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		3DF6EA072B6FABE900CE0D95 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDots.swift; sourceTree = "<group>"; };
-		3DF6EA0F2B6FB6FF00CE0D95 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		3DF6EA0F2B6FB6FF00CE0D95 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,9 +217,9 @@
 				3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */,
 				3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */,
 				3DF6E9FF2B6FABAC00CE0D95 /* Preview Content */,
-				3DF6EA072B6FABE900CE0D95 /* Feed.swift */,
+				3DF6EA072B6FABE900CE0D95 /* FeedView.swift */,
 				3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */,
-				3DF6EA0F2B6FB6FF00CE0D95 /* Profile.swift */,
+				3DF6EA0F2B6FB6FF00CE0D95 /* ProfileView.swift */,
 				3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */,
 				3DD405252B7C0C0900C39D5C /* Settings */,
 				3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */,
@@ -343,7 +343,7 @@
 				3D33CFEF2B7159100053C59F /* SettingsView.swift in Sources */,
 				3DAE5C7F2B9104180019787D /* MainView.swift in Sources */,
 				3D9A35B32B7182C2000F51AC /* TimeZoneView.swift in Sources */,
-				3DF6EA102B6FB6FF00CE0D95 /* Profile.swift in Sources */,
+				3DF6EA102B6FB6FF00CE0D95 /* ProfileView.swift in Sources */,
 				3D9A35B82B718B4D000F51AC /* LeftMenuTopView.swift in Sources */,
 				3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */,
 				3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */,
@@ -368,7 +368,7 @@
 				3D9A18492B8FB90D003D2447 /* MainAuthenticationView.swift in Sources */,
 				3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCell.swift in Sources */,
-				3DF6EA082B6FABE900CE0D95 /* Feed.swift in Sources */,
+				3DF6EA082B6FABE900CE0D95 /* FeedView.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
 				3DD405292B7C134600C39D5C /* WhiteButtonView.swift in Sources */,
 				3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */,

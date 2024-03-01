@@ -28,9 +28,9 @@ struct ContentView: View {
             HStack(spacing: 0) {
                 LeftMenu(mainMenu: $menu)
                     .frame(width: width)
-                Feed(mainMenu: $menu)
+                FeedView(mainMenu: $menu)
                     .frame(width: width)
-                Profile(mainMenu: $menu)
+                ProfileView(mainMenu: $menu)
                     .frame(width: width)
             }
             .offset(x: menu == "left" ? width : 0)

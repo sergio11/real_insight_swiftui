@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import Kingfisher
 
-struct Feed: View {
+struct FeedView: View {
     
     @Binding var mainMenu: String
     
@@ -99,15 +100,24 @@ struct Feed: View {
                                 self.mainMenu = "profile"
                             }
                         } label: {
-                            Circle()
-                                .frame(width: 35, height: 35)
-                                .cornerRadius(17.5)
-                                .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
-                                .overlay(
-                                    Text(viewModel.currentUser!.fullname.prefix(1).uppercased())
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 15))
-                                )
+                            
+                            if let profileImageUrl = viewModel.currentUser?.profileImageUrl {
+                                KFImage(URL(string: profileImageUrl))
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                    .cornerRadius(17.5)
+                            } else {
+                                Circle()
+                                    .frame(width: 35, height: 35)
+                                    .cornerRadius(17.5)
+                                    .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
+                                    .overlay(
+                                        Text(viewModel.currentUser!.fullname.prefix(1).uppercased())
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 15))
+                                    )
+                            }
+                            
                         }
                     }
                     .padding(.horizontal)
@@ -133,6 +143,6 @@ struct Feed: View {
 
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
-        Feed(mainMenu:.constant("feed"))
+        FeedView(mainMenu:.constant("feed"))
     }
 }
