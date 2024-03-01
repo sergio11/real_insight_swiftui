@@ -17,6 +17,11 @@ struct CameraView: View {
     @State private var frontImage: Image?
     @State private var choseFromFront: Bool = false
     @State private var photoTaken: Bool = false
+    @ObservedObject private var viewModel: CameraViewModel
+    
+    init(viewModel: CameraViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -160,9 +165,16 @@ struct CameraView: View {
     }
     
     private func onSend() {
-        
+        if let selectedBackImage = selectedBackImage, let selectedFrontImage = selectedFrontImage {
+            viewModel.takePhoto(backImage: selectedBackImage, frontImage: selectedFrontImage) { backImageUrl , frontImageUrl in
+                do {
+                    Task { await viewModel.postRealInsight(frontImageUrl: frontImageUrl, backImageUrl: backImageUrl)}
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
-    
 }
 
 struct CameraView_Previews: PreviewProvider {

@@ -30,8 +30,7 @@ struct RealInsightApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CameraView()
-            /*MainView().environmentObject(AuthenticationViewModel.shared)*/
+            MainView().environmentObject(AuthenticationViewModel.shared)
         }
     }
 }
