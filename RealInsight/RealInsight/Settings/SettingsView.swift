@@ -48,7 +48,7 @@ struct SettingsView: View {
                         .overlay(
                             
                             NavigationLink {
-                                EditProfile()
+                                EditProfileView()
                                     .navigationBarBackButtonHidden()
                             } label: {
                                 HStack {

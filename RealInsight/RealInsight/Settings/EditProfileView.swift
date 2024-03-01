@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import Kingfisher
 
-struct EditProfile: View {
+struct EditProfileView: View {
     
     @State private var width = UIScreen.main.bounds.width
     @State private var fullname: String = ""
@@ -73,7 +74,14 @@ struct EditProfile: View {
                         } label: {
                             ZStack(alignment: .bottomTrailing) {
                                 
-                                if let image = profileImage {
+                                if profileImage == nil, let profileImageUrl = viewModel.currentUser?.profileImageUrl {
+                                    KFImage(URL(string: profileImageUrl))
+                                        .resizable()
+                                        .frame(width: 120, height: 120)
+                                        .cornerRadius(60)
+                                    
+                                }
+                                else if let image = profileImage  {
                                     image
                                         .resizable().frame(width: 120, height: 120)
                                         .cornerRadius(60)
@@ -271,7 +279,7 @@ struct EditProfile: View {
     }
     
     private func saveData() {
-        Task { await viewModel.saveUserData(fullname: fullname, username: username, location: location, bio: bio) }
+        Task { await viewModel.saveUserData(fullname: fullname, username: username, location: location, bio: bio, selectedImage: selectedImage) }
     }
     
     private func onLoadImage() {
@@ -283,6 +291,6 @@ struct EditProfile: View {
 
 struct EditProfile_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfile()
+        EditProfileView()
     }
 }
