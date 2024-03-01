@@ -140,6 +140,52 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3D9487442B926E4B001C5676 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DEF78762B8D0E030081AFD9 /* Country.swift */,
+				3D9A184C2B8FBBE5003D2447 /* Birthdate.swift */,
+				3DAE5C7C2B9102A30019787D /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D9487452B926E6A001C5676 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3D9A184A2B8FBBC0003D2447 /* AuthenticationViewModel.swift */,
+				3D9487422B9269DD001C5676 /* CameraViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3D9487462B926F3A001C5676 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				3DF6EA072B6FABE900CE0D95 /* FeedView.swift */,
+				3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		3D9487472B926FF5001C5676 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3D9A35BA2B718BCF000F51AC /* Items */,
+				3D9A35B42B718B09000F51AC /* LeftMenu */,
+				3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */,
+				3D9487462B926F3A001C5676 /* Feed */,
+				3DF6EA0F2B6FB6FF00CE0D95 /* ProfileView.swift */,
+				3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */,
+				3DD405252B7C0C0900C39D5C /* Settings */,
+				3DEF787A2B8D14270081AFD9 /* Authentication */,
+				3DAE5C7E2B9104180019787D /* MainView.swift */,
+				3D4066F82B911B2D00785E5E /* LoadingView.swift */,
+				3D9487402B925E7C001C5676 /* CameraView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3D9A35B42B718B09000F51AC /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +203,8 @@
 		3D9A35BA2B718BCF000F51AC /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */,
+				3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */,
 				3D9A35BB2B718BE9000F51AC /* SearchBar.swift */,
 				3DD405282B7C134600C39D5C /* WhiteButtonView.swift */,
 			);
@@ -213,31 +261,15 @@
 			children = (
 				3D1998462B8FD104009B020A /* Info.plist */,
 				3D1998442B8FC970009B020A /* GoogleService-Info.plist */,
-				3D9A35BA2B718BCF000F51AC /* Items */,
-				3D9A35B42B718B09000F51AC /* LeftMenu */,
+				3D9487472B926FF5001C5676 /* View */,
 				3D33CFF22B7164C60053C59F /* Extensions */,
 				3DF6EA0C2B6FB48000CE0D95 /* Helpers */,
 				3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */,
-				3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */,
 				3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */,
 				3DF6E9FF2B6FABAC00CE0D95 /* Preview Content */,
-				3DF6EA072B6FABE900CE0D95 /* FeedView.swift */,
-				3DF6EA092B6FAD9700CE0D95 /* FeedCell.swift */,
-				3DF6EA0F2B6FB6FF00CE0D95 /* ProfileView.swift */,
-				3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */,
-				3DD405252B7C0C0900C39D5C /* Settings */,
-				3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */,
-				3DEF787A2B8D14270081AFD9 /* Authentication */,
 				3DEF78742B8D0DE10081AFD9 /* countries.json */,
-				3DEF78762B8D0E030081AFD9 /* Country.swift */,
-				3D9A184A2B8FBBC0003D2447 /* AuthenticationViewModel.swift */,
-				3D9A184C2B8FBBE5003D2447 /* Birthdate.swift */,
-				3DAE5C7C2B9102A30019787D /* User.swift */,
-				3DAE5C7E2B9104180019787D /* MainView.swift */,
-				3D4066F82B911B2D00785E5E /* LoadingView.swift */,
-				3D9487392B9247A0001C5676 /* ImageUploader.swift */,
-				3D9487402B925E7C001C5676 /* CameraView.swift */,
-				3D9487422B9269DD001C5676 /* CameraViewModel.swift */,
+				3D9487442B926E4B001C5676 /* Model */,
+				3D9487452B926E6A001C5676 /* ViewModel */,
 			);
 			path = RealInsight;
 			sourceTree = "<group>";
@@ -253,7 +285,7 @@
 		3DF6EA0C2B6FB48000CE0D95 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */,
+				3D9487392B9247A0001C5676 /* ImageUploader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
