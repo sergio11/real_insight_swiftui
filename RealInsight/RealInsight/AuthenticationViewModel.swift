@@ -56,7 +56,7 @@ class AuthenticationViewModel: ObservableObject {
             }
         } catch {
             print("sendOtp handleError \(error.localizedDescription) CALLED!")
-            handleError(error: error.localizedDescription)
+            handleError(error: error)
         }
     }
     
@@ -86,7 +86,7 @@ class AuthenticationViewModel: ObservableObject {
         }
         catch {
             print("ERROR")
-            handleError(error: error.localizedDescription)
+            handleError(error: error)
         }
     }
     
@@ -122,28 +122,57 @@ class AuthenticationViewModel: ObservableObject {
             }
     }
     
-    func saveUserData(fullname: String, username: String?, location: String?, bio: String?) async {
+    func saveUserData(fullname: String, username: String?, location: String?, bio: String?, selectedImage: UIImage?) async {
         guard let userId = userSession?.uid else { return }
-        do {
-            try await Firestore.firestore()
-                .collection("users")
-                .document(userId)
-                .updateData([
-                    "fullname": fullname,
-                    "username": username ?? "",
-                    "location": location ?? "",
-                    "bio": bio ?? ""
-                ])
-            updateUI { vm in
-                vm.currentUser?.fullname = fullname
-                vm.currentUser?.username = username
-                vm.currentUser?.location = location
-                vm.currentUser?.bio = bio
+        
+        var userData: [String: Any] = [
+            UserField.fullname: fullname,
+            UserField.username: username ?? "",
+            UserField.location: location ?? "",
+            UserField.bio: bio ?? ""
+        ]
+        
+        if let image = selectedImage {
+            uploadProfileImage(image: image) { [weak self] url in
+                userData[UserField.profileImageUrl] = url
+                self?.uploadProfileData(userId: userId, data: userData)
             }
+        } else {
+            uploadProfileData(userId: userId, data: userData)
         }
-        catch {
-            handleError(error: error.localizedDescription)
+    }
+    
+    private func uploadProfileData(userId: String, data: [String: Any]) {
+        uploadProfileData(userId: userId, data: data) { [weak self] in
+            self?.updateUI { vm in
+                vm.currentUser?.fullname = data[UserField.fullname] as? String ?? ""
+                vm.currentUser?.username = data[UserField.username] as? String
+                vm.currentUser?.location = data[UserField.location] as? String
+                vm.currentUser?.bio = data[UserField.bio] as? String
+                vm.currentUser?.profileImageUrl = data[UserField.profileImageUrl] as? String
+            }
+        } onError: { [weak self] error in
+            self?.handleError(error: error)
         }
+    }
+    
+    private func uploadProfileImage(image: UIImage, completion: @escaping(String) -> Void) {
+        ImageUploader.uploadImage(image: image, type: .profile) { url in
+            completion(url)
+        }
+    }
+    
+    private func uploadProfileData(userId: String, data: [AnyHashable: Any], onSuccess: @escaping() -> Void, onError: @escaping(Error) -> Void) {
+        Firestore.firestore()
+            .collection("users")
+            .document(userId)
+            .updateData(data) { err in
+                if let err = err {
+                    onError(err)
+                    return
+                }
+                onSuccess()
+            }
     }
 
     private func onLoading() {
@@ -167,11 +196,11 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
 
-    private func handleError(error: String) {
-        print(error)
+    private func handleError(error: Error) {
+        print(error.localizedDescription)
         updateUI { vm in
             vm.isLoading = false
-            vm.errorMessage = error
+            vm.errorMessage = error.localizedDescription
             vm.showAlert.toggle()
         }
     }
@@ -182,4 +211,12 @@ class AuthenticationViewModel: ObservableObject {
             updates(self)
         }
     }
+}
+
+private struct UserField {
+    static let fullname = "fullname"
+    static let username = "username"
+    static let location = "location"
+    static let bio = "bio"
+    static let profileImageUrl = "profileImageUrl"
 }
