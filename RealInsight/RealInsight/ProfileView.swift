@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import Kingfisher
 
-struct Profile: View {
+struct ProfileView: View {
     
     @Binding var mainMenu: String
     
@@ -49,15 +50,22 @@ struct Profile: View {
                 
                 VStack {
                     
-                    Circle()
-                        .frame(width: 130, height: 130)
-                        .cornerRadius(75)
-                        .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
-                        .overlay(
-                            Text(viewModel.currentUser!.fullname.prefix(1).uppercased())
-                                .foregroundColor(.white)
-                                .font(.system(size: 55))
-                        )
+                    if let profileImageUrl = viewModel.currentUser?.profileImageUrl {
+                        KFImage(URL(string: profileImageUrl))
+                            .resizable()
+                            .frame(width: 130, height: 130)
+                            .cornerRadius(75)
+                    } else {
+                        Circle()
+                            .frame(width: 130, height: 130)
+                            .cornerRadius(75)
+                            .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
+                            .overlay(
+                                Text(viewModel.currentUser!.fullname.prefix(1).uppercased())
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 55))
+                            )
+                    }
                     
                     Text(viewModel.fullName)
                         .foregroundColor(.white)
@@ -158,6 +166,6 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile(mainMenu: .constant("profile"))
+        ProfileView(mainMenu: .constant("profile"))
     }
 }

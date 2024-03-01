@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SettingsView: View {
     
@@ -52,16 +53,24 @@ struct SettingsView: View {
                                     .navigationBarBackButtonHidden()
                             } label: {
                                 HStack {
+                                    
+                                    if let profileImageUrl = viewModel.currentUser?.profileImageUrl {
+                                        KFImage(URL(string: profileImageUrl))
+                                            .resizable()
+                                            .frame(width: 60, height: 60)
+                                            .cornerRadius(30)
+                                    } else {
+                                        Circle()
+                                            .frame(width: 60, height: 60)
+                                            .cornerRadius(30)
+                                            .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
+                                            .overlay(
+                                                Text(viewModel.fullName.prefix(1).uppercased())
+                                                    .foregroundColor(.white)
+                                                    .font(.system(size: 25))
+                                            )
+                                    }
 
-                                    Circle()
-                                        .frame(width: 60, height: 60)
-                                        .cornerRadius(30)
-                                        .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
-                                        .overlay(
-                                            Text(viewModel.fullName.prefix(1).uppercased())
-                                                .foregroundColor(.white)
-                                                .font(.system(size: 25))
-                                        )
                                     
                                     VStack(alignment: .leading) {
                                         Text(viewModel.fullName)
