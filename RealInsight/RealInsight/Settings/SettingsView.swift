@@ -58,18 +58,18 @@ struct SettingsView: View {
                                         .cornerRadius(30)
                                         .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
                                         .overlay(
-                                            Text(viewModel.currentUser!.fullname.prefix(1).uppercased())
+                                            Text(viewModel.fullName.prefix(1).uppercased())
                                                 .foregroundColor(.white)
                                                 .font(.system(size: 25))
                                         )
                                     
                                     VStack(alignment: .leading) {
-                                        Text("Sergio")
+                                        Text(viewModel.fullName)
                                             .foregroundColor(.white)
                                             .fontWeight(.semibold)
                                             .font(.system(size: 18))
                                         
-                                        Text("Dreamsoftware")
+                                        Text(viewModel.username)
                                             .foregroundColor(.white)
                                             .fontWeight(.semibold)
                                             .font(.system(size: 14))
