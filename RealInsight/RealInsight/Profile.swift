@@ -59,12 +59,12 @@ struct Profile: View {
                                 .font(.system(size: 55))
                         )
                     
-                    Text("Sergio")
+                    Text(viewModel.fullName)
                         .foregroundColor(.white)
                         .font(.system(size: 25))
                         .fontWeight(.bold)
                     
-                    Text("Sanchez")
+                    Text(viewModel.username)
                         .foregroundColor(.white)
                         .fontWeight(.semibold)
                     

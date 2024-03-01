@@ -28,6 +28,17 @@ class AuthenticationViewModel: ObservableObject {
     static let shared = AuthenticationViewModel()
     
     
+    var username: String {
+        guard let user = currentUser else { return "" }
+        return user.username ?? user.fullname.lowercased()
+    }
+    
+    var fullName: String {
+        guard let user = currentUser else { return "" }
+        return user.fullname
+    }
+    
+    
     func sendOtp() async {
         print("sendOtp isLoading: \(isLoading) CALLED!")
         guard !isLoading else {
