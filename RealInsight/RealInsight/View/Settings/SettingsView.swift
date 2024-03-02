@@ -21,22 +21,21 @@ struct SettingsView: View {
                 ZStack {
                     Color.black.ignoresSafeArea()
                     VStack {
-                        ZStack {
+                        HStack {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "arrow.backward")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                            }
+                            .padding(.leading)
+                            Spacer()
                             Text("Settings")
                                 .foregroundColor(.white)
                                 .fontWeight(.semibold)
-                            
-                            HStack {
-                                Button {
-                                    dismiss()
-                                } label: {
-                                    Image(systemName: "arrow.backwards")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 20))
-                                }
-                                Spacer()
-                            }
-                        }.padding(.horizontal)
+                            Spacer()
+                        }
                         Spacer()
                     }
                     
@@ -369,8 +368,13 @@ struct SettingsView: View {
                             
                             HStack {
                                 Spacer()
-                                Text("Log out")
-                                    .foregroundColor(.red)
+                                
+                                Button {
+                                    viewModel.signOut()
+                                } label: {
+                                    Text("Log out")
+                                        .foregroundColor(.red)
+                                }
                                 Spacer()
                             }
                             .padding(.horizontal, width * 0.1)

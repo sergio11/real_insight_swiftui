@@ -27,6 +27,10 @@ class AuthenticationViewModel: ObservableObject {
     
     static let shared = AuthenticationViewModel()
     
+    var userUuid: String {
+        guard let user = currentUser else { return "" }
+        return user.id ?? ""
+    }
     
     var username: String {
         guard let user = currentUser else { return "" }
@@ -45,7 +49,7 @@ class AuthenticationViewModel: ObservableObject {
             return
         }
         do {
-            isLoading = true
+            onLoading()
             let result = try await PhoneAuthProvider.provider().verifyPhoneNumber("+\(country.phoneCode)\(phoneNumber)", uiDelegate: nil)
             print("sendOtp result \(result) CALLED!")
             DispatchQueue.main.async { [weak self] in
@@ -62,14 +66,15 @@ class AuthenticationViewModel: ObservableObject {
     
     func verifyOtp() async {
         do {
-            isLoading = true
+            onLoading()
             let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationCode, verificationCode: otpText)
             let result = try await Auth.auth().signIn(with: credential)
             let db = Firestore.firestore()
             db.collection("users").document(result.user.uid).setData([
                 "fullname": name,
                 "date": birthdate.date,
-                "id": result.user.uid
+                "id": result.user.uid,
+                "phone": "+\(country.phoneCode)\(phoneNumber)"
             ]) { err in
                 if let err = err {
                     print(err.localizedDescription)
@@ -80,7 +85,8 @@ class AuthenticationViewModel: ObservableObject {
                 self.isLoading = false
                 let user = result.user
                 self.userSession = user
-                self.currentUser = User(fullname: name, date: birthdate.date)
+                self.currentUser = User(fullname: name, date: birthdate.date, phone: "+\(country.phoneCode)\(phoneNumber)")
+                self.hasSession = true
                 print(user.uid)
             }
         }

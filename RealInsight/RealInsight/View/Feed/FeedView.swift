@@ -32,52 +32,65 @@ struct FeedView: View {
                     
                     ScrollView {
                         VStack {
-                            VStack {
-                                ZStack {
-                                    VStack(alignment: .leading) {
-                                        Image("example")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .cornerRadius(5)
-                                    }
-                                    
-                                    VStack {
-                                        HStack {
-                                            Image("example")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .border(.black)
-                                                .cornerRadius(2)
-                                                .frame(width: 20, height: 40)
-                                                .padding(.leading)
-                                            Spacer()
-                                        }
-                                        .padding(.top, 18)
-                                        Spacer()
-                                    }
-                                    
-                                    
-                                }.frame(width: 100)
-                                
-                            }
                             
-                            VStack {
-                                Text("Add a caption...")
-                                    .foregroundColor(.white)
-                                    .fontWeight(.semibold)
-                                Text("View comment")
-                                    .foregroundColor(.gray)
-                                
-                                HStack {
-                                    Text("Location * 1 hr late")
-                                        .foregroundColor(.gray)
-                                        .font(.system(size: 12))
-                                    ThreeDots(size: 3, color: .gray)
+                            if !feedViewModel.blur {
+                                VStack {
+                                        VStack {
+                                            ZStack {
+                                                VStack(alignment: .leading) {
+                                                    
+                                                    
+                                                    KFImage(URL(string: feedViewModel.realInsight.backImageUrl))
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .cornerRadius(5)
+                                                    
+                                                }
+                                                
+                                                VStack {
+                                                    HStack {
+                                                        KFImage(URL(string: feedViewModel.realInsight.frontImageUrl))
+                                                            .resizable()
+                                                            .frame(width: 20, height: 40)
+                                                            .scaledToFit()
+                                                            .border(.black)
+                                                            .cornerRadius(2)
+                                                            .padding(.leading, 5)
+                                                        Spacer()
+                                                    }
+                                                    .padding(.top, 10)
+                                                    Spacer()
+                                                }
+                                                
+                                                
+                                            }.frame(width: 100)
+                                            
+                                        }
+                                        
+                                        VStack {
+                                            Text("Add a caption...")
+                                                .foregroundColor(.white)
+                                                .fontWeight(.semibold)
+                                            Text("View comment")
+                                                .foregroundColor(.gray)
+                                            
+                                            HStack {
+                                                Text("Location * 1 hr late")
+                                                    .foregroundColor(.gray)
+                                                    .font(.system(size: 12))
+                                                ThreeDots(size: 3, color: .gray)
+                                            }
+                                        }
                                 }
                             }
                             
                             ForEach(self.feedViewModel.realInsightList, id: \.backImageUrl) { realInsight in
                                 FeedCellView(realInsight: realInsight, blur: feedViewModel.blur, viewModel: FeedCellViewModel(realInsight: realInsight))
+                                    .onAppear {
+                                        if(feedViewModel.blur) {
+                                            feedViewModel.blur = realInsight.userId != authViewModel.userUuid
+                                        }
+                                    }
                             }
                             
                         }.padding(.top, 80)
@@ -143,25 +156,29 @@ struct FeedView: View {
                         
                         Spacer()
                         
-                        HStack {
-                            VStack {
-                                Image(systemName: "circle")
-                                    .font(.system(size: 80))
-                                Text("Post a late RealInsight.")
-                                    .font(.system(size: 14))
-                                    .fontWeight(.bold)
-                            }
-                            .foregroundColor(.white)
-                            .padding(.bottom, 12)
-                            .onTapGesture {
-                                self.cameraViewPressented.toggle()
+                        if feedViewModel.blur {
+                            
+                            HStack {
+                                VStack {
+                                    Image(systemName: "circle")
+                                        .font(.system(size: 80))
+                                    Text("Post a late RealInsight.")
+                                        .font(.system(size: 14))
+                                        .fontWeight(.bold)
+                                }
+                                .foregroundColor(.white)
+                                .padding(.bottom, 12)
+                                .onTapGesture {
+                                    self.cameraViewPressented.toggle()
+                                }
                             }
                         }
                     }
+                    .shadow(color: .black.opacity(0.2), radius: 2, x: 1, y: 1)
                 }
             }
         }.fullScreenCover(isPresented: $cameraViewPressented) {
-            
+            Task { await feedViewModel.fetchData() }
         } content: {
             CameraView(viewModel: CameraViewModel.init(user: authViewModel.currentUser!))
         }
