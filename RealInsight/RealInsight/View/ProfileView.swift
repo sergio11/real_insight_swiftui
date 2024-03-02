@@ -55,7 +55,7 @@ struct ProfileView: View {
                             .resizable()
                             .frame(width: 130, height: 130)
                             .cornerRadius(75)
-                    } else {
+                    } else {
                         Circle()
                             .frame(width: 130, height: 130)
                             .cornerRadius(75)
