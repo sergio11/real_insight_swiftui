@@ -21,122 +21,120 @@ struct EnterAgeView: View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                VStack {
-                    HStack {
-                        Spacer()
-                        Text("RealInsights.")
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .font(.system(size: 22))
-                        Spacer()
-                    }
-                    Spacer()
-                    
-                }
-                
+                TopBar()
                 VStack(alignment: .center, spacing: 8) {
-                    Text("Hi \(name), when's your birthday?")
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
-                        .font(.system(size: 16))
-                    
-                    HStack(spacing: 4) {
-                        Text("MM")
-                            .foregroundColor(birthdate.month.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255) : Color.black)
-                            .fontWeight(.heavy)
-                            .font(.system(size: 40))
-                            .frame(width: 72)
-                            .overlay(
-                                TextField("", text: $birthdate.month)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 45, weight: .heavy))
-                                    .multilineTextAlignment(.center)
-                                    .keyboardType(.numberPad)
-                                    .onReceive(Just(birthdate.month), perform: { newValue in
-                                        let filtered = newValue.filter {
-                                            Set("0123456789").contains($0)}
-                                            if filtered != newValue {
-                                                self.birthdate.month = filtered
-                                            }
-                                        }
-                                              ).onReceive(Just(birthdate.month), perform: { _ in
-                                                  if birthdate.month.count > 2 {
-                                                      birthdate.month = String(birthdate.month.prefix(2))
-                                        }
-                                    })
-                            )
-                        
-                        Text("DD")
-                            .foregroundColor(birthdate.day.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
-                            .fontWeight(.heavy)
-                            .font(.system(size: 40))
-                            .frame(width: 58)
-                            .overlay(
-                                TextField("", text: $birthdate.day)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 45, weight: .heavy))
-                                    .multilineTextAlignment(.center)
-                                    .keyboardType(.numberPad)
-                                    .onReceive(Just(birthdate.day), perform: { newValue in
-                                        let filtered = newValue.filter {
-                                            Set("0123456789").contains($0)}
-                                            if filtered != newValue {
-                                                self.birthdate.day = filtered
-                                            }
-                                        }
-                                              ).onReceive(Just(birthdate.day), perform: { _ in
-                                                  if birthdate.day.count > 2 {
-                                                      birthdate.day = String(birthdate.day.prefix(2))
-                                        }
-                                    })
-                                
-                            )
-                        
-                        Text("YYYY")
-                            .foregroundColor(birthdate.year.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255) : Color.black)
-                            .fontWeight(.heavy)
-                            .font(.system(size: 40))
-                            .frame(width: 120)
-                            .overlay(
-                                TextField("", text: $birthdate.year)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 45, weight: .heavy))
-                                    .multilineTextAlignment(.center)
-                                    .keyboardType(.numberPad)
-                                    .onReceive(Just(birthdate.year), perform: { newValue in
-                                        let filtered = newValue.filter {
-                                            Set("0123456789").contains($0)}
-                                            if filtered != newValue {
-                                                self.birthdate.year = filtered
-                                            }
-                                        }
-                                              ).onReceive(Just(birthdate.year), perform: { _ in
-                                                  if birthdate.year.count > 4 {
-                                                      birthdate.year = String(birthdate.year.prefix(4))
-                                          }
-                                      })
-                            )
-                    }
+                    GreetingText(name: $name)
+                    DateInputView(birthdate: $birthdate)
                     Spacer()
                 }
                 .padding(.top, 50)
-                
                 VStack {
                     Spacer()
-                    Text("Only to make sure you're old enough to use RealInsights.")
-                        .foregroundColor(Color(red: 70/255, green: 70/255, blue: 73/255))
-                        .fontWeight(.semibold)
-                        .font(.system(size: 14))
-                    Button {
-                        buttonClicked = true
-                    } label: {
-                        WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                            .onChange(of: birthdate.month) { newValue in
-                                buttonActive = !newValue.isEmpty
-                            }
-                    }
-                }
+                    ExplanationText()
+                    ContinueButton(buttonActive: $buttonActive, buttonClicked: $buttonClicked, birthdate: $birthdate)
+                }.padding(.bottom, 10)
             }
+        }
+    }
+}
+
+private struct TopBar: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Text("RealInsights.")
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .font(.system(size: 22))
+                Spacer()
+            }
+            Spacer()
+        }
+    }
+}
+
+private struct GreetingText: View {
+    
+    @Binding var name: String
+    
+    var body: some View {
+        Text("Hi \(name), when's your birthday?")
+            .foregroundColor(.white)
+            .fontWeight(.heavy)
+            .font(.system(size: 16))
+    }
+}
+
+private struct DateInputView: View {
+    @Binding var birthdate: Birthdate
+    
+    var body: some View {
+        HStack(spacing: 4) {
+            InputField(title: "MM", value: $birthdate.month)
+            InputField(title: "DD", value: $birthdate.day)
+            InputField(title: "YYYY", value: $birthdate.year)
+        }
+    }
+}
+
+private struct InputField: View {
+    
+    var title: String
+    @Binding var value: String
+    
+    var body: some View {
+        Text(title)
+            .foregroundColor(value.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255) : Color.black)
+            .fontWeight(.heavy)
+            .font(.system(size: 40))
+            .frame(width: title == "YYYY" ? 120 : 72)
+            .overlay(
+                TextField("", text: $value)
+                    .foregroundColor(.white)
+                    .font(.system(size: 45, weight: .heavy))
+                    .multilineTextAlignment(.center)
+                    .keyboardType(.numberPad)
+                    .onReceive(Just(value)) { newValue in
+                        let filtered = newValue.filter { "0123456789".contains($0) }
+                        if filtered != newValue {
+                            self.value = filtered
+                        }
+                        if title != "YYYY" && value.count > 2 {
+                            self.value = String(value.prefix(2))
+                        } else if title == "YYYY" && value.count > 4 {
+                            self.value = String(value.prefix(4))
+                        }
+                    }
+                )
+        }
+}
+
+private struct ExplanationText: View {
+    var body: some View {
+        Text("Only to make sure you're old enough to use RealInsights.")
+            .foregroundColor(Color(red: 70/255, green: 70/255, blue: 73/255))
+            .fontWeight(.semibold)
+            .font(.system(size: 14))
+            .multilineTextAlignment(.center)
+            .padding(.horizontal)
+    }
+}
+
+private struct ContinueButton: View {
+    
+    @Binding var buttonActive: Bool
+    @Binding var buttonClicked: Bool
+    @Binding var birthdate: Birthdate
+        
+    var body: some View {
+        Button {
+            buttonClicked = true
+        } label: {
+            WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
+                .onChange(of: birthdate) { newValue in
+                    buttonActive = newValue.hasDataValid()
+                }
         }
     }
 }
