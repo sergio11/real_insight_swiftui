@@ -111,9 +111,10 @@ struct FeedCellView: View {
                                     HStack {
                                         KFImage(URL(string: realInsight.frontImageUrl))
                                             .resizable()
+                                            .frame(width: 100, height: 160)
                                             .scaledToFit()
                                             .cornerRadius(8)
-                                            .frame(height: 160)
+                        
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 10)
                                                     .stroke(.black, lineWidth: 3)

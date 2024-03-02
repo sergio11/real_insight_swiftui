@@ -14,6 +14,7 @@ class FeedCellViewModel: ObservableObject {
     
     init(realInsight: RealInsight) {
         self.realInsight = realInsight
+        fetchRealInsightUser()
     }
     
     func fetchRealInsightUser() {
