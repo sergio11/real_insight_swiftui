@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RealInsight: Decodable {
     var username: String
+    var backImageUrl: String
     var frontImageUrl: String
     var userId: String
     var user: User?

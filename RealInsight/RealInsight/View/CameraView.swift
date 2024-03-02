@@ -19,6 +19,8 @@ struct CameraView: View {
     @State private var photoTaken: Bool = false
     @ObservedObject private var viewModel: CameraViewModel
     
+    @Environment(\.dismiss) private var dismiss
+    
     init(viewModel: CameraViewModel) {
         self.viewModel = viewModel
     }
@@ -168,7 +170,9 @@ struct CameraView: View {
         if let selectedBackImage = selectedBackImage, let selectedFrontImage = selectedFrontImage {
             viewModel.takePhoto(backImage: selectedBackImage, frontImage: selectedFrontImage) { backImageUrl , frontImageUrl in
                 do {
-                    Task { await viewModel.postRealInsight(frontImageUrl: frontImageUrl, backImageUrl: backImageUrl)}
+                    Task { await viewModel.postRealInsight(frontImageUrl: frontImageUrl, backImageUrl: backImageUrl)
+                        dismiss()
+                    }
                 } catch {
                     print(error.localizedDescription)
                 }
