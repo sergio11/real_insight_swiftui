@@ -63,6 +63,10 @@ struct FeedCellView: View {
                             .foregroundColor(.white)
                             .font(.system(size: 14))
                     }
+                    
+                    Spacer()
+                    
+                    ThreeDots(size: 4, color: .gray)
                 }.padding(.horizontal)
                 
                 
@@ -92,7 +96,7 @@ struct FeedCellView: View {
                                 }
                             }.zIndex(1)
                             
-                            VStack {
+                            VStack(alignment: .leading) {
                                 
                                 KFImage(URL(string: realInsight.backImageUrl))
                                     .resizable()
@@ -100,70 +104,64 @@ struct FeedCellView: View {
                                     .scaledToFit()
                                     .cornerRadius(20)
                                 
-                                GeometryReader { g in
-                                    VStack {
-                                        HStack {
-                                            KFImage(URL(string: realInsight.frontImageUrl))
-                                                .resizable()
-                                                .scaledToFit()
-                                                .cornerRadius(8)
-                                                .frame(height: 160)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 10)
-                                                        .stroke(.black, lineWidth: 3)
-                                                )
-                                                .padding(.leading)
-                                            Spacer()
-                                        }
-                                        .padding(.top, 18)
+                            }
+                            
+                            GeometryReader { g in
+                                VStack {
+                                    HStack {
+                                        KFImage(URL(string: realInsight.frontImageUrl))
+                                            .resizable()
+                                            .scaledToFit()
+                                            .cornerRadius(8)
+                                            .frame(height: 160)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .stroke(.black, lineWidth: 3)
+                                            )
+                                            .padding(.leading)
                                         Spacer()
                                     }
-                                }
-                                
-                                
-                                HStack {
-                                    Text("Add a comment...")
-                                        .foregroundColor(.gray)
-                                        .fontWeight(.semibold)
-                                        .padding(.leading, 8)
+                                    .padding(.top, 18)
                                     Spacer()
                                 }
                             }
+
+                        }.blur(radius: blur ? 8 : 0)
+                        
+                        if blur {
+                            VStack {
+                                Image(systemName: "eye.slash.fill")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 30))
+                                Text("Post to view")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.semibold)
+                                    .padding(.top, 4)
+                                Text("To view your friends' RealInsight, share yours with them.")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 14))
+                                    .padding(.top, -4)
+                                
+                                RoundedRectangle(cornerRadius: 12)
+                                    .foregroundColor(.white)
+                                    .frame(width: 180, height: 40)
+                                    .overlay(
+                                        Text("Post a Late RealInsight")
+                                            .foregroundColor(.black)
+                                            .font(.system(size: 12))
+                                    )
+                                    .padding(.top, 6)
+                            }
                         }
+                        
                     }
                     
-                    if blur {
-                        VStack {
-                            Image(systemName: "eye.slash.fill")
-                                .foregroundColor(.white)
-                                .font(.system(size: 30))
-                            Text("Post to view")
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .padding(.top, 4)
-                            Text("To view your friends' RealInsight, share yours with them.")
-                                .foregroundColor(.white)
-                                .font(.system(size: 14))
-                                .padding(.top, -4)
-                            
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.white)
-                                .frame(width: 180, height: 40)
-                                .overlay(
-                                    Text("Post a Late RealInsight")
-                                        .foregroundColor(.black)
-                                        .font(.system(size: 12))
-                                )
-                                .padding(.top, 6)
-                        }
-                    }
-                    
+                    Text(blur ? "": "Add a comment...")
+                        .foregroundColor(.gray)
+                        .fontWeight(.semibold)
+                        .padding(.leading)
+                        
                 }
-                
-                Text(blur ? "": "Add a comment...")
-                    .foregroundColor(.gray)
-                    .fontWeight(.semibold)
-                    .padding(.leading)
                 
             }
             
