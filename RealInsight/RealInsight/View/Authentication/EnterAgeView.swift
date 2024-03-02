@@ -32,7 +32,7 @@ struct EnterAgeView: View {
                     Spacer()
                     ExplanationText()
                     ContinueButton(buttonActive: $buttonActive, buttonClicked: $buttonClicked, birthdate: $birthdate)
-                }.padding(.bottom, 10)
+                }.padding(.bottom, 20)
             }
         }
     }

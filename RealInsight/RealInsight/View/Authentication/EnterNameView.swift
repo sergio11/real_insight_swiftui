@@ -88,7 +88,7 @@ private struct ContinueButton: View {
                         buttonActive = !newValue.isEmpty
                     }
             }
-        }.padding(.bottom, 10)
+        }.padding(.bottom, 20)
     }
 }
 

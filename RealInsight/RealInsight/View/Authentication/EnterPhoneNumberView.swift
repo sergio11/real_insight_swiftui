@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct EnterPhoneNumberView: View {
     
@@ -19,80 +20,15 @@ struct EnterPhoneNumberView: View {
             ZStack {
                 Color.black.ignoresSafeArea()
                 VStack {
-                    HStack {
-                        Text("RealInsights")
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .font(.system(size: 22))
-                    }
+                    TopBar()
                     Spacer()
-                    
-                    VStack {
-                        VStack(alignment: .center, spacing: 8) {
-                            Text("Create you account using your phone number")
-                                .foregroundColor(.white)
-                                .fontWeight(.heavy)
-                                .font(.system(size: 16))
-                            
-                            HStack {
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(lineWidth: 1)
-                                    .frame(width: 75, height: 45)
-                                    .foregroundColor(.gray)
-                                    .overlay(
-                                        Text("\(viewModel.country.flag(country: viewModel.country.isoCode))")
-                                        +
-                                        Text("+\(viewModel.country.phoneCode)")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 12))
-                                            .fontWeight(.bold)
-                                    ).onTapGesture {
-                                        self.showCountryList.toggle()
-                                    }
-                                
-                                Text("Your Phone")
-                                    .foregroundColor(viewModel.phoneNumber.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
-                                    .fontWeight(.heavy)
-                                    .font(.system(size: 40))
-                                    .frame(width: 220)
-                                    .overlay(
-                                        TextField("", text: $viewModel.phoneNumber)
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 40))
-                                            .fontWeight(.heavy)
-                                    )
-                            }
-                            
-                        }
-                        .padding(.leading, UIScreen.main.bounds.width * 0.05)
-                        Spacer()
-                    }
-                    .padding(.top, 50)
-                        
-                    }
-                    
-                    
-                
+                    PhoneNumberInputView(viewModel: viewModel, showCountryList: $showCountryList)
+                }
                 VStack {
-                    
                     Spacer()
-                    Text("By tapping \"Continue\", you agree to our Privacy Policy and Terms of Service.")
-                        .foregroundColor(Color(red: 70/255, green: 70/255, blue: 73/255))
-                        .fontWeight(.semibold)
-                        .font(.system(size: 14))
-                        .multilineTextAlignment(.center)
-                    
-                    Button {
-                        Task { await viewModel.sendOtp() }
-                    } label: {
-                        WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                            .onChange(of: viewModel.phoneNumber) { newValue in
-                                buttonActive = !newValue.isEmpty
-                            }
-                    }
-                    .disabled(viewModel.phoneNumber.isEmpty)
+                    AgreementText()
+                    ContinueButton(buttonActive: $buttonActive, viewModel: viewModel)
                 }.padding(.bottom, 20)
-                
             }
         }
         .sheet(isPresented: $showCountryList) {
@@ -112,6 +48,103 @@ struct EnterPhoneNumberView: View {
         .environment(\.colorScheme, .dark)
     }
 }
+
+
+private struct TopBar: View {
+    var body: some View {
+        HStack {
+            Text("RealInsights")
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .font(.system(size: 22))
+        }
+    }
+}
+
+private struct PhoneNumberInputView: View {
+    
+    @ObservedObject var viewModel: AuthenticationViewModel
+    @Binding var showCountryList: Bool
+    
+    var body: some View {
+        VStack {
+            VStack(alignment: .center, spacing: 8) {
+                Text("Create you account using your phone number")
+                    .foregroundColor(.white)
+                    .fontWeight(.heavy)
+                    .font(.system(size: 16))
+                HStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .stroke(lineWidth: 1)
+                        .frame(width: 75, height: 45)
+                        .foregroundColor(.gray)
+                        .overlay(
+                            Text("\(viewModel.country.flag(country: viewModel.country.isoCode))")
+                            +
+                            Text("+\(viewModel.country.phoneCode)")
+                                .foregroundColor(.white)
+                                .font(.system(size: 12))
+                                .fontWeight(.bold)
+                        ).onTapGesture {
+                            self.showCountryList.toggle()
+                        }
+                    
+                    Text("Your Phone")
+                        .foregroundColor(viewModel.phoneNumber.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
+                        .fontWeight(.heavy)
+                        .font(.system(size: 40))
+                        .frame(width: 250)
+                        .overlay(
+                            TextField("", text: $viewModel.phoneNumber)
+                                .foregroundColor(.white)
+                                .font(.system(size: 40))
+                                .fontWeight(.heavy)
+                                .multilineTextAlignment(.center)
+                                .keyboardType(.numberPad)
+                                .onReceive(Just(viewModel.phoneNumber)) { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    if filtered != newValue {
+                                        viewModel.phoneNumber = filtered
+                                    }
+                                }
+                        )
+                }.padding(.top, 5)
+                
+            }
+            .padding(.leading, UIScreen.main.bounds.width * 0.05)
+            Spacer()
+        }
+        .padding(.top, 50)
+    }
+}
+
+private struct AgreementText: View {
+    var body: some View {
+        Text("By tapping \"Continue\", you agree to our Privacy Policy and Terms of Service.")
+            .foregroundColor(Color(red: 70/255, green: 70/255, blue: 73/255))
+            .fontWeight(.semibold)
+            .font(.system(size: 14))
+            .multilineTextAlignment(.center)
+    }
+}
+
+private struct ContinueButton: View {
+    @Binding var buttonActive: Bool
+    @ObservedObject var viewModel: AuthenticationViewModel
+    
+    var body: some View {
+        Button {
+            Task { await viewModel.sendOtp() }
+        } label: {
+            WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
+                .onChange(of: viewModel.phoneNumber) { newValue in
+                    buttonActive = !newValue.isEmpty
+                }
+        }
+        .disabled(viewModel.phoneNumber.isEmpty)
+    }
+}
+
 
 struct EnterPhoneNumberView_Previews: PreviewProvider {
     static var previews: some View {
