@@ -22,13 +22,14 @@ struct ContentView: View {
     @State var menu = "feed"
     
     @EnvironmentObject var viewModel: AuthenticationViewModel
+
     
     var body: some View {
         NavigationView {
             HStack(spacing: 0) {
                 LeftMenu(mainMenu: $menu)
                     .frame(width: width)
-                FeedView(mainMenu: $menu)
+                FeedView(feedViewModel: FeedViewModel(user: viewModel.currentUser!), menu: $menu)
                     .frame(width: width)
                 ProfileView(mainMenu: $menu)
                     .frame(width: width)

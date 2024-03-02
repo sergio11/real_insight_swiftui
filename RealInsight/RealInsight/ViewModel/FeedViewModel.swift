@@ -11,12 +11,15 @@ import Firebase
 class FeedViewModel: ObservableObject {
     
     @Published var realInsightList = [RealInsight]()
+    @Published var blur = true
+    let user: User
     
-    init() {
+    init(user: User) {
         let date = Date.now
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yy"
         let dateString = formatter.string(from: date)
+        self.user = user
         Task {
             await fetchData(date: dateString)
         }
