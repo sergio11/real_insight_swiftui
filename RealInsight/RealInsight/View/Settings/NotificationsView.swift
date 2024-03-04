@@ -22,113 +22,14 @@ struct NotificationsView: View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
+                TopBarView()
                 VStack {
-                    ZStack {
-                        Text("Notifications")
-                            .fontWeight(.semibold)
-                        HStack {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "arrow.backward")
-                                    .font(.system(size: 20))
-                            }
-                            Spacer()
-                        }
-                    }.padding(.horizontal)
+                    MainTitleTextView()
+                    MainMenuOptions(mentions: $mentions, comments: $comments, friendRequests: $friendRequests, lateRealInsight: $lateRealInsight, realMojis: $realMojis, buttonActive: $buttonActive)
                     Spacer()
-                }
-                .foregroundColor(.white)
-                
-                VStack {
-                    VStack {
-                        
-                        HStack {
-                            Text("On RealInsight, you're in control of your push notifications")
-                                .fontWeight(.semibold)
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            Text("You can chosse the type of notifications you want to receive")
-                                .fontWeight(.semibold)
-                            Spacer()
-                        }
-                    }
-                    .font(.system(size: 16))
-                    .foregroundColor(.white)
-                    
-                    VStack(spacing: 14) {
-                        
-                        VStack {
-                            NotificationsButtonView(icon: "person.crop.square.filled.and.at.rectangle", text: "Mentions", toggle: $mentions)
-                            
-                            HStack {
-                                Text("dilaysila mentioned you on seanlud's RealInsight")
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 12))
-                                    .padding(.leading)
-                                Spacer()
-                            }
-                        }
-                        
-                        VStack {
-                            NotificationsButtonView(icon: "bubble.left.fill", text: "Comments", toggle: $comments)
-                            
-                            HStack {
-                                Text("ercimmiyal commented on you RealInsight")
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 12))
-                                    .padding(.leading)
-                                Spacer()
-                            }
-                        }
-                        
-                        VStack {
-                            NotificationsButtonView(icon: "person.2.fill", text: "Friend Request", toggle: $friendRequests)
-                            
-                            HStack {
-                                Text("ercimmiyal just sent you a friend request")
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 12))
-                                    .padding(.leading)
-                                Spacer()
-                            }
-                        }
-                        
-                        VStack {
-                            NotificationsButtonView(icon: "timer", text: "Late RealInsight", toggle: $lateRealInsight)
-                            
-                            HStack {
-                                Text("zeymustu just posted late")
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 12))
-                                    .padding(.leading)
-                                Spacer()
-                            }
-                        }
-                        
-                        VStack {
-                            NotificationsButtonView(icon: "face.smiling.fill", text: "RealMojis", toggle: $realMojis)
-                            
-                            HStack {
-                                Text("ogulcansatafoglu just reacted to your RealInsight")
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 12))
-                                    .padding(.leading)
-                                Spacer()
-                            }
-                        }
-                        
-                    }
-                    .padding(.top, 8)
-
-                    Spacer()
-                    
                 }
                 .padding(.horizontal)
                 .padding(.top, 50)
-            
                 VStack {
                     Spacer()
                     WhiteButtonView(buttonActive: $buttonActive, text: "Save")
@@ -136,6 +37,122 @@ struct NotificationsView: View {
                             self.buttonActive = true
                         }
                 }
+            }
+        }
+    }
+}
+
+private struct TopBarView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        VStack {
+            ZStack {
+                Text("Notifications")
+                    .fontWeight(.semibold)
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "arrow.backward")
+                            .font(.system(size: 20))
+                    }
+                    Spacer()
+                }
+            }.padding(.horizontal)
+            Spacer()
+        }
+        .foregroundColor(.white)
+    }
+}
+
+private struct MainMenuOptions: View {
+    
+    @Binding var mentions: Bool
+    @Binding var comments: Bool
+    @Binding var friendRequests: Bool
+    @Binding var lateRealInsight: Bool
+    @Binding var realMojis: Bool
+    @Binding var buttonActive: Bool
+    
+    var body: some View {
+        VStack(spacing: 14) {
+            
+            NotificationListItem(
+                iconName: "person.crop.square.filled.and.at.rectangle",
+                text: "Mentions",
+                exampleText: "dilaysila mentioned you on seanlud's RealInsight",
+                toggle: $mentions
+            )
+            
+            NotificationListItem(
+                iconName: "bubble.left.fill",
+                text: "Comments",
+                exampleText: "ercimmiyal commented on you RealInsight",
+                toggle: $comments
+            )
+            
+            NotificationListItem(
+                iconName: "person.2.fill",
+                text: "Friend Request",
+                exampleText: "ercimmiyal just sent you a friend request",
+                toggle: $friendRequests
+            )
+            
+            NotificationListItem(
+                iconName: "timer",
+                text: "Late RealInsight",
+                exampleText: "zeymustu just posted late",
+                toggle: $lateRealInsight
+            )
+            
+            NotificationListItem(
+                iconName: "face.smiling.fill",
+                text: "RealMojis",
+                exampleText: "ogulcansatafoglu just reacted to your RealInsight",
+                toggle: $realMojis
+            )
+        }
+        .padding(.top, 8)
+    }
+}
+
+private struct MainTitleTextView: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Text("On RealInsight, you're in control of your push notifications")
+                    .fontWeight(.semibold)
+                Spacer()
+            }
+            HStack {
+                Text("You can chosse the type of notifications you want to receive")
+                    .fontWeight(.semibold)
+                Spacer()
+            }
+        }
+        .font(.system(size: 16))
+        .foregroundColor(.white)
+    }
+}
+
+
+private struct NotificationListItem: View {
+    var iconName: String
+    var text: String
+    var exampleText: String
+    @Binding var toggle: Bool
+    
+    var body: some View {
+        VStack {
+            NotificationsButtonView(icon: iconName, text: text, toggle: $toggle)
+            HStack {
+                Text(exampleText)
+                    .foregroundColor(.gray)
+                    .font(.system(size: 12))
+                    .padding(.leading)
+                Spacer()
             }
         }
     }
