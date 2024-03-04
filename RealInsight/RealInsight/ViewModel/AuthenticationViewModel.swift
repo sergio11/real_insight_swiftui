@@ -98,8 +98,9 @@ class AuthenticationViewModel: ObservableObject {
     
     func signOut() {
         self.userSession = nil
-        try? Auth.auth().signOut()
         self.authFlowStep = .username
+        self.hasSession = false
+        try? Auth.auth().signOut()
     }
     
     func verifySession() async {
