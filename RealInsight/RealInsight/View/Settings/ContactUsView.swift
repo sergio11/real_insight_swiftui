@@ -15,70 +15,81 @@ struct ContactUsView: View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                
-                VStack {
-                    ZStack {
-                        Text("How can we help you?")
+                TopBarView()
+                MainMenuOptions()
+            }
+        }
+    }
+}
+
+
+private struct TopBarView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        VStack {
+            ZStack {
+                Text("How can we help you?")
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "arrow.backward")
                             .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                        
-                        HStack {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "arrow.backward")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                            }
-                            Spacer()
-                        }
+                            .font(.system(size: 20))
                     }
                     Spacer()
+                }.padding(.horizontal)
+            }
+            Spacer()
+        }
+    }
+}
+
+private struct MainMenuOptions: View {
+    var body: some View {
+        VStack {
+            VStack(spacing: 28) {
+                CustomContactButton(
+                    icon: "questionmark.circle",
+                    text: "Ask a Question"
+                ) {}
+                CustomContactButton(
+                    icon: "ladybug",
+                    text: "Report a Problem"
+                ) {}
+                CustomContactButton(
+                    icon: "atom",
+                    text: "Become Beta Tester"
+                ) {}
+            }
+            Spacer()
+        }
+        .padding(.horizontal)
+        .padding(.top, 80)
+    }
+}
+
+private struct CustomContactButton: View {
+    var icon: String
+    var text: String
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            ZStack(alignment: .center) {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(height: 45)
+                    .foregroundColor(Color(red: 28/255, green: 28/255, blue: 30/255))
+                HStack {
+                    Image(systemName: icon)
+                        .foregroundColor(.white)
+                    Text(text)
                 }
-                
-                VStack {
-                    VStack(spacing: 28) {
-                        ZStack(alignment: .center) {
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(height: 45)
-                                .foregroundColor(Color(red: 28/255, green: 28/255, blue: 30/255))
-                            HStack {
-                                Image(systemName: "questionmark.circle")
-                                    .foregroundColor(.white)
-                                Text("Ask a Question")
-                            }
-                            .foregroundColor(.white)
-                        }
-                        
-                        
-                        ZStack(alignment: .center) {
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(height: 45)
-                                .foregroundColor(Color(red: 28/255, green: 28/255, blue: 30/255))
-                            HStack {
-                                Image(systemName: "ladybug")
-                                    .foregroundColor(.white)
-                                Text("Report a Problem")
-                            }
-                            .foregroundColor(.white)
-                        }
-                        
-                        ZStack(alignment: .center) {
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(height: 45)
-                                .foregroundColor(Color(red: 28/255, green: 28/255, blue: 30/255))
-                            HStack {
-                                Image(systemName: "atom")
-                                    .foregroundColor(.white)
-                                Text("Become Beta Tester")
-                            }
-                            .foregroundColor(.white)
-                        }
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 80)
+                .foregroundColor(.white)
             }
         }
     }
