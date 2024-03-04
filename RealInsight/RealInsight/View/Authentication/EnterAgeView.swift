@@ -9,39 +9,41 @@ import SwiftUI
 import Combine
 
 struct EnterAgeView: View {
-    
-    @Binding var birthdate: Birthdate
-    @Binding var name: String
-    @Binding var buttonClicked: Bool
-    
-    @State var buttonActive = false
-    @EnvironmentObject var viewModel: AuthenticationViewModel
-    
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
                 TopBar()
                 VStack(alignment: .center, spacing: 8) {
-                    GreetingText(name: $name)
-                    DateInputView(birthdate: $birthdate)
+                    GreetingText()
+                    DateInputView()
                     Spacer()
                 }
                 .padding(.top, 50)
                 VStack {
                     Spacer()
                     ExplanationText()
-                    ContinueButton(buttonActive: $buttonActive, buttonClicked: $buttonClicked, birthdate: $birthdate)
-                }.padding(.bottom, 20)
+                    ContinueButton()
+                }.padding(.bottom, 40)
             }
         }
     }
 }
 
 private struct TopBar: View {
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
     var body: some View {
         VStack {
             HStack {
+                Button {
+                    viewModel.previousAuthFlowStep()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                }.padding(.leading)
                 Spacer()
                 Text("RealInsights.")
                     .foregroundColor(.white)
@@ -56,10 +58,10 @@ private struct TopBar: View {
 
 private struct GreetingText: View {
     
-    @Binding var name: String
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
-        Text("Hi \(name), when's your birthday?")
+        Text("Hi \(viewModel.name), when's your birthday?")
             .foregroundColor(.white)
             .fontWeight(.heavy)
             .font(.system(size: 16))
@@ -67,13 +69,13 @@ private struct GreetingText: View {
 }
 
 private struct DateInputView: View {
-    @Binding var birthdate: Birthdate
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         HStack(spacing: 4) {
-            InputField(title: "MM", value: $birthdate.month)
-            InputField(title: "DD", value: $birthdate.day)
-            InputField(title: "YYYY", value: $birthdate.year)
+            InputField(title: "MM", value: $viewModel.birthdate.month)
+            InputField(title: "DD", value: $viewModel.birthdate.day)
+            InputField(title: "YYYY", value: $viewModel.birthdate.year)
         }
     }
 }
@@ -123,16 +125,16 @@ private struct ExplanationText: View {
 
 private struct ContinueButton: View {
     
-    @Binding var buttonActive: Bool
-    @Binding var buttonClicked: Bool
-    @Binding var birthdate: Birthdate
+    @State var buttonActive: Bool = false
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
         
     var body: some View {
         Button {
-            buttonClicked = true
+            viewModel.nextAuthFlowStep()
         } label: {
             WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                .onChange(of: birthdate) { newValue in
+                .onChange(of: viewModel.birthdate) { newValue in
                     buttonActive = newValue.hasDataValid()
                 }
         }
@@ -141,6 +143,6 @@ private struct ContinueButton: View {
 
 struct EnterAgeView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterAgeView(birthdate: .constant(Birthdate(day: "", month: "", year: "")), name: .constant(""), buttonClicked: .constant(true))
+        EnterAgeView()
     }
 }
