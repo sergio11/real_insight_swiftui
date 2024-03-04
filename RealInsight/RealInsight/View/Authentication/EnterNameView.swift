@@ -47,9 +47,10 @@ private struct NameInputView: View {
                     .fontWeight(.heavy)
                     .font(.system(size: 16))
                 
-                Text(viewModel.name.isEmpty ? "Your name": "")
+                Text("Your name")
                     .foregroundColor(viewModel.name.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
                     .fontWeight(.heavy)
+                    .opacity(viewModel.name.isEmpty ? 1.0: 0)
                     .font(.system(size: 40))
                     .frame(width: 210)
                     .overlay(
