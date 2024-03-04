@@ -12,23 +12,19 @@ struct EnterPhoneNumberView: View {
     
     @State var showCountryList = false
     @State var buttonActive = false
-    @Binding var buttonClicked: Bool
     @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
+                TopBar()
                 VStack {
-                    TopBar()
-                    Spacer()
                     PhoneNumberInputView(viewModel: viewModel, showCountryList: $showCountryList)
-                }
-                VStack {
                     Spacer()
                     AgreementText()
                     ContinueButton(buttonActive: $buttonActive, viewModel: viewModel)
-                }.padding(.bottom, 20)
+                }.padding(.bottom, 40)
             }
         }
         .sheet(isPresented: $showCountryList) {
@@ -38,25 +34,33 @@ struct EnterPhoneNumberView: View {
             ProgressView()
                 .opacity(viewModel.isLoading ? 1 : 0)
         }
-        .background {
-            NavigationLink(tag: "VERIFICATION", selection: $viewModel.navigationTag) {
-                EnterCodeView()
-                    .environmentObject(viewModel)
-            } label: {}
-                .labelsHidden()
-        }
         .environment(\.colorScheme, .dark)
     }
 }
 
 
 private struct TopBar: View {
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
     var body: some View {
-        HStack {
-            Text("RealInsights")
-                .foregroundColor(.white)
-                .fontWeight(.bold)
-                .font(.system(size: 22))
+        VStack {
+            HStack {
+                Button {
+                    viewModel.previousAuthFlowStep()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                }.padding(.leading)
+                Spacer()
+                Text("RealInsights.")
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .font(.system(size: 22))
+                Spacer()
+            }
+            Spacer()
         }
     }
 }
@@ -101,12 +105,7 @@ private struct PhoneNumberInputView: View {
                                 .fontWeight(.heavy)
                                 .multilineTextAlignment(.center)
                                 .keyboardType(.numberPad)
-                                .onReceive(Just(viewModel.phoneNumber)) { newValue in
-                                    let filtered = newValue.filter { "0123456789".contains($0) }
-                                    if filtered != newValue {
-                                        viewModel.phoneNumber = filtered
-                                    }
-                                }
+                                .filterNumericCharacters(binding: $viewModel.phoneNumber)
                         )
                 }.padding(.top, 5)
                 
@@ -148,6 +147,6 @@ private struct ContinueButton: View {
 
 struct EnterPhoneNumberView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterPhoneNumberView(buttonClicked: .constant(true))
+        EnterPhoneNumberView()
     }
 }

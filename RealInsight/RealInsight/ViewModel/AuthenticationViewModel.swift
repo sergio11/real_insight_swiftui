@@ -15,13 +15,13 @@ class AuthenticationViewModel: ObservableObject {
     @Published var country: Country = Country(isoCode: "US")
     @Published var phoneNumber = ""
     @Published var otpText = ""
-    @Published var navigationTag: String?
     @Published var verificationCode: String = ""
     @Published var errorMessage = ""
     @Published var showAlert = false
     @Published var currentUser: User?
     @Published var isLoading: Bool = false
     @Published var hasSession = false
+    @Published var authFlowStep: AuthFlowStepEnum = .username
     
     private var userSession: Firebase.User?
     
@@ -56,7 +56,7 @@ class AuthenticationViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.isLoading = false
                 self.verificationCode = result
-                self.navigationTag = "VERIFICATION"
+                self.nextAuthFlowStep()
             }
         } catch {
             print("sendOtp handleError \(error.localizedDescription) CALLED!")
@@ -99,6 +99,7 @@ class AuthenticationViewModel: ObservableObject {
     func signOut() {
         self.userSession = nil
         try? Auth.auth().signOut()
+        self.authFlowStep = .username
     }
     
     func verifySession() async {
@@ -145,6 +146,36 @@ class AuthenticationViewModel: ObservableObject {
             }
         } else {
             uploadProfileData(userId: userId, data: userData)
+        }
+    }
+    
+    func nextAuthFlowStep() {
+        switch authFlowStep {
+        case .username:
+            authFlowStep = .birthdate
+        case .birthdate:
+            authFlowStep = .phoneNumber
+        case .phoneNumber:
+            authFlowStep = .otp
+        case .otp:
+            authFlowStep = .completed
+        case .completed:
+            break
+        }
+    }
+    
+    func previousAuthFlowStep() {
+        switch authFlowStep {
+        case .username:
+            break
+        case .birthdate:
+            authFlowStep = .username
+        case .phoneNumber:
+            authFlowStep = .birthdate
+        case .otp:
+            authFlowStep = .phoneNumber
+        case .completed:
+            authFlowStep = .otp
         }
     }
     
@@ -225,4 +256,12 @@ private struct UserField {
     static let location = "location"
     static let bio = "bio"
     static let profileImageUrl = "profileImageUrl"
+}
+
+enum AuthFlowStepEnum {
+    case username
+    case birthdate
+    case phoneNumber
+    case otp
+    case completed
 }

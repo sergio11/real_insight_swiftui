@@ -8,19 +8,13 @@
 import SwiftUI
 
 struct EnterNameView: View {
-    
-    @Binding var name: String
-    @State var buttonActive: Bool = false
-    @Binding var buttonClicked: Bool
-    @EnvironmentObject var viewModel: AuthenticationViewModel
-    
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
                 TopBar()
-                NameInputView(name: $name)
-                ContinueButton(name: $name, buttonActive: $buttonActive, buttonClicked: $buttonClicked)
+                NameInputView()
+                ContinueButton()
             }
         }
     }
@@ -43,7 +37,8 @@ private struct TopBar: View {
 }
 
 private struct NameInputView: View {
-    @Binding var name: String
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         VStack {
@@ -52,13 +47,13 @@ private struct NameInputView: View {
                     .fontWeight(.heavy)
                     .font(.system(size: 16))
                 
-                Text(name.isEmpty ? "Your name": "")
-                    .foregroundColor(name.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
+                Text(viewModel.name.isEmpty ? "Your name": "")
+                    .foregroundColor(viewModel.name.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
                     .fontWeight(.heavy)
                     .font(.system(size: 40))
                     .frame(width: 210)
                     .overlay(
-                        TextField("", text: $name)
+                        TextField("", text: $viewModel.name)
                             .font(.system(size: 40, weight: .heavy))
                             .multilineTextAlignment(.center)
                     )
@@ -73,27 +68,27 @@ private struct NameInputView: View {
 
 private struct ContinueButton: View {
     
-    @Binding var name: String
-    @Binding var buttonActive: Bool
-    @Binding var buttonClicked: Bool
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
+    @State var buttonActive: Bool = false
     
     var body: some View {
         VStack {
             Spacer()
             Button {
-                buttonClicked = true
+                viewModel.nextAuthFlowStep()
             } label: {
                 WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                    .onChange(of: name) { newValue in
+                    .onChange(of: viewModel.name) { newValue in
                         buttonActive = !newValue.isEmpty
                     }
             }
-        }.padding(.bottom, 20)
+        }.padding(.bottom, 40)
     }
 }
 
 struct EnterNameView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterNameView(name:.constant("Test"), buttonClicked: .constant(true))
+        EnterNameView()
     }
 }

@@ -54,7 +54,9 @@ class FeedViewModel: ObservableObject {
                 .document(userId)
                 .getDocument()
             DispatchQueue.main.async { [weak self] in
-                self?.realInsight = try! data.data(as: RealInsight.self)
+                if let realInsight = try? data.data(as: RealInsight.self) {
+                    self?.realInsight = realInsight
+                }
             }
         } catch {
             print(error.localizedDescription)
