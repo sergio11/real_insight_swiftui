@@ -17,34 +17,28 @@ class CameraViewModel: ObservableObject {
         self.user = user
     }
     
-    func takePhoto(backImage: UIImage, frontImage: UIImage, completion: @escaping(String, String) -> Void) {
+    func postRealInsight(backImage: UIImage, frontImage: UIImage, completion: @escaping(Error?) -> Void) {
         ImageUploader.uploadImage(image: backImage, type: .post) { urlBackImage in
-            ImageUploader.uploadImage(image: frontImage, type: .post) { urlFrontImage in
-                completion(urlBackImage, urlFrontImage)
+            ImageUploader.uploadImage(image: frontImage, type: .post) { [unowned self] urlFrontImage in
+                guard let userId = self.user.id else { return }
+                let userFullname = self.user.fullname
+                let db = Firestore.firestore()
+                let dateString = Date().formattedString
+                print(dateString)
+                db.collection("posts")
+                    .document(dateString)
+                    .collection("reals_insights")
+                    .document(userId)
+                    .setData([
+                        "frontImageUrl": urlFrontImage,
+                        "backImageUrl": urlBackImage,
+                        "userId": userId,
+                        "username": userFullname
+                    ]) { err in
+                        completion(err)
+                    }
             }
         }
-    }
-    
-    func postRealInsight(frontImageUrl: String, backImageUrl: String) async {
-        let db = Firestore.firestore()
-        let date = Date.now
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yy"
-        let dateString = formatter.string(from: date)
-        print(dateString)
-        do {
-            try await db.collection("posts")
-                .document(dateString)
-                .collection("reals_insights")
-                .document(user.id!)
-                .setData([
-                    "frontImageUrl": frontImageUrl,
-                    "backImageUrl": backImageUrl,
-                    "userId": user.id,
-                    "username": user.fullname
-                ])
-        } catch {
-            print(error.localizedDescription)
-        }
+        
     }
 }
