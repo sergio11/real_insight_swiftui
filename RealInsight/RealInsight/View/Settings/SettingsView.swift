@@ -10,9 +10,6 @@ import Kingfisher
 
 struct SettingsView: View {
     
-    @State var width = UIScreen.main.bounds.width
-    @Environment(\.dismiss) var dismiss
-    
     @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
