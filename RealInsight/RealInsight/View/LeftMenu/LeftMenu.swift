@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct LeftMenu: View {
-    
-    @State var width = UIScreen.main.bounds.width
+
     @State var menu = "Suggestions"
-    
     @Binding var mainMenu: String
     
     var body: some View {
