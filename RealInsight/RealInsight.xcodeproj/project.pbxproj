@@ -13,6 +13,7 @@
 		3D1998412B8FC8DB009B020A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3D1998402B8FC8DB009B020A /* FirebaseStorage */; };
 		3D1998432B8FC8DB009B020A /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3D1998422B8FC8DB009B020A /* FirebaseStorageCombine-Community */; };
 		3D1998452B8FC970009B020A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1998442B8FC970009B020A /* GoogleService-Info.plist */; };
+		3D33CAAB2B979DDD001721A2 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */; };
 		3D33CFEF2B7159100053C59F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFEE2B7159100053C59F /* SettingsView.swift */; };
 		3D33CFF12B7161E40053C59F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF02B7161E40053C59F /* EditProfileView.swift */; };
 		3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF32B7164D90053C59F /* Extensions.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		3D1998442B8FC970009B020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1998462B8FD104009B020A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		3D33CFEE2B7159100053C59F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3D33CFF02B7161E40053C59F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3D33CFF32B7164D90053C59F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */,
 				3D9A35BB2B718BE9000F51AC /* SearchBar.swift */,
 				3DD405282B7C134600C39D5C /* WhiteButtonView.swift */,
+				3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				3DEF78702B8D05980081AFD9 /* EnterAgeView.swift in Sources */,
 				3DF6E9FC2B6FABAA00CE0D95 /* ContentView.swift in Sources */,
 				3D33CFEF2B7159100053C59F /* SettingsView.swift in Sources */,
+				3D33CAAB2B979DDD001721A2 /* ProfileImageView.swift in Sources */,
 				3DAE5C7F2B9104180019787D /* MainView.swift in Sources */,
 				3D9A35B32B7182C2000F51AC /* TimeZoneView.swift in Sources */,
 				3DF6EA102B6FB6FF00CE0D95 /* ProfileView.swift in Sources */,
