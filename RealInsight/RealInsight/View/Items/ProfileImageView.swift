@@ -9,6 +9,9 @@ import SwiftUI
 import Kingfisher
 
 struct ProfileImageView: View {
+    
+    var size: CGFloat = 60
+    var cornerRadius: CGFloat = 30
     var profileImageUrl: String?
     var fullName: String?
 
@@ -16,17 +19,17 @@ struct ProfileImageView: View {
         if let profileImageUrl = profileImageUrl {
             KFImage(URL(string: profileImageUrl))
                 .resizable()
-                .frame(width: 60, height: 60)
-                .cornerRadius(30)
+                .frame(width: size, height: size)
+                .cornerRadius(cornerRadius)
         } else {
             Circle()
-                .frame(width: 60, height: 60)
-                .cornerRadius(30)
+                .frame(width: size, height: size)
+                .cornerRadius(cornerRadius)
                 .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
                 .overlay(
                     Text(fullName?.prefix(1).uppercased() ?? "")
                         .foregroundColor(.white)
-                        .font(.system(size: 25))
+                        .font(.system(size: size / 2))
                 )
         }
     }
