@@ -11,7 +11,6 @@ struct LeftMenuTopView: View {
     
     @State var text = ""
     @State var isEditing = false
-    
     @Binding var mainMenu: String
     
     
@@ -34,8 +33,7 @@ struct LeftMenuTopView: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(.system(size: 22))
-            }
-            
+            }.padding(.horizontal)
             SearchBar(text: $text, isEditing: $isEditing)
             Spacer()
         }

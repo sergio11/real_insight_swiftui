@@ -9,17 +9,14 @@ import SwiftUI
 
 struct MemoryView: View {
     
-    
     var day: Int
     
     var body: some View {
         VStack {
             ZStack {
-                
                 Text("\(day)")
                     .foregroundColor(.white)
                     .zIndex(1)
-                
                 Image("example")
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width / 8, height: 70)

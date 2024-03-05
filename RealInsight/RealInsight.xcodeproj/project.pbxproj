@@ -15,6 +15,7 @@
 		3D1998452B8FC970009B020A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1998442B8FC970009B020A /* GoogleService-Info.plist */; };
 		3D33CAAB2B979DDD001721A2 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */; };
 		3D33CAAD2B97A6E2001721A2 /* TabBarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAC2B97A6E2001721A2 /* TabBarMenuView.swift */; };
+		3D33CAAF2B97AE34001721A2 /* InviteFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAE2B97AE34001721A2 /* InviteFriendsView.swift */; };
 		3D33CFEF2B7159100053C59F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFEE2B7159100053C59F /* SettingsView.swift */; };
 		3D33CFF12B7161E40053C59F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF02B7161E40053C59F /* EditProfileView.swift */; };
 		3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF32B7164D90053C59F /* Extensions.swift */; };
@@ -72,6 +73,7 @@
 		3D1998462B8FD104009B020A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		3D33CAAC2B97A6E2001721A2 /* TabBarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMenuView.swift; sourceTree = "<group>"; };
+		3D33CAAE2B97AE34001721A2 /* InviteFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsView.swift; sourceTree = "<group>"; };
 		3D33CFEE2B7159100053C59F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3D33CFF02B7161E40053C59F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3D33CFF32B7164D90053C59F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -190,7 +192,6 @@
 				3DF6E9FB2B6FABAA00CE0D95 /* ContentView.swift */,
 				3D9487462B926F3A001C5676 /* Feed */,
 				3DF6EA0F2B6FB6FF00CE0D95 /* ProfileView.swift */,
-				3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */,
 				3DD405252B7C0C0900C39D5C /* Settings */,
 				3DEF787A2B8D14270081AFD9 /* Authentication */,
 				3DAE5C7E2B9104180019787D /* MainView.swift */,
@@ -217,6 +218,7 @@
 		3D9A35BA2B718BCF000F51AC /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				3DF6EA112B6FB9BE00CE0D95 /* MemoryView.swift */,
 				3DD405262B7C0E8C00C39D5C /* NotificationsButtonView.swift */,
 				3DD4051D2B7BFF5300C39D5C /* ChevronButtonView.swift */,
 				3DF6EA0D2B6FB49500CE0D95 /* ThreeDots.swift */,
@@ -224,6 +226,7 @@
 				3DD405282B7C134600C39D5C /* WhiteButtonView.swift */,
 				3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */,
 				3D33CAAC2B97A6E2001721A2 /* TabBarMenuView.swift */,
+				3D33CAAE2B97AE34001721A2 /* InviteFriendsView.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				3D9A35B82B718B4D000F51AC /* LeftMenuTopView.swift in Sources */,
 				3D9D04E12B96425000DCC894 /* ViewExtensions.swift in Sources */,
 				3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */,
+				3D33CAAF2B97AE34001721A2 /* InviteFriendsView.swift in Sources */,
 				3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */,
 				3D4066F92B911B2D00785E5E /* LoadingView.swift in Sources */,
 				3D9A35B62B718B22000F51AC /* LeftMenu.swift in Sources */,
