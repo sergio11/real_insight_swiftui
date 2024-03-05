@@ -20,374 +20,34 @@ struct SettingsView: View {
             VStack {
                 ZStack {
                     Color.black.ignoresSafeArea()
+                    TopBarView()
                     VStack {
-                        HStack {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "arrow.backward")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                            }
-                            .padding(.leading)
-                            Spacer()
-                            Text("Settings")
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                            Spacer()
-                        }
-                        Spacer()
-                    }
-                    
-                    VStack {
-                        RoundedRectangle(
-                        cornerRadius: 16)
-                        .frame(width: UIScreen.main.bounds.width * 0.9, height: 90)
-                        .foregroundColor(.white)
-                        .opacity(0.07)
-                        .overlay(
-                            
-                            NavigationLink {
-                                EditProfileView()
-                                    .navigationBarBackButtonHidden()
-                            } label: {
-                                HStack {
-                                    
-                                    if let profileImageUrl = viewModel.currentUser?.profileImageUrl {
-                                        KFImage(URL(string: profileImageUrl))
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                            .cornerRadius(30)
-                                    } else {
-                                        Circle()
-                                            .frame(width: 60, height: 60)
-                                            .cornerRadius(30)
-                                            .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
-                                            .overlay(
-                                                Text(viewModel.fullName.prefix(1).uppercased())
-                                                    .foregroundColor(.white)
-                                                    .font(.system(size: 25))
-                                            )
-                                    }
-
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text(viewModel.fullName)
-                                            .foregroundColor(.white)
-                                            .fontWeight(.semibold)
-                                            .font(.system(size: 18))
-                                        
-                                        Text(viewModel.username)
-                                            .foregroundColor(.white)
-                                            .fontWeight(.semibold)
-                                            .font(.system(size: 14))
-                                        
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.gray)
-                                }
-                                    .padding(.horizontal, 18)
-                            }
-                            
+                        EditProfileItem()
+                        MenuBlockSection(
+                            title: "Features",
+                            items: [
+                                ("calendar", "Memories", AnyView(MemoriesView()))
+                            ]
                         )
-                        
-                        
-                        VStack(spacing: 6) {
-                            HStack {
-                                Text("FEATURES")
-                                    .foregroundColor(.gray)
-                                    .fontWeight(.semibold)
-                                    .font(.system(size: 12))
-                                    .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
-                                Spacer()
-                            }
-                            
-                            NavigationLink {
-                                MemoriesView().navigationBarBackButtonHidden()
-                            } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .frame(width: width * 0.9, height: 45)
-                                        .foregroundColor(.white)
-                                        .opacity(0.07)
-                                    
-                                    HStack {
-                                        Image(systemName: "calendar")
-                                            .foregroundColor(.white)
-                                        Text("Memories")
-                                            .foregroundColor(.white)
-                                            .fontWeight(.semibold)
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                            .foregroundColor(.gray)
-                                            .font(.system(size: 14))
-                                    }
-                                    .padding(.horizontal, width * 0.1)
-                                    .frame(height: 30)
-                                    
-                                }
-                            }
-                            
-                        }
-                        .padding(.top, 12)
-                        
-                        
-                        VStack {
-                            HStack {
-                                Text("SETTINGS")
-                                    .foregroundColor(.gray)
-                                    .fontWeight(.semibold)
-                                    .font(.system(size: 12))
-                                    .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
-                                Spacer()
-                            }
-                            
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 14)
-                                    .frame(width: width * 0.9, height: 145)
-                                    .foregroundColor(.white)
-                                    .opacity(0.07)
-                                
-                                VStack {
-                                    
-                                    NavigationLink {
-                                        NotificationsView().navigationBarBackButtonHidden()
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "square.and.pencil")
-                                                .foregroundColor(.white)
-                                            
-                                            Text("Notifications")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.semibold)
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                                .font(.system(size: 14))
-                                        }
-                                        .padding(.horizontal, width * 0.1)
-                                        .frame(height: 30)
-                                    }
-                                    
-                                    
-                                    Rectangle()
-                                        .frame(width: width * 0.9, height: 0.3)
-                                        .opacity(0.4)
-                                        .foregroundColor(.gray)
-                                    
-                                    
-                                    NavigationLink {
-                                        TimeZoneView().navigationBarBackButtonHidden()
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "globe.europe.africa.fill")
-                                                .foregroundColor(.white)
-                                            
-                                            Text("Time Zone: Europe")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.semibold)
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                                .font(.system(size: 14))
-                                        }
-                                        .padding(.horizontal, width * 0.1)
-                                        .frame(height: 30)
-                                    }
-                                    
-                                    
-                                    Rectangle()
-                                        .frame(width: width * 0.9, height: 0.3)
-                                        .opacity(0.4)
-                                        .foregroundColor(.gray)
-                                    
-                                    
-                                    NavigationLink {
-                                        OtherView().navigationBarBackButtonHidden()
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "hammer.circle")
-                                                .foregroundColor(.white)
-                                            
-                                            Text("Others")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.semibold)
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                                .font(.system(size: 14))
-                                        }
-                                        .padding(.horizontal, width * 0.1)
-                                        .frame(height: 30)
-                                    }
-                                    
-                                    
-                                }
-                            }
-                        }
-                        .padding(.top, 12)
-                        
-                        
-                        VStack(spacing: 6) {
-                            HStack {
-                                Text("ABOUT")
-                                    .foregroundColor(.gray)
-                                    .fontWeight(.semibold)
-                                    .font(.system(size: 12))
-                                    .padding(.horizontal, width * 0.05)
-                                Spacer()
-                            }
-                            
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 14)
-                                    .frame(width: width * 0.9, height: 190)
-                                    .foregroundColor(.white)
-                                    .opacity(0.07)
-                                
-                                VStack {
-                                    
-                                    NavigationLink {
-                                        
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "square.and.arrow.up")
-                                                .foregroundColor(.white)
-                                            
-                                            Text("Share RealInsiht")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.semibold)
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                                .font(.system(size: 14))
-                                        }
-                                        .padding(.horizontal, width * 0.1)
-                                        .frame(height: 30)
-                                    }
-                                    
-                                    
-                                    Rectangle()
-                                        .frame(width: width * 0.9, height: 0.3)
-                                        .opacity(0.4)
-                                        .foregroundColor(.gray)
-                                    
-                                    
-                                    NavigationLink {
-                                        
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "star")
-                                                .foregroundColor(.white)
-                                            
-                                            Text("Star")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.semibold)
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                                .font(.system(size: 14))
-                                        }
-                                        .padding(.horizontal, width * 0.1)
-                                        .frame(height: 30)
-                                    }
-                                    
-                                    
-                                    Rectangle()
-                                        .frame(width: width * 0.9, height: 0.3)
-                                        .opacity(0.4)
-                                        .foregroundColor(.gray)
-                                    
-                                    
-                                    NavigationLink {
-                                        HelpView().navigationBarBackButtonHidden()
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "lifepreserver")
-                                                .foregroundColor(.white)
-                                            
-                                            Text("Help")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.semibold)
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                                .font(.system(size: 14))
-                                        }
-                                        .padding(.horizontal, width * 0.1)
-                                        .frame(height: 30)
-                                    }
-                                    
-                                    Rectangle()
-                                        .frame(width: width * 0.9, height: 0.3)
-                                        .opacity(0.4)
-                                        .foregroundColor(.gray)
-                                    
-                                    NavigationLink {
-                                        
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "info.circle")
-                                                .foregroundColor(.white)
-                                            
-                                            Text("About")
-                                                .foregroundColor(.white)
-                                                .fontWeight(.semibold)
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                                .font(.system(size: 14))
-                                        }
-                                        .padding(.horizontal, width * 0.1)
-                                        .frame(height: 30)
-                                    }
-                                    
-                                    
-                                }
-                            }
-                            
-                            
-                        }
-                        .padding(.top, 12)
-                        
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: width * 0.9, height: 45)
-                                .foregroundColor(.white)
-                                .opacity(0.07)
-                            
-                            HStack {
-                                Spacer()
-                                
-                                Button {
-                                    viewModel.signOut()
-                                } label: {
-                                    Text("Log out")
-                                        .foregroundColor(.red)
-                                }
-                                Spacer()
-                            }
-                            .padding(.horizontal, width * 0.1)
-                            .frame(height: 30)
-                        }
-                        .padding(.top, 12)
-                        
-                        Text("Version 0.0.1 (0002) - Production")
-                            .foregroundColor(.gray)
-                            .font(.system(size: 12))
-                            .padding(.top, 12)
-                        
-                        
+                        MenuBlockSection(
+                            title: "Settings",
+                            items: [
+                                ("square.and.pencil", "Notifications", AnyView(NotificationsView())),
+                                ("globe.europe.africa.fill", "Time Zone: Europe", AnyView(TimeZoneView())),
+                                ("hammer.circle", "Others", AnyView(OtherView()))
+                            ]
+                        )
+                        MenuBlockSection(
+                            title: "About",
+                            items: [
+                                ("square.and.arrow.up", "Share RealInsiht", AnyView(OtherView())),
+                                ("star", "Star", AnyView(OtherView())),
+                                ("lifepreserver", "Help", AnyView(HelpView())),
+                                 ("info.circle", "About", AnyView(OtherView()))
+                            ]
+                        )
+                        LogoutButton()
+                        AppVersion()
                     }
                     
                 }
@@ -396,8 +56,185 @@ struct SettingsView: View {
     }
 }
 
+private struct TopBarView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                }
+                .padding(.leading)
+                Spacer()
+                Text("Settings")
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+                Spacer()
+            }
+            Spacer()
+        }
+    }
+}
+
+private struct AppVersion: View {
+    var body: some View {
+        Text("Version 0.0.1 (0002) - Production")
+            .foregroundColor(.gray)
+            .font(.system(size: 12))
+            .padding(.top, 12)
+    }
+}
+
+private struct EditProfileItem: View {
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 16)
+        .frame(width: UIScreen.main.bounds.width * 0.9, height: 90)
+        .foregroundColor(.white)
+        .opacity(0.07)
+        .overlay(
+            NavigationLink {
+                EditProfileView()
+                    .navigationBarBackButtonHidden()
+            } label: {
+                HStack {
+                    ProfileImageView(
+                        profileImageUrl: viewModel.currentUser?.profileImageUrl,
+                        fullName: viewModel.fullName
+                    )
+                    ProfileNameView()
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.gray)
+                }
+                    .padding(.horizontal, 18)
+            }
+            
+        )
+    }
+}
+
+private struct ProfileNameView: View {
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(viewModel.fullName)
+                .foregroundColor(.white)
+                .fontWeight(.semibold)
+                .font(.system(size: 18))
+            
+            Text(viewModel.username)
+                .foregroundColor(.white)
+                .fontWeight(.semibold)
+                .font(.system(size: 14))
+        }
+    }
+}
+
+private struct LogoutButton: View {
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: 45)
+                .foregroundColor(.white)
+                .opacity(0.07)
+            
+            HStack {
+                Spacer()
+                Button {
+                    viewModel.signOut()
+                } label: {
+                    Text("Log out")
+                        .foregroundColor(.red)
+                }
+                Spacer()
+            }
+            .padding(.horizontal, UIScreen.main.bounds.width * 0.1)
+            .frame(height: 30)
+        }
+        .padding(.top, 12)
+    }
+}
+
+private struct MenuBlockSection<Destination: View>: View {
+    var title: String
+    var items: [(imageName: String, title: String, destination: Destination)]
+    
+    var body: some View {
+        VStack(spacing: 6) {
+            HStack {
+                Text(title.uppercased())
+                    .foregroundColor(.gray)
+                    .fontWeight(.semibold)
+                    .font(.system(size: 12))
+                    .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
+                Spacer()
+            }
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 14)
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: CGFloat(40 * items.count + 10))
+                    .foregroundColor(.white)
+                    .opacity(0.07)
+                
+                VStack {
+                    ForEach(items.indices, id: \.self) { index in
+                            NavigationLink(destination: items[index].destination.navigationBarBackButtonHidden()) {
+                                NavigationRow(imageName: items[index].imageName, title: items[index].title)
+                            }
+                            
+                            if index != items.indices.last {
+                                Rectangle()
+                                    .frame(width: UIScreen.main.bounds.width * 0.9, height: 0.3)
+                                    .opacity(0.4)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                }.frame(height: 40)
+            }
+        }
+        .padding(.top, 12)
+    }
+}
+
+private struct NavigationRow: View {
+    let imageName: String
+    let title: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: imageName)
+                .foregroundColor(.white)
+            
+            Text(title)
+                .foregroundColor(.white)
+                .fontWeight(.semibold)
+            
+            Spacer()
+            Image(systemName: "chevron.right")
+                .foregroundColor(.gray)
+                .font(.system(size: 14))
+        }
+        .padding(.horizontal, UIScreen.main.bounds.width * 0.1)
+    }
+}
+
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(AuthenticationViewModel.shared)
     }
 }
