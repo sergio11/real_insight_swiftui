@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class FirestoreRealInsightsRepository: RealInsightsRepository {
+internal class FirestoreRealInsightsRepository: RealInsightsRepository {
     
     private let postsCollection = "posts"
     private let insightsCollection = "reals_insights"

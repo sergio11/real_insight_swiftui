@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Factory
 
 class AuthenticationViewModel: ObservableObject {
     
@@ -23,9 +24,12 @@ class AuthenticationViewModel: ObservableObject {
     @Published var hasSession = false
     @Published var authFlowStep: AuthFlowStepEnum = .username
     
-    private var userSession: Firebase.User?
     
-    static let shared = AuthenticationViewModel()
+    @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
+    @Injected(\.verifyOtpUseCase) private var verifyOtpUseCase: VerifyOtpUseCase
+    @Injected(\.signOutUseCase) private var signOutUseCase: SignOutUseCase
+    @Injected(\.verifySessionUseCase) private var verifySessionUseCase: VerifySessionUseCase
+    
     
     var userUuid: String {
         guard let user = currentUser else { return "" }
@@ -42,21 +46,17 @@ class AuthenticationViewModel: ObservableObject {
         return user.fullname
     }
     
-    
     func sendOtp() async {
         print("sendOtp isLoading: \(isLoading) CALLED!")
-        guard !isLoading else {
-            return
-        }
+        guard !isLoading else { return }
         do {
             onLoading()
-            let result = try await PhoneAuthProvider.provider().verifyPhoneNumber("+\(country.phoneCode)\(phoneNumber)", uiDelegate: nil)
+            let result = try await sendOtpUseCase.execute(phoneNumber: phoneNumber, country: country)
             print("sendOtp result \(result) CALLED!")
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.isLoading = false
-                self.verificationCode = result
-                self.nextAuthFlowStep()
+            updateUI { vm in
+                vm.isLoading = false
+                vm.verificationCode = result
+                vm.nextAuthFlowStep()
             }
         } catch {
             print("sendOtp handleError \(error.localizedDescription) CALLED!")
@@ -67,27 +67,11 @@ class AuthenticationViewModel: ObservableObject {
     func verifyOtp() async {
         do {
             onLoading()
-            let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationCode, verificationCode: otpText)
-            let result = try await Auth.auth().signIn(with: credential)
-            let db = Firestore.firestore()
-            db.collection("users").document(result.user.uid).setData([
-                "fullname": name,
-                "date": birthdate.date,
-                "id": result.user.uid,
-                "phone": "+\(country.phoneCode)\(phoneNumber)"
-            ]) { err in
-                if let err = err {
-                    print(err.localizedDescription)
-                }
-            }
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.isLoading = false
-                let user = result.user
-                self.userSession = user
-                self.currentUser = User(fullname: name, date: birthdate.date, phone: "+\(country.phoneCode)\(phoneNumber)")
-                self.hasSession = true
-                print(user.uid)
+            let user = try await verifyOtpUseCase.execute(verificationCode: verificationCode, otpText: otpText)
+            updateUI { vm in
+                vm.isLoading = false
+                vm.currentUser = User(fullname: vm.name, date: vm.birthdate.date, phone: "+\(vm.country.phoneCode)\(vm.phoneNumber)")
+                vm.hasSession = true
             }
         }
         catch {
@@ -96,60 +80,33 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
-    func signOut() {
-        self.userSession = nil
-        self.authFlowStep = .username
-        self.hasSession = false
-        try? Auth.auth().signOut()
+    func signOut() async {
+        do {
+            try await signOutUseCase.signOut()
+            updateUI { vm in
+                vm.isLoading = false
+                vm.authFlowStep = .username
+                vm.hasSession = false
+            }
+        } catch {
+            print("signOut error")
+            handleError(error: error)
+        }
     }
     
     func verifySession() async {
         onLoading()
-        guard let userSession = Auth.auth().currentUser else {
+        do {
+            if let user = try await verifySessionUseCase.verifySession() {
+                onActiveSessionFound(user: user)
+            } else {
+                onNotActiveSessionFound()
+            }
+        } catch {
             onNotActiveSessionFound()
-            return
-        }
-        self.userSession = userSession
-        Firestore
-            .firestore()
-            .collection("users")
-            .document(userSession.uid)
-            .getDocument { [weak self] sp, err in
-                guard let self = self else { return }
-                if let err = err {
-                    print(err.localizedDescription)
-                    self.onNotActiveSessionFound()
-                    return
-                }
-                
-                guard let user = try? sp?.data(as: User.self) else {
-                    self.onNotActiveSessionFound()
-                    return
-                }
-                self.onActiveSessionFound(user: user)
-            }
-    }
-    
-    func saveUserData(fullname: String, username: String?, location: String?, bio: String?, selectedImage: UIImage?) async {
-        guard let userId = userSession?.uid else { return }
-        
-        var userData: [String: Any] = [
-            UserField.fullname: fullname,
-            UserField.username: username ?? "",
-            UserField.location: location ?? "",
-            UserField.bio: bio ?? ""
-        ]
-        
-        if let image = selectedImage {
-            uploadProfileImage(image: image) { [weak self] url in
-                userData[UserField.profileImageUrl] = url
-                self?.uploadProfileData(userId: userId, data: userData)
-            }
-        } else {
-            uploadProfileData(userId: userId, data: userData)
         }
     }
-    
+ 
     func nextAuthFlowStep() {
         switch authFlowStep {
         case .username:
@@ -180,38 +137,6 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
-    private func uploadProfileData(userId: String, data: [String: Any]) {
-        uploadProfileData(userId: userId, data: data) { [weak self] in
-            self?.updateUI { vm in
-                vm.currentUser?.fullname = data[UserField.fullname] as? String ?? ""
-                vm.currentUser?.username = data[UserField.username] as? String
-                vm.currentUser?.location = data[UserField.location] as? String
-                vm.currentUser?.bio = data[UserField.bio] as? String
-                vm.currentUser?.profileImageUrl = data[UserField.profileImageUrl] as? String
-            }
-        } onError: { [weak self] error in
-            self?.handleError(error: error)
-        }
-    }
-    
-    private func uploadProfileImage(image: UIImage, completion: @escaping(String) -> Void) {
-        ImageUploader.uploadImage(image: image, type: .profile) { url in
-            completion(url)
-        }
-    }
-    
-    private func uploadProfileData(userId: String, data: [AnyHashable: Any], onSuccess: @escaping() -> Void, onError: @escaping(Error) -> Void) {
-        Firestore.firestore()
-            .collection("users")
-            .document(userId)
-            .updateData(data) { err in
-                if let err = err {
-                    onError(err)
-                    return
-                }
-                onSuccess()
-            }
-    }
 
     private func onLoading() {
         updateUI { vm in
@@ -249,14 +174,6 @@ class AuthenticationViewModel: ObservableObject {
             updates(self)
         }
     }
-}
-
-private struct UserField {
-    static let fullname = "fullname"
-    static let username = "username"
-    static let location = "location"
-    static let bio = "bio"
-    static let profileImageUrl = "profileImageUrl"
 }
 
 enum AuthFlowStepEnum {

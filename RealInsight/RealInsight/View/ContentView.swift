@@ -29,10 +29,12 @@ struct ContentView: View {
             HStack(spacing: 0) {
                 LeftMenu(mainMenu: $menu)
                     .frame(width: width)
-                FeedView(feedViewModel: FeedViewModel(user: viewModel.currentUser!), menu: $menu)
+                FeedView(mainMenu: $menu)
                     .frame(width: width)
+                    .environmentObject(viewModel)
                 ProfileView(mainMenu: $menu)
                     .frame(width: width)
+                    .environmentObject(viewModel)
             }
             .offset(x: menu == "left" ? width : 0)
             .offset(x: menu == "profile" ? -width : 0)
@@ -44,6 +46,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(AuthenticationViewModel.shared)
+            .environmentObject(AuthenticationViewModel())
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @ObservedObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
         Group {
@@ -18,6 +18,7 @@ struct MainView: View {
             } else {
                 if viewModel.hasSession {
                     ContentView()
+                        .environmentObject(viewModel)
                 } else {
                     NavigationView {
                         switch viewModel.authFlowStep {
@@ -35,6 +36,7 @@ struct MainView: View {
                                 .environmentObject(viewModel)
                         case .completed:
                             ContentView()
+                                .environmentObject(viewModel)
                         }
                     }
                 }

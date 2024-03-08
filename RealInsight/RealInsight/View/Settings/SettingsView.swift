@@ -152,7 +152,7 @@ private struct LogoutButton: View {
             HStack {
                 Spacer()
                 Button {
-                    viewModel.signOut()
+                    Task { await viewModel.signOut() }
                 } label: {
                     Text("Log out")
                         .foregroundColor(.red)
@@ -232,6 +232,6 @@ private struct NavigationRow: View {
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-            .environmentObject(AuthenticationViewModel.shared)
+            .environmentObject(AuthenticationViewModel())
     }
 }

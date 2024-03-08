@@ -14,14 +14,9 @@ struct FeedView: View {
     
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     
-    @ObservedObject var feedViewModel: FeedViewModel
+    @ObservedObject var feedViewModel = FeedViewModel()
     
     @State private var cameraViewPressented: Bool = false
-    
-    init(feedViewModel: FeedViewModel, menu: Binding<String>) {
-        self.feedViewModel = feedViewModel
-        self._mainMenu = menu
-    }
     
     var body: some View {
         VStack {
