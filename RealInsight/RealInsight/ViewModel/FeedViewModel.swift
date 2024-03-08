@@ -7,19 +7,19 @@
 
 import SwiftUI
 import Firebase
+import Factory
 
 class FeedViewModel: ObservableObject {
     
     @Published var realInsightList = [RealInsight]()
-    @Published var realInsight: RealInsight?
+    @Published var realInsight: RealInsight = RealInsight()
     @Published var blur = true
     
     private let user: User
-    private let fetchRealInsightsUseCase: FetchRealInsightsUseCase
+    @Injected(\.fetchRealInsightsUseCase) private var fetchRealInsightsUseCase: FetchRealInsightsUseCase
     
-    init(user: User, fetchRealInsightsUseCase: FetchRealInsightsUseCase) {
+    init(user: User) {
         self.user = user
-        self.fetchRealInsightsUseCase = fetchRealInsightsUseCase
         Task { await fetchData() }
     }
     
@@ -27,8 +27,11 @@ class FeedViewModel: ObservableObject {
         do {
             let (allRealInsights, ownRealInsight) = try await fetchRealInsightsUseCase.execute(date: Date.now.formattedString, userId: user.id)
             DispatchQueue.main.async { [weak self] in
-                self?.realInsightList = allRealInsights
-                self?.realInsight = ownRealInsight
+                guard let self = self else { return }
+                self.realInsightList = allRealInsights
+                if let realInsight = ownRealInsight {
+                    self.realInsight = realInsight
+                }
             }
         } catch {
             print(error.localizedDescription)
