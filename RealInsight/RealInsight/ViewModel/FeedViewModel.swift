@@ -11,9 +11,10 @@ import Firebase
 class FeedViewModel: ObservableObject {
     
     @Published var realInsightList = [RealInsight]()
-    @Published var realInsight = RealInsight(username: "", backImageUrl: "", frontImageUrl: "", userId: "")
+    @Published var realInsight = RealInsight()
     @Published var blur = true
-    let user: User
+    
+    private let user: User
     
     init(user: User) {
         self.user = user
