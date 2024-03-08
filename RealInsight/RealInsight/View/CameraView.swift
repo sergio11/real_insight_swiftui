@@ -57,16 +57,26 @@ struct CameraView: View {
 }
 
 private struct TopBarView: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         VStack {
             HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                }
                 Spacer()
                 Text("RealInsight.")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(.system(size: 22))
                 Spacer()
-            }
+            }.padding(.horizontal)
             Spacer()
         }
     }
