@@ -24,6 +24,8 @@
 		3D78626B2B9B92D300A9424C /* RealInsightsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */; };
 		3D78626D2B9B92F000A9424C /* FirestoreRealInsightsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626C2B9B92F000A9424C /* FirestoreRealInsightsRepository.swift */; };
 		3D78626F2B9B930F00A9424C /* FetchRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */; };
+		3D7862722B9B96FD00A9424C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 3D7862712B9B96FD00A9424C /* Factory */; };
+		3D7862752B9B98B700A9424C /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7862742B9B98B700A9424C /* Container.swift */; };
 		3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF532B75725B00C6C1F3 /* Suggestions.swift */; };
 		3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */; };
 		3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */; };
@@ -86,6 +88,7 @@
 		3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepository.swift; sourceTree = "<group>"; };
 		3D78626C2B9B92F000A9424C /* FirestoreRealInsightsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRealInsightsRepository.swift; sourceTree = "<group>"; };
 		3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRealInsightsUseCase.swift; sourceTree = "<group>"; };
+		3D7862742B9B98B700A9424C /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		3D8CDF532B75725B00C6C1F3 /* Suggestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestions.swift; sourceTree = "<group>"; };
 		3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCellView.swift; sourceTree = "<group>"; };
 		3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 			files = (
 				3D94873F2B9254A0001C5676 /* Kingfisher in Frameworks */,
 				3D19983B2B8FC8DA009B020A /* FirebaseAuth in Frameworks */,
+				3D7862722B9B96FD00A9424C /* Factory in Frameworks */,
 				3D1998412B8FC8DB009B020A /* FirebaseStorage in Frameworks */,
 				3D1998432B8FC8DB009B020A /* FirebaseStorageCombine-Community in Frameworks */,
 				3D19983D2B8FC8DB009B020A /* FirebaseFirestore in Frameworks */,
@@ -177,6 +181,14 @@
 				3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		3D7862732B9B98A300A9424C /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				3D7862742B9B98B700A9424C /* Container.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		3D9487442B926E4B001C5676 /* Model */ = {
@@ -303,6 +315,7 @@
 		3DF6E9F82B6FABAA00CE0D95 /* RealInsight */ = {
 			isa = PBXGroup;
 			children = (
+				3D7862732B9B98A300A9424C /* DI */,
 				3D7862692B9B92AE00A9424C /* UseCases */,
 				3D7862682B9B92A200A9424C /* Repositories */,
 				3D1998462B8FD104009B020A /* Info.plist */,
@@ -359,6 +372,7 @@
 				3D1998402B8FC8DB009B020A /* FirebaseStorage */,
 				3D1998422B8FC8DB009B020A /* FirebaseStorageCombine-Community */,
 				3D94873E2B9254A0001C5676 /* Kingfisher */,
+				3D7862712B9B96FD00A9424C /* Factory */,
 			);
 			productName = RealInsight;
 			productReference = 3DF6E9F62B6FABAA00CE0D95 /* RealInsight.app */;
@@ -391,6 +405,7 @@
 			packageReferences = (
 				3D1998392B8FC8DA009B020A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3D94873D2B92549F001C5676 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3D7862702B9B96FD00A9424C /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			productRefGroup = 3DF6E9F72B6FABAA00CE0D95 /* Products */;
 			projectDirPath = "";
@@ -463,6 +478,7 @@
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCellView.swift in Sources */,
 				3DF6EA082B6FABE900CE0D95 /* FeedView.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
+				3D7862752B9B98B700A9424C /* Container.swift in Sources */,
 				3DD405292B7C134600C39D5C /* WhiteButtonView.swift in Sources */,
 				3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */,
 				3D9DE1E82B9333040033B173 /* FeedViewModel.swift in Sources */,
@@ -685,6 +701,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		3D7862702B9B96FD00A9424C /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		3D94873D2B92549F001C5676 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -720,6 +744,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3D1998392B8FC8DA009B020A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		3D7862712B9B96FD00A9424C /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D7862702B9B96FD00A9424C /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
 		};
 		3D94873E2B9254A0001C5676 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
