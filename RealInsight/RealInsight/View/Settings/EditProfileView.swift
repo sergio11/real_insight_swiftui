@@ -20,7 +20,6 @@ struct EditProfileView: View {
     @State private var profileImage: Image?
     
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var authViewModel: AuthenticationViewModel
     @ObservedObject var viewModel = EditProfileViewModel()
 
     

@@ -1,5 +1,5 @@
 //
-//  AuthenticationView.swift
+//  CreateAccountView.swift
 //  RealInsight
 //
 //  Created by Sergio Sánchez Sánchez on 9/3/24.
@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct AuthenticationView: View {
+struct CreateAccountView: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @Binding var isAccountCreated: Bool
+    @ObservedObject var viewModel = CreateAccountViewModel()
     
     var body: some View {
-        switch viewModel.authFlowStep {
+        switch viewModel.accountFlowStep {
         case .username:
             EnterNameView()
                 .environmentObject(viewModel)
@@ -26,14 +27,13 @@ struct AuthenticationView: View {
             EnterCodeView()
                 .environmentObject(viewModel)
         case .completed:
-            ContentView()
-                .environmentObject(viewModel)
+            AccountCreatedView(isAccountCreated: $isAccountCreated)
         }
     }
 }
 
-struct AuthenticationView_Previews: PreviewProvider {
+struct CreateAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationView()
+        CreateAccountView(isAccountCreated: .constant(false))
     }
 }

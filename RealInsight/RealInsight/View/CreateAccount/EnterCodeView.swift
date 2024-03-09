@@ -12,7 +12,7 @@ struct EnterCodeView: View {
     
     @State var timeRemaining = 60
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -30,7 +30,7 @@ struct EnterCodeView: View {
                 if timeRemaining > 0 {
                     timeRemaining -= 1
                 } else {
-                    viewModel.previousAuthFlowStep()
+                    viewModel.previousFlowStep()
                 }
             }
         }
@@ -39,13 +39,13 @@ struct EnterCodeView: View {
 
 private struct TopBar: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         VStack {
             HStack {
                 Button {
-                    viewModel.previousAuthFlowStep()
+                    viewModel.previousFlowStep()
                 } label: {
                     Image(systemName: "arrow.backward")
                         .foregroundColor(.white)
@@ -79,7 +79,7 @@ private struct EnterCodeSection: View {
 
 private struct EnterCodeTextView: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         Text("Enter the code we sent to + \(viewModel.country.phoneCode) \(viewModel.phoneNumber)")
@@ -91,7 +91,7 @@ private struct EnterCodeTextView: View {
 
 private struct EnterCodeTextField: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         Text(".......")
@@ -116,7 +116,7 @@ private struct BottomSection: View {
     
     @Binding var timeReamining: Int
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     @Environment(\.dismiss) var dismiss
     

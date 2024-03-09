@@ -32,13 +32,13 @@ struct EnterAgeView: View {
 
 private struct TopBar: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         VStack {
             HStack {
                 Button {
-                    viewModel.previousAuthFlowStep()
+                    viewModel.previousFlowStep()
                 } label: {
                     Image(systemName: "arrow.backward")
                         .foregroundColor(.white)
@@ -58,7 +58,7 @@ private struct TopBar: View {
 
 private struct GreetingText: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         Text("Hi \(viewModel.name), when's your birthday?")
@@ -69,7 +69,7 @@ private struct GreetingText: View {
 }
 
 private struct DateInputView: View {
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         HStack(spacing: 4) {
@@ -125,7 +125,7 @@ private struct ExplanationText: View {
 
 private struct ContinueButton: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var isBirthdateValid: Binding<Bool> {
         Binding<Bool>(
@@ -136,7 +136,7 @@ private struct ContinueButton: View {
         
     var body: some View {
         Button {
-            viewModel.nextAuthFlowStep()
+            viewModel.nextFlowStep()
         } label: {
             WhiteButtonView(buttonActive: isBirthdateValid, text: "Continue")
         }

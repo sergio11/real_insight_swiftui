@@ -9,27 +9,26 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var viewModel = AuthenticationViewModel()
+    @ObservedObject var viewModel = MainViewModel()
     
     var body: some View {
-        NavigationView {
-            Group {
+        Group {
+            NavigationView {
                 if viewModel.isLoading {
                     LoadingView()
                 } else {
                     if viewModel.hasSession {
-                        ContentView()
-                            .environmentObject(viewModel)
+                        HomeView()
                     } else {
-                        OnboardingView()
-                            .environmentObject(viewModel)
+                        OnboardingView(isAccountAuthenticated: $viewModel.hasSession)
                     }
                 }
             }
-            .onAppear {
-                Task { await viewModel.verifySession() }
-            }
         }
+        .onAppear {
+            Task { await viewModel.verifySession() }
+        }
+        
     }
 }
 
