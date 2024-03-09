@@ -11,7 +11,6 @@ import Combine
 struct EnterPhoneNumberView: View {
     
     @State var showCountryList = false
-    @State var buttonActive = false
     @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
@@ -23,7 +22,7 @@ struct EnterPhoneNumberView: View {
                     PhoneNumberInputView(viewModel: viewModel, showCountryList: $showCountryList)
                     Spacer()
                     AgreementText()
-                    ContinueButton(buttonActive: $buttonActive, viewModel: viewModel)
+                    ContinueButton(viewModel: viewModel)
                 }.padding(.bottom, 40)
             }
         }
@@ -128,17 +127,20 @@ private struct AgreementText: View {
 }
 
 private struct ContinueButton: View {
-    @Binding var buttonActive: Bool
     @ObservedObject var viewModel: AuthenticationViewModel
+    
+    var isPhoneNumberValid: Binding<Bool> {
+        Binding<Bool>(
+            get: { !viewModel.phoneNumber.isEmpty },
+            set: { _ in }
+        )
+    }
     
     var body: some View {
         Button {
             Task { await viewModel.sendOtp() }
         } label: {
-            WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                .onChange(of: viewModel.phoneNumber) { newValue in
-                    buttonActive = !newValue.isEmpty
-                }
+            WhiteButtonView(buttonActive: isPhoneNumberValid, text: "Continue")
         }
         .disabled(viewModel.phoneNumber.isEmpty)
     }

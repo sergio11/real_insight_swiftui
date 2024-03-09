@@ -71,7 +71,12 @@ private struct ContinueButton: View {
     
     @EnvironmentObject var viewModel: AuthenticationViewModel
     
-    @State var buttonActive: Bool = false
+    var isNameNotEmpty: Binding<Bool> {
+        Binding<Bool>(
+            get: { !viewModel.name.isEmpty },
+            set: { _ in }
+        )
+    }
     
     var body: some View {
         VStack {
@@ -79,10 +84,7 @@ private struct ContinueButton: View {
             Button {
                 viewModel.nextAuthFlowStep()
             } label: {
-                WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                    .onChange(of: viewModel.name) { newValue in
-                        buttonActive = !newValue.isEmpty
-                    }
+                WhiteButtonView(buttonActive: isNameNotEmpty, text: "Continue")
             }
         }.padding(.bottom, 40)
     }
