@@ -125,18 +125,20 @@ private struct ExplanationText: View {
 
 private struct ContinueButton: View {
     
-    @State var buttonActive: Bool = false
-    
     @EnvironmentObject var viewModel: AuthenticationViewModel
+    
+    var isBirthdateValid: Binding<Bool> {
+        Binding<Bool>(
+            get: { viewModel.birthdate.hasDataValid() },
+            set: { _ in }
+        )
+    }
         
     var body: some View {
         Button {
             viewModel.nextAuthFlowStep()
         } label: {
-            WhiteButtonView(buttonActive: $buttonActive, text: "Continue")
-                .onChange(of: viewModel.birthdate) { newValue in
-                    buttonActive = newValue.hasDataValid()
-                }
+            WhiteButtonView(buttonActive: isBirthdateValid, text: "Continue")
         }
     }
 }

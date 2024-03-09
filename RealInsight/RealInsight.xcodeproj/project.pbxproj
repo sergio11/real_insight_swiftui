@@ -353,9 +353,6 @@
 		3DF6E9F82B6FABAA00CE0D95 /* RealInsight */ = {
 			isa = PBXGroup;
 			children = (
-				3D7862732B9B98A300A9424C /* DI */,
-				3D7862692B9B92AE00A9424C /* UseCases */,
-				3D7862682B9B92A200A9424C /* Repositories */,
 				3D1998462B8FD104009B020A /* Info.plist */,
 				3D1998442B8FC970009B020A /* GoogleService-Info.plist */,
 				3D9487472B926FF5001C5676 /* View */,
@@ -366,6 +363,9 @@
 				3DF6E9FF2B6FABAC00CE0D95 /* Preview Content */,
 				3DEF78742B8D0DE10081AFD9 /* countries.json */,
 				3D9487442B926E4B001C5676 /* Model */,
+				3D7862682B9B92A200A9424C /* Repositories */,
+				3D7862692B9B92AE00A9424C /* UseCases */,
+				3D7862732B9B98A300A9424C /* DI */,
 				3D9487452B926E6A001C5676 /* ViewModel */,
 			);
 			path = RealInsight;

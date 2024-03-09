@@ -55,9 +55,7 @@ private struct TopBar: View {
 private struct CountryList: View {
     
     @Environment(\.dismiss) var dismiss
-    
     @Binding var countryChosen: Country
-    
     var countries: [Country] = Country.allCountries
     
     var body: some View {
@@ -68,9 +66,7 @@ private struct CountryList: View {
                         ForEach(countries, id: \.isoCode) { country in
                             HStack {
                                 Text("\(country.flag(country: country.isoCode)) \(country.localizedName) (+\(country.phoneCode))")
-                                
                                 Spacer()
-                                
                                 if country.isoCode == countryChosen.isoCode {
                                     Image(systemName: "checkmark.circle")
                                 }
@@ -81,7 +77,7 @@ private struct CountryList: View {
                             }
                         }
                     } header: {
-                         Text("Suggested")
+                        Text("Suggested")
                             .padding(.leading, -8)
                             .font(.system(size: 12))
                     }
