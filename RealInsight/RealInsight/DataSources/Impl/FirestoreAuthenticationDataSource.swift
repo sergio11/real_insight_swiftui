@@ -1,14 +1,14 @@
 //
-//  FirestoreAuthenticationRepository.swift
+//  FirestoreAuthenticationDataSource.swift
 //  RealInsight
 //
-//  Created by Sergio Sánchez Sánchez on 8/3/24.
+//  Created by Sergio Sánchez Sánchez on 9/3/24.
 //
 
 import Foundation
 import Firebase
 
-internal class FirestoreAuthenticationRepository: AuthenticationRepository {
+internal class FirestoreAuthenticationDataSource: AuthenticationDataSource {
     
     func signInWithPhone(phoneNumber: String) async throws -> String {
         do {
@@ -19,9 +19,9 @@ internal class FirestoreAuthenticationRepository: AuthenticationRepository {
         }
     }
         
-    func verifyOTP(verificationCode: String, otpText: String) async throws -> User {
+    func verifyOTP(verificationCode: String, otpCode: String) async throws -> User {
         do {
-            let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationCode, verificationCode: otpText)
+            let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationCode, verificationCode: otpCode)
             let result = try await Auth.auth().signIn(with: credential)
             let userDocument = Firestore.firestore().collection("users").document(result.user.uid)
             let snapshot = try await userDocument.getDocument()

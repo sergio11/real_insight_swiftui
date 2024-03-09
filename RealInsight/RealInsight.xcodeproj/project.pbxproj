@@ -22,7 +22,7 @@
 		3D4066F92B911B2D00785E5E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4066F82B911B2D00785E5E /* LoadingView.swift */; };
 		3D67564D2B97B7CC006DD1BE /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */; };
 		3D78626B2B9B92D300A9424C /* RealInsightsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */; };
-		3D78626D2B9B92F000A9424C /* FirestoreRealInsightsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626C2B9B92F000A9424C /* FirestoreRealInsightsRepository.swift */; };
+		3D78626D2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */; };
 		3D78626F2B9B930F00A9424C /* FetchRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */; };
 		3D7862722B9B96FD00A9424C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 3D7862712B9B96FD00A9424C /* Factory */; };
 		3D7862752B9B98B700A9424C /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7862742B9B98B700A9424C /* Container.swift */; };
@@ -30,7 +30,6 @@
 		3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */; };
 		3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */; };
 		3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */; };
-		3D94873A2B9247A0001C5676 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9487392B9247A0001C5676 /* ImageUploader.swift */; };
 		3D94873C2B924B03001C5676 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94873B2B924B03001C5676 /* ImagePicker.swift */; };
 		3D94873F2B9254A0001C5676 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3D94873E2B9254A0001C5676 /* Kingfisher */; };
 		3D9487412B925E7C001C5676 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9487402B925E7C001C5676 /* CameraView.swift */; };
@@ -50,7 +49,7 @@
 		3DC0E8672B9C7B3A00C5AE60 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0E8662B9C7B3A00C5AE60 /* Launch Screen.storyboard */; };
 		3DC0E86A2B9C8B1200C5AE60 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0E8692B9C8B1200C5AE60 /* CreateAccountView.swift */; };
 		3DC429992B9B9E3000C0548B /* AuthenticationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC429982B9B9E3000C0548B /* AuthenticationRepository.swift */; };
-		3DC4299B2B9B9E5600C0548B /* FirestoreAuthenticationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4299A2B9B9E5600C0548B /* FirestoreAuthenticationRepository.swift */; };
+		3DC4299B2B9B9E5600C0548B /* AuthenticationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4299A2B9B9E5600C0548B /* AuthenticationRepositoryImpl.swift */; };
 		3DC4299D2B9B9E6D00C0548B /* UserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4299C2B9B9E6D00C0548B /* UserProfileRepository.swift */; };
 		3DC4299F2B9B9E8100C0548B /* FirestoreUserProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC4299E2B9B9E8100C0548B /* FirestoreUserProfileRepository.swift */; };
 		3DC429A12B9BA0FD00C0548B /* SendOtpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC429A02B9BA0FD00C0548B /* SendOtpUseCase.swift */; };
@@ -68,6 +67,20 @@
 		3DD405242B7C0A5B00C39D5C /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405232B7C0A5B00C39D5C /* NotificationsView.swift */; };
 		3DD405272B7C0E8C00C39D5C /* NotificationsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405262B7C0E8C00C39D5C /* NotificationsButtonView.swift */; };
 		3DD405292B7C134600C39D5C /* WhiteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD405282B7C134600C39D5C /* WhiteButtonView.swift */; };
+		3DE5E1242B9CE0B000EA85DF /* AuthenticationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1232B9CE0B000EA85DF /* AuthenticationDataSource.swift */; };
+		3DE5E1272B9CE10D00EA85DF /* FirestoreAuthenticationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1262B9CE10D00EA85DF /* FirestoreAuthenticationDataSource.swift */; };
+		3DE5E1292B9CE33D00EA85DF /* StorageFilesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1282B9CE33D00EA85DF /* StorageFilesDataSource.swift */; };
+		3DE5E12B2B9CE37500EA85DF /* FirestoreStorageFilesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E12A2B9CE37500EA85DF /* FirestoreStorageFilesDataSource.swift */; };
+		3DE5E12D2B9CE3D800EA85DF /* RealInsightsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E12C2B9CE3D800EA85DF /* RealInsightsDataSource.swift */; };
+		3DE5E1302B9CE41D00EA85DF /* RealInsightDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E12F2B9CE41D00EA85DF /* RealInsightDTO.swift */; };
+		3DE5E1322B9CE45D00EA85DF /* FirestoreRealInsightsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1312B9CE45D00EA85DF /* FirestoreRealInsightsDataSource.swift */; };
+		3DE5E1342B9CE50300EA85DF /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1332B9CE50300EA85DF /* UserDataSource.swift */; };
+		3DE5E1362B9CE56D00EA85DF /* SaveUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1352B9CE56D00EA85DF /* SaveUserDTO.swift */; };
+		3DE5E1382B9CE5DB00EA85DF /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1372B9CE5DB00EA85DF /* UserDTO.swift */; };
+		3DE5E13A2B9CE60B00EA85DF /* FirestoreUserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1392B9CE60B00EA85DF /* FirestoreUserDataSource.swift */; };
+		3DE5E13D2B9CEC1B00EA85DF /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E13C2B9CEC1B00EA85DF /* Mapper.swift */; };
+		3DE5E1402B9CEC3200EA85DF /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E13F2B9CEC3200EA85DF /* UserMapper.swift */; };
+		3DE5E1422B9CEEFB00EA85DF /* RealInsightMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5E1412B9CEEFB00EA85DF /* RealInsightMapper.swift */; };
 		3DEF786E2B8D01680081AFD9 /* EnterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF786D2B8D01680081AFD9 /* EnterNameView.swift */; };
 		3DEF78702B8D05980081AFD9 /* EnterAgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEF786F2B8D05980081AFD9 /* EnterAgeView.swift */; };
 		3DEF78752B8D0DE10081AFD9 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DEF78742B8D0DE10081AFD9 /* countries.json */; };
@@ -107,14 +120,13 @@
 		3D4066F82B911B2D00785E5E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepository.swift; sourceTree = "<group>"; };
-		3D78626C2B9B92F000A9424C /* FirestoreRealInsightsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRealInsightsRepository.swift; sourceTree = "<group>"; };
+		3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepositoryImpl.swift; sourceTree = "<group>"; };
 		3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRealInsightsUseCase.swift; sourceTree = "<group>"; };
 		3D7862742B9B98B700A9424C /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		3D8CDF532B75725B00C6C1F3 /* Suggestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestions.swift; sourceTree = "<group>"; };
 		3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCellView.swift; sourceTree = "<group>"; };
 		3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellView.swift; sourceTree = "<group>"; };
-		3D9487392B9247A0001C5676 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		3D94873B2B924B03001C5676 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		3D9487402B925E7C001C5676 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		3D9487422B9269DD001C5676 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
@@ -133,7 +145,7 @@
 		3DC0E8662B9C7B3A00C5AE60 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3DC0E8692B9C8B1200C5AE60 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		3DC429982B9B9E3000C0548B /* AuthenticationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepository.swift; sourceTree = "<group>"; };
-		3DC4299A2B9B9E5600C0548B /* FirestoreAuthenticationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAuthenticationRepository.swift; sourceTree = "<group>"; };
+		3DC4299A2B9B9E5600C0548B /* AuthenticationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryImpl.swift; sourceTree = "<group>"; };
 		3DC4299C2B9B9E6D00C0548B /* UserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRepository.swift; sourceTree = "<group>"; };
 		3DC4299E2B9B9E8100C0548B /* FirestoreUserProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserProfileRepository.swift; sourceTree = "<group>"; };
 		3DC429A02B9BA0FD00C0548B /* SendOtpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendOtpUseCase.swift; sourceTree = "<group>"; };
@@ -151,6 +163,20 @@
 		3DD405232B7C0A5B00C39D5C /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		3DD405262B7C0E8C00C39D5C /* NotificationsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsButtonView.swift; sourceTree = "<group>"; };
 		3DD405282B7C134600C39D5C /* WhiteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButtonView.swift; sourceTree = "<group>"; };
+		3DE5E1232B9CE0B000EA85DF /* AuthenticationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDataSource.swift; sourceTree = "<group>"; };
+		3DE5E1262B9CE10D00EA85DF /* FirestoreAuthenticationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAuthenticationDataSource.swift; sourceTree = "<group>"; };
+		3DE5E1282B9CE33D00EA85DF /* StorageFilesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageFilesDataSource.swift; sourceTree = "<group>"; };
+		3DE5E12A2B9CE37500EA85DF /* FirestoreStorageFilesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreStorageFilesDataSource.swift; sourceTree = "<group>"; };
+		3DE5E12C2B9CE3D800EA85DF /* RealInsightsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsDataSource.swift; sourceTree = "<group>"; };
+		3DE5E12F2B9CE41D00EA85DF /* RealInsightDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightDTO.swift; sourceTree = "<group>"; };
+		3DE5E1312B9CE45D00EA85DF /* FirestoreRealInsightsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRealInsightsDataSource.swift; sourceTree = "<group>"; };
+		3DE5E1332B9CE50300EA85DF /* UserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
+		3DE5E1352B9CE56D00EA85DF /* SaveUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserDTO.swift; sourceTree = "<group>"; };
+		3DE5E1372B9CE5DB00EA85DF /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		3DE5E1392B9CE60B00EA85DF /* FirestoreUserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserDataSource.swift; sourceTree = "<group>"; };
+		3DE5E13C2B9CEC1B00EA85DF /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		3DE5E13F2B9CEC3200EA85DF /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
+		3DE5E1412B9CEEFB00EA85DF /* RealInsightMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightMapper.swift; sourceTree = "<group>"; };
 		3DEF786D2B8D01680081AFD9 /* EnterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameView.swift; sourceTree = "<group>"; };
 		3DEF786F2B8D05980081AFD9 /* EnterAgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterAgeView.swift; sourceTree = "<group>"; };
 		3DEF78742B8D0DE10081AFD9 /* countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
@@ -325,8 +351,8 @@
 		3DC429972B9B9E0C00C0548B /* Impl */ = {
 			isa = PBXGroup;
 			children = (
-				3D78626C2B9B92F000A9424C /* FirestoreRealInsightsRepository.swift */,
-				3DC4299A2B9B9E5600C0548B /* FirestoreAuthenticationRepository.swift */,
+				3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */,
+				3DC4299A2B9B9E5600C0548B /* AuthenticationRepositoryImpl.swift */,
 				3DC4299E2B9B9E8100C0548B /* FirestoreUserProfileRepository.swift */,
 			);
 			path = Impl;
@@ -345,6 +371,58 @@
 				3DD405232B7C0A5B00C39D5C /* NotificationsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		3DE5E1222B9CE07900EA85DF /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				3DE5E12E2B9CE40C00EA85DF /* DTO */,
+				3DE5E1252B9CE0F500EA85DF /* Impl */,
+				3DE5E1232B9CE0B000EA85DF /* AuthenticationDataSource.swift */,
+				3DE5E1282B9CE33D00EA85DF /* StorageFilesDataSource.swift */,
+				3DE5E12C2B9CE3D800EA85DF /* RealInsightsDataSource.swift */,
+				3DE5E1332B9CE50300EA85DF /* UserDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		3DE5E1252B9CE0F500EA85DF /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				3DE5E1262B9CE10D00EA85DF /* FirestoreAuthenticationDataSource.swift */,
+				3DE5E12A2B9CE37500EA85DF /* FirestoreStorageFilesDataSource.swift */,
+				3DE5E1312B9CE45D00EA85DF /* FirestoreRealInsightsDataSource.swift */,
+				3DE5E1392B9CE60B00EA85DF /* FirestoreUserDataSource.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		3DE5E12E2B9CE40C00EA85DF /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				3DE5E12F2B9CE41D00EA85DF /* RealInsightDTO.swift */,
+				3DE5E1352B9CE56D00EA85DF /* SaveUserDTO.swift */,
+				3DE5E1372B9CE5DB00EA85DF /* UserDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		3DE5E13B2B9CEBFB00EA85DF /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				3DE5E13E2B9CEC2800EA85DF /* Impl */,
+				3DE5E13C2B9CEC1B00EA85DF /* Mapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		3DE5E13E2B9CEC2800EA85DF /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				3DE5E13F2B9CEC3200EA85DF /* UserMapper.swift */,
+				3DE5E1412B9CEEFB00EA85DF /* RealInsightMapper.swift */,
+			);
+			path = Impl;
 			sourceTree = "<group>";
 		};
 		3DEF787A2B8D14270081AFD9 /* Authentication */ = {
@@ -378,12 +456,13 @@
 				3D1998442B8FC970009B020A /* GoogleService-Info.plist */,
 				3D9487472B926FF5001C5676 /* View */,
 				3D33CFF22B7164C60053C59F /* Extensions */,
-				3DF6EA0C2B6FB48000CE0D95 /* Helpers */,
 				3DF6E9F92B6FABAA00CE0D95 /* RealInsightApp.swift */,
 				3DF6E9FD2B6FABAC00CE0D95 /* Assets.xcassets */,
 				3DF6E9FF2B6FABAC00CE0D95 /* Preview Content */,
 				3DEF78742B8D0DE10081AFD9 /* countries.json */,
 				3D9487442B926E4B001C5676 /* Model */,
+				3DE5E13B2B9CEBFB00EA85DF /* Mapper */,
+				3DE5E1222B9CE07900EA85DF /* DataSources */,
 				3D7862682B9B92A200A9424C /* Repositories */,
 				3D7862692B9B92AE00A9424C /* UseCases */,
 				3D7862732B9B98A300A9424C /* DI */,
@@ -399,14 +478,6 @@
 				3DF6EA002B6FABAC00CE0D95 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		3DF6EA0C2B6FB48000CE0D95 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				3D9487392B9247A0001C5676 /* ImageUploader.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3DFEB76C2B9C9B1A000E0D11 /* Components */ = {
@@ -518,22 +589,28 @@
 				3DC0E86A2B9C8B1200C5AE60 /* CreateAccountView.swift in Sources */,
 				3DF6EA122B6FB9BE00CE0D95 /* MemoryView.swift in Sources */,
 				3D9DE1EA2B9333B80033B173 /* RealInsight.swift in Sources */,
+				3DE5E12D2B9CE3D800EA85DF /* RealInsightsDataSource.swift in Sources */,
 				3DD405272B7C0E8C00C39D5C /* NotificationsButtonView.swift in Sources */,
+				3DE5E1402B9CEC3200EA85DF /* UserMapper.swift in Sources */,
 				3DEF78702B8D05980081AFD9 /* EnterAgeView.swift in Sources */,
 				3DFEB7762B9CA2FF000E0D11 /* PhoneNumberInputView.swift in Sources */,
 				3DF6E9FC2B6FABAA00CE0D95 /* HomeView.swift in Sources */,
 				3DC429A72B9BA14500C0548B /* VerifySessionUseCase.swift in Sources */,
-				3DC4299B2B9B9E5600C0548B /* FirestoreAuthenticationRepository.swift in Sources */,
+				3DC4299B2B9B9E5600C0548B /* AuthenticationRepositoryImpl.swift in Sources */,
 				3DC4299D2B9B9E6D00C0548B /* UserProfileRepository.swift in Sources */,
 				3D33CFEF2B7159100053C59F /* SettingsView.swift in Sources */,
 				3D33CAAB2B979DDD001721A2 /* ProfileImageView.swift in Sources */,
 				3DAE5C7F2B9104180019787D /* MainView.swift in Sources */,
+				3DE5E12B2B9CE37500EA85DF /* FirestoreStorageFilesDataSource.swift in Sources */,
 				3D9A35B32B7182C2000F51AC /* TimeZoneView.swift in Sources */,
 				3DF6EA102B6FB6FF00CE0D95 /* ProfileView.swift in Sources */,
+				3DE5E1302B9CE41D00EA85DF /* RealInsightDTO.swift in Sources */,
 				3DFEB7702B9CA133000E0D11 /* AuthenticationView.swift in Sources */,
 				3D9A35B82B718B4D000F51AC /* LeftMenuTopView.swift in Sources */,
+				3DE5E1342B9CE50300EA85DF /* UserDataSource.swift in Sources */,
 				3D67564D2B97B7CC006DD1BE /* DateExtensions.swift in Sources */,
 				3D9D04E12B96425000DCC894 /* ViewExtensions.swift in Sources */,
+				3DE5E1242B9CE0B000EA85DF /* AuthenticationDataSource.swift in Sources */,
 				3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */,
 				3D33CAAF2B97AE34001721A2 /* InviteFriendsView.swift in Sources */,
 				3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */,
@@ -541,6 +618,7 @@
 				3D4066F92B911B2D00785E5E /* LoadingView.swift in Sources */,
 				3D9A35B62B718B22000F51AC /* LeftMenu.swift in Sources */,
 				3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */,
+				3DE5E1362B9CE56D00EA85DF /* SaveUserDTO.swift in Sources */,
 				3DD4051C2B7BFE9500C39D5C /* HelpView.swift in Sources */,
 				3D9487412B925E7C001C5676 /* CameraView.swift in Sources */,
 				3DC429AB2B9BA9FC00C0548B /* EditProfileViewModel.swift in Sources */,
@@ -553,23 +631,28 @@
 				3DC429A32B9BA11600C0548B /* VerifyOtpUseCase.swift in Sources */,
 				3DFEB76B2B9C97DD000E0D11 /* MainViewModel.swift in Sources */,
 				3DD405182B7BF1F600C39D5C /* RequestsView.swift in Sources */,
+				3DE5E13D2B9CEC1B00EA85DF /* Mapper.swift in Sources */,
 				3DEF787C2B8D144F0081AFD9 /* EnterPhoneNumberView.swift in Sources */,
 				3D9DE1EC2B9338F40033B173 /* FeedCellViewModel.swift in Sources */,
 				3DEF786E2B8D01680081AFD9 /* EnterNameView.swift in Sources */,
 				3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */,
+				3DE5E1422B9CEEFB00EA85DF /* RealInsightMapper.swift in Sources */,
 				3DD405242B7C0A5B00C39D5C /* NotificationsView.swift in Sources */,
 				3D9487432B9269DE001C5676 /* CameraViewModel.swift in Sources */,
 				3D9A184D2B8FBBE5003D2447 /* Birthdate.swift in Sources */,
 				3DC429A52B9BA13200C0548B /* SignOutUseCase.swift in Sources */,
 				3DFEB7652B9C8C70000E0D11 /* CreateAccountViewModel.swift in Sources */,
+				3DE5E13A2B9CE60B00EA85DF /* FirestoreUserDataSource.swift in Sources */,
 				3DAE5C7D2B9102A30019787D /* User.swift in Sources */,
-				3D78626D2B9B92F000A9424C /* FirestoreRealInsightsRepository.swift in Sources */,
+				3D78626D2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift in Sources */,
 				3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */,
 				3DEF78792B8D10CB0081AFD9 /* SelectCountryView.swift in Sources */,
 				3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCellView.swift in Sources */,
 				3DF6EA082B6FABE900CE0D95 /* FeedView.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
+				3DE5E1322B9CE45D00EA85DF /* FirestoreRealInsightsDataSource.swift in Sources */,
+				3DE5E1292B9CE33D00EA85DF /* StorageFilesDataSource.swift in Sources */,
 				3D7862752B9B98B700A9424C /* Container.swift in Sources */,
 				3DFEB7672B9C8FAD000E0D11 /* BaseViewModel.swift in Sources */,
 				3DC429A92B9BA6C700C0548B /* SaveUserDataUseCase.swift in Sources */,
@@ -579,14 +662,15 @@
 				3DFEB7722B9CA1C0000E0D11 /* AuthenticationViewModel.swift in Sources */,
 				3DC4299F2B9B9E8100C0548B /* FirestoreUserProfileRepository.swift in Sources */,
 				3DFEB76E2B9C9EF7000E0D11 /* TopBarView.swift in Sources */,
+				3DE5E1272B9CE10D00EA85DF /* FirestoreAuthenticationDataSource.swift in Sources */,
 				3D33CFF12B7161E40053C59F /* EditProfileView.swift in Sources */,
 				3D33CAAD2B97A6E2001721A2 /* TabBarMenuView.swift in Sources */,
 				3DC429A12B9BA0FD00C0548B /* SendOtpUseCase.swift in Sources */,
 				3D78626F2B9B930F00A9424C /* FetchRealInsightsUseCase.swift in Sources */,
 				3DEF78772B8D0E030081AFD9 /* Country.swift in Sources */,
-				3D94873A2B9247A0001C5676 /* ImageUploader.swift in Sources */,
 				3DD4051A2B7BFBA800C39D5C /* OtherView.swift in Sources */,
 				3DC0E8632B9C717300C5AE60 /* OnboardingView.swift in Sources */,
+				3DE5E1382B9CE5DB00EA85DF /* UserDTO.swift in Sources */,
 				3DEF787E2B8D1B2E0081AFD9 /* EnterCodeView.swift in Sources */,
 				3DFEB7742B9CA2DB000E0D11 /* AgreementTextView.swift in Sources */,
 			);

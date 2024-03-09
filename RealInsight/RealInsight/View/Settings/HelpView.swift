@@ -8,41 +8,20 @@
 import SwiftUI
 
 struct HelpView: View {
-    var body: some View {
-        VStack {
-            ZStack {
-                Color.black.ignoresSafeArea()
-                TopBarView()
-                VStack {
-                    MainMenuOptions()
-                }
-            }
-        }
-    }
-}
-
-private struct TopBarView: View {
     
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
             ZStack {
-                Text("Help")
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "arrow.backward")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                    }
-                    Spacer()
-                }.padding(.horizontal)
+                Color.black.ignoresSafeArea()
+                TopBarView(backButtonAction: {
+                    dismiss()
+                }, title: "Help")
+                VStack {
+                    MainMenuOptions()
+                }
             }
-            Spacer()
         }
     }
 }

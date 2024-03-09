@@ -9,34 +9,24 @@ import SwiftUI
 
 struct CameraView: View {
     
-    @State private var switchingCamera: Bool = false
-    @State private var takePhotoClicked: Bool = false
-    @State private var selectedBackImage: UIImage?
-    @State private var selectedFrontImage: UIImage?
-    @State private var backImage: Image?
-    
-    @State private var choseFromFront: Bool = false
-    @State private var photoTaken: Bool = false
-    @ObservedObject private var viewModel: CameraViewModel
+    @ObservedObject var viewModel = CameraViewModel()
     
     @Environment(\.dismiss) private var dismiss
-    
-    init(viewModel: CameraViewModel) {
-        self.viewModel = viewModel
-    }
-    
+
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBarView()
+                TopBarView(backButtonAction: {
+                    dismiss()
+                })
                 VStack {
                     MainTitleView()
                     ZStack(alignment: .topLeading) {
-                        FrontImageView(photoTaken: $photoTaken, switchingCamera: $switchingCamera, takePhotoClicked: $takePhotoClicked, choseFromFront: $choseFromFront, selectedFrontImage: $selectedFrontImage)
-                        BackImageView(switchingCamera: $switchingCamera, takePhotoClicked: $takePhotoClicked, choseFromFront: $choseFromFront, selectedBackImage: $selectedBackImage)
+                        FrontImageView(viewModel: viewModel)
+                        BackImageView(viewModel: viewModel)
                     }
-                    CameraActionsView(photoTaken: $photoTaken, takePhotoClicked: $takePhotoClicked) {
+                    CameraActionsView(viewModel: viewModel) {
                         onSend()
                     }
                     Spacer()
@@ -56,32 +46,6 @@ struct CameraView: View {
     }
 }
 
-private struct TopBarView: View {
-    
-    @Environment(\.dismiss) private var dismiss
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "arrow.backward")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                }
-                Spacer()
-                Text("RealInsight.")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(.system(size: 22))
-                Spacer()
-            }.padding(.horizontal)
-            Spacer()
-        }
-    }
-}
-
 private struct MainTitleView: View {
     var body: some View {
         Text("04:57:11")
@@ -93,24 +57,18 @@ private struct MainTitleView: View {
 
 private struct FrontImageView: View {
     
-    @Binding var photoTaken: Bool
-    @Binding var switchingCamera: Bool
-    @Binding var takePhotoClicked: Bool
-    @Binding var choseFromFront: Bool
-    @Binding var selectedFrontImage: UIImage?
-    
-    @State private var frontImage: Image?
+    @ObservedObject var viewModel: CameraViewModel
     
     var body: some View {
         GeometryReader { g in
             VStack {
-                if frontImage != nil {
+                if viewModel.frontImage != nil {
                     HStack {
                         RoundedRectangle(cornerRadius: 10)
                             .frame(width: 125, height: 165)
                             .overlay(
                                 VStack {
-                                    if let imageFront = frontImage {
+                                    if let imageFront = viewModel.frontImage {
                                         imageFront.resizable()
                                             .cornerRadius(8)
                                             .frame(width: 120, height: 160)
@@ -124,73 +82,68 @@ private struct FrontImageView: View {
                     .padding(.top, 18)
                 }
                 Spacer()
-            }.sheet(isPresented: $choseFromFront) {
+            }.sheet(isPresented: $viewModel.choseFromFront) {
                 onLoadFrontImage()
-                photoTaken.toggle()
-                switchingCamera.toggle()
+                viewModel.photoTaken.toggle()
+                viewModel.switchingCamera.toggle()
             } content: {
-                ImagePicker(image: $selectedFrontImage)
+                ImagePicker(image: $viewModel.selectedFrontImage)
             }
         }.zIndex(1)
     }
     
     private func onLoadFrontImage() {
-        guard let selectedFrontImage = selectedFrontImage else { return }
-        frontImage = Image(uiImage: selectedFrontImage)
+        guard let selectedFrontImage = viewModel.selectedFrontImage else { return }
+        viewModel.frontImage = Image(uiImage: selectedFrontImage)
     }
 }
 
 private struct BackImageView: View {
     
-    @Binding var switchingCamera: Bool
-    @Binding var takePhotoClicked: Bool
-    @Binding var choseFromFront: Bool
-    @Binding var selectedBackImage: UIImage?
-
-    @State private var backImage: Image?
+    @ObservedObject var viewModel: CameraViewModel
     
     var body: some View {
-        if let image = backImage {
+        if let image = viewModel.backImage {
             image.resizable()
                 .cornerRadius(12)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.6)
                 .scaledToFit()
                 .overlay(
-                    UploadProgressView(switchingCamera: $switchingCamera)
+                    UploadProgressView(viewModel: viewModel)
                 )
         } else {
             RoundedRectangle(cornerRadius: 12)
                 .foregroundColor(.gray)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.6)
                 .overlay(
-                    UploadProgressView(switchingCamera: $switchingCamera)
-                ).sheet(isPresented: $takePhotoClicked){
+                    UploadProgressView(viewModel: viewModel)
+                ).sheet(isPresented: $viewModel.takePhotoClicked){
                     onLoadBackImage()
-                    self.switchingCamera.toggle()
+                    viewModel.switchingCamera.toggle()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                        self.choseFromFront.toggle()
+                        viewModel.choseFromFront.toggle()
                     }
                 } content: {
-                    ImagePicker(image: $selectedBackImage)
+                    ImagePicker(image: $viewModel.selectedBackImage)
                 }
         }
     }
     
     private func onLoadBackImage() {
-        guard let selectedBackImage = selectedBackImage else { return }
-        backImage = Image(uiImage: selectedBackImage)
+        guard let selectedBackImage = viewModel.selectedBackImage else { return }
+        viewModel.backImage = Image(uiImage: selectedBackImage)
     }
 }
 
 private struct CameraActionsView: View {
     
-    @Binding var photoTaken: Bool
-    @Binding var takePhotoClicked: Bool
+    @ObservedObject var viewModel: CameraViewModel
+    
     var action: () -> Void
     
     var body: some View {
         VStack {
-            if photoTaken {
+            if viewModel.photoTaken {
                 Button(action: action) {
                     HStack {
                         Text("SEND")
@@ -207,7 +160,7 @@ private struct CameraActionsView: View {
                     Image(systemName: "bolt.slash.fill")
                         .font(.system(size: 28))
                     Button {
-                        takePhotoClicked.toggle()
+                        viewModel.takePhotoClicked.toggle()
                     } label: {
                         Image(systemName: "circle")
                             .font(.system(size: 70))
@@ -224,7 +177,7 @@ private struct CameraActionsView: View {
 
 private struct UploadProgressView: View {
     
-    @Binding var switchingCamera: Bool
+    @ObservedObject var viewModel: CameraViewModel
     
     var body: some View {
         VStack {
@@ -232,6 +185,6 @@ private struct UploadProgressView: View {
             Text("Wait, wait, wait, now smile")
         }
             .foregroundColor(.white)
-            .opacity(switchingCamera ? 1 : 0)
+            .opacity(viewModel.switchingCamera ? 1 : 0)
     }
 }

@@ -8,10 +8,26 @@
 import Foundation
 import Factory
 
+
 extension Container {
     
+    var userMapper: Factory<UserMapper> {
+        self { UserMapper() }.singleton
+    }
+    
+    var realInsightMapper: Factory<RealInsightMapper> {
+        self { RealInsightMapper(userMapper: self.userMapper()) }.singleton
+    }
+}
+
+extension Container {
+    
+    var authenticationDataSource: Factory<AuthenticationDataSource> {
+        self { FirestoreAuthenticationDataSource() }.singleton
+    }
+    
     var authenticationRepository: Factory<AuthenticationRepository> {
-        self { FirestoreAuthenticationRepository() }.singleton
+        self { AuthenticationRepositoryImpl(authenticationDataSource: self.authenticationDataSource()) }.singleton
     }
     
     var signOutUseCase: Factory<SignOutUseCase> {
@@ -34,7 +50,7 @@ extension Container {
 extension Container {
     
     var realInsightsRepository: Factory<RealInsightsRepository> {
-        self { FirestoreRealInsightsRepository() }.singleton
+        self { RealInsightsRepositoryImpl() }.singleton
     }
     
     var fetchRealInsightsUseCase: Factory<FetchRealInsightsUseCase> {
@@ -42,8 +58,19 @@ extension Container {
     }
 }
 
+extension Container {
+    
+    var storageDataSource: Factory<StorageFilesDataSource> {
+        self { FirestoreStorageFilesDataSource() }.singleton
+    }
+}
+
 
 extension Container {
+    
+    var userDataSource: Factory<UserDataSource> {
+        self { FirestoreUserDataSource() }.singleton
+    }
     
     var userProfileRepository: Factory<UserProfileRepository> {
         self { FirestoreUserProfileRepository() }.singleton

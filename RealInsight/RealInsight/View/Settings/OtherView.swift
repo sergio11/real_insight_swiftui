@@ -10,12 +10,15 @@ import SwiftUI
 struct OtherView: View {
     
     @State var fastCamera = false
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBarView()
+                TopBarView(backButtonAction: {
+                    dismiss()
+                }, title: "Other")
                 VStack {
                     MainMenuOptions()
                     Spacer()
@@ -24,34 +27,6 @@ struct OtherView: View {
         }
     }
 }
-
-
-private struct TopBarView: View {
-    
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Text("Other")
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "arrow.backward")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                    }
-                    Spacer()
-                }.padding(.horizontal)
-            }
-            Spacer()
-        }
-    }
-}
-
 
 private struct MainMenuOptions: View {
     var body: some View {

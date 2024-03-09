@@ -8,14 +8,18 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
+import SwiftUI
 
 class CameraViewModel: ObservableObject {
     
-    @Published var user: User
-    
-    init(user: User) {
-        self.user = user
-    }
+    @Published var switchingCamera: Bool = false
+    @Published var takePhotoClicked: Bool = false
+    @Published var selectedBackImage: UIImage?
+    @Published var selectedFrontImage: UIImage?
+    @Published var backImage: Image?
+    @Published var frontImage: Image?
+    @Published var choseFromFront: Bool = false
+    @Published var photoTaken: Bool = false
     
     func postRealInsight(backImage: UIImage, frontImage: UIImage, completion: @escaping(Error?) -> Void) {
         ImageUploader.uploadImage(image: backImage, type: .post) { urlBackImage in

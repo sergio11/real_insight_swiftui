@@ -11,14 +11,15 @@ struct TopBarView: View {
     var backButtonAction: (() -> Void)? = nil
     var title: String = "RealInsights."
     var backButtomIcon: String = "arrow.backward"
+    var trailingActionContent: AnyView? = nil
 
     
     var body: some View {
         VStack {
             HStack {
-                if backButtonAction != nil {
+                if let action = backButtonAction {
                     Button {
-                        backButtonAction?()
+                        action()
                     } label: {
                         Image(systemName: backButtomIcon)
                             .foregroundColor(.white)
@@ -31,6 +32,10 @@ struct TopBarView: View {
                     .fontWeight(.bold)
                     .font(.system(size: 22))
                 Spacer()
+                if let trailingActionContent = trailingActionContent {
+                    trailingActionContent
+                        .padding(.trailing)
+                }
             }
             Spacer()
         }

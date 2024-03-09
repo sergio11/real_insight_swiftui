@@ -11,13 +11,19 @@ import Kingfisher
 struct SettingsView: View {
     
     @EnvironmentObject var viewModel: AuthenticationViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
             VStack {
                 ZStack {
                     Color.black.ignoresSafeArea()
-                    TopBarView()
+                    TopBarView(
+                        backButtonAction: {
+                            dismiss()
+                        },
+                        title: "Settings"
+                    )
                     VStack {
                         EditProfileItem()
                         MenuBlockSection(
@@ -49,32 +55,6 @@ struct SettingsView: View {
                     
                 }
             }.navigationBarHidden(true)
-        }
-    }
-}
-
-private struct TopBarView: View {
-    
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "arrow.backward")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                }
-                .padding(.leading)
-                Spacer()
-                Text("Settings")
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                Spacer()
-            }
-            Spacer()
         }
     }
 }
