@@ -10,47 +10,21 @@ import SwiftUI
 struct SelectCountryView: View {
     
     @Binding var countryChosen: Country
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBar()
+                TopBarView(backButtonAction: { dismiss() },
+                           title: "Select Country",
+                           backButtomIcon: "xmark")
                 CountryList(countryChosen: $countryChosen)
             }
             .environment(\.colorScheme, .dark)
         }
     }
 }
-
-private struct TopBar: View {
-    
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Text("Select Country")
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16))
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                    }
-                    Spacer()
-                }
-            }
-            Spacer()
-        }
-        .padding(.horizontal)
-    }
-}
-
 
 private struct CountryList: View {
     

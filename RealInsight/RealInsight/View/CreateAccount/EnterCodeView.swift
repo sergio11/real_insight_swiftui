@@ -20,7 +20,9 @@ struct EnterCodeView: View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBar()
+                TopBarView(backButtonAction: {
+                    viewModel.previousFlowStep()
+                })
                 VStack {
                     EnterCodeSection()
                     BottomSection(timeReamining: $timeRemaining)
@@ -33,32 +35,6 @@ struct EnterCodeView: View {
                     viewModel.previousFlowStep()
                 }
             }
-        }
-    }
-}
-
-private struct TopBar: View {
-    
-    @EnvironmentObject var viewModel: CreateAccountViewModel
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Button {
-                    viewModel.previousFlowStep()
-                } label: {
-                    Image(systemName: "arrow.backward")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                }.padding(.leading)
-                Spacer()
-                Text("RealInsights.")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(.system(size: 22))
-                Spacer()
-            }
-            Spacer()
         }
     }
 }

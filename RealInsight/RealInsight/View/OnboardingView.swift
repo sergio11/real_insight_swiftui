@@ -69,7 +69,7 @@ private struct Actions: View {
                         .cornerRadius(10)
                 }
                             
-                NavigationLink(destination: CreateAccountView(isAccountCreated: $isAccountAuthenticated)
+                NavigationLink(destination: AuthenticationView(isAuthenticated: $isAccountAuthenticated)
                     .navigationBarBackButtonHidden()) {
                     Text("Get Started!")
                         .foregroundColor(.black)
