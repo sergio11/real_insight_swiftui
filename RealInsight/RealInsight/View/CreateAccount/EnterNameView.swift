@@ -8,40 +8,19 @@
 import SwiftUI
 
 struct EnterNameView: View {
-    var body: some View {
-        VStack {
-            ZStack {
-                Color.black.ignoresSafeArea()
-                TopBar()
-                NameInputView()
-                ContinueButton()
-            }
-        }
-    }
-}
-
-private struct TopBar: View {
     
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
-            HStack {
-                Button {
+            ZStack {
+                Color.black.ignoresSafeArea()
+                TopBarView(backButtonAction: {
                     dismiss()
-                } label: {
-                    Image(systemName: "arrow.backward")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                }.padding(.leading)
-                Spacer()
-                Text("RealInsight.")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(.system(size: 22))
-                Spacer()
+                })
+                NameInputView()
+                ContinueButton()
             }
-            Spacer()
         }
     }
 }

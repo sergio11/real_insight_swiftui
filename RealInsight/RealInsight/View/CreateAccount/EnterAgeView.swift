@@ -9,11 +9,16 @@ import SwiftUI
 import Combine
 
 struct EnterAgeView: View {
+    
+    @EnvironmentObject var viewModel: CreateAccountViewModel
+    
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBar()
+                TopBarView(backButtonAction: {
+                    viewModel.previousFlowStep()
+                })
                 VStack(alignment: .center, spacing: 8) {
                     GreetingText()
                     DateInputView()
@@ -26,32 +31,6 @@ struct EnterAgeView: View {
                     ContinueButton()
                 }.padding(.bottom, 40)
             }
-        }
-    }
-}
-
-private struct TopBar: View {
-    
-    @EnvironmentObject var viewModel: CreateAccountViewModel
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Button {
-                    viewModel.previousFlowStep()
-                } label: {
-                    Image(systemName: "arrow.backward")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                }.padding(.leading)
-                Spacer()
-                Text("RealInsights.")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(.system(size: 22))
-                Spacer()
-            }
-            Spacer()
         }
     }
 }
