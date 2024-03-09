@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    
+    @Binding var isAccountAuthenticated: Bool
+    
     var body: some View {
         ZStack {
             BackgroundImage()
             VStack {
                 MainContent()
-                Actions()
+                Actions(isAccountAuthenticated: $isAccountAuthenticated)
             }.padding(.horizontal, 30)
         }
         .statusBar(hidden: true)
@@ -48,7 +51,7 @@ private struct MainContent: View {
 
 private struct Actions: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @Binding var isAccountAuthenticated: Bool
     
     var body: some View {
         VStack {
@@ -57,8 +60,7 @@ private struct Actions: View {
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
             HStack(spacing: 20) {
-                NavigationLink(destination: AuthenticationView()
-                    .environmentObject(viewModel)
+                NavigationLink(destination: CreateAccountView(isAccountCreated: $isAccountAuthenticated)
                     .navigationBarBackButtonHidden()) {
                     Text("Create Account")
                         .foregroundColor(.black)
@@ -67,8 +69,7 @@ private struct Actions: View {
                         .cornerRadius(10)
                 }
                             
-                NavigationLink(destination: AuthenticationView()
-                    .environmentObject(viewModel)
+                NavigationLink(destination: CreateAccountView(isAccountCreated: $isAccountAuthenticated)
                     .navigationBarBackButtonHidden()) {
                     Text("Get Started!")
                         .foregroundColor(.black)
@@ -102,6 +103,6 @@ private struct BackgroundImage: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(isAccountAuthenticated: .constant(false))
     }
 }

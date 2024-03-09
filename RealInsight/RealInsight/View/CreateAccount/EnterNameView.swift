@@ -48,7 +48,7 @@ private struct TopBar: View {
 
 private struct NameInputView: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         VStack {
@@ -79,7 +79,7 @@ private struct NameInputView: View {
 
 private struct ContinueButton: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var isNameNotEmpty: Binding<Bool> {
         Binding<Bool>(
@@ -92,7 +92,7 @@ private struct ContinueButton: View {
         VStack {
             Spacer()
             Button {
-                viewModel.nextAuthFlowStep()
+                viewModel.nextFlowStep()
             } label: {
                 WhiteButtonView(buttonActive: isNameNotEmpty, text: "Continue")
             }

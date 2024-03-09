@@ -11,7 +11,7 @@ import Combine
 struct EnterPhoneNumberView: View {
     
     @State var showCountryList = false
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         VStack {
@@ -19,10 +19,10 @@ struct EnterPhoneNumberView: View {
                 Color.black.ignoresSafeArea()
                 TopBar()
                 VStack {
-                    PhoneNumberInputView(viewModel: viewModel, showCountryList: $showCountryList)
+                    PhoneNumberInputView(showCountryList: $showCountryList)
                     Spacer()
                     AgreementText()
-                    ContinueButton(viewModel: viewModel)
+                    ContinueButton()
                 }.padding(.bottom, 40)
             }
         }
@@ -40,13 +40,13 @@ struct EnterPhoneNumberView: View {
 
 private struct TopBar: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         VStack {
             HStack {
                 Button {
-                    viewModel.previousAuthFlowStep()
+                    viewModel.previousFlowStep()
                 } label: {
                     Image(systemName: "arrow.backward")
                         .foregroundColor(.white)
@@ -66,7 +66,7 @@ private struct TopBar: View {
 
 private struct PhoneNumberInputView: View {
     
-    @ObservedObject var viewModel: AuthenticationViewModel
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     @Binding var showCountryList: Bool
     
     var body: some View {
@@ -127,7 +127,8 @@ private struct AgreementText: View {
 }
 
 private struct ContinueButton: View {
-    @ObservedObject var viewModel: AuthenticationViewModel
+    
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var isPhoneNumberValid: Binding<Bool> {
         Binding<Bool>(

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     
     init() {
         UITextView.appearance().backgroundColor = .clear
@@ -21,9 +21,6 @@ struct ContentView: View {
     @State var width = UIScreen.main.bounds.width
     @State var menu = "feed"
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
-
-    
     var body: some View {
         NavigationView {
             HStack(spacing: 0) {
@@ -31,10 +28,8 @@ struct ContentView: View {
                     .frame(width: width)
                 FeedView(mainMenu: $menu)
                     .frame(width: width)
-                    .environmentObject(viewModel)
                 ProfileView(mainMenu: $menu)
                     .frame(width: width)
-                    .environmentObject(viewModel)
             }
             .offset(x: menu == "left" ? width : 0)
             .offset(x: menu == "profile" ? -width : 0)
@@ -45,7 +40,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(AuthenticationViewModel())
+        HomeView()
     }
 }
