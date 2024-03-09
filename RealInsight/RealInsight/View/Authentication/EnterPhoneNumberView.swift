@@ -96,7 +96,7 @@ private struct PhoneNumberInputView: View {
                         .foregroundColor(viewModel.phoneNumber.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
                         .fontWeight(.heavy)
                         .font(.system(size: 40))
-                        .frame(width: 250)
+                        .frame(width: 270)
                         .overlay(
                             TextField("", text: $viewModel.phoneNumber)
                                 .foregroundColor(.white)

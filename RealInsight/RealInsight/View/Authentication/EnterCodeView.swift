@@ -10,7 +10,6 @@ import Combine
 
 struct EnterCodeView: View {
     
-    @State var buttonActive: Bool = false
     @State var timeRemaining = 60
     
     @EnvironmentObject var viewModel: AuthenticationViewModel
@@ -24,14 +23,13 @@ struct EnterCodeView: View {
                 TopBar()
                 VStack {
                     EnterCodeSection()
-                    BottomSection(buttonActive: $buttonActive, timeReamining: $timeRemaining)
+                    BottomSection(timeReamining: $timeRemaining)
                 }
                 .padding(.bottom, 40)
             }.onReceive(timer) { _ in
                 if timeRemaining > 0 {
                     timeRemaining -= 1
                 } else {
-                    buttonActive = false
                     viewModel.previousAuthFlowStep()
                 }
             }
@@ -116,12 +114,18 @@ private struct EnterCodeTextField: View {
 
 private struct BottomSection: View {
     
-    @Binding var buttonActive: Bool
     @Binding var timeReamining: Int
     
     @EnvironmentObject var viewModel: AuthenticationViewModel
     
     @Environment(\.dismiss) var dismiss
+    
+    var isOtpNotEmpty: Binding<Bool> {
+        Binding<Bool>(
+            get: { !viewModel.otpText.isEmpty },
+            set: { _ in }
+        )
+    }
     
     var body: some View {
         VStack {
@@ -136,16 +140,11 @@ private struct BottomSection: View {
             }
             
             Button {
-                if buttonActive {
-                    Task { await self.viewModel.verifyOtp() }
-                }
+                Task { await self.viewModel.verifyOtp() }
             } label: {
-                WhiteButtonView(buttonActive: $buttonActive, text: viewModel.otpText.count == 6 ? "Continue": "Resend in \(timeReamining) ")
+                WhiteButtonView(buttonActive: isOtpNotEmpty, text: viewModel.otpText.count == 6 ? "Continue": "Resend in \(timeReamining) ")
             }
-            .disabled(!buttonActive)
-            .onChange(of: viewModel.otpText) { newValue in
-                buttonActive = !newValue.isEmpty
-            }
+            .disabled(viewModel.otpText.isEmpty)
         }
     }
 }

@@ -16,7 +16,6 @@ class AuthenticationViewModel: ObservableObject {
     @Published var country: Country = Country(isoCode: "US")
     @Published var phoneNumber = ""
     @Published var otpText = ""
-    @Published var verificationCode: String = ""
     @Published var errorMessage = ""
     @Published var showAlert = false
     @Published var currentUser: User?
@@ -29,6 +28,9 @@ class AuthenticationViewModel: ObservableObject {
     @Injected(\.verifyOtpUseCase) private var verifyOtpUseCase: VerifyOtpUseCase
     @Injected(\.signOutUseCase) private var signOutUseCase: SignOutUseCase
     @Injected(\.verifySessionUseCase) private var verifySessionUseCase: VerifySessionUseCase
+    
+    
+    private var verificationCode: String = ""
     
     
     var userUuid: String {

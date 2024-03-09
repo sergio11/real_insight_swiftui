@@ -12,24 +12,22 @@ struct AuthenticationView: View {
     @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
-        NavigationView {
-            switch viewModel.authFlowStep {
-            case .username:
-                EnterNameView()
-                    .environmentObject(viewModel)
-            case .birthdate:
-                EnterAgeView()
-                    .environmentObject(viewModel)
-            case .phoneNumber:
-                EnterPhoneNumberView()
-                    .environmentObject(viewModel)
-            case .otp:
-                EnterCodeView()
-                    .environmentObject(viewModel)
-            case .completed:
-                ContentView()
-                    .environmentObject(viewModel)
-            }
+        switch viewModel.authFlowStep {
+        case .username:
+            EnterNameView()
+                .environmentObject(viewModel)
+        case .birthdate:
+            EnterAgeView()
+                .environmentObject(viewModel)
+        case .phoneNumber:
+            EnterPhoneNumberView()
+                .environmentObject(viewModel)
+        case .otp:
+            EnterCodeView()
+                .environmentObject(viewModel)
+        case .completed:
+            ContentView()
+                .environmentObject(viewModel)
         }
     }
 }
