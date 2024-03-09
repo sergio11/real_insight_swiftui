@@ -22,7 +22,9 @@ struct NotificationsView: View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBarView()
+                TopBarView(backButtonAction: {
+                    dismiss()
+                }, title: "Notifications")
                 VStack {
                     MainTitleTextView()
                     MainMenuOptions(mentions: $mentions, comments: $comments, friendRequests: $friendRequests, lateRealInsight: $lateRealInsight, realMojis: $realMojis, buttonActive: $buttonActive)
@@ -39,31 +41,6 @@ struct NotificationsView: View {
                 }
             }
         }
-    }
-}
-
-private struct TopBarView: View {
-    
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Text("Notifications")
-                    .fontWeight(.semibold)
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "arrow.backward")
-                            .font(.system(size: 20))
-                    }
-                    Spacer()
-                }
-            }.padding(.horizontal)
-            Spacer()
-        }
-        .foregroundColor(.white)
     }
 }
 

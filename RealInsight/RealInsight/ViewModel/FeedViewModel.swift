@@ -13,6 +13,7 @@ class FeedViewModel: ObservableObject {
     @Published var realInsightList = [RealInsight]()
     @Published var realInsight: RealInsight = RealInsight()
     @Published var blur = true
+    @Published var cameraViewPressented: Bool = false
     
     @Injected(\.fetchRealInsightsUseCase) private var fetchRealInsightsUseCase: FetchRealInsightsUseCase
     

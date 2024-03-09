@@ -15,7 +15,11 @@ struct MemoriesView: View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBarView()
+                TopBarView(backButtonAction: {
+                    dismiss()
+                }, title: "Memories", trailingActionContent: AnyView(Image(systemName: "questionmark.circle")
+                    .foregroundColor(.white)
+                    .font(.system(size: 16))))
                 VStack {
                     DeactivateMemoriesTitle()
                     DeactivateMemoriesBox()
@@ -24,35 +28,6 @@ struct MemoriesView: View {
                 .padding(.horizontal)
                 .padding(.top, 50)
             }
-        }
-    }
-}
-
-private struct TopBarView: View {
-    
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Text("Memories")
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "arrow.backward")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                    }
-                    Spacer()
-                    Image(systemName: "questionmark.circle")
-                        .foregroundColor(.white)
-                        .font(.system(size: 16))
-                }.padding(.horizontal)
-            }
-            Spacer()
         }
     }
 }

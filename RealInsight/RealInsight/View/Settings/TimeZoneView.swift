@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct TimeZoneView: View {
+    
+    @Environment(\.dismiss) var dismiss
     @State var area = "europe"
     
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBarView()
+                TopBarView(backButtonAction: {
+                    dismiss()
+                }, title: "Time Zone")
                 VStack {
                     VStack {
                         MainTitleTextView()
@@ -29,33 +33,6 @@ struct TimeZoneView: View {
                 .padding(.bottom, 40)
                 .padding(.horizontal)
             }
-        }
-    }
-}
-
-private struct TopBarView: View {
-    
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Text("Time Zone")
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "arrow.backward")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                    }
-                    Spacer()
-                }
-            }
-            .padding(.horizontal)
-            Spacer()
         }
     }
 }

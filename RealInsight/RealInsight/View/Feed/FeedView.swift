@@ -11,12 +11,8 @@ import Kingfisher
 struct FeedView: View {
     
     @Binding var mainMenu: String
-    
-    @EnvironmentObject var authViewModel: AuthenticationViewModel
-    
-    @ObservedObject var feedViewModel = FeedViewModel()
-    
-    @State private var cameraViewPressented: Bool = false
+
+    @ObservedObject var viewModel = FeedViewModel()
     
     var body: some View {
         VStack {
@@ -25,20 +21,20 @@ struct FeedView: View {
                 ZStack {
                     ScrollView {
                         VStack {
-                            if !feedViewModel.blur {
+                            if !viewModel.blur {
                                 VStack {
                                         VStack {
-                                            BackImagePreview(backImageUrl: $feedViewModel.realInsight.backImageUrl)
-                                            FrontImagePreview(frontImageUrl: $feedViewModel.realInsight.frontImageUrl)
+                                            BackImagePreview(backImageUrl: $viewModel.realInsight.backImageUrl)
+                                            FrontImagePreview(frontImageUrl: $viewModel.realInsight.frontImageUrl)
                                         }
                                     PublicationInfo()
                                 }
                             }
-                            ForEach(feedViewModel.realInsightList, id: \.backImageUrl) { realInsight in
-                                FeedCellView(realInsight: realInsight, blur: feedViewModel.blur, viewModel: FeedCellViewModel(realInsight: realInsight))
+                            ForEach(viewModel.realInsightList, id: \.backImageUrl) { realInsight in
+                                FeedCellView(realInsight: realInsight, blur: viewModel.blur, viewModel: FeedCellViewModel(realInsight: realInsight))
                                     .onAppear {
-                                        if(feedViewModel.blur) {
-                                            feedViewModel.blur = realInsight.userId != authViewModel.userUuid
+                                        if(viewModel.blur) {
+                                            viewModel.blur = realInsight.userId != authViewModel.userUuid
                                         }
                                     }
                             }
@@ -47,18 +43,18 @@ struct FeedView: View {
                 }
                 VStack {
                     VStack {
-                        TopBarView(mainMenu: $mainMenu, currentUser: $authViewModel.currentUser)
+                        MainTopBarView(mainMenu: $mainMenu, currentUser: $authViewModel.currentUser)
                         ProfileTabs()
                         Spacer()
-                        if feedViewModel.blur {
-                            PostButtonView(cameraViewPressented: $cameraViewPressented)
+                        if viewModel.blur {
+                            PostButtonView(cameraViewPressented: $viewModel.cameraViewPressented)
                         }
                     }
                     .shadow(color: .black.opacity(0.2), radius: 2, x: 1, y: 1)
                 }
             }
-        }.fullScreenCover(isPresented: $cameraViewPressented) {
-            Task { await feedViewModel.fetchData() }
+        }.fullScreenCover(isPresented: $viewModel.cameraViewPressented) {
+            Task { await viewModel.fetchData() }
         } content: {
             CameraView(viewModel: CameraViewModel.init(user: authViewModel.currentUser!))
         }
@@ -66,7 +62,7 @@ struct FeedView: View {
 }
 
 
-private struct TopBarView: View {
+private struct MainTopBarView: View {
     
     @Binding var mainMenu: String
     @Binding var currentUser: User?
