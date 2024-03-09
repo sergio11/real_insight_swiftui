@@ -140,6 +140,7 @@ private struct ContinueButton: View {
         } label: {
             WhiteButtonView(buttonActive: isBirthdateValid, text: "Continue")
         }
+        .disabled(!viewModel.birthdate.hasDataValid())
     }
 }
 

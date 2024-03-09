@@ -21,9 +21,19 @@ struct EnterNameView: View {
 }
 
 private struct TopBar: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         VStack {
             HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                }.padding(.leading)
                 Spacer()
                 Text("RealInsight.")
                     .foregroundColor(.white)
@@ -86,7 +96,9 @@ private struct ContinueButton: View {
             } label: {
                 WhiteButtonView(buttonActive: isNameNotEmpty, text: "Continue")
             }
-        }.padding(.bottom, 40)
+        }
+        .padding(.bottom, 40)
+        .disabled(viewModel.name.isEmpty)
     }
 }
 

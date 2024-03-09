@@ -8,20 +8,15 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    
-    @EnvironmentObject var viewModel: AuthenticationViewModel
-    
     var body: some View {
-        NavigationView {
-            ZStack {
-                BackgroundImage()
-                VStack {
-                    MainContent()
-                    Actions()
-                }.padding(.horizontal, 30)
-            }
-            .statusBar(hidden: true)
+        ZStack {
+            BackgroundImage()
+            VStack {
+                MainContent()
+                Actions()
+            }.padding(.horizontal, 30)
         }
+        .statusBar(hidden: true)
     }
 }
 
@@ -52,6 +47,9 @@ private struct MainContent: View {
 
 
 private struct Actions: View {
+    
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    
     var body: some View {
         VStack {
             Text("Join us now and discover the real connections you've been missing!")
@@ -59,7 +57,9 @@ private struct Actions: View {
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
             HStack(spacing: 20) {
-                NavigationLink(destination: AuthenticationView().navigationBarBackButtonHidden()) {
+                NavigationLink(destination: AuthenticationView()
+                    .environmentObject(viewModel)
+                    .navigationBarBackButtonHidden()) {
                     Text("Create Account")
                         .foregroundColor(.black)
                         .padding()
@@ -67,7 +67,9 @@ private struct Actions: View {
                         .cornerRadius(10)
                 }
                             
-                NavigationLink(destination: AuthenticationView().navigationBarBackButtonHidden()) {
+                NavigationLink(destination: AuthenticationView()
+                    .environmentObject(viewModel)
+                    .navigationBarBackButtonHidden()) {
                     Text("Get Started!")
                         .foregroundColor(.black)
                         .padding()

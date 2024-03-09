@@ -12,21 +12,23 @@ struct MainView: View {
     @ObservedObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
-        Group {
-            if viewModel.isLoading {
-                LoadingView()
-            } else {
-                if viewModel.hasSession {
-                    ContentView()
-                        .environmentObject(viewModel)
+        NavigationView {
+            Group {
+                if viewModel.isLoading {
+                    LoadingView()
                 } else {
-                    OnboardingView()
-                        .environmentObject(viewModel)
+                    if viewModel.hasSession {
+                        ContentView()
+                            .environmentObject(viewModel)
+                    } else {
+                        OnboardingView()
+                            .environmentObject(viewModel)
+                    }
                 }
             }
-        }
-        .onAppear {
-            Task { await viewModel.verifySession() }
+            .onAppear {
+                Task { await viewModel.verifySession() }
+            }
         }
     }
 }
