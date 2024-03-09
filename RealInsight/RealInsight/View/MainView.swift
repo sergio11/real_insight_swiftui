@@ -20,28 +20,10 @@ struct MainView: View {
                     ContentView()
                         .environmentObject(viewModel)
                 } else {
-                    NavigationView {
-                        switch viewModel.authFlowStep {
-                        case .username:
-                            EnterNameView()
-                                .environmentObject(viewModel)
-                        case .birthdate:
-                            EnterAgeView()
-                                .environmentObject(viewModel)
-                        case .phoneNumber:
-                            EnterPhoneNumberView()
-                                .environmentObject(viewModel)
-                        case .otp:
-                            EnterCodeView()
-                                .environmentObject(viewModel)
-                        case .completed:
-                            ContentView()
-                                .environmentObject(viewModel)
-                        }
-                    }
+                    OnboardingView()
+                        .environmentObject(viewModel)
                 }
             }
-            
         }
         .onAppear {
             Task { await viewModel.verifySession() }
