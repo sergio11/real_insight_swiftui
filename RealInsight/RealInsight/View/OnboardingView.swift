@@ -15,7 +15,6 @@ struct OnboardingView: View {
         NavigationView {
             ZStack {
                 BackgroundImage()
-                TopBar()
                 VStack {
                     MainContent()
                     Actions()
@@ -26,28 +25,18 @@ struct OnboardingView: View {
     }
 }
 
-private struct TopBar: View {
-    var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Text("RealInsight.")
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(.system(size: 22))
-                Spacer()
-            }
-            Spacer()
-        }.padding(.top, 20)
-    }
-}
 
 private struct MainContent: View {
     var body: some View {
         VStack {
-            Spacer()
+            Image("onboarding_logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity)
+                .edgesIgnoringSafeArea(.all)
+                .padding(.top, 50)
             Text("Welcome to RealInsight!")
-                .font(.title)
+                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .padding()
@@ -86,8 +75,14 @@ private struct Actions: View {
                         .cornerRadius(10)
                 }
             }
-            .padding(.bottom, 50)
+            .padding(.bottom, 30)
             .padding(.top, 20)
+            Text("Build with passion by dreamsoftware. Sergio Sánchez Sánchez © 2024")
+                .font(.footnote)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 10)
         }.padding(.horizontal, 30)
     }
 }
