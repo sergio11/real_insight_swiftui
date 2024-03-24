@@ -38,11 +38,7 @@ struct CameraView: View {
     
     
     private func onSend() {
-        if let selectedBackImage = selectedBackImage, let selectedFrontImage = selectedFrontImage {
-            viewModel.postRealInsight(backImage: selectedBackImage, frontImage: selectedFrontImage) { _ in 
-                dismiss()
-            }
-        }
+        viewModel.postRealInsight()
     }
 }
 

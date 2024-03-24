@@ -47,7 +47,15 @@ internal class RealInsightsRepositoryImpl: RealInsightsRepository {
         }
     }
     
-    func postRealInsight(date: String, userId: String, backImageUrl: String, frontImageUrl: String) async throws -> RealInsight {
-        
+    func postRealInsight(userId: String, backImageData: Data, frontImageData: Data) async throws -> RealInsight {
+        do {
+            let backImageUrl = try await storageFilesDataSource.uploadImage(imageData: backImageData, type: .post)
+            let frontImageUrl = try await storageFilesDataSource.uploadImage(imageData: frontImageData, type: .post)
+            let ownRealInsight = try await realInsightsDataSource.postRealInsight(userId: userId, backImageUrl: backImageUrl, frontImageUrl: frontImageUrl)
+            let userData = try await userDataSource.getUserById(userId: userId)
+            return realInsightMapper.map(RealInsightDataMapper(realInsightDTO: ownRealInsight, userDTO: userData))
+        } catch {
+            throw RealInsightsRepositoryError.postFailed
+        }
     }
 }

@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseFirestore
 import SwiftUI
+import Factory
 
-class CameraViewModel: ObservableObject {
+class CameraViewModel: BaseViewModel {
     
     @Published var switchingCamera: Bool = false
     @Published var takePhotoClicked: Bool = false
@@ -21,28 +20,20 @@ class CameraViewModel: ObservableObject {
     @Published var choseFromFront: Bool = false
     @Published var photoTaken: Bool = false
     
-    func postRealInsight(backImage: UIImage, frontImage: UIImage, completion: @escaping(Error?) -> Void) {
-        ImageUploader.uploadImage(image: backImage, type: .post) { urlBackImage in
-            ImageUploader.uploadImage(image: frontImage, type: .post) { [unowned self] urlFrontImage in
-                guard let userId = self.user.id else { return }
-                let userFullname = self.user.fullname
-                let db = Firestore.firestore()
-                let dateString = Date().formattedString
-                print(dateString)
-                db.collection("posts")
-                    .document(dateString)
-                    .collection("reals_insights")
-                    .document(userId)
-                    .setData([
-                        "frontImageUrl": urlFrontImage,
-                        "backImageUrl": urlBackImage,
-                        "userId": userId,
-                        "username": userFullname
-                    ]) { err in
-                        completion(err)
-                    }
+    @Injected(\.postRealInsightUseCase) private var postRealInsightUseCase: PostRealInsightUseCase
+    
+    func postRealInsight() {
+        if let selectedBackImage = selectedBackImage,
+           let selectedFrontImage = selectedFrontImage,
+           let backImageData = selectedBackImage.jpegData(compressionQuality: 0.5),
+           let frontImageData = selectedFrontImage.jpegData(compressionQuality: 0.5) {
+            Task {
+                do {
+                    let result = try await postRealInsightUseCase.execute(backImageData: backImageData, frontImageData: frontImageData)
+                } catch {
+                    
+                }
             }
         }
-        
     }
 }

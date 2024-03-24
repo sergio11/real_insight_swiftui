@@ -35,9 +35,10 @@ internal class FirestoreRealInsightsDataSource: RealInsightsDataSource {
         return insightData
     }
     
-    func postRealInsight(date: String, userId: String, backImageUrl: String, frontImageUrl: String) async throws -> RealInsightDTO {
+    func postRealInsight(userId: String, backImageUrl: String, frontImageUrl: String) async throws -> RealInsightDTO {
         let db = Firestore.firestore()
         do {
+            let date = Date().formattedString
             let documentRef = db.collection(postsCollection)
                 .document(date)
                 .collection(insightsCollection)
