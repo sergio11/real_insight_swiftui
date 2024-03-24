@@ -6,8 +6,22 @@
 //
 
 import Foundation
-import UIKit
 
 protocol UserProfileRepository {
-    func saveUserData(userId: String, fullname: String, username: String?, location: String?, bio: String?, selectedImage: UIImage?, completion: @escaping (Result<Void, Error>) -> Void)
+    
+    func updateUser(
+        userId: String,
+        fullname: String,
+        username: String?,
+        location: String?,
+        bio: String?,
+        selectedImage: Data?
+    ) async throws -> User
+    
+    func createUser(
+        userId: String,
+        username: String,
+        birthdate: String,
+        phoneNumber: String
+    ) async throws -> User
 }

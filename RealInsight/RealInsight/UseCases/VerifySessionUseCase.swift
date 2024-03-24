@@ -10,7 +10,7 @@ import Foundation
 struct VerifySessionUseCase {
     let repository: AuthenticationRepository
     
-    func verifySession() async throws -> User? {
-        return try await repository.getCurrentUser()
+    func verifySession() async throws -> String? {
+        return try await repository.getCurrentUserId()
     }
 }

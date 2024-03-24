@@ -13,8 +13,8 @@ struct PostRealInsightUseCase {
     
     func execute(backImageData: Data, frontImageData: Data) async throws -> RealInsight? {
         var result: RealInsight? = nil
-        if let currentUser = try await authRepository.getCurrentUser() {
-            result = try await repository.postRealInsight(userId: currentUser.id, backImageData: backImageData, frontImageData: frontImageData)
+        if let userId = try await authRepository.getCurrentUserId() {
+            result = try await repository.postRealInsight(userId: userId, backImageData: backImageData, frontImageData: frontImageData)
         }
         return result
     }

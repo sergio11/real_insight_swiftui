@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseStorage
 
-internal class FirestoreStorageFilesDataSource: StorageFilesDataSource {
+internal class FirestoreStorageFilesDataSourceImpl: StorageFilesDataSource {
     
     private let profileImagesPath = "profile_images"
     private let postImagesPath = "post_images"

@@ -10,14 +10,14 @@ import Firebase
 import FirebaseFirestore
 
 /// A data source responsible for managing user data in Firestore.
-internal class FirestoreUserDataSource: UserDataSource {
+internal class FirestoreUserDataSourceImpl: UserDataSource {
     
     /// Saves user data to Firestore.
         /// - Parameters:
         ///   - data: The data of the user to be saved.
         /// - Returns: A `UserDTO` object representing the saved user.
         /// - Throws: An error if the operation fails.
-    func saveUserData(data: SaveUserDTO) async throws -> UserDTO {
+    func updateUser(data: UpdateUserDTO) async throws -> UserDTO {
         let documentReference = Firestore
             .firestore()
             .collection("users")
@@ -25,6 +25,21 @@ internal class FirestoreUserDataSource: UserDataSource {
         do {
             // Save user data to Firestore
             try await documentReference.setData(data.asDictionary(), merge: true)
+            // Return the saved user data by fetching it from Firestore
+            return try await getUserById(userId: data.userId)
+        } catch {
+            throw error
+        }
+    }
+    
+    func createUser(data: CreateUserDTO) async throws -> UserDTO {
+        let documentReference = Firestore
+                .firestore()
+                .collection("users")
+                .document(data.userId)
+        do {
+            // Save user data to Firestore
+            try await documentReference.setData(data.asDictionary())
             // Return the saved user data by fetching it from Firestore
             return try await getUserById(userId: data.userId)
         } catch {

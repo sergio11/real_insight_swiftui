@@ -17,8 +17,8 @@ class MainViewModel: BaseViewModel {
     func verifySession() async {
         onLoading()
         do {
-            if let user = try await verifySessionUseCase.verifySession() {
-                onActiveSessionFound(user: user)
+            if let userId = try await verifySessionUseCase.verifySession() {
+                onActiveSessionFound(userId: userId)
             } else {
                 onNotActiveSessionFound()
             }
@@ -34,7 +34,7 @@ class MainViewModel: BaseViewModel {
         }
     }
 
-    private func onActiveSessionFound(user: User) {
+    private func onActiveSessionFound(userId: String) {
         updateUI { (vm: MainViewModel) in
             vm.isLoading = false
             vm.hasSession = true

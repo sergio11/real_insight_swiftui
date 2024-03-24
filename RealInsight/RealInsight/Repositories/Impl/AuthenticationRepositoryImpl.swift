@@ -8,7 +8,7 @@
 import Foundation
 
 internal class AuthenticationRepositoryImpl: AuthenticationRepository {
-    let authenticationDataSource: AuthenticationDataSource
+    private let authenticationDataSource: AuthenticationDataSource
 
     init(authenticationDataSource: AuthenticationDataSource) {
         self.authenticationDataSource = authenticationDataSource
@@ -22,7 +22,7 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
         }
     }
 
-    func verifyOTP(verificationCode: String, otpCode: String) async throws -> User {
+    func verifyOTP(verificationCode: String, otpCode: String) async throws -> String {
         do {
             return try await authenticationDataSource.verifyOTP(verificationCode: verificationCode, otpCode: otpCode)
         } catch {
@@ -38,9 +38,9 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
         }
     }
 
-    func getCurrentUser() async throws -> User? {
+    func getCurrentUserId() async throws -> String? {
         do {
-            return try await authenticationDataSource.getCurrentUser()
+            return try await authenticationDataSource.getCurrentUserId()
         } catch {
             throw AuthenticationRepositoryError.currentUserFetchFailed
         }

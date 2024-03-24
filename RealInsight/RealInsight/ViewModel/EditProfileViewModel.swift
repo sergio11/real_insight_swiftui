@@ -11,7 +11,7 @@ import UIKit
 
 class EditProfileViewModel: ObservableObject {
     
-    @Injected(\.saveUserDataUseCase) private var saveUserDataUseCase: SaveUserDataUseCase
+    @Injected(\.saveUserDataUseCase) private var saveUserDataUseCase: UpdateUserUseCase
     
     func saveUserData(fullname: String, username: String?, location: String?, bio: String?, selectedImage: UIImage?) async {
         

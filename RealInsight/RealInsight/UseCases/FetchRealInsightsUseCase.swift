@@ -14,9 +14,9 @@ struct FetchRealInsightsUseCase {
     
     func execute(date: String) async throws -> (allRealInsights: [RealInsight], ownRealInsight: RealInsight?) {
         var result: (allRealInsights: [RealInsight], ownRealInsight: RealInsight?) = ([], nil)
-        if let currentUser = try await authRepository.getCurrentUser() {
+        if let userId = try await authRepository.getCurrentUserId() {
             let allRealInsights = try await repository.fetchAllRealInsights(date: date)
-            let ownRealInsight = currentUser.id != nil ? try await repository.fetchOwnRealInsight(date: date, userId: currentUser.id!) : nil
+            let ownRealInsight = try await repository.fetchOwnRealInsight(date: date, userId: userId)
             result = (allRealInsights, ownRealInsight)
         }
         return result
