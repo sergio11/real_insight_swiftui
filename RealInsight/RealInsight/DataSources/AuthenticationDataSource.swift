@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum AuthenticationError: Error {
+    case phoneVerificationFailed(message: String)
+    case signInFailed(message: String)
+    case signOutFailed(message: String)
+    case userDataNotFound(message: String)
+}
+
 protocol AuthenticationDataSource {
     func signInWithPhone(phoneNumber: String) async throws -> String
     func verifyOTP(verificationCode: String, otpCode: String) async throws -> User
