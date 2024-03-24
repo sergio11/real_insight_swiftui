@@ -21,6 +21,7 @@
 		3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF32B7164D90053C59F /* Extensions.swift */; };
 		3D4066F92B911B2D00785E5E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4066F82B911B2D00785E5E /* LoadingView.swift */; };
 		3D5387522BB031CD00E69294 /* PostRealInsightUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5387512BB031CD00E69294 /* PostRealInsightUseCase.swift */; };
+		3D5387552BB03C3500E69294 /* SaveUserDTO+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5387542BB03C3500E69294 /* SaveUserDTO+Dictionary.swift */; };
 		3D67564D2B97B7CC006DD1BE /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */; };
 		3D78626B2B9B92D300A9424C /* RealInsightsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */; };
 		3D78626D2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */; };
@@ -120,6 +121,7 @@
 		3D33CFF32B7164D90053C59F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3D4066F82B911B2D00785E5E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3D5387512BB031CD00E69294 /* PostRealInsightUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRealInsightUseCase.swift; sourceTree = "<group>"; };
+		3D5387542BB03C3500E69294 /* SaveUserDTO+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SaveUserDTO+Dictionary.swift"; sourceTree = "<group>"; };
 		3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepository.swift; sourceTree = "<group>"; };
 		3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -232,6 +234,14 @@
 				3D94873B2B924B03001C5676 /* ImagePicker.swift */,
 				3D9D04E02B96425000DCC894 /* ViewExtensions.swift */,
 				3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3D5387532BB03C0B00E69294 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3D5387542BB03C3500E69294 /* SaveUserDTO+Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,6 +389,7 @@
 		3DE5E1222B9CE07900EA85DF /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				3D5387532BB03C0B00E69294 /* Extensions */,
 				3DE5E12E2B9CE40C00EA85DF /* DTO */,
 				3DE5E1252B9CE0F500EA85DF /* Impl */,
 				3DE5E1232B9CE0B000EA85DF /* AuthenticationDataSource.swift */,
@@ -610,6 +621,7 @@
 				3DE5E1302B9CE41D00EA85DF /* RealInsightDTO.swift in Sources */,
 				3DFEB7702B9CA133000E0D11 /* AuthenticationView.swift in Sources */,
 				3D9A35B82B718B4D000F51AC /* LeftMenuTopView.swift in Sources */,
+				3D5387552BB03C3500E69294 /* SaveUserDTO+Dictionary.swift in Sources */,
 				3DE5E1342B9CE50300EA85DF /* UserDataSource.swift in Sources */,
 				3D67564D2B97B7CC006DD1BE /* DateExtensions.swift in Sources */,
 				3D9D04E12B96425000DCC894 /* ViewExtensions.swift in Sources */,
