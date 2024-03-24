@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct SaveUserDTO: Decodable {
+internal struct UpdateUserDTO: Decodable {
     var userId: String
     var fullname: String
     var username: String?

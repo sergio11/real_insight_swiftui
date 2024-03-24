@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-internal class FirestoreRealInsightsDataSource: RealInsightsDataSource {
+internal class FirestoreRealInsightsDataSourceImpl: RealInsightsDataSource {
     
     private let postsCollection = "posts"
     private let insightsCollection = "reals_insights"

@@ -22,8 +22,16 @@ extension Container {
 
 extension Container {
     
+    var storageDataSource: Factory<StorageFilesDataSource> {
+        self { FirestoreStorageFilesDataSourceImpl() }.singleton
+    }
+}
+
+
+extension Container {
+    
     var authenticationDataSource: Factory<AuthenticationDataSource> {
-        self { FirestoreAuthenticationDataSource() }.singleton
+        self { FirebaseAuthenticationDataSourceImpl() }.singleton
     }
     
     var authenticationRepository: Factory<AuthenticationRepository> {
@@ -34,8 +42,8 @@ extension Container {
         self { SignOutUseCase(repository: self.authenticationRepository()) }
     }
     
-    var verifyOtpUseCase: Factory<VerifyOtpUseCase> {
-        self { VerifyOtpUseCase(repository: self.authenticationRepository()) }
+    var verifyOtpUseCase: Factory<SignInUseCase> {
+        self { SignInUseCase(repository: self.authenticationRepository()) }
     }
     
     var sendOtpUseCase: Factory<SendOtpUseCase> {
@@ -50,29 +58,31 @@ extension Container {
 extension Container {
     
     var userDataSource: Factory<UserDataSource> {
-        self { FirestoreUserDataSource() }.singleton
+        self { FirestoreUserDataSourceImpl() }.singleton
     }
     
     var userProfileRepository: Factory<UserProfileRepository> {
-        self { FirestoreUserProfileRepository() }.singleton
+        self { UserProfileRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper()) }.singleton
     }
     
-    var saveUserDataUseCase: Factory<SaveUserDataUseCase> {
-        self { SaveUserDataUseCase(repository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    var saveUserDataUseCase: Factory<UpdateUserUseCase> {
+        self { UpdateUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var signInUseCase: Factory<SignInUseCase> {
+        self { SignInUseCase(repository: self.authenticationRepository()) }
+    }
+    
+    var signUpUseCase: Factory<SignUpUseCase> {
+        self { SignUpUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository()) }
     }
 }
 
-extension Container {
-    
-    var storageDataSource: Factory<StorageFilesDataSource> {
-        self { FirestoreStorageFilesDataSource() }.singleton
-    }
-}
 
 extension Container {
     
     var realInsightsDataSource: Factory<RealInsightsDataSource> {
-        self { FirestoreRealInsightsDataSource() }.singleton
+        self { FirestoreRealInsightsDataSourceImpl() }.singleton
     }
     
     var realInsightsRepository: Factory<RealInsightsRepository> {
@@ -87,4 +97,3 @@ extension Container {
         self { PostRealInsightUseCase(repository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
     }
 }
-

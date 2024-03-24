@@ -18,7 +18,7 @@ class CreateAccountViewModel: BaseViewModel {
     @Published var accountFlowStep: AccountFlowStepEnum = .username
     
     @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
-    @Injected(\.verifyOtpUseCase) private var verifyOtpUseCase: VerifyOtpUseCase
+    @Injected(\.signUpUseCase) private var signUpUseCase: SignUpUseCase
     
     private var verificationCode: String = ""
 
@@ -43,7 +43,7 @@ class CreateAccountViewModel: BaseViewModel {
     func verifyOtp() async {
         do {
             onLoading()
-            let user = try await verifyOtpUseCase.execute(verificationCode: verificationCode, otpText: otpText)
+            let user = try await signUpUseCase.execute(params: SignUpParams(name: name, birthdate: birthdate.date, phoneNumber: phoneNumber, verificationCode: verificationCode, otpText: otpText))
             updateUI { (vm: CreateAccountViewModel) in
                 vm.isLoading = false
                 vm.nextFlowStep()

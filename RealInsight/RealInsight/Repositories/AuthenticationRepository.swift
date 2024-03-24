@@ -17,7 +17,7 @@ enum AuthenticationRepositoryError: Error {
 
 protocol AuthenticationRepository {
     func signInWithPhone(phoneNumber: String) async throws -> String
-    func verifyOTP(verificationCode: String, otpCode: String) async throws -> User
+    func verifyOTP(verificationCode: String, otpCode: String) async throws -> String
     func signOut() async throws
-    func getCurrentUser() async throws -> User?
+    func getCurrentUserId() async throws -> String?
 }

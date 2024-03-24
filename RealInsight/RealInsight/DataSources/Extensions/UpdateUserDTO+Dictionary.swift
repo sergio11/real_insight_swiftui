@@ -1,5 +1,5 @@
 //
-//  SaveUserDTO+Dictionary.swift
+//  UpdateUserDTO+Dictionary.swift
 //  RealInsight
 //
 //  Created by Sergio Sánchez Sánchez on 24/3/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension UpdateUserDTO {
+internal extension UpdateUserDTO {
     func asDictionary() -> [String: Any] {
         var dictionary: [String: Any] = [
             "userId": userId,
@@ -30,4 +30,3 @@ extension UpdateUserDTO {
         return dictionary
     }
 }
-

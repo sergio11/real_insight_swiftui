@@ -13,6 +13,7 @@ enum UserDataSourceError: Error {
 }
 
 protocol UserDataSource {
-    func saveUserData(data: SaveUserDTO) async throws -> UserDTO
+    func updateUser(data: UpdateUserDTO) async throws -> UserDTO
+    func createUser(data: CreateUserDTO) async throws -> UserDTO
     func getUserById(userId: String) async throws -> UserDTO
 }
