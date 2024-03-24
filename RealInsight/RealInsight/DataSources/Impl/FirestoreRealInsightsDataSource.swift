@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 internal class FirestoreRealInsightsDataSource: RealInsightsDataSource {
     

@@ -7,40 +7,45 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
+/// A data source responsible for managing user data in Firestore.
 internal class FirestoreUserDataSource: UserDataSource {
     
+    /// Saves user data to Firestore.
+        /// - Parameters:
+        ///   - data: The data of the user to be saved.
+        /// - Returns: A `UserDTO` object representing the saved user.
+        /// - Throws: An error if the operation fails.
     func saveUserData(data: SaveUserDTO) async throws -> UserDTO {
-        let documentReference = Firestore.firestore()
-            .collection("users").document(data.userId)
+        let documentReference = Firestore
+            .firestore()
+            .collection("users")
+            .document(data.userId)
         do {
-            try await documentReference.setData([
-                "fullname": data.fullname,
-                "username": data.username ?? "",
-                "location": data.location ?? "",
-                "bio": data.bio ?? "",
-                "profileImageUrl": data.profileImageUrl ?? ""
-            ], merge: true)
-
-            return UserDTO(userId: data.userId, fullname: data.fullname, username: data.username, location: data.location, bio: data.bio, profileImageUrl: data.profileImageUrl)
+            // Save user data to Firestore
+            try await documentReference.setData(data.asDictionary(), merge: true)
+            // Return the saved user data by fetching it from Firestore
+            return try await getUserById(userId: data.userId)
         } catch {
             throw error
         }
     }
     
+    /// Retrieves user data from Firestore based on the provided user ID.
+        /// - Parameter userId: The ID of the user to retrieve.
+        /// - Returns: A `UserDTO` object containing the user data.
+        /// - Throws: An error if the user data is not found or if the operation fails.
     func getUserById(userId: String) async throws -> UserDTO {
-        let documentSnapshot = try await Firestore.firestore().collection("users").document(userId).getDocument()
-
-        guard let userData = documentSnapshot.data(),
-             let fullname = userData["fullname"] as? String else {
+        let documentSnapshot = try await Firestore
+            .firestore()
+            .collection("users")
+            .document(userId)
+            .getDocument()
+        // Attempt to decode the document data into a UserDTO object
+        guard let userData = try? documentSnapshot.data(as: UserDTO.self) else {
             throw UserDataSourceError.userNotFound
         }
-
-        let username = userData["username"] as? String
-        let location = userData["location"] as? String
-        let bio = userData["bio"] as? String
-        let profileImageUrl = userData["profileImageUrl"] as? String
-
-        return UserDTO(userId: userId, fullname: fullname, username: username, location: location, bio: bio, profileImageUrl: profileImageUrl)
+        return userData
     }
 }
