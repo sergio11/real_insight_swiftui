@@ -49,25 +49,6 @@ extension Container {
 
 extension Container {
     
-    var realInsightsRepository: Factory<RealInsightsRepository> {
-        self { RealInsightsRepositoryImpl() }.singleton
-    }
-    
-    var fetchRealInsightsUseCase: Factory<FetchRealInsightsUseCase> {
-        self { FetchRealInsightsUseCase(repository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
-    }
-}
-
-extension Container {
-    
-    var storageDataSource: Factory<StorageFilesDataSource> {
-        self { FirestoreStorageFilesDataSource() }.singleton
-    }
-}
-
-
-extension Container {
-    
     var userDataSource: Factory<UserDataSource> {
         self { FirestoreUserDataSource() }.singleton
     }
@@ -80,3 +61,30 @@ extension Container {
         self { SaveUserDataUseCase(repository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
 }
+
+extension Container {
+    
+    var storageDataSource: Factory<StorageFilesDataSource> {
+        self { FirestoreStorageFilesDataSource() }.singleton
+    }
+}
+
+extension Container {
+    
+    var realInsightsDataSource: Factory<RealInsightsDataSource> {
+        self { FirestoreRealInsightsDataSource() }.singleton
+    }
+    
+    var realInsightsRepository: Factory<RealInsightsRepository> {
+        self { RealInsightsRepositoryImpl(realInsightsDataSource: self.realInsightsDataSource(), userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), realInsightMapper: self.realInsightMapper()) }.singleton
+    }
+    
+    var fetchRealInsightsUseCase: Factory<FetchRealInsightsUseCase> {
+        self { FetchRealInsightsUseCase(repository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var postRealInsightUseCase: Factory<PostRealInsightUseCase> {
+        self { PostRealInsightUseCase(repository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
+    }
+}
+

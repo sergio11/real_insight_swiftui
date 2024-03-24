@@ -20,6 +20,7 @@
 		3D33CFF12B7161E40053C59F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF02B7161E40053C59F /* EditProfileView.swift */; };
 		3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CFF32B7164D90053C59F /* Extensions.swift */; };
 		3D4066F92B911B2D00785E5E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4066F82B911B2D00785E5E /* LoadingView.swift */; };
+		3D5387522BB031CD00E69294 /* PostRealInsightUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5387512BB031CD00E69294 /* PostRealInsightUseCase.swift */; };
 		3D67564D2B97B7CC006DD1BE /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */; };
 		3D78626B2B9B92D300A9424C /* RealInsightsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */; };
 		3D78626D2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */; };
@@ -118,6 +119,7 @@
 		3D33CFF02B7161E40053C59F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		3D33CFF32B7164D90053C59F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3D4066F82B911B2D00785E5E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		3D5387512BB031CD00E69294 /* PostRealInsightUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRealInsightUseCase.swift; sourceTree = "<group>"; };
 		3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepository.swift; sourceTree = "<group>"; };
 		3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				3DC429A42B9BA13200C0548B /* SignOutUseCase.swift */,
 				3DC429A62B9BA14400C0548B /* VerifySessionUseCase.swift */,
 				3DC429A82B9BA6C700C0548B /* SaveUserDataUseCase.swift */,
+				3D5387512BB031CD00E69294 /* PostRealInsightUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				3D33CFF12B7161E40053C59F /* EditProfileView.swift in Sources */,
 				3D33CAAD2B97A6E2001721A2 /* TabBarMenuView.swift in Sources */,
 				3DC429A12B9BA0FD00C0548B /* SendOtpUseCase.swift in Sources */,
+				3D5387522BB031CD00E69294 /* PostRealInsightUseCase.swift in Sources */,
 				3D78626F2B9B930F00A9424C /* FetchRealInsightsUseCase.swift in Sources */,
 				3DEF78772B8D0E030081AFD9 /* Country.swift in Sources */,
 				3DD4051A2B7BFBA800C39D5C /* OtherView.swift in Sources */,
