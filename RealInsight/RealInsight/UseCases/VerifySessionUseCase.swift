@@ -7,10 +7,17 @@
 
 import Foundation
 
+enum VerifySessionError: Error {
+    case invalidSession
+}
+
 struct VerifySessionUseCase {
     let repository: AuthenticationRepository
     
-    func verifySession() async throws -> String? {
-        return try await repository.getCurrentUserId()
+    func verifySession() async throws -> String {
+        guard let userId = try await repository.getCurrentUserId() else {
+            throw VerifySessionError.invalidSession
+        }
+        return userId
     }
 }

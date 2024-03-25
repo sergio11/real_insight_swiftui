@@ -14,30 +14,27 @@ class MainViewModel: BaseViewModel {
     
     @Injected(\.verifySessionUseCase) private var verifySessionUseCase: VerifySessionUseCase
     
-    func verifySession() async {
-        onLoading()
-        do {
-            if let userId = try await verifySessionUseCase.verifySession() {
-                onActiveSessionFound(userId: userId)
-            } else {
-                onNotActiveSessionFound()
+    func verifySession() {
+        executeAsyncTask({
+            return try await self.verifySessionUseCase.verifySession()
+        }) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let userId):
+                self.onActiveSessionFound(userId: userId)
+            case .failure:
+                self.onNotActiveSessionFound()
             }
-        } catch {
-            onNotActiveSessionFound()
         }
     }
 
     private func onNotActiveSessionFound() {
-        updateUI { (vm: MainViewModel) in
-            vm.isLoading = false
-            vm.hasSession = false
-        }
+        self.isLoading = false
+        self.hasSession = false
     }
 
     private func onActiveSessionFound(userId: String) {
-        updateUI { (vm: MainViewModel) in
-            vm.isLoading = false
-            vm.hasSession = true
-        }
+        self.isLoading = false
+        self.hasSession = true
     }
 }
