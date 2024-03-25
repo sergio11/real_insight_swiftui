@@ -38,8 +38,8 @@ private struct MainContent: View {
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .padding()
-            Text("Your platform to connect with real people and gain valuable insights.")
-                .font(.title2)
+            Text("Explore RealInsight: where authenticity shines. Snap and share real moments, unfiltered, every day. Join a community that values genuine connections.")
+                .font(.title3)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
@@ -55,7 +55,7 @@ private struct Actions: View {
     
     var body: some View {
         VStack {
-            Text("Join us now and discover the real connections you've been missing!")
+            Text("Ready to be real online? Join RealInsight now!")
                 .font(.body)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
