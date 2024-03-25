@@ -65,8 +65,12 @@ extension Container {
         self { UserProfileRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper()) }.singleton
     }
     
-    var saveUserDataUseCase: Factory<UpdateUserUseCase> {
+    var updateUserUseCase: Factory<UpdateUserUseCase> {
         self { UpdateUserUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var getCurrentUserUseCase: Factory<GetCurrentUserUseCase> {
+        self { GetCurrentUserUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository())}
     }
     
     var signInUseCase: Factory<SignInUseCase> {

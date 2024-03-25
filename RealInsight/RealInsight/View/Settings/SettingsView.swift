@@ -8,9 +8,10 @@
 import SwiftUI
 import Kingfisher
 
+
 struct SettingsView: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @ObservedObject var viewModel = SettingsViewModel()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -25,7 +26,7 @@ struct SettingsView: View {
                         title: "Settings"
                     )
                     VStack {
-                        EditProfileItem()
+                        EditProfileItem(viewModel: viewModel)
                         MenuBlockSection(
                             title: "Features",
                             items: [
@@ -49,7 +50,7 @@ struct SettingsView: View {
                                  ("info.circle", "About", AnyView(OtherView()))
                             ]
                         )
-                        LogoutButton()
+                        LogoutButton(viewModel: viewModel)
                         AppVersion()
                     }
                     
@@ -70,7 +71,7 @@ private struct AppVersion: View {
 
 private struct EditProfileItem: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
@@ -84,10 +85,9 @@ private struct EditProfileItem: View {
             } label: {
                 HStack {
                     ProfileImageView(
-                        profileImageUrl: viewModel.currentUser?.profileImageUrl,
-                        fullName: viewModel.fullName
+                        profileImageUrl: viewModel.authUserProfileImageUrl,
+                        fullName: viewModel.authUserFullName
                     )
-                    ProfileNameView()
                     Spacer()
                     Image(systemName: "chevron.right")
                         .foregroundColor(.gray)
@@ -101,16 +101,16 @@ private struct EditProfileItem: View {
 
 private struct ProfileNameView: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(viewModel.fullName)
+            Text(viewModel.authUserFullName)
                 .foregroundColor(.white)
                 .fontWeight(.semibold)
                 .font(.system(size: 18))
             
-            Text(viewModel.username)
+            Text(viewModel.authUserUsername)
                 .foregroundColor(.white)
                 .fontWeight(.semibold)
                 .font(.system(size: 14))
@@ -120,7 +120,7 @@ private struct ProfileNameView: View {
 
 private struct LogoutButton: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
         ZStack {
@@ -132,7 +132,7 @@ private struct LogoutButton: View {
             HStack {
                 Spacer()
                 Button {
-                    Task { await viewModel.signOut() }
+                    viewModel.signOut()
                 } label: {
                     Text("Log out")
                         .foregroundColor(.red)
@@ -212,6 +212,5 @@ private struct NavigationRow: View {
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-            .environmentObject(AuthenticationViewModel())
     }
 }

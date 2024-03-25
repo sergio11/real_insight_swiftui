@@ -14,18 +14,6 @@ class FeedCellViewModel: ObservableObject {
     
     init(realInsight: RealInsight) {
         self.realInsight = realInsight
-        fetchRealInsightUser()
-    }
-    
-    func fetchRealInsightUser() {
-        Firestore.firestore().collection("users")
-            .document(realInsight.userId).getDocument { sp, err in
-                if let err = err {
-                    print(err.localizedDescription)
-                    return
-                }
-                self.realInsight.user = try? sp?.data(as: User.self)
-            }
     }
     
 }

@@ -24,4 +24,6 @@ protocol UserProfileRepository {
         birthdate: String,
         phoneNumber: String
     ) async throws -> User
+    
+    func getUser(userId: String) async throws -> User
 }

@@ -19,6 +19,12 @@ class BaseViewModel: ObservableObject {
         }
     }
     
+    internal func onIddle() {
+        updateUI { vm in
+            vm.isLoading = false
+        }
+    }
+    
     internal func handleError(error: Error) {
         print(error.localizedDescription)
         updateUI { vm in
@@ -35,6 +41,24 @@ class BaseViewModel: ObservableObject {
             if let viewModel = self as? ViewModelType {
                 updates(viewModel)
             }
+        }
+    }
+    
+    internal func executeAsyncTask<T>(_ task: @escaping () async throws -> T, completion: @escaping (Result<T, Error>) -> Void) {
+        Task {
+            onLoading()
+            do {
+                let result = try await task()
+                DispatchQueue.main.async {
+                    completion(.success(result))
+                }
+            } catch {
+                handleError(error: error)
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+            onIddle()
         }
     }
 }

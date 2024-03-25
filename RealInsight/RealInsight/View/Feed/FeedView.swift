@@ -24,8 +24,8 @@ struct FeedView: View {
                             if !viewModel.blur {
                                 VStack {
                                         VStack {
-                                            BackImagePreview(backImageUrl: $viewModel.realInsight.backImageUrl)
-                                            FrontImagePreview(frontImageUrl: $viewModel.realInsight.frontImageUrl)
+                                            BackImagePreview(backImageUrl: $viewModel.backImageUrl)
+                                            FrontImagePreview(frontImageUrl: $viewModel.frontImageUrl)
                                         }
                                     PublicationInfo()
                                 }
@@ -34,7 +34,7 @@ struct FeedView: View {
                                 FeedCellView(realInsight: realInsight, blur: viewModel.blur, viewModel: FeedCellViewModel(realInsight: realInsight))
                                     .onAppear {
                                         if(viewModel.blur) {
-                                            viewModel.blur = realInsight.userId != authViewModel.userUuid
+                                            viewModel.blur = realInsight.user.id != viewModel.authUser?.id
                                         }
                                     }
                             }
@@ -43,7 +43,7 @@ struct FeedView: View {
                 }
                 VStack {
                     VStack {
-                        MainTopBarView(mainMenu: $mainMenu, currentUser: $authViewModel.currentUser)
+                        MainTopBarView(mainMenu: $mainMenu, currentUser: $viewModel.authUser)
                         ProfileTabs()
                         Spacer()
                         if viewModel.blur {
@@ -56,7 +56,7 @@ struct FeedView: View {
         }.fullScreenCover(isPresented: $viewModel.cameraViewPressented) {
             Task { await viewModel.fetchData() }
         } content: {
-            CameraView(viewModel: CameraViewModel.init(user: authViewModel.currentUser!))
+            CameraView()
         }
     }
 }

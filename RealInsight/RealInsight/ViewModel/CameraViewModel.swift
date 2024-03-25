@@ -27,12 +27,10 @@ class CameraViewModel: BaseViewModel {
            let selectedFrontImage = selectedFrontImage,
            let backImageData = selectedBackImage.jpegData(compressionQuality: 0.5),
            let frontImageData = selectedFrontImage.jpegData(compressionQuality: 0.5) {
-            Task {
-                do {
-                    let result = try await postRealInsightUseCase.execute(backImageData: backImageData, frontImageData: frontImageData)
-                } catch {
-                    
-                }
+            executeAsyncTask({ [unowned self] in
+                try await self.postRealInsightUseCase.execute(backImageData: backImageData, frontImageData: frontImageData)
+            }) { result in
+                
             }
         }
     }
