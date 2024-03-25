@@ -42,7 +42,7 @@ struct FeedCellView: View {
                             .cornerRadius(20)
                             .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
                             .overlay(
-                                Text(viewModel.realInsight.user.username?.prefix(1).uppercased() ?? "")
+                                Text(viewModel.realInsight.user.username.prefix(1).uppercased())
                                     .foregroundColor(.white)
                                     .font(.system(size: 18))
                             )
@@ -52,7 +52,7 @@ struct FeedCellView: View {
                     
                     VStack(alignment: .leading) {
                         
-                        Text(viewModel.realInsight.user.fullname)
+                        Text(viewModel.realInsight.user.fullname ?? "")
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
                             .font(.system(size: 16))

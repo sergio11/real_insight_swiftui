@@ -23,10 +23,10 @@ struct FeedView: View {
                         VStack {
                             if !viewModel.blur {
                                 VStack {
-                                        VStack {
-                                            BackImagePreview(backImageUrl: $viewModel.backImageUrl)
-                                            FrontImagePreview(frontImageUrl: $viewModel.frontImageUrl)
-                                        }
+                                    VStack {
+                                        BackImagePreview(backImageUrl: $viewModel.backImageUrl)
+                                        FrontImagePreview(frontImageUrl: $viewModel.frontImageUrl)
+                                    }
                                     PublicationInfo()
                                 }
                             }
@@ -40,17 +40,17 @@ struct FeedView: View {
                             }
                         }.padding(.top, 80)
                     }
-                }
-                VStack {
                     VStack {
-                        MainTopBarView(mainMenu: $mainMenu, currentUser: $viewModel.authUser)
-                        ProfileTabs()
-                        Spacer()
-                        if viewModel.blur {
-                            PostButtonView(cameraViewPressented: $viewModel.cameraViewPressented)
+                        VStack {
+                            MainTopBarView(mainMenu: $mainMenu, currentUser: $viewModel.authUser)
+                            ProfileTabs()
+                            Spacer()
+                            if viewModel.blur {
+                                PostButtonView(cameraViewPressented: $viewModel.cameraViewPressented)
+                            }
                         }
+                        .shadow(color: .black.opacity(0.2), radius: 2, x: 1, y: 1)
                     }
-                    .shadow(color: .black.opacity(0.2), radius: 2, x: 1, y: 1)
                 }
             }
         }.fullScreenCover(isPresented: $viewModel.cameraViewPressented) {

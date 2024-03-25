@@ -21,6 +21,11 @@ class CreateAccountViewModel: BaseViewModel {
     @Injected(\.signUpUseCase) private var signUpUseCase: SignUpUseCase
     
     private var verificationCode: String = ""
+    
+    override init() {
+        super.init()
+        print("CreateAccountViewModel init \(self.accountFlowStep) CALLED!")
+    }
 
     func sendOtp() async {
         print("sendOtp isLoading: \(isLoading) CALLED!")
@@ -46,7 +51,9 @@ class CreateAccountViewModel: BaseViewModel {
             let user = try await signUpUseCase.execute(params: SignUpParams(name: name, birthdate: birthdate.date, phoneNumber: phoneNumber, verificationCode: verificationCode, otpText: otpText))
             updateUI { (vm: CreateAccountViewModel) in
                 vm.isLoading = false
+                print("accountFlowStep: \(vm.accountFlowStep) CALLED!")
                 vm.nextFlowStep()
+                print("nextFlowStep: \(vm.accountFlowStep) CALLED!")
             }
         }
         catch {

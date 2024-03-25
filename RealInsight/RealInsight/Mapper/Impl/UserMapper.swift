@@ -14,13 +14,13 @@ class UserMapper: Mapper {
     func map(_ input: UserDTO) -> User {
         return User(
             id: input.userId,
-            fullname: input.fullname,
-            birthdate: input.birthdate,
             username: input.username,
+            phone: input.phoneNumber,
+            birthdate: input.birthdate,
+            fullname: input.fullname,
             profileImageUrl: input.profileImageUrl,
             bio: input.bio,
-            location: input.location,
-            phone: input.phoneNumber
+            location: input.location
         )
     }
 }

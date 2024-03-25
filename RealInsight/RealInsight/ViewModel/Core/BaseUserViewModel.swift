@@ -27,8 +27,8 @@ class BaseUserViewModel: BaseViewModel {
         } completion: { [weak self] result in
             guard let self = self else { return }
             if case .success(let user) = result {
-                self.authUserFullName = user.fullname
-                self.authUserUsername = user.username ?? ""
+                self.authUserFullName = user.fullname ?? user.username
+                self.authUserUsername = user.username
                 self.authUserProfileImageUrl = user.profileImageUrl ?? ""
             }
         }

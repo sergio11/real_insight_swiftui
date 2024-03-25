@@ -6,11 +6,18 @@
 //
 
 import Foundation
+import Factory
 
 class SettingsViewModel: BaseUserViewModel {
     
+    @Injected(\.signOutUseCase) private var signOutUseCase: SignOutUseCase
+    
     func signOut() {
-        
+        executeAsyncTask({
+            return try await self.signOutUseCase.execute()
+        }, completion: { result in
+            
+        })
     }
     
 }

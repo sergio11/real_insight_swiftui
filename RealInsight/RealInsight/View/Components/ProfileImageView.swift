@@ -16,7 +16,7 @@ struct ProfileImageView: View {
     var fullName: String?
 
     var body: some View {
-        if let profileImageUrl = profileImageUrl {
+        if let profileImageUrl = profileImageUrl, !profileImageUrl.isEmpty {
             KFImage(URL(string: profileImageUrl))
                 .resizable()
                 .frame(width: size, height: size)
