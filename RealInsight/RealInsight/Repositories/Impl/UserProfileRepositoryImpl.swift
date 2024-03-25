@@ -40,4 +40,13 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             throw error
         }
     }
+    
+    func getUser(userId: String) async throws -> User {
+        do {
+            let userData = try await userDataSource.getUserById(userId: userId)
+            return userMapper.map(userData)
+        } catch {
+            throw error
+        }
+    }
 }

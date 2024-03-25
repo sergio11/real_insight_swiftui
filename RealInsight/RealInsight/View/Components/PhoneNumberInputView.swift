@@ -64,6 +64,6 @@ struct PhoneNumberInputView: View {
 
 struct PhoneNumberInputView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneNumberInputView(showCountryList: .constant(false), phoneNumber: .constant("955555666"), country: .constant(Country(isoCode: "US")), title: .constant("Title"), label: .constant("Label"))
+        PhoneNumberInputView(showCountryList: .constant(false), phoneNumber: .constant("955555666"), country: .constant(Country(isoCode: "US")), title: "Title", label: "Label")
     }
 }

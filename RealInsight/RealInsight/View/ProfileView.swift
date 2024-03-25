@@ -10,17 +10,16 @@ import Kingfisher
 
 struct ProfileView: View {
     
+    @ObservedObject var viewModel = ProfileViewModel()
     @Binding var mainMenu: String
-    
-    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                TopBarView(mainMenu: $mainMenu)
+                ProfileTopBarView(mainMenu: $mainMenu)
                 VStack {
-                    ProfileInfoView()
+                    ProfileInfoView(viewModel: viewModel)
                     YourMemoriesView()
                     VStack {
                         ZStack {
@@ -44,7 +43,7 @@ struct ProfileView: View {
     }
 }
 
-private struct TopBarView: View {
+private struct ProfileTopBarView: View {
     
     @Binding var mainMenu: String
     
@@ -79,20 +78,20 @@ private struct TopBarView: View {
 
 private struct ProfileInfoView: View {
     
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
         ProfileImageView(
             size: 130,
             cornerRadius: 75,
-            profileImageUrl: viewModel.currentUser?.profileImageUrl,
-            fullName: viewModel.fullName
+            profileImageUrl: viewModel.authUserProfileImageUrl,
+            fullName: viewModel.authUserFullName
         )
-        Text(viewModel.fullName)
+        Text(viewModel.authUserFullName)
             .foregroundColor(.white)
             .font(.system(size: 25))
             .fontWeight(.bold)
-        Text(viewModel.username)
+        Text(viewModel.authUserUsername)
             .foregroundColor(.white)
             .fontWeight(.semibold)
     }

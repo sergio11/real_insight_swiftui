@@ -30,7 +30,7 @@ struct FeedCellView: View {
                 
                 HStack {
                     
-                    if let userImageUrl = viewModel.realInsight.user?.profileImageUrl {
+                    if let userImageUrl = viewModel.realInsight.user.profileImageUrl {
                         KFImage(URL(string: userImageUrl))
                             .resizable()
                             .frame(width: 40, height: 40)
@@ -42,7 +42,7 @@ struct FeedCellView: View {
                             .cornerRadius(20)
                             .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
                             .overlay(
-                                Text(viewModel.realInsight.username.prefix(1).uppercased())
+                                Text(viewModel.realInsight.user.username?.prefix(1).uppercased() ?? "")
                                     .foregroundColor(.white)
                                     .font(.system(size: 18))
                             )
@@ -52,12 +52,10 @@ struct FeedCellView: View {
                     
                     VStack(alignment: .leading) {
                         
-                        if let name = viewModel.realInsight.user?.fullname {
-                            Text(name)
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                                .font(.system(size: 16))
-                        }
+                        Text(viewModel.realInsight.user.fullname)
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .font(.system(size: 16))
                         
                         Text("Published 7 hrs late")
                             .foregroundColor(.white)

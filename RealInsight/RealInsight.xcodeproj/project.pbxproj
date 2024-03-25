@@ -13,6 +13,10 @@
 		3D1998412B8FC8DB009B020A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3D1998402B8FC8DB009B020A /* FirebaseStorage */; };
 		3D1998432B8FC8DB009B020A /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3D1998422B8FC8DB009B020A /* FirebaseStorageCombine-Community */; };
 		3D1998452B8FC970009B020A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D1998442B8FC970009B020A /* GoogleService-Info.plist */; };
+		3D2256DB2BB1EED500F87A4B /* GetCurrentUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */; };
+		3D2256DD2BB1F6E000F87A4B /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2256DC2BB1F6E000F87A4B /* SettingsViewModel.swift */; };
+		3D2256DF2BB1F91500F87A4B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2256DE2BB1F91500F87A4B /* ProfileViewModel.swift */; };
+		3D2256E22BB1FBC500F87A4B /* BaseUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2256E12BB1FBC500F87A4B /* BaseUserViewModel.swift */; };
 		3D33CAAB2B979DDD001721A2 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */; };
 		3D33CAAD2B97A6E2001721A2 /* TabBarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAC2B97A6E2001721A2 /* TabBarMenuView.swift */; };
 		3D33CAAF2B97AE34001721A2 /* InviteFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAE2B97AE34001721A2 /* InviteFriendsView.swift */; };
@@ -116,6 +120,10 @@
 /* Begin PBXFileReference section */
 		3D1998442B8FC970009B020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1998462B8FD104009B020A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserUseCase.swift; sourceTree = "<group>"; };
+		3D2256DC2BB1F6E000F87A4B /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3D2256DE2BB1F91500F87A4B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		3D2256E12BB1FBC500F87A4B /* BaseUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUserViewModel.swift; sourceTree = "<group>"; };
 		3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		3D33CAAC2B97A6E2001721A2 /* TabBarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMenuView.swift; sourceTree = "<group>"; };
 		3D33CAAE2B97AE34001721A2 /* InviteFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsView.swift; sourceTree = "<group>"; };
@@ -233,6 +241,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D2256E02BB1FBB300F87A4B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3DFEB7662B9C8FAD000E0D11 /* BaseViewModel.swift */,
+				3D2256E12BB1FBC500F87A4B /* BaseUserViewModel.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		3D33CFF22B7164C60053C59F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +292,7 @@
 				3DC429A82B9BA6C700C0548B /* UpdateUserUseCase.swift */,
 				3D5387512BB031CD00E69294 /* PostRealInsightUseCase.swift */,
 				3D53875E2BB0446300E69294 /* SignUpUseCase.swift */,
+				3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -301,14 +319,16 @@
 		3D9487452B926E6A001C5676 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				3D2256E02BB1FBB300F87A4B /* Core */,
 				3D9487422B9269DD001C5676 /* CameraViewModel.swift */,
 				3D9DE1E72B9333040033B173 /* FeedViewModel.swift */,
 				3D9DE1EB2B9338F40033B173 /* FeedCellViewModel.swift */,
 				3DC429AA2B9BA9FC00C0548B /* EditProfileViewModel.swift */,
 				3DFEB7642B9C8C70000E0D11 /* CreateAccountViewModel.swift */,
-				3DFEB7662B9C8FAD000E0D11 /* BaseViewModel.swift */,
 				3DFEB76A2B9C97DD000E0D11 /* MainViewModel.swift */,
 				3DFEB7712B9CA1C0000E0D11 /* AuthenticationViewModel.swift */,
+				3D2256DC2BB1F6E000F87A4B /* SettingsViewModel.swift */,
+				3D2256DE2BB1F91500F87A4B /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -614,6 +634,7 @@
 				3DF6EA122B6FB9BE00CE0D95 /* MemoryView.swift in Sources */,
 				3D9DE1EA2B9333B80033B173 /* RealInsight.swift in Sources */,
 				3DE5E12D2B9CE3D800EA85DF /* RealInsightsDataSource.swift in Sources */,
+				3D2256E22BB1FBC500F87A4B /* BaseUserViewModel.swift in Sources */,
 				3DD405272B7C0E8C00C39D5C /* NotificationsButtonView.swift in Sources */,
 				3DE5E1402B9CEC3200EA85DF /* UserMapper.swift in Sources */,
 				3DEF78702B8D05980081AFD9 /* EnterAgeView.swift in Sources */,
@@ -621,6 +642,7 @@
 				3DF6E9FC2B6FABAA00CE0D95 /* HomeView.swift in Sources */,
 				3DC429A72B9BA14500C0548B /* VerifySessionUseCase.swift in Sources */,
 				3DC4299B2B9B9E5600C0548B /* AuthenticationRepositoryImpl.swift in Sources */,
+				3D2256DB2BB1EED500F87A4B /* GetCurrentUserUseCase.swift in Sources */,
 				3DC4299D2B9B9E6D00C0548B /* UserProfileRepository.swift in Sources */,
 				3D33CFEF2B7159100053C59F /* SettingsView.swift in Sources */,
 				3D33CAAB2B979DDD001721A2 /* ProfileImageView.swift in Sources */,
@@ -647,6 +669,7 @@
 				3DD4051C2B7BFE9500C39D5C /* HelpView.swift in Sources */,
 				3D9487412B925E7C001C5676 /* CameraView.swift in Sources */,
 				3DC429AB2B9BA9FC00C0548B /* EditProfileViewModel.swift in Sources */,
+				3D2256DF2BB1F91500F87A4B /* ProfileViewModel.swift in Sources */,
 				3D78626B2B9B92D300A9424C /* RealInsightsRepository.swift in Sources */,
 				3D9A35BC2B718BE9000F51AC /* SearchBar.swift in Sources */,
 				3D5387592BB0415200E69294 /* UpdateUserDTO+Dictionary.swift in Sources */,
@@ -675,6 +698,7 @@
 				3DEF78792B8D10CB0081AFD9 /* SelectCountryView.swift in Sources */,
 				3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCellView.swift in Sources */,
+				3D2256DD2BB1F6E000F87A4B /* SettingsViewModel.swift in Sources */,
 				3DF6EA082B6FABE900CE0D95 /* FeedView.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
 				3DE5E1322B9CE45D00EA85DF /* FirestoreRealInsightsDataSourceImpl.swift in Sources */,
