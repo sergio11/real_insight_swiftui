@@ -9,10 +9,10 @@ import Foundation
 
 internal struct UserDTO: Decodable {
     var userId: String
-    var fullname: String
+    var username: String
     var birthdate: String
     var phoneNumber: String
-    var username: String?
+    var fullname: String?
     var location: String?
     var bio: String?
     var profileImageUrl: String?

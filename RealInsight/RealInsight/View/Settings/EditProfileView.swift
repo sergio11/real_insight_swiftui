@@ -74,8 +74,8 @@ struct EditProfileView: View {
                         } label: {
                             ZStack(alignment: .bottomTrailing) {
                                 
-                                if profileImage == nil, let profileImageUrl = viewModel.authUser?.profileImageUrl {
-                                    KFImage(URL(string: profileImageUrl))
+                                if profileImage == nil{
+                                    KFImage(URL(string: viewModel.authUserProfileImageUrl))
                                         .resizable()
                                         .frame(width: 120, height: 120)
                                         .cornerRadius(60)
@@ -91,7 +91,7 @@ struct EditProfileView: View {
                                         .cornerRadius(60)
                                         .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
                                         .overlay(
-                                            Text(viewModel.authUser?.fullname.prefix(1).uppercased() ?? "")
+                                            Text(viewModel.authUserFullName.prefix(1).uppercased())
                                                 .foregroundColor(.white)
                                                 .font(.system(size: 55))
                                         )
@@ -266,16 +266,8 @@ struct EditProfileView: View {
                 
             }
         }.onAppear {
-            initData()
+            //initData()
         }
-    }
-    
-    private func initData() {
-        guard let user = viewModel.authUser else { return }
-        self.fullname = user.fullname
-        self.username = user.username ?? ""
-        self.bio = user.bio ?? ""
-        self.location = user.location ?? ""
     }
     
     private func saveData() {

@@ -11,7 +11,7 @@ struct AuthenticationView: View {
     
     @Binding var isAuthenticated: Bool
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel = AuthenticationViewModel()
+    @StateObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
         VStack {

@@ -15,48 +15,46 @@ struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationView {
-            VStack {
-                ZStack {
-                    Color.black.ignoresSafeArea()
-                    TopBarView(
-                        backButtonAction: {
-                            dismiss()
-                        },
-                        title: "Settings"
+        VStack {
+            ZStack {
+                Color.black.ignoresSafeArea()
+                TopBarView(
+                    backButtonAction: {
+                        dismiss()
+                    },
+                    title: "Settings"
+                )
+                VStack {
+                    EditProfileItem(viewModel: viewModel)
+                    MenuBlockSection(
+                        title: "Features",
+                        items: [
+                            ("calendar", "Memories", AnyView(MemoriesView()))
+                        ]
                     )
-                    VStack {
-                        EditProfileItem(viewModel: viewModel)
-                        MenuBlockSection(
-                            title: "Features",
-                            items: [
-                                ("calendar", "Memories", AnyView(MemoriesView()))
-                            ]
-                        )
-                        MenuBlockSection(
-                            title: "Settings",
-                            items: [
-                                ("square.and.pencil", "Notifications", AnyView(NotificationsView())),
-                                ("globe.europe.africa.fill", "Time Zone: Europe", AnyView(TimeZoneView())),
-                                ("hammer.circle", "Others", AnyView(OtherView()))
-                            ]
-                        )
-                        MenuBlockSection(
-                            title: "About",
-                            items: [
-                                ("square.and.arrow.up", "Share RealInsiht", AnyView(OtherView())),
-                                ("star", "Star", AnyView(OtherView())),
-                                ("lifepreserver", "Help", AnyView(HelpView())),
-                                 ("info.circle", "About", AnyView(OtherView()))
-                            ]
-                        )
-                        LogoutButton(viewModel: viewModel)
-                        AppVersion()
-                    }
-                    
+                    MenuBlockSection(
+                        title: "Settings",
+                        items: [
+                            ("square.and.pencil", "Notifications", AnyView(NotificationsView())),
+                            ("globe.europe.africa.fill", "Time Zone: Europe", AnyView(TimeZoneView())),
+                            ("hammer.circle", "Others", AnyView(OtherView()))
+                        ]
+                    )
+                    MenuBlockSection(
+                        title: "About",
+                        items: [
+                            ("square.and.arrow.up", "Share RealInsiht", AnyView(OtherView())),
+                            ("star", "Star", AnyView(OtherView())),
+                            ("lifepreserver", "Help", AnyView(HelpView())),
+                             ("info.circle", "About", AnyView(OtherView()))
+                        ]
+                    )
+                    LogoutButton(viewModel: viewModel)
+                    AppVersion()
                 }
-            }.navigationBarHidden(true)
-        }
+                
+            }
+        }.navigationBarHidden(true)
     }
 }
 

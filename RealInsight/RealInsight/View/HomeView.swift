@@ -22,19 +22,17 @@ struct HomeView: View {
     @State var menu = "feed"
     
     var body: some View {
-        NavigationView {
-            HStack(spacing: 0) {
-                LeftMenu(mainMenu: $menu)
-                    .frame(width: width)
-                FeedView(mainMenu: $menu)
-                    .frame(width: width)
-                ProfileView(mainMenu: $menu)
-                    .frame(width: width)
-            }
-            .offset(x: menu == "left" ? width : 0)
-            .offset(x: menu == "profile" ? -width : 0)
-            .onChange(of: menu) { newValue in simpleSuccess() }
+        HStack(spacing: 0) {
+            LeftMenu(mainMenu: $menu)
+                .frame(width: width)
+            FeedView(mainMenu: $menu)
+                .frame(width: width)
+            ProfileView(mainMenu: $menu)
+                .frame(width: width)
         }
+        .offset(x: menu == "left" ? width : 0)
+        .offset(x: menu == "profile" ? -width : 0)
+        .onChange(of: menu) { newValue in simpleSuccess() }
     }
 }
 

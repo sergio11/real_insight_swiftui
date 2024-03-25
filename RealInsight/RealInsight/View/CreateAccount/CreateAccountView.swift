@@ -10,7 +10,7 @@ import SwiftUI
 struct CreateAccountView: View {
     
     @Binding var isAccountCreated: Bool
-    @ObservedObject var viewModel = CreateAccountViewModel()
+    @StateObject var viewModel = CreateAccountViewModel()
     
     var body: some View {
         switch viewModel.accountFlowStep {

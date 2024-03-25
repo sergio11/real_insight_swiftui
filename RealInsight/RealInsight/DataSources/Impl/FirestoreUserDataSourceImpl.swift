@@ -28,6 +28,7 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             // Return the saved user data by fetching it from Firestore
             return try await getUserById(userId: data.userId)
         } catch {
+            print(error.localizedDescription)
             throw error
         }
     }
@@ -43,6 +44,7 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             // Return the saved user data by fetching it from Firestore
             return try await getUserById(userId: data.userId)
         } catch {
+            print(error.localizedDescription)
             throw error
         }
     }

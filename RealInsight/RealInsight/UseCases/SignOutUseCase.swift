@@ -10,7 +10,7 @@ import Foundation
 struct SignOutUseCase {
     let repository: AuthenticationRepository
     
-    func signOut() async throws {
+    func execute() async throws {
         try await repository.signOut()
     }
 }

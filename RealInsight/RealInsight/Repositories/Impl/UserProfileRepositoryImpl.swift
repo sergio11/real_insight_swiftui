@@ -28,6 +28,7 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             let userData = try await userDataSource.updateUser(data: UpdateUserDTO(userId: userId, fullname: fullname, username: username, location: location, bio: bio, profileImageUrl: profileImageUrl))
             return userMapper.map(userData)
         } catch {
+            print(error.localizedDescription)
             throw error
         }
     }
@@ -37,6 +38,7 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             let userData = try await userDataSource.createUser(data: CreateUserDTO(userId: userId, username: username, birthdate: birthdate, phoneNumber: phoneNumber))
             return userMapper.map(userData)
         } catch {
+            print(error.localizedDescription)
             throw error
         }
     }
@@ -46,6 +48,7 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             let userData = try await userDataSource.getUserById(userId: userId)
             return userMapper.map(userData)
         } catch {
+            print(error.localizedDescription)
             throw error
         }
     }
