@@ -19,6 +19,7 @@ class CameraViewModel: BaseViewModel {
     @Published var frontImage: Image?
     @Published var choseFromFront: Bool = false
     @Published var photoTaken: Bool = false
+    @Published var postUploaded: Bool = false
     
     @Injected(\.postRealInsightUseCase) private var postRealInsightUseCase: PostRealInsightUseCase
     
@@ -27,10 +28,12 @@ class CameraViewModel: BaseViewModel {
            let selectedFrontImage = selectedFrontImage,
            let backImageData = selectedBackImage.jpegData(compressionQuality: 0.5),
            let frontImageData = selectedFrontImage.jpegData(compressionQuality: 0.5) {
-            executeAsyncTask({ [unowned self] in
+            executeAsyncTask({
                 try await self.postRealInsightUseCase.execute(backImageData: backImageData, frontImageData: frontImageData)
-            }) { result in
-                
+            }) { [weak self] result in
+                if case .success = result {
+                    self?.postUploaded = true
+                }
             }
         }
     }

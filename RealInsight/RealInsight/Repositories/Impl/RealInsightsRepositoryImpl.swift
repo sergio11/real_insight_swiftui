@@ -33,6 +33,7 @@ internal class RealInsightsRepositoryImpl: RealInsightsRepository {
             }
             return realInsights
         } catch {
+            print(error.localizedDescription)
             throw RealInsightsRepositoryError.realInsightNotFound
         }
     }
@@ -43,6 +44,7 @@ internal class RealInsightsRepositoryImpl: RealInsightsRepository {
             let userData = try await userDataSource.getUserById(userId: userId)
             return realInsightMapper.map(RealInsightDataMapper(realInsightDTO: ownRealInsight, userDTO: userData))
         } catch {
+            print(error.localizedDescription)
             throw RealInsightsRepositoryError.realInsightNotFound
         }
     }
@@ -55,6 +57,7 @@ internal class RealInsightsRepositoryImpl: RealInsightsRepository {
             let userData = try await userDataSource.getUserById(userId: userId)
             return realInsightMapper.map(RealInsightDataMapper(realInsightDTO: ownRealInsight, userDTO: userData))
         } catch {
+            print(error.localizedDescription)
             throw RealInsightsRepositoryError.postFailed
         }
     }

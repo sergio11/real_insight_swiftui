@@ -54,6 +54,7 @@ private struct MainTitleView: View {
 private struct FrontImageView: View {
     
     @ObservedObject var viewModel: CameraViewModel
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         GeometryReader { g in
@@ -85,6 +86,14 @@ private struct FrontImageView: View {
             } content: {
                 ImagePicker(image: $viewModel.selectedFrontImage)
             }
+            .overlay {
+                LoadingView()
+                    .opacity(viewModel.isLoading ? 1 : 0)
+            }.onReceive(viewModel.$postUploaded) { success in
+                if success {
+                    dismiss()
+                }
+            }
         }.zIndex(1)
     }
     
@@ -105,14 +114,16 @@ private struct BackImageView: View {
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.6)
                 .scaledToFit()
                 .overlay(
-                    UploadProgressView(viewModel: viewModel)
+                    LoadingView(message: "Wait, wait, wait, now smile")
+                        .opacity(viewModel.switchingCamera ? 1 : 0)
                 )
         } else {
             RoundedRectangle(cornerRadius: 12)
                 .foregroundColor(.gray)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.6)
                 .overlay(
-                    UploadProgressView(viewModel: viewModel)
+                    LoadingView(message: "Wait, wait, wait, now smile")
+                        .opacity(viewModel.switchingCamera ? 1 : 0)
                 ).sheet(isPresented: $viewModel.takePhotoClicked){
                     onLoadBackImage()
                     viewModel.switchingCamera.toggle()
@@ -151,6 +162,7 @@ private struct CameraActionsView: View {
                             .rotationEffect(.degrees(90))
                     }
                 }
+                .disabled(viewModel.isLoading)
             } else {
                 HStack(alignment: .center, spacing: 18) {
                     Image(systemName: "bolt.slash.fill")
@@ -168,19 +180,5 @@ private struct CameraActionsView: View {
             }
         }
         .offset(y: -20)
-    }
-}
-
-private struct UploadProgressView: View {
-    
-    @ObservedObject var viewModel: CameraViewModel
-    
-    var body: some View {
-        VStack {
-            ProgressView()
-            Text("Wait, wait, wait, now smile")
-        }
-            .foregroundColor(.white)
-            .opacity(viewModel.switchingCamera ? 1 : 0)
     }
 }
