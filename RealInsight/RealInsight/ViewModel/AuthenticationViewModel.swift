@@ -8,16 +8,10 @@
 import SwiftUI
 import Factory
 
-class AuthenticationViewModel: BaseViewModel {
+class AuthenticationViewModel: BaseAuthViewModel {
     
-    @Published var showCountryList = false
     @Published var showEnterCodeView = false
-    @Published var country: Country = Country(isoCode: "US")
-    @Published var phoneNumber = ""
-    @Published var otpText = ""
     @Published var signInSuccess = false
-    
-    private var verificationCode: String = ""
     
     @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
     @Injected(\.signInUseCase) private var signInUseCase: SignInUseCase

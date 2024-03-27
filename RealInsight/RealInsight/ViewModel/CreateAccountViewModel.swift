@@ -8,19 +8,14 @@
 import SwiftUI
 import Factory
 
-class CreateAccountViewModel: BaseViewModel {
+class CreateAccountViewModel: BaseAuthViewModel {
     
     @Published var name = ""
-    @Published var otpText = ""
     @Published var birthdate = Birthdate(day: "", month: "", year: "")
-    @Published var country: Country = Country(isoCode: "US")
-    @Published var phoneNumber = ""
     @Published var accountFlowStep: AccountFlowStepEnum = .username
     
     @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
     @Injected(\.signUpUseCase) private var signUpUseCase: SignUpUseCase
-    
-    private var verificationCode: String = ""
 
     func sendOtp() {
         guard !isLoading else { return }

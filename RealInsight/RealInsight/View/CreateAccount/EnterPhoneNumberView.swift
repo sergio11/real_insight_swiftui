@@ -10,7 +10,6 @@ import Combine
 
 struct EnterPhoneNumberView: View {
     
-    @State var showCountryList = false
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
@@ -21,14 +20,14 @@ struct EnterPhoneNumberView: View {
                     viewModel.previousFlowStep()
                 })
                 VStack {
-                    PhoneNumberInputView(showCountryList: $showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Create you account using your phone number", label: "Your Phone")
+                    PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Create you account using your phone number", label: "Your Phone")
                     Spacer()
                     AgreementTextView()
                     ContinueButton()
                 }.padding(.bottom, 40)
             }
         }
-        .sheet(isPresented: $showCountryList) {
+        .sheet(isPresented: $viewModel.showCountryList) {
             SelectCountryView(countryChosen: $viewModel.country)
         }
         .overlay {
