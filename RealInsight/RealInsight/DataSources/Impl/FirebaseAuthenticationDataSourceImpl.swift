@@ -21,6 +21,7 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
             let result = try await PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil)
             return result
         } catch {
+            print(error.localizedDescription)
             throw AuthenticationError.phoneVerificationFailed(message: "Phone verification failed: \(error.localizedDescription)")
         }
     }
@@ -31,6 +32,7 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
             let result = try await Auth.auth().signIn(with: credential)
             return result.user.uid
         } catch {
+            print(error.localizedDescription)
             throw AuthenticationError.signInFailed(message: "Sign-in failed: \(error.localizedDescription)")
         }
     }
@@ -40,6 +42,7 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
         do {
             try Auth.auth().signOut()
         } catch {
+            print(error.localizedDescription)
             throw AuthenticationError.signOutFailed(message: "Sign-out failed: \(error.localizedDescription)")
         }
     }

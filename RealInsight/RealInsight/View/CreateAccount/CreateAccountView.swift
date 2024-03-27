@@ -24,7 +24,7 @@ struct CreateAccountView: View {
             EnterPhoneNumberView()
                 .environmentObject(viewModel)
         case .otp:
-            EnterCodeView()
+            ValidateOTPView()
                 .environmentObject(viewModel)
         case .completed:
             AccountCreatedView(isAccountCreated: $isAccountCreated)

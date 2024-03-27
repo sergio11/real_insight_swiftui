@@ -21,6 +21,7 @@ struct PhoneNumberInputView: View {
                 Text(title)
                     .foregroundColor(.white)
                     .fontWeight(.heavy)
+                    .multilineTextAlignment(.center)
                     .font(.system(size: 16))
                 HStack {
                     RoundedRectangle(cornerRadius: 25)

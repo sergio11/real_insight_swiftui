@@ -18,6 +18,7 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
         do {
             return try await authenticationDataSource.signInWithPhone(phoneNumber: phoneNumber)
         } catch {
+            print(error.localizedDescription)
             throw AuthenticationRepositoryError.signInFailed
         }
     }
@@ -26,6 +27,7 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
         do {
             return try await authenticationDataSource.verifyOTP(verificationCode: verificationCode, otpCode: otpCode)
         } catch {
+            print(error.localizedDescription)
             throw AuthenticationRepositoryError.verificationFailed
         }
     }
@@ -34,6 +36,7 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
         do {
             try await authenticationDataSource.signOut()
         } catch {
+            print(error.localizedDescription)
             throw AuthenticationRepositoryError.signOutFailed
         }
     }
@@ -42,6 +45,7 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
         do {
             return try await authenticationDataSource.getCurrentUserId()
         } catch {
+            print(error.localizedDescription)
             throw AuthenticationRepositoryError.currentUserFetchFailed
         }
     }
