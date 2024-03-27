@@ -42,16 +42,20 @@ extension Container {
         self { SignOutUseCase(repository: self.authenticationRepository()) }
     }
     
-    var verifyOtpUseCase: Factory<SignInUseCase> {
-        self { SignInUseCase(repository: self.authenticationRepository()) }
-    }
-    
     var sendOtpUseCase: Factory<SendOtpUseCase> {
         self { SendOtpUseCase(repository: self.authenticationRepository()) }
     }
     
     var verifySessionUseCase: Factory<VerifySessionUseCase> {
         self { VerifySessionUseCase(authRepository: self.authenticationRepository(), userProfileRepository: self.userProfileRepository()) }
+    }
+    
+    var signInUseCase: Factory<SignInUseCase> {
+        self { SignInUseCase(authRepository: self.authenticationRepository(), userProfileRepository: self.userProfileRepository()) }
+    }
+    
+    var signUpUseCase: Factory<SignUpUseCase> {
+        self { SignUpUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository()) }
     }
 }
 
@@ -72,14 +76,6 @@ extension Container {
     var getCurrentUserUseCase: Factory<GetCurrentUserUseCase> {
         self { GetCurrentUserUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository())}
     }
-    
-    var signInUseCase: Factory<SignInUseCase> {
-        self { SignInUseCase(repository: self.authenticationRepository()) }
-    }
-    
-    var signUpUseCase: Factory<SignUpUseCase> {
-        self { SignUpUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository()) }
-    }
 }
 
 
@@ -99,5 +95,12 @@ extension Container {
     
     var postRealInsightUseCase: Factory<PostRealInsightUseCase> {
         self { PostRealInsightUseCase(repository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
+    }
+}
+
+extension Container {
+    
+    var eventBus: Factory<EventBus<AppEvent>> {
+        self { EventBus<AppEvent>() }.singleton
     }
 }

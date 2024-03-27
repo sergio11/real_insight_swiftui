@@ -13,9 +13,11 @@ struct SignInParams {
 }
 
 struct SignInUseCase {
-    let repository: AuthenticationRepository
+    let authRepository: AuthenticationRepository
+    let userProfileRepository: UserProfileRepository
     
-    func execute(params: SignInParams) async throws -> String {
-        return try await repository.verifyOTP(verificationCode: params.verificationCode, otpCode: params.otpText)
+    func execute(params: SignInParams) async throws -> User {
+        let userId = try await authRepository.verifyOTP(verificationCode: params.verificationCode, otpCode: params.otpText)
+        return try await userProfileRepository.getUser(userId: userId)
     }
 }
