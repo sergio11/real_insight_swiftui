@@ -22,17 +22,53 @@ struct AuthenticationView: View {
                 })
                 VStack {
                     PhoneNumberInputView(showCountryList: $viewModel.showCountryList, phoneNumber: $viewModel.phoneNumber, country: $viewModel.country, title: "Sign in securely by providing your phone number", label: "Your Phone")
+                    Spacer()
+                    AgreementTextView()
+                    ContinueButton(viewModel: viewModel)
                 }.padding(.bottom, 40)
             }
         }
         .sheet(isPresented: $viewModel.showCountryList) {
             SelectCountryView(countryChosen: $viewModel.country)
         }
+        .sheet(isPresented: $viewModel.showEnterCodeView) {
+            EnterCodeView(phoneCode: $viewModel.country.phoneCode, phoneNumber: $viewModel.phoneNumber, otpText: $viewModel.otpText, isLoading: $viewModel.isLoading, onBack: {
+                viewModel.showEnterCodeView = false
+            }, onVerifyOTP: {
+                viewModel.signIn()
+            })
+        }
         .overlay {
-            ProgressView()
+            LoadingView()
                 .opacity(viewModel.isLoading ? 1 : 0)
         }
+        .onReceive(viewModel.$signInSuccess) { success in
+            if success {
+                isAuthenticated = true
+            }
+        }
         .environment(\.colorScheme, .dark)
+    }
+}
+
+private struct ContinueButton: View {
+    
+    @StateObject var viewModel: AuthenticationViewModel
+    
+    var isPhoneNumberValid: Binding<Bool> {
+        Binding<Bool>(
+            get: { !viewModel.phoneNumber.isEmpty },
+            set: { _ in }
+        )
+    }
+    
+    var body: some View {
+        Button {
+            viewModel.sendOtp()
+        } label: {
+            WhiteButtonView(buttonActive: isPhoneNumberValid, text: "Continue")
+        }
+        .disabled(viewModel.phoneNumber.isEmpty)
     }
 }
 

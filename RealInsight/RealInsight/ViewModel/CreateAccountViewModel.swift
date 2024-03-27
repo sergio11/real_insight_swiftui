@@ -33,7 +33,7 @@ class CreateAccountViewModel: BaseViewModel {
         }
     }
     
-    func verifyOtp() {
+    func signUp() {
         executeAsyncTask {
             return try await self.signUpUseCase.execute(params: SignUpParams(name: self.name, birthdate: self.birthdate.date, phoneNumber: self.phoneNumber, verificationCode: self.verificationCode, otpText: self.otpText))
         } completion: { [weak self] result in
