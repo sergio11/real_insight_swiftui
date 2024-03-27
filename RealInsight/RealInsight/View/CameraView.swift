@@ -9,9 +9,8 @@ import SwiftUI
 
 struct CameraView: View {
     
-    @ObservedObject var viewModel = CameraViewModel()
-    
     @Environment(\.dismiss) private var dismiss
+    @StateObject var viewModel = CameraViewModel()
 
     var body: some View {
         VStack {

@@ -13,7 +13,7 @@ class FeedViewModel: BaseUserViewModel {
     @Published var realInsightList = [RealInsight]()
     @Published var backImageUrl: String = ""
     @Published var frontImageUrl: String = ""
-    @Published var blur = true
+    @Published var hasOwnRealInsightPublished = false
     @Published var cameraViewPressented: Bool = false
     @Published var authUser: User?
     
@@ -34,6 +34,7 @@ class FeedViewModel: BaseUserViewModel {
                 if let realInsight = ownRealInsight {
                     self.backImageUrl = realInsight.backImageUrl
                     self.frontImageUrl = realInsight.frontImageUrl
+                    self.hasOwnRealInsightPublished = true
                 }
             }
         }

@@ -12,7 +12,7 @@ struct FeedView: View {
     
     @Binding var mainMenu: String
 
-    @ObservedObject var viewModel = FeedViewModel()
+    @StateObject var viewModel = FeedViewModel()
     
     var body: some View {
         VStack {
@@ -21,22 +21,14 @@ struct FeedView: View {
                 ZStack {
                     ScrollView {
                         VStack {
-                            if !viewModel.blur {
+                            if viewModel.hasOwnRealInsightPublished {
                                 VStack {
-                                    VStack {
-                                        BackImagePreview(backImageUrl: $viewModel.backImageUrl)
-                                        FrontImagePreview(frontImageUrl: $viewModel.frontImageUrl)
-                                    }
+                                    PublicationPreview(backImageUrl: $viewModel.backImageUrl, frontImageUrl: $viewModel.frontImageUrl)
                                     PublicationInfo()
                                 }
                             }
                             ForEach(viewModel.realInsightList, id: \.backImageUrl) { realInsight in
-                                FeedCellView(realInsight: realInsight, blur: viewModel.blur, viewModel: FeedCellViewModel(realInsight: realInsight))
-                                    .onAppear {
-                                        if(viewModel.blur) {
-                                            viewModel.blur = realInsight.user.id != viewModel.authUser?.id
-                                        }
-                                    }
+                                FeedCellView(realInsight: realInsight, hasOwnRealInsightPublished: viewModel.hasOwnRealInsightPublished)
                             }
                         }.padding(.top, 80)
                     }
@@ -45,7 +37,7 @@ struct FeedView: View {
                             MainTopBarView(mainMenu: $mainMenu, currentUser: $viewModel.authUser)
                             ProfileTabs()
                             Spacer()
-                            if viewModel.blur {
+                            if !viewModel.hasOwnRealInsightPublished {
                                 PostButtonView(cameraViewPressented: $viewModel.cameraViewPressented)
                             }
                         }
@@ -54,7 +46,7 @@ struct FeedView: View {
                 }
             }
         }.fullScreenCover(isPresented: $viewModel.cameraViewPressented) {
-            Task { await viewModel.fetchData() }
+            viewModel.fetchData()
         } content: {
             CameraView()
         }
@@ -100,40 +92,26 @@ private struct MainTopBarView: View {
     }
 }
 
-private struct FrontImagePreview: View {
+private struct PublicationPreview: View {
     
+    @Binding var backImageUrl: String
     @Binding var frontImageUrl: String
     
     var body: some View {
-        VStack {
-            HStack {
-                KFImage(URL(string: frontImageUrl))
-                    .resizable()
-                    .frame(width: 20, height: 40)
-                    .scaledToFit()
-                    .border(.black)
-                    .cornerRadius(2)
-                    .padding(.leading, 5)
-                Spacer()
-            }
-            .padding(.top, 10)
-            Spacer()
-        }
-    }
-}
-
-private struct BackImagePreview: View {
-    
-    @Binding var backImageUrl: String
-    
-    var body: some View {
-        ZStack {
-            VStack(alignment: .leading) {
-                KFImage(URL(string: backImageUrl))
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(5)
-            }
+        ZStack(alignment: .topLeading) {
+            KFImage(URL(string: backImageUrl))
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(5)
+                
+            KFImage(URL(string: frontImageUrl))
+                .resizable()
+                .frame(width: 25, height: 40)
+                .scaledToFit()
+                .border(.black)
+                .cornerRadius(2)
+                .padding(5)
+                .offset(x: 5, y: 10)
         }.frame(width: 100)
     }
 }

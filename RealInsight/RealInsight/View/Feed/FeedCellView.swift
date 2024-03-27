@@ -9,61 +9,35 @@ import SwiftUI
 import Kingfisher
 
 struct FeedCellView: View {
+
+    private var hasOwnRealInsightPublished: Bool
+    @StateObject var viewModel: FeedCellViewModel
     
-    var realInsight: RealInsight
-    var blur: Bool
-    
-    @ObservedObject var viewModel: FeedCellViewModel
-    
-    init(realInsight: RealInsight, blur: Bool, viewModel: FeedCellViewModel) {
-        self.realInsight = realInsight
-        self.blur = blur
-        self.viewModel = viewModel
+    init(realInsight: RealInsight, hasOwnRealInsightPublished: Bool) {
+        self.hasOwnRealInsightPublished = hasOwnRealInsightPublished
+        _viewModel = StateObject(wrappedValue: FeedCellViewModel(realInsight: realInsight))
     }
     
     var body: some View {
         ZStack {
-            
             Color.black.ignoresSafeArea()
-            
             VStack(alignment: .leading) {
-                
                 HStack {
-                    
-                    if let userImageUrl = viewModel.realInsight.user.profileImageUrl {
-                        KFImage(URL(string: userImageUrl))
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .cornerRadius(20)
-                    }
-                    else {
-                        Circle()
-                            .frame(width: 40, height: 40)
-                            .cornerRadius(20)
-                            .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
-                            .overlay(
-                                Text(viewModel.realInsight.user.username.prefix(1).uppercased())
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 18))
-                            )
-                        
-                    }
-                
-                    
+                    ProfileImageView(
+                        size: 40,
+                        profileImageUrl: viewModel.realInsight.user.profileImageUrl,
+                        fullName: viewModel.realInsight.user.username.prefix(1).uppercased()
+                    )
                     VStack(alignment: .leading) {
-                        
                         Text(viewModel.realInsight.user.fullname ?? "")
                             .foregroundColor(.white)
                             .fontWeight(.semibold)
                             .font(.system(size: 16))
-                        
                         Text("Published 7 hrs late")
                             .foregroundColor(.white)
                             .font(.system(size: 14))
                     }
-                    
                     Spacer()
-                    
                     ThreeDots(size: 4, color: .gray)
                 }.padding(.horizontal)
                 
@@ -96,7 +70,7 @@ struct FeedCellView: View {
                             
                             VStack(alignment: .leading) {
                                 
-                                KFImage(URL(string: realInsight.backImageUrl))
+                                KFImage(URL(string: viewModel.realInsight.backImageUrl))
                                     .resizable()
                                     .frame(width: UIScreen.main.bounds.width)
                                     .scaledToFit()
@@ -107,7 +81,7 @@ struct FeedCellView: View {
                             GeometryReader { g in
                                 VStack {
                                     HStack {
-                                        KFImage(URL(string: realInsight.frontImageUrl))
+                                        KFImage(URL(string: viewModel.realInsight.frontImageUrl))
                                             .resizable()
                                             .frame(width: 100, height: 160)
                                             .scaledToFit()
@@ -125,9 +99,9 @@ struct FeedCellView: View {
                                 }
                             }
 
-                        }.blur(radius: blur ? 8 : 0)
+                        }.blur(radius: hasOwnRealInsightPublished ? 0 : 8)
                         
-                        if blur {
+                        if !hasOwnRealInsightPublished {
                             VStack {
                                 Image(systemName: "eye.slash.fill")
                                     .foregroundColor(.white)
@@ -154,14 +128,11 @@ struct FeedCellView: View {
                         }
                         
                     }
-                    
-                    Text(blur ? "": "Add a comment...")
+                    Text(hasOwnRealInsightPublished ? "Add a comment...": "")
                         .foregroundColor(.gray)
                         .fontWeight(.semibold)
                         .padding(.leading)
-                        
                 }
-                
             }
             
         }.frame(width: UIScreen.main.bounds.width, height: 600)
