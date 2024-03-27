@@ -16,12 +16,16 @@ class MainViewModel: BaseViewModel {
     
     func verifySession() {
         executeAsyncTask({
-            return try await self.verifySessionUseCase.verifySession()
-        }) { [weak self] result in
+            return try await self.verifySessionUseCase.execute()
+        }) { [weak self] (result: Result<Bool, Error>) in
             guard let self = self else { return }
             switch result {
-            case .success(let userId):
-                self.onActiveSessionFound(userId: userId)
+            case .success(let hasSession):
+                if hasSession {
+                    self.onActiveSessionFound()
+                } else {
+                    self.onNotActiveSessionFound()
+                }
             case .failure:
                 self.onNotActiveSessionFound()
             }
@@ -33,7 +37,7 @@ class MainViewModel: BaseViewModel {
         self.hasSession = false
     }
 
-    private func onActiveSessionFound(userId: String) {
+    private func onActiveSessionFound() {
         self.isLoading = false
         self.hasSession = true
     }

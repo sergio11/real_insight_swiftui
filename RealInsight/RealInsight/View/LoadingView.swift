@@ -11,7 +11,7 @@ struct LoadingView: View {
     var body: some View {
         VStack {
             ProgressView()
-                .progressViewStyle(CircularProgressViewStyle())
+                .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 .scaleEffect(2)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -32,7 +32,7 @@ struct EnterPhoneNumberView: View {
             SelectCountryView(countryChosen: $viewModel.country)
         }
         .overlay {
-            ProgressView()
+            LoadingView()
                 .opacity(viewModel.isLoading ? 1 : 0)
         }
         .environment(\.colorScheme, .dark)
@@ -52,7 +52,7 @@ private struct ContinueButton: View {
     
     var body: some View {
         Button {
-            Task { await viewModel.sendOtp() }
+            viewModel.sendOtp()
         } label: {
             WhiteButtonView(buttonActive: isPhoneNumberValid, text: "Continue")
         }
