@@ -13,7 +13,7 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack {
-            BackgroundImage()
+            BackgroundImage(imageName: "onboarding_background")
             VStack {
                 MainContent()
                 Actions(isAccountAuthenticated: $isAccountAuthenticated)
@@ -87,17 +87,6 @@ private struct Actions: View {
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 10)
         }.padding(.horizontal, 30)
-    }
-}
-
-private struct BackgroundImage: View {
-    var body: some View {
-        Image("onboarding_background")
-            .resizable()
-            .scaledToFill()
-            .edgesIgnoringSafeArea(.all)
-        Color.black.opacity(0.8)
-            .edgesIgnoringSafeArea(.all)
     }
 }
 
