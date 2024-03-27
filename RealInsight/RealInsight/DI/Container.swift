@@ -51,7 +51,7 @@ extension Container {
     }
     
     var verifySessionUseCase: Factory<VerifySessionUseCase> {
-        self { VerifySessionUseCase(repository: self.authenticationRepository()) }
+        self { VerifySessionUseCase(authRepository: self.authenticationRepository(), userProfileRepository: self.userProfileRepository()) }
     }
 }
 

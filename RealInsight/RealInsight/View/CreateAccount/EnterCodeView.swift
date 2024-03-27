@@ -35,6 +35,9 @@ struct EnterCodeView: View {
                     viewModel.previousFlowStep()
                 }
             }
+        }.overlay {
+            LoadingView()
+                .opacity(viewModel.isLoading ? 1 : 0)
         }
     }
 }
@@ -116,7 +119,7 @@ private struct BottomSection: View {
             }
             
             Button {
-                Task { await self.viewModel.verifyOtp() }
+                self.viewModel.verifyOtp()
             } label: {
                 WhiteButtonView(buttonActive: isOtpNotEmpty, text: viewModel.otpText.count == 6 ? "Continue": "Resend in \(timeReamining) ")
             }

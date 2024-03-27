@@ -12,12 +12,20 @@ enum VerifySessionError: Error {
 }
 
 struct VerifySessionUseCase {
-    let repository: AuthenticationRepository
+    let authRepository: AuthenticationRepository
+    let userProfileRepository: UserProfileRepository
     
-    func verifySession() async throws -> String {
-        guard let userId = try await repository.getCurrentUserId() else {
+    func execute() async throws -> Bool {
+        guard let userId = try await authRepository.getCurrentUserId() else {
             throw VerifySessionError.invalidSession
         }
-        return userId
+        var userData: User? = nil
+        do {
+            userData = try await userProfileRepository.getUser(userId: userId)
+        } catch {
+            try await authRepository.signOut()
+            throw VerifySessionError.invalidSession
+        }
+        return userData != nil
     }
 }

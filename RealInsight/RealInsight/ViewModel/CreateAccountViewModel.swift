@@ -21,44 +21,24 @@ class CreateAccountViewModel: BaseViewModel {
     @Injected(\.signUpUseCase) private var signUpUseCase: SignUpUseCase
     
     private var verificationCode: String = ""
-    
-    override init() {
-        super.init()
-        print("CreateAccountViewModel init \(self.accountFlowStep) CALLED!")
-    }
 
-    func sendOtp() async {
-        print("sendOtp isLoading: \(isLoading) CALLED!")
+    func sendOtp() {
         guard !isLoading else { return }
-        do {
-            onLoading()
-            let result = try await sendOtpUseCase.execute(phoneNumber: phoneNumber, country: country)
-            print("sendOtp result \(result) CALLED!")
-            updateUI { (vm: CreateAccountViewModel) in
-                vm.isLoading = false
-                vm.verificationCode = result
-                vm.nextFlowStep()
-            }
-        } catch {
-            print("sendOtp handleError \(error.localizedDescription) CALLED!")
-            handleError(error: error)
+        executeAsyncTask {
+            return try await self.sendOtpUseCase.execute(phoneNumber: self.phoneNumber, country: self.country)
+        } completion: { [weak self] result in
+            guard let self = self, case let .success(code) = result else { return }
+            self.verificationCode = code
+            self.nextFlowStep()
         }
     }
     
-    func verifyOtp() async {
-        do {
-            onLoading()
-            let user = try await signUpUseCase.execute(params: SignUpParams(name: name, birthdate: birthdate.date, phoneNumber: phoneNumber, verificationCode: verificationCode, otpText: otpText))
-            updateUI { (vm: CreateAccountViewModel) in
-                vm.isLoading = false
-                print("accountFlowStep: \(vm.accountFlowStep) CALLED!")
-                vm.nextFlowStep()
-                print("nextFlowStep: \(vm.accountFlowStep) CALLED!")
-            }
-        }
-        catch {
-            print("ERROR")
-            handleError(error: error)
+    func verifyOtp() {
+        executeAsyncTask {
+            return try await self.signUpUseCase.execute(params: SignUpParams(name: self.name, birthdate: self.birthdate.date, phoneNumber: self.phoneNumber, verificationCode: self.verificationCode, otpText: self.otpText))
+        } completion: { [weak self] result in
+            guard let self = self, case .success = result else { return }
+            self.nextFlowStep()
         }
     }
     
