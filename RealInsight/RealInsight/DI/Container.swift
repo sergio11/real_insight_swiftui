@@ -94,7 +94,7 @@ extension Container {
     }
     
     var postRealInsightUseCase: Factory<PostRealInsightUseCase> {
-        self { PostRealInsightUseCase(repository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
+        self { PostRealInsightUseCase(realInsightsRepository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
     }
 }
 
