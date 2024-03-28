@@ -10,7 +10,7 @@ import Kingfisher
 
 struct ProfileView: View {
     
-    @ObservedObject var viewModel = ProfileViewModel()
+    @StateObject var viewModel = ProfileViewModel()
     @Binding var mainMenu: String
     
     var body: some View {
@@ -39,6 +39,8 @@ struct ProfileView: View {
                     Spacer()
                 }.padding(.top, 35)
             }
+        }.onAppear {
+            viewModel.loadCurrentUser()
         }
     }
 }
@@ -78,7 +80,7 @@ private struct ProfileTopBarView: View {
 
 private struct ProfileInfoView: View {
     
-    @ObservedObject var viewModel: ProfileViewModel
+    var viewModel: ProfileViewModel
     
     var body: some View {
         ProfileImageView(

@@ -22,12 +22,15 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             .firestore()
             .collection("users")
             .document(data.userId)
+        print("updateUser data: \(data.asDictionary())")
         do {
             // Save user data to Firestore
             try await documentReference.setData(data.asDictionary(), merge: true)
+            print("documentReference.setData completed!")
             // Return the saved user data by fetching it from Firestore
             return try await getUserById(userId: data.userId)
         } catch {
+            print("updateUser error: \(error)")
             print(error.localizedDescription)
             throw error
         }

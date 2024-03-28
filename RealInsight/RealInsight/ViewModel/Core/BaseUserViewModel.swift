@@ -16,21 +16,20 @@ class BaseUserViewModel: BaseViewModel {
     @Published var authUserUsername: String = ""
     @Published var authUserProfileImageUrl: String = ""
     
-    override init() {
-        super.init()
-        loadCurrentUser()
-    }
-        
-    internal func loadCurrentUser() {
+    func loadCurrentUser() {
         executeAsyncTask {
             return try await self.getCurrentUserUseCase.execute()
         } completion: { [weak self] result in
             guard let self = self else { return }
             if case .success(let user) = result {
-                self.authUserFullName = user.fullname ?? user.username
-                self.authUserUsername = user.username
-                self.authUserProfileImageUrl = user.profileImageUrl ?? ""
+                self.onCurrentUserLoaded(user: user)
             }
         }
+    }
+    
+    internal func onCurrentUserLoaded(user: User) {
+        self.authUserFullName = user.fullname ?? user.username
+        self.authUserUsername = user.username
+        self.authUserProfileImageUrl = user.profileImageUrl ?? ""
     }
 }

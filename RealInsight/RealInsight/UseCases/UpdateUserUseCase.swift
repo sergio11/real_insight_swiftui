@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 
+enum UpdateUserError: Error {
+    case updateFailed
+}
 
 struct UpdateUserParams {
     let fullname: String
@@ -25,7 +28,7 @@ struct UpdateUserUseCase {
         if let userId = try await authRepository.getCurrentUserId() {
             return try await userRepository.updateUser(userId: userId, fullname: params.fullname, username: params.username, location: params.location, bio: params.bio, selectedImage: params.selectedImage)
         } else {
-            throw NSError(domain: "SaveUserDataUseCase", code: 404, userInfo: [NSLocalizedDescriptionKey: "User session not found"])
+            throw UpdateUserError.updateFailed
         }
     }
 }

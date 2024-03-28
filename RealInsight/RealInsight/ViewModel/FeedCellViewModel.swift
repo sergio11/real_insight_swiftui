@@ -35,5 +35,4 @@ class FeedCellViewModel: ObservableObject {
     init(realInsight: RealInsight) {
         self.realInsight = realInsight
     }
-    
 }
