@@ -11,13 +11,14 @@ import Kingfisher
 struct ProfileView: View {
     
     @StateObject var viewModel = ProfileViewModel()
-    @Binding var mainMenu: String
+    
+    @Binding var isOpened: Bool
     
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                ProfileTopBarView(mainMenu: $mainMenu)
+                ProfileTopBarView(isOpened: $isOpened)
                 VStack {
                     ProfileInfoView(viewModel: viewModel)
                     YourMemoriesView()
@@ -47,14 +48,14 @@ struct ProfileView: View {
 
 private struct ProfileTopBarView: View {
     
-    @Binding var mainMenu: String
+    @Binding var isOpened: Bool
     
     var body: some View {
         VStack {
             HStack {
                 Button {
                     withAnimation{
-                        self.mainMenu = "feed"
+                        self.isOpened = false
                     }
                 } label: {
                     Image(systemName: "arrow.backward")
@@ -181,6 +182,6 @@ private struct YourMemoriesView: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(mainMenu: .constant("profile"))
+        ProfileView(isOpened: .constant(true))
     }
 }

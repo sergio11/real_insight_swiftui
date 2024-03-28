@@ -11,8 +11,8 @@ struct LeftMenuTopView: View {
     
     @State var text = ""
     @State var isEditing = false
-    @Binding var mainMenu: String
     
+    @Binding var isOpened: Bool
     
     var body: some View {
         VStack {
@@ -21,14 +21,13 @@ struct LeftMenuTopView: View {
                     Spacer()
                     Button {
                         withAnimation {
-                            self.mainMenu = "feed"
+                            self.isOpened = false
                         }
                     } label: {
                         Image(systemName: "arrow.forward")
                             .foregroundColor(.white)
                     }
                 }
-                
                 Text("RealInsight")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
@@ -42,6 +41,6 @@ struct LeftMenuTopView: View {
 
 struct LeftMenuTopView_Previews: PreviewProvider {
     static var previews: some View {
-        LeftMenuTopView(mainMenu: .constant("left"))
+        LeftMenuTopView(isOpened: .constant(true))
     }
 }

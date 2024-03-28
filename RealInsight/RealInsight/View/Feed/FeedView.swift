@@ -10,7 +10,8 @@ import Kingfisher
 
 struct FeedView: View {
     
-    @Binding var mainMenu: String
+    @Binding var isLeftMenuOpened: Bool
+    @Binding var isProfileOpened: Bool
 
     @StateObject var viewModel = FeedViewModel()
     
@@ -34,7 +35,7 @@ struct FeedView: View {
                     }
                     VStack {
                         VStack {
-                            MainTopBarView(mainMenu: $mainMenu, currentUser: $viewModel.authUser)
+                            MainTopBarView(isLeftMenuOpened: $isLeftMenuOpened, isProfileOpened: $isProfileOpened, currentUser: $viewModel.authUser)
                             ProfileTabs()
                             Spacer()
                             if !viewModel.hasOwnRealInsightPublished {
@@ -56,14 +57,15 @@ struct FeedView: View {
 
 private struct MainTopBarView: View {
     
-    @Binding var mainMenu: String
+    @Binding var isLeftMenuOpened: Bool
+    @Binding var isProfileOpened: Bool
     @Binding var currentUser: User?
     
     var body: some View {
         HStack {
             Button {
                 withAnimation {
-                    self.mainMenu = "left"
+                    self.isLeftMenuOpened = true
                 }
             } label: {
                 Image(systemName: "person.2.fill")
@@ -77,7 +79,7 @@ private struct MainTopBarView: View {
             Spacer()
             Button {
                 withAnimation {
-                    self.mainMenu = "profile"
+                    self.isProfileOpened = true
                 }
             } label: {
                 ProfileImageView(
