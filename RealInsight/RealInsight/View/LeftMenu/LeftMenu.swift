@@ -8,31 +8,29 @@
 import SwiftUI
 
 struct LeftMenu: View {
-
-    @State var menu = "Suggestions"
     
     @Binding var isOpened: Bool
+    
+    @StateObject var viewModel = LeftMenuViewModel()
     
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
                 LeftMenuTopView(isOpened: $isOpened)
-                if menu == "Suggestions" {
+                if viewModel.tabSelected == "Suggestions" {
                     Suggestions()
-                } else if menu == "Friends" {
+                } else if viewModel.tabSelected == "Friends" {
                     FriendsView()
-                } else if menu == "Requests" {
+                } else if viewModel.tabSelected == "Requests" {
                     RequestsView()
                 }
                 VStack {
                     Spacer()
-                    TabBarMenuView(tabs: ["Suggestions", "Friends", "Requests"], selectedTab: $menu)
+                    TabBarMenuView(tabs: viewModel.tabs, selectedTab: $viewModel.tabSelected)
                 }
             }
-            
         }
-        
     }
 }
 

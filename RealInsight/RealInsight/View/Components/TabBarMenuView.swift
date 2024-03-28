@@ -18,9 +18,7 @@ struct TabBarMenuView<Tab: Hashable>: View {
                     RoundedRectangle(cornerRadius: 22)
                         .frame(width: UIScreen.main.bounds.width * 0.82, height: 40)
                         .foregroundColor(Color(red: 20/255, green: 20/255, blue: 20/255))
-                    
                     HStack(spacing: 4) {
-                        
                         ForEach(tabs, id: \.self) { tab in
                             Capsule()
                                 .frame(width: 100, height: 28)
@@ -31,13 +29,14 @@ struct TabBarMenuView<Tab: Hashable>: View {
                                         .foregroundColor(.white)
                                         .font(.system(size: 14))
                                 ).onTapGesture {
-                                    selectedTab = tab
+                                    withAnimation {
+                                        self.selectedTab = tab
+                                    }
                                 }
                         }
                         
                     }
                     .zIndex(1)
-                    
                     LinearGradient(colors: [.black, .white.opacity(0)], startPoint: .bottom, endPoint: .top)
                         .ignoresSafeArea()
                         .frame(height: 60)
