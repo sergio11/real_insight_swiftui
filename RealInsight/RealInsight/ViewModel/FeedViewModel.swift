@@ -15,7 +15,6 @@ class FeedViewModel: BaseUserViewModel {
     @Published var frontImageUrl: String = ""
     @Published var hasOwnRealInsightPublished = false
     @Published var cameraViewPressented: Bool = false
-    @Published var authUser: User?
     
     @Injected(\.fetchRealInsightsUseCase) private var fetchRealInsightsUseCase: FetchRealInsightsUseCase
     
