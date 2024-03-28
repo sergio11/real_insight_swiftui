@@ -10,275 +10,209 @@ import Kingfisher
 
 struct EditProfileView: View {
     
-    @State private var width = UIScreen.main.bounds.width
-    @State private var fullname: String = ""
-    @State private var username: String = ""
-    @State private var bio: String = ""
-    @State private var location: String = ""
-    @State private var imagePickerPressented = false
-    @State private var selectedImage: UIImage?
-    @State private var profileImage: Image?
-    
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel = EditProfileViewModel()
+    @StateObject var viewModel = EditProfileViewModel()
 
-    
     var body: some View {
         VStack {
             ZStack {
                 Color.black.ignoresSafeArea()
+                EditProfileTopBarView(onDismiss: {
+                    dismiss()
+                }, onSaveData: saveData)
                 VStack {
-                    ZStack {
-                        HStack {
-                            
-                            Button {
-                                dismiss()
-                            } label: {
-                                Text("Cancel")
-                                    .foregroundColor(.white)
-                            }
-                            
-                            Spacer()
-                            
-                            Button {
-                                saveData()
-                                dismiss()
-                            } label: {
-                                Text("Save")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        .padding(.horizontal, width * 0.05)
-                        
-                        Text("Edit Profile")
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                    }
-                    
-                    HStack {
-                        Spacer()
-                        Rectangle()
-                            .frame(width: width * 0.9, height: 0.7)
-                            .foregroundColor(.gray)
-                            .opacity(0.5)
-                    }
-                    Spacer()
-                    
-                }
-                
-                VStack {
-                    
-                    VStack{
-                        Button {
-                            self.imagePickerPressented.toggle()
-                        } label: {
-                            ZStack(alignment: .bottomTrailing) {
-                                
-                                if profileImage == nil{
-                                    KFImage(URL(string: viewModel.authUserProfileImageUrl))
-                                        .resizable()
-                                        .frame(width: 120, height: 120)
-                                        .cornerRadius(60)
-                                    
-                                }
-                                else if let image = profileImage  {
-                                    image
-                                        .resizable().frame(width: 120, height: 120)
-                                        .cornerRadius(60)
-                                } else {
-                                    Circle()
-                                        .frame(width: 120, height: 120)
-                                        .cornerRadius(60)
-                                        .foregroundColor(Color(red: 152/255, green: 163/255, blue: 16/255))
-                                        .overlay(
-                                            Text(viewModel.authUserFullName.prefix(1).uppercased())
-                                                .foregroundColor(.white)
-                                                .font(.system(size: 55))
-                                        )
-                                }
-                                
-                                ZStack {
-                                    ZStack {
-                                        Circle()
-                                            .frame(width: 34, height: 34)
-                                            .foregroundColor(.black)
-                                        Circle()
-                                            .frame(width: 30, height: 30)
-                                            .foregroundColor(.white)
-                                        Circle()
-                                            .frame(width: 30, height: 30)
-                                            .foregroundColor(.black)
-                                            .opacity(0.1)
-                                    }
-                                    
-                                    Image(systemName: "camera.fill")
-                                        .foregroundColor(.black)
-                                        .font(.system(size: 16))
-                                        .shadow(color: .white, radius: 1, x: 1, y: 1)
-                                }
-                            }
-                        }
-                        .sheet(isPresented: $imagePickerPressented) {
-                            onLoadImage()
-                        } content: {
-                            ImagePicker(image: $selectedImage)
-                        }
-                    }
-                    
-                    VStack {
-                        Rectangle()
-                            .frame(width: width * 0.9, height: 0.7)
-                            .foregroundColor(.gray)
-                            .opacity(0.3)
-                        
-                        HStack {
-                            HStack {
-                                Text("Full name")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 16))
-                                Spacer()
-                            }
-                            .frame(width: width * 0.22)
-                            
-                            
-                            HStack {
-                                TextField("", text: $fullname)
-                                    .font(.system(size: 16))
-                                    .placeholder(when: fullname.isEmpty) {
-                                        Text("Name").foregroundColor(.white).font(.system(size: 16))
-                                    }
-                                    .foregroundColor(.white)
-                                    .padding(.leading, width * 0.05)
-                                Spacer()
-                            }
-                            .frame(width: width * 0.63)
-                            
-                        }
-                        
-                        Rectangle()
-                            .frame(width: width * 0.9, height: 0.7)
-                            .foregroundColor(.gray)
-                            .opacity(0.3)
-                        
-                        HStack {
-                            HStack {
-                                Text("Username")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 16))
-                                Spacer()
-                            }
-                            .frame(width: width * 0.22)
-                            
-                            
-                            HStack {
-                                TextField("", text: $username)
-                                    .font(.system(size: 16))
-                                    .placeholder(when: username.isEmpty) {
-                                        Text("Username")
-                                            .foregroundColor(.white).font(.system(size: 16))
-                                    }
-                                    .foregroundColor(.white)
-                                    .padding(.leading, width * 0.05)
-                                Spacer()
-                            }
-                            .frame(width: width * 0.63)
-                            
-                        }
-                        
-                        Rectangle()
-                            .frame(width: width * 0.9, height: 0.7)
-                            .foregroundColor(.gray)
-                            .opacity(0.3)
-                        
-                        HStack(alignment: .top) {
-                            HStack {
-                                Text("Bio")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 16))
-                                Spacer()
-                            }
-                            .padding(.leading, -4)
-                            .frame(width: width * 0.2)
-                            
-                            if #available(iOS 16, *) {
-                                TextEditor(text: $bio)
-                                    .foregroundColor(.white)
-                                    .background(.black)
-                                    .scrollContentBackground(.hidden)
-                                    .frame(height: 100)
-                                    .padding(.leading, width * 0.05)
-                                    .overlay(
-                                        VStack {
-                                            HStack {
-                                                if bio.isEmpty {
-                                                    Text("Bio")
-                                                        .foregroundColor(.gray)
-                                                        .font(.system(size: 16))
-                                                        .zIndex(1)
-                                                        .padding(.top, 8)
-                                                }
-                                                Spacer()
-                                            }
-                                            Spacer()
-                                        }
-                                    )
-                                    .padding(.top, -8)
-                                    .frame(width: width * 0.63)
-                            }
-                        }
-                        
-                        Rectangle()
-                            .frame(width: width * 0.9, height: 0.7)
-                            .foregroundColor(.gray)
-                            .opacity(0.3)
-                        
-                        HStack {
-                            HStack {
-                                Text("Location")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 16))
-                                Spacer()
-                            }
-                            .frame(width: width * 0.22)
-                            
-                            
-                            HStack {
-                                TextField("", text: $location)
-                                    .font(.system(size: 16))
-                                    .placeholder(when: location.isEmpty) {
-                                        Text("Location").foregroundColor(.white).font(.system(size: 16))
-                                    }
-                                    .foregroundColor(.white)
-                                    .padding(.leading, width * 0.05)
-                                Spacer()
-                            }
-                            .frame(width: width * 0.63)
-                            
-                        }
-                        
-                    }
-                    .padding(.horizontal, width * 0.05)
-                    .padding(.top, 24)
-                    
+                    ProfilePickerImageView(authUserProfileImageUrl: $viewModel.authUserProfileImageUrl, authUserFullName: $viewModel.authUserFullName, imagePickerPressented: $viewModel.imagePickerPressented, profileImage: $viewModel.profileImage, selectedImage: $viewModel.selectedImage)
+                    EditProfileFormView(fields: $viewModel.fields)
                     Spacer()
                 }
                 .padding(.top, UIScreen.main.bounds.height * 0.08)
-                
+            }
+        }
+        .overlay {
+            LoadingView()
+                .opacity(viewModel.isLoading ? 1 : 0)
+        }
+        .onReceive(viewModel.$profileUpdated) { isUpdated in
+            if isUpdated {
+                dismiss()
             }
         }.onAppear {
-            //initData()
+            onLoadCurrentUser()
         }
     }
     
     private func saveData() {
-        Task { await viewModel.saveUserData(fullname: fullname, username: username, location: location, bio: bio, selectedImage: selectedImage) }
+        viewModel.saveUserData()
+    }
+    
+    private func onLoadCurrentUser() {
+        viewModel.loadCurrentUser()
+    }
+}
+
+private struct EditProfileTopBarView: View {
+    
+    var onDismiss = {}
+    var onSaveData = {}
+    
+    var body: some View {
+        VStack {
+            ZStack {
+                HStack {
+                    Button {
+                        onDismiss()
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(.white)
+                    }
+                    Spacer()
+                    Button {
+                        onSaveData()
+                    } label: {
+                        Text("Save")
+                            .foregroundColor(.gray)
+                    }
+                }
+                .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
+                Text("Edit Profile")
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+            }
+            HStack {
+                Spacer()
+                Rectangle()
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: 0.7)
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+            }
+            Spacer()
+        }
+    }
+}
+
+
+private struct EditProfileFormView: View {
+    
+    @Binding var fields: [FormField]
+    
+    var body: some View {
+        VStack {
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width * 0.9, height: 0.7)
+                .foregroundColor(.gray)
+                .opacity(0.3)
+            ForEach(fields.indices, id: \.self) { index in
+                EditProfileFieldRow(field: $fields[index])
+            }
+        }
+        .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
+        .padding(.top, 24)
+    }
+}
+
+private struct EditProfileFieldRow: View {
+    
+    @Binding var field: FormField
+    
+    var body: some View {
+        HStack {
+            HStack {
+                Text(field.label)
+                    .foregroundColor(.white)
+                    .font(.system(size: 16))
+                Spacer()
+            }
+            .frame(width: UIScreen.main.bounds.width * 0.22)
+            HStack {
+                if field.requireTextEditor, #available(iOS 16, *) {
+                    TextEditor(text: $field.value)
+                        .foregroundColor(.white)
+                        .background(.black)
+                        .scrollContentBackground(.hidden)
+                        .frame(height: 100)
+                        .padding(.leading, UIScreen.main.bounds.width * 0.05)
+                        .overlay(
+                           VStack {
+                                HStack {
+                                    if field.placeholder.isEmpty {
+                                         Text(field.placeholder)
+                                             .foregroundColor(.gray)
+                                             .font(.system(size: 16))
+                                             .zIndex(1)
+                                            .padding(.top, 8)
+                                    }
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                        )
+                        .padding(.top, -8)
+                        .frame(width: UIScreen.main.bounds.width * 0.63)
+                } else {
+                    TextField("", text: $field.value)
+                        .font(.system(size: 16))
+                        .placeholder(when: field.value.isEmpty) {
+                            Text(field.placeholder)
+                                .foregroundColor(.white)
+                                .font(.system(size: 16))
+                        }
+                        .foregroundColor(.white)
+                        .padding(.leading, UIScreen.main.bounds.width * 0.05)
+                }
+                Spacer()
+            }
+            .frame(width: UIScreen.main.bounds.width * 0.63)
+        }
+        Rectangle()
+            .frame(width: UIScreen.main.bounds.width * 0.9, height: 0.7)
+            .foregroundColor(.gray)
+            .opacity(0.3)
+    }
+}
+
+
+private struct ProfilePickerImageView: View {
+    
+    @Binding var authUserProfileImageUrl: String
+    @Binding var authUserFullName: String
+    @Binding var imagePickerPressented: Bool
+    @Binding var profileImage: Image?
+    @Binding var selectedImage: UIImage?
+    
+    var body: some View {
+        VStack {
+            Button {
+                self.imagePickerPressented.toggle()
+            } label: {
+                ZStack(alignment: .bottomTrailing) {
+                    if let image = profileImage  {
+                        image
+                            .resizable()
+                            .frame(width: 120, height: 120)
+                            .cornerRadius(60)
+                    } else {
+                        ProfileImageView(
+                            size: 120,
+                            cornerRadius: 60,
+                            profileImageUrl: authUserProfileImageUrl,
+                            fullName: authUserFullName
+                        )
+                    }
+                    IconCircleView(iconName: "camera.fill")
+                }
+            }
+            .sheet(isPresented: $imagePickerPressented) {
+                onLoadImage()
+            } content: {
+                ImagePicker(image: $selectedImage)
+            }
+        }
     }
     
     private func onLoadImage() {
         guard let selectedImage = selectedImage else { return }
         profileImage = Image(uiImage: selectedImage)
     }
-    
 }
 
 struct EditProfile_Previews: PreviewProvider {

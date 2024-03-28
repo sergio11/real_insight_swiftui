@@ -11,7 +11,7 @@ import Kingfisher
 
 struct SettingsView: View {
     
-    @ObservedObject var viewModel = SettingsViewModel()
+    @StateObject var viewModel = SettingsViewModel()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -25,7 +25,7 @@ struct SettingsView: View {
                     title: "Settings"
                 )
                 VStack {
-                    EditProfileItem(viewModel: viewModel)
+                    EditProfileItem(authUserProfileImageUrl: $viewModel.authUserProfileImageUrl, authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername)
                     MenuBlockSection(
                         title: "Features",
                         items: [
@@ -49,12 +49,18 @@ struct SettingsView: View {
                              ("info.circle", "About", AnyView(OtherView()))
                         ]
                     )
-                    LogoutButton(viewModel: viewModel)
+                    LogoutButton {
+                        viewModel.signOut()
+                    }
                     AppVersion()
                 }
                 
             }
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
+        .onAppear {
+            viewModel.loadCurrentUser()
+        }
     }
 }
 
@@ -69,7 +75,9 @@ private struct AppVersion: View {
 
 private struct EditProfileItem: View {
     
-    @ObservedObject var viewModel: SettingsViewModel
+    @Binding var authUserProfileImageUrl: String
+    @Binding var authUserFullName: String
+    @Binding var authUserUsername: String
     
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
@@ -83,32 +91,33 @@ private struct EditProfileItem: View {
             } label: {
                 HStack {
                     ProfileImageView(
-                        profileImageUrl: viewModel.authUserProfileImageUrl,
-                        fullName: viewModel.authUserFullName
+                        profileImageUrl: authUserProfileImageUrl,
+                        fullName: authUserFullName
                     )
+                    ProfileNameView(authUserFullName: $authUserFullName, authUserUsername: $authUserUsername)
+                        .padding(.leading, 15)
                     Spacer()
                     Image(systemName: "chevron.right")
                         .foregroundColor(.gray)
                 }
                     .padding(.horizontal, 18)
             }
-            
         )
     }
 }
 
 private struct ProfileNameView: View {
     
-    @ObservedObject var viewModel: SettingsViewModel
+    @Binding var authUserFullName: String
+    @Binding var authUserUsername: String
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(viewModel.authUserFullName)
+            Text(authUserFullName)
                 .foregroundColor(.white)
                 .fontWeight(.semibold)
                 .font(.system(size: 18))
-            
-            Text(viewModel.authUserUsername)
+            Text(authUserUsername)
                 .foregroundColor(.white)
                 .fontWeight(.semibold)
                 .font(.system(size: 14))
@@ -117,8 +126,8 @@ private struct ProfileNameView: View {
 }
 
 private struct LogoutButton: View {
-    
-    @ObservedObject var viewModel: SettingsViewModel
+
+    var onSignOut = {}
     
     var body: some View {
         ZStack {
@@ -129,9 +138,7 @@ private struct LogoutButton: View {
             
             HStack {
                 Spacer()
-                Button {
-                    viewModel.signOut()
-                } label: {
+                Button(action: onSignOut) {
                     Text("Log out")
                         .foregroundColor(.red)
                 }
