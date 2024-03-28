@@ -36,33 +36,35 @@ internal class FirestoreRealInsightsDataSourceImpl: RealInsightsDataSource {
         return insights
     }
         
-    func fetchOwnRealInsight(forDate date: Date, userId: String) async throws -> RealInsightDTO {
+    func fetchOwnRealInsight(lastDays days: Int, userId: String) async throws -> [RealInsightDTO] {
         let db = Firestore.firestore()
-        // Convert the provided date string to a Timestamp representing the start of the day
-        let startDate = date.startOfDay
-        // Convert the provided date string to a Timestamp representing the end of the day
-        guard let endDate = date.endOfDay else {
+        // Get the current date
+        let currentDate = Date()
+        // Calculate the start date by subtracting the specified days
+        guard let startDate = Calendar.current.date(byAdding: .day, value: -days, to: currentDate) else {
             throw RealInsightsDataSourceError.realInsightNotFound
         }
-        // Fetch the documents within the date range for the specified user ID
+        // Create a query for documents for the user and within the date range
         let querySnapshot = try await db.collection(insightsCollection)
             .whereField("userId", isEqualTo: userId)
             .whereField("createdAt", isGreaterThanOrEqualTo: startDate)
-            .whereField("createdAt", isLessThanOrEqualTo: endDate)
             .getDocuments()
-        // Check if there are any documents returned
+        
+        // Check if there are any returned documents
         guard !querySnapshot.isEmpty else {
             throw RealInsightsDataSourceError.realInsightNotFound
         }
-        // Get the first document (assuming there's only one for that day and user)
-        let document = querySnapshot.documents[0]
-        // Try to parse the document data into a RealInsightDTO object
-        guard let insightData = try? document.data(as: RealInsightDTO.self) else {
-            throw RealInsightsDataSourceError.realInsightNotFound
+        // Create a list to store RealInsightDTO objects
+        var insights: [RealInsightDTO] = []
+        // Iterate over each document and convert it into a RealInsightDTO object
+        for document in querySnapshot.documents {
+            guard let insightData = try? document.data(as: RealInsightDTO.self) else {
+                throw RealInsightsDataSourceError.realInsightNotFound
+            }
+            insights.append(insightData)
         }
-        
-        // Return the parsed RealInsightDTO object
-        return insightData
+        // Return the list of converted RealInsightDTO objects
+        return insights
     }
     
     func postRealInsight(userId: String, backImageUrl: String, frontImageUrl: String) async throws -> RealInsightDTO {

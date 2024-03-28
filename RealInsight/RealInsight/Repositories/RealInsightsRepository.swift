@@ -15,6 +15,6 @@ enum RealInsightsRepositoryError: Error {
 
 protocol RealInsightsRepository {
     func fetchAllRealInsights(date: Date) async throws -> [RealInsight]
-    func fetchOwnRealInsight(date: Date, userId: String) async throws -> RealInsight
+    func fetchOwnRealInsight(lastDays days: Int, userId: String) async throws -> [RealInsight]
     func postRealInsight(userId: String, backImageData: Data, frontImageData: Data) async throws -> RealInsight
 }
