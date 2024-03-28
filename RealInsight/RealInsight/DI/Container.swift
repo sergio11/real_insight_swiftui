@@ -96,6 +96,10 @@ extension Container {
     var postRealInsightUseCase: Factory<PostRealInsightUseCase> {
         self { PostRealInsightUseCase(realInsightsRepository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
     }
+    
+    var fetchOwnRealInsightsUseCase: Factory<FetchOwnRealInsightsUseCase> {
+        self { FetchOwnRealInsightsUseCase(realInsightsRepository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
 
 extension Container {

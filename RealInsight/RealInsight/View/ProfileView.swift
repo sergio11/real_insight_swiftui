@@ -11,7 +11,6 @@ import Kingfisher
 struct ProfileView: View {
     
     @StateObject var viewModel = ProfileViewModel()
-    
     @Binding var isOpened: Bool
     
     var body: some View {
@@ -23,26 +22,34 @@ struct ProfileView: View {
                     ProfileInfoView(authUserProfileImageUrl: $viewModel.authUserProfileImageUrl, authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername)
                     YourMemoriesView()
                     VStack {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 16)
-                                .foregroundColor(.white)
-                                .opacity(0.07)
-                                .frame(height: 230)
-                            VStack {
-                                ProfileMemoriesTitleView()
-                                ProfileMemoriesView()
-                                ViewAllMemoriesButton()
-                            }
-                            .padding(.top, -15)
-                        }
+                        ProfileMemoriesTitleView()
+                        Spacer()
+                        ProfileMemoriesView(ownRealInsights: viewModel.ownRealInsights)
+                        Spacer()
+                        ViewAllMemoriesButton()
                     }
+                    .padding(.top, -15)
+                    .frame(height: 230)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .foregroundColor(Color.white.opacity(0.07))
+                    )
                     UserLinkButton(authUserUsername: $viewModel.authUserUsername)
                     Spacer()
                 }.padding(.top, 35)
             }
         }.onAppear {
-            viewModel.loadCurrentUser()
+            loadUser()
+            loadOwnRealInsights()
         }
+    }
+    
+    private func loadUser() {
+        viewModel.loadCurrentUser()
+    }
+    
+    private func loadOwnRealInsights() {
+        viewModel.loadOwnInsights()
     }
 }
 
@@ -112,25 +119,29 @@ private struct ProfileMemoriesTitleView: View {
             Spacer()
         }
         .padding(.leading)
+        .padding(.top)
     }
 }
 
 private struct ProfileMemoriesView: View {
+    
+    var ownRealInsights: [RealInsight]
+    
     var body: some View {
         VStack {
-            HStack(spacing: 4) {
-                ForEach(1..<8) { num in
-                    MemoryView(day: num)
+            let chunks = ownRealInsights.chunkedBy(size: 7)
+            ForEach(chunks.indices, id: \.self) { index in
+                HStack(spacing: 4) {
+                    ForEach(chunks[index], id: \.self) { realInsight in
+                        MemoryView(realInsight: realInsight)
+                    }
+                    Spacer()
                 }
+                .padding(.bottom, 4)
             }
-            HStack(spacing: 4) {
-                ForEach(1..<8) { num in
-                    MemoryView(day: num+7)
-                }
-            }
-            .padding(.top, -4)
         }
         .padding(.top, -4)
+        .padding(.horizontal)
     }
 }
 
@@ -147,6 +158,7 @@ private struct ViewAllMemoriesButton: View {
                     .opacity(0.5)
             )
             .padding(.top, 4)
+            .padding(.bottom)
     }
 }
 

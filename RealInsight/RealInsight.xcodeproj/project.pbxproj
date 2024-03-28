@@ -37,6 +37,8 @@
 		3D78626F2B9B930F00A9424C /* FetchRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */; };
 		3D7862722B9B96FD00A9424C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 3D7862712B9B96FD00A9424C /* Factory */; };
 		3D7862752B9B98B700A9424C /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7862742B9B98B700A9424C /* Container.swift */; };
+		3D8BAE2D2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */; };
+		3D8BAE2F2BB5E89F0069D41D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */; };
 		3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF532B75725B00C6C1F3 /* Suggestions.swift */; };
 		3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */; };
 		3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */; };
@@ -150,6 +152,8 @@
 		3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepositoryImpl.swift; sourceTree = "<group>"; };
 		3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRealInsightsUseCase.swift; sourceTree = "<group>"; };
 		3D7862742B9B98B700A9424C /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOwnRealInsightsUseCase.swift; sourceTree = "<group>"; };
+		3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		3D8CDF532B75725B00C6C1F3 /* Suggestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestions.swift; sourceTree = "<group>"; };
 		3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCellView.swift; sourceTree = "<group>"; };
 		3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				3D94873B2B924B03001C5676 /* ImagePicker.swift */,
 				3D9D04E02B96425000DCC894 /* ViewExtensions.swift */,
 				3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */,
+				3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				3D5387512BB031CD00E69294 /* PostRealInsightUseCase.swift */,
 				3D53875E2BB0446300E69294 /* SignUpUseCase.swift */,
 				3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */,
+				3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -658,6 +664,7 @@
 				3D2256E22BB1FBC500F87A4B /* BaseUserViewModel.swift in Sources */,
 				3DD405272B7C0E8C00C39D5C /* NotificationsButtonView.swift in Sources */,
 				3DE5E1402B9CEC3200EA85DF /* UserMapper.swift in Sources */,
+				3D8BAE2D2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift in Sources */,
 				3DA71E672BB4351A005577DF /* BackgroundImage.swift in Sources */,
 				3DEF78702B8D05980081AFD9 /* EnterAgeView.swift in Sources */,
 				3DFEB7762B9CA2FF000E0D11 /* PhoneNumberInputView.swift in Sources */,
@@ -665,6 +672,7 @@
 				3DC429A72B9BA14500C0548B /* VerifySessionUseCase.swift in Sources */,
 				3DC4299B2B9B9E5600C0548B /* AuthenticationRepositoryImpl.swift in Sources */,
 				3D2256DB2BB1EED500F87A4B /* GetCurrentUserUseCase.swift in Sources */,
+				3D8BAE2F2BB5E89F0069D41D /* ArrayExtensions.swift in Sources */,
 				3DC4299D2B9B9E6D00C0548B /* UserProfileRepository.swift in Sources */,
 				3D33CFEF2B7159100053C59F /* SettingsView.swift in Sources */,
 				3D33CAAB2B979DDD001721A2 /* ProfileImageView.swift in Sources */,

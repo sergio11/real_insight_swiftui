@@ -6,18 +6,23 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MemoryView: View {
     
-    var day: Int
+    var realInsight: RealInsight
     
     var body: some View {
         VStack {
             ZStack {
-                Text("\(day)")
+                Text(realInsight.createdAt.dayOfMonth())
                     .foregroundColor(.white)
                     .zIndex(1)
-                Image("example")
+                KFImage(URL(string: realInsight.backImageUrl))
+                    .resizable()
+                    .placeholder {
+                        LoadingView()
+                    }
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width / 8, height: 70)
                     .cornerRadius(6)
@@ -27,11 +32,5 @@ struct MemoryView: View {
                         .frame(width: UIScreen.main.bounds.width / 8, height: 70))
             }
         }
-    }
-}
-
-struct MemoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        MemoryView(day: 12)
     }
 }
