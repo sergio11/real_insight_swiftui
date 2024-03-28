@@ -7,18 +7,25 @@
 
 import Foundation
 
+enum FetchRealInsightsError: Error {
+    case fetchFailed
+}
 
 struct FetchRealInsightsUseCase {
     let repository: RealInsightsRepository
     let authRepository: AuthenticationRepository
     
     func execute(date: Date) async throws -> (allRealInsights: [RealInsight], ownRealInsight: RealInsight?) {
-        var result: (allRealInsights: [RealInsight], ownRealInsight: RealInsight?) = ([], nil)
-        if let userId = try await authRepository.getCurrentUserId() {
-            let allRealInsights = try await repository.fetchAllRealInsights(date: date)
-            let ownRealInsight = try await repository.fetchOwnRealInsight(date: date, userId: userId)
-            result = (allRealInsights, ownRealInsight)
+        guard let userId = try await authRepository.getCurrentUserId() else {
+            throw FetchRealInsightsError.fetchFailed
         }
-        return result
+        do {
+            let allRealInsights = try await repository.fetchAllRealInsights(date: date)
+            let ownRealInsight = allRealInsights.first(where: { $0.user.id == userId })
+            let filteredRealInsights = allRealInsights.filter { $0.user.id != userId }
+            return (filteredRealInsights, ownRealInsight)
+        } catch {
+            throw FetchRealInsightsError.fetchFailed
+        }
     }
 }
