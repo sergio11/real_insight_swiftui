@@ -101,6 +101,7 @@ private struct PublicationPreview: View {
         ZStack(alignment: .topLeading) {
             KFImage(URL(string: backImageUrl))
                 .resizable()
+                .frame(width: 100, height: 150)
                 .scaledToFit()
                 .cornerRadius(5)
                 
@@ -112,7 +113,7 @@ private struct PublicationPreview: View {
                 .cornerRadius(2)
                 .padding(5)
                 .offset(x: 5, y: 10)
-        }.frame(width: 100)
+        }
     }
 }
 

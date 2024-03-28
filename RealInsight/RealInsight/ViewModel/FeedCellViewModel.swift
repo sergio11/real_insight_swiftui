@@ -10,7 +10,27 @@ import Firebase
 
 class FeedCellViewModel: ObservableObject {
     
-    @Published var realInsight: RealInsight
+    private var realInsight: RealInsight
+    
+    var authorProfileImageUrl: String {
+        get { realInsight.user.profileImageUrl ?? "" }
+    }
+    
+    var authorUsername: String {
+        get { realInsight.user.username }
+    }
+    
+    var authorFullname: String {
+        get { realInsight.user.fullname ?? authorUsername}
+    }
+    
+    var realInsightBackImageUrl: String {
+        get { realInsight.backImageUrl }
+    }
+    
+    var realInsightFrontImageUrl: String {
+        get { realInsight.frontImageUrl }
+    }
     
     init(realInsight: RealInsight) {
         self.realInsight = realInsight
