@@ -12,7 +12,7 @@ struct FetchRealInsightsUseCase {
     let repository: RealInsightsRepository
     let authRepository: AuthenticationRepository
     
-    func execute(date: String) async throws -> (allRealInsights: [RealInsight], ownRealInsight: RealInsight?) {
+    func execute(date: Date) async throws -> (allRealInsights: [RealInsight], ownRealInsight: RealInsight?) {
         var result: (allRealInsights: [RealInsight], ownRealInsight: RealInsight?) = ([], nil)
         if let userId = try await authRepository.getCurrentUserId() {
             let allRealInsights = try await repository.fetchAllRealInsights(date: date)

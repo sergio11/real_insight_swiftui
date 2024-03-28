@@ -102,11 +102,9 @@ private struct PreviewView: View {
                 HStack {
                     KFImage(URL(string: realInsightFrontImageUrl))
                         .resizable()
-                        .placeholder {
-                            LoadingView()
-                        }
+                        .placeholder { LoadingView() }
                         .frame(width: 100, height: 160)
-                        .scaledToFit()
+                        .scaledToFill()
                         .cornerRadius(8)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)

@@ -20,7 +20,7 @@ struct ProfileView: View {
                 Color.black.ignoresSafeArea()
                 ProfileTopBarView(isOpened: $isOpened)
                 VStack {
-                    ProfileInfoView(viewModel: viewModel)
+                    ProfileInfoView(authUserProfileImageUrl: $viewModel.authUserProfileImageUrl, authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername)
                     YourMemoriesView()
                     VStack {
                         ZStack {
@@ -36,7 +36,7 @@ struct ProfileView: View {
                             .padding(.top, -15)
                         }
                     }
-                    UserLinkButton()
+                    UserLinkButton(authUserUsername: $viewModel.authUserUsername)
                     Spacer()
                 }.padding(.top, 35)
             }
@@ -81,20 +81,22 @@ private struct ProfileTopBarView: View {
 
 private struct ProfileInfoView: View {
     
-    var viewModel: ProfileViewModel
+    @Binding var authUserProfileImageUrl: String
+    @Binding var authUserFullName: String
+    @Binding var authUserUsername: String
     
     var body: some View {
         ProfileImageView(
             size: 130,
             cornerRadius: 75,
-            profileImageUrl: viewModel.authUserProfileImageUrl,
-            fullName: viewModel.authUserFullName
+            profileImageUrl: authUserProfileImageUrl,
+            fullName: authUserFullName
         )
-        Text(viewModel.authUserFullName)
+        Text(authUserFullName)
             .foregroundColor(.white)
             .font(.system(size: 25))
             .fontWeight(.bold)
-        Text(viewModel.authUserUsername)
+        Text(authUserUsername)
             .foregroundColor(.white)
             .fontWeight(.semibold)
     }
@@ -149,8 +151,11 @@ private struct ViewAllMemoriesButton: View {
 }
 
 private struct UserLinkButton: View {
+    
+    @Binding var authUserUsername: String
+    
     var body: some View {
-        Text("Real/dreamsoftware")
+        Text("Real/\(authUserUsername)")
             .foregroundColor(.white)
             .fontWeight(.semibold)
             .font(.system(size: 16))

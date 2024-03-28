@@ -47,11 +47,18 @@ struct FeedView: View {
                 }
             }
         }.fullScreenCover(isPresented: $viewModel.cameraViewPressented) {
-            viewModel.fetchData()
+            onFetchData()
         } content: {
             CameraView()
+        }.onAppear {
+            onFetchData()
         }
     }
+    
+    private func onFetchData() {
+        viewModel.fetchData()
+    }
+    
 }
 
 
