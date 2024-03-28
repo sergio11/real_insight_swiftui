@@ -17,6 +17,7 @@
 		3D2256DD2BB1F6E000F87A4B /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2256DC2BB1F6E000F87A4B /* SettingsViewModel.swift */; };
 		3D2256DF2BB1F91500F87A4B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2256DE2BB1F91500F87A4B /* ProfileViewModel.swift */; };
 		3D2256E22BB1FBC500F87A4B /* BaseUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2256E12BB1FBC500F87A4B /* BaseUserViewModel.swift */; };
+		3D22D5272BB59AB70033E8F4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22D5262BB59AB70033E8F4 /* HomeViewModel.swift */; };
 		3D33CAAB2B979DDD001721A2 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */; };
 		3D33CAAD2B97A6E2001721A2 /* TabBarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAC2B97A6E2001721A2 /* TabBarMenuView.swift */; };
 		3D33CAAF2B97AE34001721A2 /* InviteFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CAAE2B97AE34001721A2 /* InviteFriendsView.swift */; };
@@ -129,6 +130,7 @@
 		3D2256DC2BB1F6E000F87A4B /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		3D2256DE2BB1F91500F87A4B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		3D2256E12BB1FBC500F87A4B /* BaseUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUserViewModel.swift; sourceTree = "<group>"; };
+		3D22D5262BB59AB70033E8F4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		3D33CAAA2B979DDD001721A2 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		3D33CAAC2B97A6E2001721A2 /* TabBarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMenuView.swift; sourceTree = "<group>"; };
 		3D33CAAE2B97AE34001721A2 /* InviteFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsView.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				3DFEB7712B9CA1C0000E0D11 /* AuthenticationViewModel.swift */,
 				3D2256DC2BB1F6E000F87A4B /* SettingsViewModel.swift */,
 				3D2256DE2BB1F91500F87A4B /* ProfileViewModel.swift */,
+				3D22D5262BB59AB70033E8F4 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				3DD405292B7C134600C39D5C /* WhiteButtonView.swift in Sources */,
 				3D53875D2BB0419200E69294 /* CreateUserDTO+Dictionary.swift in Sources */,
 				3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */,
+				3D22D5272BB59AB70033E8F4 /* HomeViewModel.swift in Sources */,
 				3D9DE1E82B9333040033B173 /* FeedViewModel.swift in Sources */,
 				3DFEB7722B9CA1C0000E0D11 /* AuthenticationViewModel.swift in Sources */,
 				3DC4299F2B9B9E8100C0548B /* UserProfileRepositoryImpl.swift in Sources */,
