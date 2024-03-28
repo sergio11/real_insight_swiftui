@@ -43,7 +43,10 @@ struct CameraView: View {
 
 private struct MainTitleView: View {
     var body: some View {
-        Text("04:57:11")
+        let currentTime = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        return Text(formatter.string(from: currentTime))
             .foregroundColor(.white)
             .font(.system(size: 20))
             .fontWeight(.heavy)

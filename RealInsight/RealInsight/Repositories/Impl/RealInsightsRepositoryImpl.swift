@@ -22,9 +22,9 @@ internal class RealInsightsRepositoryImpl: RealInsightsRepository {
         self.realInsightMapper = realInsightMapper
     }
 
-    func fetchAllRealInsights(date: String) async throws -> [RealInsight] {
+    func fetchAllRealInsights(date: Date) async throws -> [RealInsight] {
         do {
-            let realInsightsData = try await realInsightsDataSource.fetchAllRealInsights(date: date)
+            let realInsightsData = try await realInsightsDataSource.fetchAllRealInsights(forDate: date)
             var realInsights: [RealInsight] = []
             for realInsightData in realInsightsData {
                 let user = try await userDataSource.getUserById(userId: realInsightData.userId)
@@ -38,9 +38,9 @@ internal class RealInsightsRepositoryImpl: RealInsightsRepository {
         }
     }
         
-    func fetchOwnRealInsight(date: String, userId: String) async throws -> RealInsight {
+    func fetchOwnRealInsight(date: Date, userId: String) async throws -> RealInsight {
         do {
-            let ownRealInsight = try await realInsightsDataSource.fetchOwnRealInsight(date: date, userId: userId)
+            let ownRealInsight = try await realInsightsDataSource.fetchOwnRealInsight(forDate: date, userId: userId)
             let userData = try await userDataSource.getUserById(userId: userId)
             return realInsightMapper.map(RealInsightDataMapper(realInsightDTO: ownRealInsight, userDTO: userData))
         } catch {

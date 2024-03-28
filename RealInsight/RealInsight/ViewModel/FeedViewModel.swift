@@ -19,14 +19,9 @@ class FeedViewModel: BaseUserViewModel {
     
     @Injected(\.fetchRealInsightsUseCase) private var fetchRealInsightsUseCase: FetchRealInsightsUseCase
     
-    override init() {
-        super.init()
-        fetchData()
-    }
-    
     func fetchData() {
         executeAsyncTask {
-            return try await self.fetchRealInsightsUseCase.execute(date: Date.now.formattedString)
+            return try await self.fetchRealInsightsUseCase.execute(date: Date.now)
         } completion: { [weak self] result in
             guard let self = self else { return }
             if case .success(let (allRealInsights, ownRealInsight)) = result {
