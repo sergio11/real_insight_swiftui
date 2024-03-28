@@ -35,7 +35,7 @@ struct FeedView: View {
                     }
                     VStack {
                         VStack {
-                            MainTopBarView(isLeftMenuOpened: $isLeftMenuOpened, isProfileOpened: $isProfileOpened, currentUser: $viewModel.authUser)
+                            MainTopBarView(isLeftMenuOpened: $isLeftMenuOpened, isProfileOpened: $isProfileOpened, authUserProfileImageUrl: $viewModel.authUserProfileImageUrl, authUserFullName: $viewModel.authUserFullName)
                             ProfileTabs()
                             Spacer()
                             if !viewModel.hasOwnRealInsightPublished {
@@ -57,8 +57,8 @@ struct FeedView: View {
     
     private func onFetchData() {
         viewModel.fetchData()
+        viewModel.loadCurrentUser()
     }
-    
 }
 
 
@@ -66,7 +66,8 @@ private struct MainTopBarView: View {
     
     @Binding var isLeftMenuOpened: Bool
     @Binding var isProfileOpened: Bool
-    @Binding var currentUser: User?
+    @Binding var authUserProfileImageUrl: String
+    @Binding var authUserFullName: String
     
     var body: some View {
         HStack {
@@ -92,8 +93,8 @@ private struct MainTopBarView: View {
                 ProfileImageView(
                     size: 35,
                     cornerRadius: 17.5,
-                    profileImageUrl: currentUser?.profileImageUrl,
-                    fullName: currentUser?.fullname
+                    profileImageUrl: authUserProfileImageUrl,
+                    fullName: authUserFullName
                 )
             }
         }

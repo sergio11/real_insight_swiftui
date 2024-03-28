@@ -32,6 +32,10 @@ class FeedCellViewModel: ObservableObject {
         get { realInsight.frontImageUrl }
     }
     
+    var realInsightHoursLate: Int {
+        get { realInsight.createdAt.hoursLate() }
+    }
+    
     init(realInsight: RealInsight) {
         self.realInsight = realInsight
     }

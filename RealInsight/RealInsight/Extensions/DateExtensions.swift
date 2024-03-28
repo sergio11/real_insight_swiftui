@@ -27,4 +27,11 @@ extension Date {
         let day = calendar.component(.day, from: self)
         return "\(day)"
     }
+    
+    func hoursLate() -> Int {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        let hours = calendar.dateComponents([.hour], from: self, to: currentDate).hour ?? 0
+        return max(0, hours)
+    }
 }

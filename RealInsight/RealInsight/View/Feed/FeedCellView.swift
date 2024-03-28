@@ -22,7 +22,7 @@ struct FeedCellView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             VStack(alignment: .leading) {
-                HeaderView(authorProfileImageUrl: viewModel.authorProfileImageUrl, authorUsername: viewModel.authorUsername, authorFullname: viewModel.authorFullname)
+                HeaderView(authorProfileImageUrl: viewModel.authorProfileImageUrl, authorUsername: viewModel.authorUsername, authorFullname: viewModel.authorFullname, realInsightHoursLate: viewModel.realInsightHoursLate)
                 VStack(alignment: .leading) {
                     ZStack {
                         ZStack {
@@ -47,6 +47,7 @@ private struct HeaderView: View {
     var authorProfileImageUrl: String
     var authorUsername: String
     var authorFullname: String
+    var realInsightHoursLate: Int
     
     var body: some View {
         HStack {
@@ -60,7 +61,7 @@ private struct HeaderView: View {
                     .foregroundColor(.white)
                     .fontWeight(.semibold)
                     .font(.system(size: 16))
-                Text("Published 7 hrs late")
+                Text("Published \(realInsightHoursLate) hrs late")
                     .foregroundColor(.white)
                     .font(.system(size: 14))
             }
