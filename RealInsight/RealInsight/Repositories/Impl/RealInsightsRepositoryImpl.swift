@@ -38,11 +38,15 @@ internal class RealInsightsRepositoryImpl: RealInsightsRepository {
         }
     }
         
-    func fetchOwnRealInsight(date: Date, userId: String) async throws -> RealInsight {
+    func fetchOwnRealInsight(lastDays days: Int, userId: String) async throws -> [RealInsight] {
         do {
-            let ownRealInsight = try await realInsightsDataSource.fetchOwnRealInsight(forDate: date, userId: userId)
+            let ownRealInsightList = try await realInsightsDataSource.fetchOwnRealInsight(lastDays: days, userId: userId)
             let userData = try await userDataSource.getUserById(userId: userId)
-            return realInsightMapper.map(RealInsightDataMapper(realInsightDTO: ownRealInsight, userDTO: userData))
+            let realInsights = ownRealInsightList.map { realInsightDTO in
+                let mappedRealInsight = realInsightMapper.map(RealInsightDataMapper(realInsightDTO: realInsightDTO, userDTO: userData))
+                return mappedRealInsight
+            }
+            return realInsights
         } catch {
             print(error.localizedDescription)
             throw RealInsightsRepositoryError.realInsightNotFound

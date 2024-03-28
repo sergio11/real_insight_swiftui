@@ -13,6 +13,6 @@ enum RealInsightsDataSourceError: Error {
 
 protocol RealInsightsDataSource {
     func fetchAllRealInsights(forDate date: Date) async throws -> [RealInsightDTO]
-    func fetchOwnRealInsight(forDate date: Date, userId: String) async throws -> RealInsightDTO
+    func fetchOwnRealInsight(lastDays days: Int, userId: String) async throws -> [RealInsightDTO]
     func postRealInsight(userId: String, backImageUrl: String, frontImageUrl: String) async throws -> RealInsightDTO
 }
