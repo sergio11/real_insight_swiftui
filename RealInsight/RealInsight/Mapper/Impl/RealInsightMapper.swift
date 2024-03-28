@@ -19,9 +19,11 @@ class RealInsightMapper: Mapper {
     
     func map(_ input: RealInsightDataMapper) -> RealInsight {
         return RealInsight(
+            id: input.realInsightDTO.id,
             backImageUrl: input.realInsightDTO.backImageUrl,
             frontImageUrl: input.realInsightDTO.frontImageUrl,
-            user: userMapper.map(input.userDTO)
+            user: userMapper.map(input.userDTO),
+            createdAt: input.realInsightDTO.createdAt
         )
     }
 }

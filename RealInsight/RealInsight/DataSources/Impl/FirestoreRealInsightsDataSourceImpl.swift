@@ -70,13 +70,16 @@ internal class FirestoreRealInsightsDataSourceImpl: RealInsightsDataSource {
     func postRealInsight(userId: String, backImageUrl: String, frontImageUrl: String) async throws -> RealInsightDTO {
         let db = Firestore.firestore()
         let currentDate = Date()
-        let realInsightRef = try await db.collection(insightsCollection).addDocument(data: [
+        let uuid = UUID()
+        let uuidString = uuid.uuidString
+        try await db.collection(insightsCollection).addDocument(data: [
+            "id": uuidString,
             "frontImageUrl": frontImageUrl,
             "backImageUrl": backImageUrl,
             "userId": userId,
             "createdAt": Timestamp(date: currentDate)
         ])
-        let realInsight = RealInsightDTO(backImageUrl: backImageUrl, frontImageUrl: frontImageUrl, userId: userId)
+        let realInsight = RealInsightDTO(id: uuidString, backImageUrl: backImageUrl, frontImageUrl: frontImageUrl, userId: userId)
         return realInsight
     }
 }
