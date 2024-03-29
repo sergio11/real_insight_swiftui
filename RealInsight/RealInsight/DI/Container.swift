@@ -76,6 +76,10 @@ extension Container {
     var getCurrentUserUseCase: Factory<GetCurrentUserUseCase> {
         self { GetCurrentUserUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository())}
     }
+    
+    var verifyUsernameAvailabilityUseCase: Factory<VerifyUsernameAvailabilityUseCase> {
+        self { VerifyUsernameAvailabilityUseCase(userProfileRepository: self.userProfileRepository()) }
+    }
 }
 
 

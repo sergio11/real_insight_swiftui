@@ -12,6 +12,8 @@ import FirebaseFirestore
 /// A data source responsible for managing user data in Firestore.
 internal class FirestoreUserDataSourceImpl: UserDataSource {
     
+    private let usersCollection = "users"
+    
     /// Saves user data to Firestore.
         /// - Parameters:
         ///   - data: The data of the user to be saved.
@@ -20,17 +22,14 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
     func updateUser(data: UpdateUserDTO) async throws -> UserDTO {
         let documentReference = Firestore
             .firestore()
-            .collection("users")
+            .collection(usersCollection)
             .document(data.userId)
-        print("updateUser data: \(data.asDictionary())")
         do {
             // Save user data to Firestore
             try await documentReference.setData(data.asDictionary(), merge: true)
-            print("documentReference.setData completed!")
             // Return the saved user data by fetching it from Firestore
             return try await getUserById(userId: data.userId)
         } catch {
-            print("updateUser error: \(error)")
             print(error.localizedDescription)
             throw error
         }
@@ -39,7 +38,7 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
     func createUser(data: CreateUserDTO) async throws -> UserDTO {
         let documentReference = Firestore
                 .firestore()
-                .collection("users")
+                .collection(usersCollection)
                 .document(data.userId)
         do {
             // Save user data to Firestore
@@ -59,7 +58,7 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
     func getUserById(userId: String) async throws -> UserDTO {
         let documentSnapshot = try await Firestore
             .firestore()
-            .collection("users")
+            .collection(usersCollection)
             .document(userId)
             .getDocument()
         // Attempt to decode the document data into a UserDTO object
@@ -67,5 +66,14 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             throw UserDataSourceError.userNotFound
         }
         return userData
+    }
+    
+    func checkUsernameAvailability(username: String) async throws -> Bool {
+        let querySnapshot = try await Firestore
+            .firestore()
+            .collection(usersCollection)
+            .whereField("username", isEqualTo: username)
+            .getDocuments()
+        return querySnapshot.isEmpty
     }
 }
