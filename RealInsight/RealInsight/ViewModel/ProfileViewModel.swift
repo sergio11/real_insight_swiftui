@@ -13,6 +13,7 @@ class ProfileViewModel: BaseUserViewModel {
     private let lastDays = 14
     
     @Published var ownRealInsights: [RealInsight] = []
+    @Published var authUserBio: String?
     
     @Injected(\.fetchOwnRealInsightsUseCase) private var fetchOwnRealInsightsUseCase: FetchOwnRealInsightsUseCase
     
@@ -24,5 +25,10 @@ class ProfileViewModel: BaseUserViewModel {
                 self?.ownRealInsights = realInsights
             }
         })
+    }
+    
+    override func onCurrentUserLoaded(user: User) {
+        super.onCurrentUserLoaded(user: user)
+        self.authUserBio = user.bio
     }
 }
