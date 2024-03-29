@@ -19,31 +19,15 @@ struct EnterAgeView: View {
                 TopBarView(backButtonAction: {
                     viewModel.previousFlowStep()
                 })
-                VStack(alignment: .center, spacing: 8) {
-                    GreetingText()
+                VStack {
                     DateInputView()
                     Spacer()
-                }
-                .padding(.top, 50)
-                VStack {
-                    Spacer()
-                    ExplanationText()
+                    ExplanationText(message: "Only to make sure you're old enough to use RealInsights.")
                     ContinueButton()
-                }.padding(.bottom, 40)
+                }
+                .padding(.bottom, 40)
             }
-        }
-    }
-}
-
-private struct GreetingText: View {
-    
-    @EnvironmentObject var viewModel: CreateAccountViewModel
-    
-    var body: some View {
-        Text("Hi \(viewModel.name), when's your birthday?")
-            .foregroundColor(.white)
-            .fontWeight(.heavy)
-            .font(.system(size: 16))
+        }.errorAlert(isPresented: $viewModel.showAlert, message: viewModel.errorMessage)
     }
 }
 
@@ -51,11 +35,21 @@ private struct DateInputView: View {
     @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
-        HStack(spacing: 4) {
-            InputField(title: "MM", value: $viewModel.birthdate.month)
-            InputField(title: "DD", value: $viewModel.birthdate.day)
-            InputField(title: "YYYY", value: $viewModel.birthdate.year)
-        }
+        VStack {
+            VStack(alignment: .center, spacing: 8) {
+                Text("Hi \(viewModel.name), when's your birthday?")
+                    .foregroundColor(.white)
+                    .fontWeight(.heavy)
+                    .font(.system(size: 16))
+                HStack(spacing: 4) {
+                    InputField(title: "MM", value: $viewModel.birthdate.month)
+                    InputField(title: "DD", value: $viewModel.birthdate.day)
+                    InputField(title: "YYYY", value: $viewModel.birthdate.year)
+                }
+            }
+            .padding(.leading, UIScreen.main.bounds.width * 0.05)
+            Spacer()
+        }.padding(.top, 50)
     }
 }
 
@@ -89,17 +83,6 @@ private struct InputField: View {
                     }
                 )
         }
-}
-
-private struct ExplanationText: View {
-    var body: some View {
-        Text("Only to make sure you're old enough to use RealInsights.")
-            .foregroundColor(Color(red: 70/255, green: 70/255, blue: 73/255))
-            .fontWeight(.semibold)
-            .font(.system(size: 14))
-            .multilineTextAlignment(.center)
-            .padding(.horizontal)
-    }
 }
 
 private struct ContinueButton: View {

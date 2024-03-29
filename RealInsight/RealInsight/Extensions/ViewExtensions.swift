@@ -25,4 +25,14 @@ extension View {
             }
         }
     }
+    
+    func errorAlert(isPresented: Binding<Bool>, message: String) -> some View {
+        alert(isPresented: isPresented) {
+            Alert(
+                title: Text("An error ocurred"),
+                message: Text(message),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+    }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct EnterNameView: View {
     
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var viewModel: CreateAccountViewModel
     
     var body: some View {
         VStack {
@@ -18,10 +19,15 @@ struct EnterNameView: View {
                 TopBarView(backButtonAction: {
                     dismiss()
                 })
-                NameInputView()
-                ContinueButton()
+                VStack {
+                    NameInputView()
+                    Spacer()
+                    ExplanationText(message: "The username you choose must be unique. It's what other users will use to identify you.")
+                    ContinueButton()
+                }
+                .padding(.bottom, 40)
             }
-        }
+        }.errorAlert(isPresented: $viewModel.showAlert, message: viewModel.errorMessage)
     }
 }
 
@@ -32,20 +38,24 @@ private struct NameInputView: View {
     var body: some View {
         VStack {
             VStack {
-                Text("Let's get started, what's your name?")
+                Text("Let's get started, what's your username?")
                     .fontWeight(.heavy)
                     .font(.system(size: 16))
                 
-                Text("Your name")
+                Text("Your username")
                     .foregroundColor(viewModel.name.isEmpty ? Color(red: 70/255, green: 70/255, blue: 73/255): Color.black)
                     .fontWeight(.heavy)
                     .opacity(viewModel.name.isEmpty ? 1.0: 0)
                     .font(.system(size: 40))
-                    .frame(width: 210)
+                    .frame(width: 300)
                     .overlay(
                         TextField("", text: $viewModel.name)
                             .font(.system(size: 40, weight: .heavy))
                             .multilineTextAlignment(.center)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(viewModel.showAlert ? Color.red : Color.clear, lineWidth: 2)
+                            )
                     )
                     .padding(.top, 5)
             }
@@ -68,15 +78,11 @@ private struct ContinueButton: View {
     }
     
     var body: some View {
-        VStack {
-            Spacer()
-            Button {
-                viewModel.nextFlowStep()
-            } label: {
-                WhiteButtonView(buttonActive: isNameNotEmpty, text: "Continue")
-            }
+        Button {
+            viewModel.nextFlowStep()
+        } label: {
+            WhiteButtonView(buttonActive: isNameNotEmpty, text: "Continue")
         }
-        .padding(.bottom, 40)
         .disabled(viewModel.name.isEmpty)
     }
 }

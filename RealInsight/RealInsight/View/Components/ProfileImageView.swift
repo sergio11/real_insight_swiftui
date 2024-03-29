@@ -19,6 +19,7 @@ struct ProfileImageView: View {
         if let profileImageUrl = profileImageUrl, !profileImageUrl.isEmpty {
             KFImage(URL(string: profileImageUrl))
                 .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: size, height: size)
                 .cornerRadius(cornerRadius)
         } else {

@@ -34,6 +34,7 @@ struct EnterPhoneNumberView: View {
             LoadingView()
                 .opacity(viewModel.isLoading ? 1 : 0)
         }
+        .errorAlert(isPresented: $viewModel.showAlert, message: viewModel.errorMessage)
         .environment(\.colorScheme, .dark)
     }
 }
