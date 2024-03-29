@@ -11,11 +11,13 @@ struct AccountCreatedView: View {
     
     @Binding var isAccountCreated: Bool
     
+    @EnvironmentObject var viewModel: CreateAccountViewModel
+    
     var body: some View {
         ZStack {
             BackgroundImage(imageName: "account_created_background")
             VStack {
-                MainContent()
+                MainContent(username: $viewModel.username)
                 Actions(isAccountCreated: $isAccountCreated)
             }.padding(.horizontal, 30)
         }
@@ -24,6 +26,9 @@ struct AccountCreatedView: View {
 }
 
 private struct MainContent: View {
+    
+    @Binding var username: String
+    
     var body: some View {
         VStack {
             Image("onboarding_logo")
@@ -32,7 +37,7 @@ private struct MainContent: View {
                 .frame(maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
                 .padding(.top, 50)
-            Text("Your account has been created successfully!")
+            Text("\(username) - your account has been created successfully!")
                  .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
