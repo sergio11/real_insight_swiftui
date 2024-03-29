@@ -35,15 +35,17 @@ RealInsight leverages SwiftUI for its user interface implementation due to sever
 - **Cross-Platform Compatibility:** SwiftUI is designed to work seamlessly across all Apple platforms, including iOS, macOS, watchOS, and tvOS. This allows for code reuse and a consistent user experience across devices.
 - **Swift Integration:** Being native to Swift, SwiftUI integrates seamlessly with existing Swift codebases and libraries, making it easy to adopt for iOS projects.
 
-### MVVM Architecture:
+### Clean architecture and MVVM pattern:
 
-RealInsight follows the MVVM (Model-View-ViewModel) architectural pattern for its project structure:
+RealInsight is designed with a strong emphasis on clean architecture, leveraging the separation of concerns to enhance maintainability and scalability. Through the implementation of UseCases, Repositories, and DataSources, complex logic is encapsulated and decoupled from the rest of the architecture, allowing for flexibility in persistence solutions such as Firestore and Firebase authentication.
 
-- **Model:** Represents the data and business logic of the application.
-- **View:** Displays the UI elements to the user and observes changes in the ViewModel.
-- **ViewModel:** Acts as an intermediary between the View and the Model. It fetches data from the Model and prepares it for presentation in the View. MVVM helps in separating concerns, making the codebase more modular, testable, and maintainable.
+In addition to clean architecture, RealInsight adopts the **MVVM (Model-View-ViewModel) architectural pattern.** This structure delineates the application into distinct layers:
 
-By combining SwiftUI with MVVM, RealInsight benefits from a modern, efficient, and scalable architecture that enhances development productivity and promotes code quality.
+* **Model:** Houses the data structures and business logic, ensuring data integrity and consistency.
+* **View:** Represents the user interface elements, responsible for displaying information to the user.
+* **ViewModel:** Acts as a liaison between the View and the Model, handling data manipulation and presentation logic. It fetches data from the Model and prepares it for display in the View.
+
+By employing MVVM with SwiftUI, RealInsight achieves a modern, efficient, and scalable architecture. This approach enhances development productivity, facilitates code maintenance, and fosters codebase modularity and testability. Ultimately, RealInsight delivers a seamless and immersive user experience while upholding robust architectural principles.
 
 ## Getting Started 🏁
 
