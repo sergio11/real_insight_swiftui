@@ -1,6 +1,10 @@
-# RealInsight 🌟
+# RealInsight 🌟: Where Authentic Connections Happen 🌐
 
-RealInsight is an iOS application built using SwiftUI that aims to provide similar functionality to BeReal. It offers a platform for users to connect and share insights, thoughts, and experiences in a supportive community environment.
+<img width="300px" align="left" src="./doc/images/logo.png" />
+
+🌟 RealInsight is an innovative iOS application crafted using SwiftUI, designed to offer users an engaging platform akin to BeReal. With RealInsight, users are empowered to connect with one another and foster meaningful interactions by sharing their insights, thoughts, and experiences within a supportive community environment. 
+
+Whether it's reflecting on personal growth journeys, sharing inspirational moments, or discussing thought-provoking topics, RealInsight provides a space where users can authentically express themselves and engage with a diverse community of like-minded individuals. Through its intuitive interface and robust feature set, RealInsight encourages users to explore, connect, and discover new perspectives, ultimately fostering a sense of belonging and camaraderie among its users. 🚀
 
 <p align="center">
   <img src="https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white" />
@@ -31,21 +35,23 @@ RealInsight leverages SwiftUI for its user interface implementation due to sever
 - **Cross-Platform Compatibility:** SwiftUI is designed to work seamlessly across all Apple platforms, including iOS, macOS, watchOS, and tvOS. This allows for code reuse and a consistent user experience across devices.
 - **Swift Integration:** Being native to Swift, SwiftUI integrates seamlessly with existing Swift codebases and libraries, making it easy to adopt for iOS projects.
 
-### MVVM Architecture:
+### Clean architecture and MVVM pattern:
 
-RealInsight follows the MVVM (Model-View-ViewModel) architectural pattern for its project structure:
+RealInsight is designed with a strong emphasis on clean architecture, leveraging the separation of concerns to enhance maintainability and scalability. Through the implementation of UseCases, Repositories, and DataSources, complex logic is encapsulated and decoupled from the rest of the architecture, allowing for flexibility in persistence solutions such as Firestore and Firebase authentication.
 
-- **Model:** Represents the data and business logic of the application.
-- **View:** Displays the UI elements to the user and observes changes in the ViewModel.
-- **ViewModel:** Acts as an intermediary between the View and the Model. It fetches data from the Model and prepares it for presentation in the View. MVVM helps in separating concerns, making the codebase more modular, testable, and maintainable.
+In addition to clean architecture, RealInsight adopts the **MVVM (Model-View-ViewModel) architectural pattern.** This structure delineates the application into distinct layers:
 
-By combining SwiftUI with MVVM, RealInsight benefits from a modern, efficient, and scalable architecture that enhances development productivity and promotes code quality.
+* **Model:** Houses the data structures and business logic, ensuring data integrity and consistency.
+* **View:** Represents the user interface elements, responsible for displaying information to the user.
+* **ViewModel:** Acts as a liaison between the View and the Model, handling data manipulation and presentation logic. It fetches data from the Model and prepares it for display in the View.
+
+By employing MVVM with SwiftUI, RealInsight achieves a modern, efficient, and scalable architecture. This approach enhances development productivity, facilitates code maintenance, and fosters codebase modularity and testability. Ultimately, RealInsight delivers a seamless and immersive user experience while upholding robust architectural principles.
 
 ## Getting Started 🏁
 
 To get started with RealInsight, follow these steps:
 
-1. **Clone the Repository:** `git clone https://github.com/your_username/RealInsight.git`
+1. **Clone the Repository:** `git clone https://github.com/sergio11/real_insight_swiftui.git`
 2. **Open in Xcode:** 🖥️ Navigate to the cloned directory and open the project in Xcode.
 3. **Build and Run:** 🏗️ Build the project and run it on a simulator or physical device.
 
@@ -54,6 +60,13 @@ To get started with RealInsight, follow these steps:
 - iOS 14.0+
 - Xcode 12.0+
 - Swift 5.3+
+
+## App Screenshots
+
+Here are some screenshots from our app to give you a glimpse of its design and functionality.
+
+<img width="250px" align="left" src="doc/images/picture_2.png" />
+<img width="250px" src="doc/images/picture_1.png" />
 
 ## Contributing 🤝
 
