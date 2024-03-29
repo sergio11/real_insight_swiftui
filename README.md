@@ -1,5 +1,7 @@
 # RealInsight 🌟
 
+<img width="300px" align="left" src="./doc/images/logo.png" />
+
 RealInsight is an iOS application built using SwiftUI that aims to provide similar functionality to BeReal. It offers a platform for users to connect and share insights, thoughts, and experiences in a supportive community environment.
 
 <p align="center">
