@@ -61,6 +61,13 @@ To get started with RealInsight, follow these steps:
 - Xcode 12.0+
 - Swift 5.3+
 
+## App Screenshots
+
+Here are some screenshots from our app to give you a glimpse of its design and functionality.
+
+| ![Picture 2](doc/images/picture_2.png) |  ![Picture 1](doc/images/picture_1.png) |
+
+
 ## Contributing 🤝
 
 Contributions are welcome! If you'd like to contribute to RealInsight, please fork the repository and create a pull request with your changes.
