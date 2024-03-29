@@ -28,6 +28,7 @@ struct CreateAccountView: View {
                 .environmentObject(viewModel)
         case .completed:
             AccountCreatedView(isAccountCreated: $isAccountCreated)
+                .environmentObject(viewModel)
         }
     }
 }
