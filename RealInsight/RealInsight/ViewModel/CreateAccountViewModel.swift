@@ -10,13 +10,31 @@ import Factory
 
 class CreateAccountViewModel: BaseAuthViewModel {
     
-    @Published var name = ""
+    @Published var username = ""
     @Published var birthdate = Birthdate(day: "", month: "", year: "")
     @Published var accountFlowStep: AccountFlowStepEnum = .username
     
+    @Injected(\.verifyUsernameAvailabilityUseCase) private var verifyUsernameAvailabilityUseCase: VerifyUsernameAvailabilityUseCase
     @Injected(\.sendOtpUseCase) private var sendOtpUseCase: SendOtpUseCase
     @Injected(\.signUpUseCase) private var signUpUseCase: SignUpUseCase
 
+    func verifyUsernameAvailability() {
+        executeAsyncTask {
+            return try await self.verifyUsernameAvailabilityUseCase.execute(params: VerifyUsernameParams(username: self.username))
+        } completion: { [weak self] result in
+            guard let self = self else { return }
+            if case let .success(isAvailable) = result {
+                if isAvailable {
+                    self.nextFlowStep()
+                } else {
+                    self.errorMessage = "There is already a user using this username, please use another one"
+                    self.showAlert = true
+                }
+            }
+        }
+    }
+    
+    
     func sendOtp() {
         guard !isLoading else { return }
         executeAsyncTask {
@@ -30,7 +48,7 @@ class CreateAccountViewModel: BaseAuthViewModel {
     
     func signUp() {
         executeAsyncTask {
-            return try await self.signUpUseCase.execute(params: SignUpParams(name: self.name, birthdate: self.birthdate.date, phoneNumber: self.phoneNumber, verificationCode: self.verificationCode, otpText: self.otpText))
+            return try await self.signUpUseCase.execute(params: SignUpParams(name: self.username, birthdate: self.birthdate.date, phoneNumber: self.phoneNumber, verificationCode: self.verificationCode, otpText: self.otpText))
         } completion: { [weak self] result in
             guard let self = self, case .success = result else { return }
             self.nextFlowStep()
@@ -67,7 +85,6 @@ class CreateAccountViewModel: BaseAuthViewModel {
             accountFlowStep = .otp
         }
     }
-    
 }
 
 enum AccountFlowStepEnum {

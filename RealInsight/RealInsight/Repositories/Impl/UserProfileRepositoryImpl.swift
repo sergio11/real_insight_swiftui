@@ -52,4 +52,13 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             throw error
         }
     }
+    
+    func checkUsernameAvailability(username: String) async throws -> Bool {
+        do {
+            return try await userDataSource.checkUsernameAvailability(username: username)
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
 }

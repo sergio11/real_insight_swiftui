@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D09A64C2BB6CC51000C54A1 /* ExplanationText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */; };
+		3D09A64E2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D09A64D2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift */; };
 		3D19983B2B8FC8DA009B020A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983A2B8FC8DA009B020A /* FirebaseAuth */; };
 		3D19983D2B8FC8DB009B020A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983C2B8FC8DA009B020A /* FirebaseFirestore */; };
 		3D19983F2B8FC8DB009B020A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983E2B8FC8DB009B020A /* FirebaseFirestoreSwift */; };
@@ -129,6 +130,7 @@
 
 /* Begin PBXFileReference section */
 		3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationText.swift; sourceTree = "<group>"; };
+		3D09A64D2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyUsernameAvailabilityUseCase.swift; sourceTree = "<group>"; };
 		3D1998442B8FC970009B020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1998462B8FD104009B020A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserUseCase.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				3D53875E2BB0446300E69294 /* SignUpUseCase.swift */,
 				3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */,
 				3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */,
+				3D09A64D2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC0E86A2B9C8B1200C5AE60 /* CreateAccountView.swift in Sources */,
+				3D09A64E2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift in Sources */,
 				3D53875F2BB0446300E69294 /* SignUpUseCase.swift in Sources */,
 				3DF6EA122B6FB9BE00CE0D95 /* MemoryView.swift in Sources */,
 				3D9DE1EA2B9333B80033B173 /* RealInsight.swift in Sources */,

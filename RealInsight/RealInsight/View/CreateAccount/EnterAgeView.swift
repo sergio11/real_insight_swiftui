@@ -37,7 +37,7 @@ private struct DateInputView: View {
     var body: some View {
         VStack {
             VStack(alignment: .center, spacing: 8) {
-                Text("Hi \(viewModel.name), when's your birthday?")
+                Text("Hi \(viewModel.username), when's your birthday?")
                     .foregroundColor(.white)
                     .fontWeight(.heavy)
                     .font(.system(size: 16))
