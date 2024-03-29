@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D09A64C2BB6CC51000C54A1 /* ExplanationText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */; };
 		3D19983B2B8FC8DA009B020A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983A2B8FC8DA009B020A /* FirebaseAuth */; };
 		3D19983D2B8FC8DB009B020A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983C2B8FC8DA009B020A /* FirebaseFirestore */; };
 		3D19983F2B8FC8DB009B020A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983E2B8FC8DB009B020A /* FirebaseFirestoreSwift */; };
@@ -127,6 +128,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationText.swift; sourceTree = "<group>"; };
 		3D1998442B8FC970009B020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1998462B8FD104009B020A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserUseCase.swift; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 				3DFEB7752B9CA2FF000E0D11 /* PhoneNumberInputView.swift */,
 				3DA71E662BB43519005577DF /* BackgroundImage.swift */,
 				3DA959DE2BB583BA00EB01EF /* IconCircleView.swift */,
+				3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				3DE5E1342B9CE50300EA85DF /* UserDataSource.swift in Sources */,
 				3D67564D2B97B7CC006DD1BE /* DateExtensions.swift in Sources */,
 				3D9D04E12B96425000DCC894 /* ViewExtensions.swift in Sources */,
+				3D09A64C2BB6CC51000C54A1 /* ExplanationText.swift in Sources */,
 				3DE5E1242B9CE0B000EA85DF /* AuthenticationDataSource.swift in Sources */,
 				3D5387572BB0409B00E69294 /* CreateUserDTO.swift in Sources */,
 				3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */,
