@@ -65,8 +65,8 @@ To get started with RealInsight, follow these steps:
 
 Here are some screenshots from our app to give you a glimpse of its design and functionality.
 
-| ![Picture 2](doc/images/picture_2.png) |  ![Picture 1](doc/images/picture_1.png) |
-
+<img width="250px" align="left" src="doc/images/picture_2.png" />
+<img width="250px" src="doc/images/picture_1.png" />
 
 ## Contributing 🤝
 
