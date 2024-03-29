@@ -49,7 +49,7 @@ By combining SwiftUI with MVVM, RealInsight benefits from a modern, efficient, a
 
 To get started with RealInsight, follow these steps:
 
-1. **Clone the Repository:** `git clone https://github.com/your_username/RealInsight.git`
+1. **Clone the Repository:** `git clone https://github.com/sergio11/real_insight_swiftui.git`
 2. **Open in Xcode:** 🖥️ Navigate to the cloned directory and open the project in Xcode.
 3. **Build and Run:** 🏗️ Build the project and run it on a simulator or physical device.
 
