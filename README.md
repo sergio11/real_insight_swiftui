@@ -1,4 +1,4 @@
-# RealInsight 🌟
+# RealInsight 🌟: Where Authentic Connections Happen 🌐
 
 <img width="300px" align="left" src="./doc/images/logo.png" />
 
