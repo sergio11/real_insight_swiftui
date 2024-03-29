@@ -65,24 +65,36 @@ To get started with RealInsight, follow these steps:
 
 Here are some screenshots from our app to give you a glimpse of its design and functionality.
 
-<img width="250px" align="left" src="doc/images/picture_2.png" />
-<img width="250px" align="left" src="doc/images/picture_1.png" />
-<img width="250px" src="doc/images/picture_3.png" />
+<img width="260px" align="left" src="doc/images/picture_2.png" />
+<img width="260px" align="left" src="doc/images/picture_1.png" />
+<img width="260px"  src="doc/images/picture_3.png" />
 
-<img width="250px" align="left" src="doc/images/picture_4.png" />
-<img width="250px" align="left" src="doc/images/picture_5.png" />
-<img width="250px" src="doc/images/picture_6.png" />
+</br>
+</br>
 
-<img width="250px" align="left" src="doc/images/picture_7.png" />
-<img width="250px" align="left" src="doc/images/picture_8.png" />
-<img width="250px" src="doc/images/picture_9.png" />
+<img width="260px" align="left" src="doc/images/picture_4.png" />
+<img width="260px" align="left" src="doc/images/picture_5.png" />
+<img width="260px" src="doc/images/picture_6.png" />
 
-<img width="250px" align="left" src="doc/images/picture_10.png" />
-<img width="250px" align="left" src="doc/images/picture_11.png" />
-<img width="250px" src="doc/images/picture_12.png" />
+</br>
+</br>
 
-<img width="250px" align="left" src="doc/images/picture_13.png" />
-<img width="250px" src="doc/images/picture_14.png" />
+<img width="260px" align="left" src="doc/images/picture_7.png" />
+<img width="260px" align="left" src="doc/images/picture_8.png" />
+<img width="260px" src="doc/images/picture_9.png" />
+
+</br>
+</br>
+
+<img width="260px" align="left" src="doc/images/picture_10.png" />
+<img width="260px" align="left" src="doc/images/picture_11.png" />
+<img width="260px" src="doc/images/picture_12.png" />
+
+</br>
+</br>
+
+<img width="260px" align="left" src="doc/images/picture_13.png" />
+<img width="260px" src="doc/images/picture_14.png" />
 
 ## Contributing 🤝
 
