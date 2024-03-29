@@ -19,7 +19,7 @@ struct ProfileView: View {
                 Color.black.ignoresSafeArea()
                 ProfileTopBarView(isOpened: $isOpened)
                 VStack {
-                    ProfileInfoView(authUserProfileImageUrl: $viewModel.authUserProfileImageUrl, authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername)
+                    ProfileInfoView(authUserProfileImageUrl: $viewModel.authUserProfileImageUrl, authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername, authUserBio: $viewModel.authUserBio)
                     YourMemoriesView()
                     VStack {
                         ProfileMemoriesTitleView()
@@ -91,6 +91,7 @@ private struct ProfileInfoView: View {
     @Binding var authUserProfileImageUrl: String
     @Binding var authUserFullName: String
     @Binding var authUserUsername: String
+    @Binding var authUserBio: String?
     
     var body: some View {
         ProfileImageView(
@@ -106,6 +107,11 @@ private struct ProfileInfoView: View {
         Text(authUserUsername)
             .foregroundColor(.white)
             .fontWeight(.semibold)
+        if let bio = authUserBio {
+            Text(bio)
+                .foregroundColor(.white)
+                .fontWeight(.semibold)
+        }
     }
 }
 

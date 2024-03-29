@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D09A64C2BB6CC51000C54A1 /* ExplanationText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */; };
 		3D09A64E2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D09A64D2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift */; };
+		3D09A6502BB6E6DB000C54A1 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D09A64F2BB6E6DB000C54A1 /* StringExtensions.swift */; };
 		3D19983B2B8FC8DA009B020A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983A2B8FC8DA009B020A /* FirebaseAuth */; };
 		3D19983D2B8FC8DB009B020A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983C2B8FC8DA009B020A /* FirebaseFirestore */; };
 		3D19983F2B8FC8DB009B020A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D19983E2B8FC8DB009B020A /* FirebaseFirestoreSwift */; };
@@ -131,6 +132,7 @@
 /* Begin PBXFileReference section */
 		3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationText.swift; sourceTree = "<group>"; };
 		3D09A64D2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyUsernameAvailabilityUseCase.swift; sourceTree = "<group>"; };
+		3D09A64F2BB6E6DB000C54A1 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		3D1998442B8FC970009B020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D1998462B8FD104009B020A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserUseCase.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				3D9D04E02B96425000DCC894 /* ViewExtensions.swift */,
 				3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */,
 				3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */,
+				3D09A64F2BB6E6DB000C54A1 /* StringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				3D2256DF2BB1F91500F87A4B /* ProfileViewModel.swift in Sources */,
 				3D78626B2B9B92D300A9424C /* RealInsightsRepository.swift in Sources */,
 				3D8DE6C92BB4A8C700814C35 /* BaseAuthViewModel.swift in Sources */,
+				3D09A6502BB6E6DB000C54A1 /* StringExtensions.swift in Sources */,
 				3D9A35BC2B718BE9000F51AC /* SearchBar.swift in Sources */,
 				3D5387592BB0415200E69294 /* UpdateUserDTO+Dictionary.swift in Sources */,
 				3DC429992B9B9E3000C0548B /* AuthenticationRepository.swift in Sources */,
