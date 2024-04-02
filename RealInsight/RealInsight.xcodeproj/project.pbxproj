@@ -35,6 +35,8 @@
 		3D53875D2BB0419200E69294 /* CreateUserDTO+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53875C2BB0419200E69294 /* CreateUserDTO+Dictionary.swift */; };
 		3D53875F2BB0446300E69294 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53875E2BB0446300E69294 /* SignUpUseCase.swift */; };
 		3D67564D2B97B7CC006DD1BE /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */; };
+		3D68D53F2BBC7B81001538EB /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68D53E2BBC7B81001538EB /* FormField.swift */; };
+		3D68D5412BBC7EF9001538EB /* FormFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68D5402BBC7EF9001538EB /* FormFieldExtensions.swift */; };
 		3D78626B2B9B92D300A9424C /* RealInsightsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */; };
 		3D78626D2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */; };
 		3D78626F2B9B930F00A9424C /* FetchRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */; };
@@ -154,6 +156,8 @@
 		3D53875C2BB0419200E69294 /* CreateUserDTO+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateUserDTO+Dictionary.swift"; sourceTree = "<group>"; };
 		3D53875E2BB0446300E69294 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		3D68D53E2BBC7B81001538EB /* FormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormField.swift; sourceTree = "<group>"; };
+		3D68D5402BBC7EF9001538EB /* FormFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldExtensions.swift; sourceTree = "<group>"; };
 		3D78626A2B9B92D300A9424C /* RealInsightsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepository.swift; sourceTree = "<group>"; };
 		3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepositoryImpl.swift; sourceTree = "<group>"; };
 		3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRealInsightsUseCase.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 				3D67564C2B97B7CC006DD1BE /* DateExtensions.swift */,
 				3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */,
 				3D09A64F2BB6E6DB000C54A1 /* StringExtensions.swift */,
+				3D68D5402BBC7EF9001538EB /* FormFieldExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				3D9A184C2B8FBBE5003D2447 /* Birthdate.swift */,
 				3DAE5C7C2B9102A30019787D /* User.swift */,
 				3D9DE1E92B9333B80033B173 /* RealInsight.swift */,
+				3D68D53E2BBC7B81001538EB /* FormField.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 				3D33CAAF2B97AE34001721A2 /* InviteFriendsView.swift in Sources */,
 				3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */,
 				3DFEB7692B9C9491000E0D11 /* AccountCreatedView.swift in Sources */,
+				3D68D5412BBC7EF9001538EB /* FormFieldExtensions.swift in Sources */,
 				3D4066F92B911B2D00785E5E /* LoadingView.swift in Sources */,
 				3D9A35B62B718B22000F51AC /* LeftMenu.swift in Sources */,
 				3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */,
@@ -747,6 +754,7 @@
 				3DF6EA082B6FABE900CE0D95 /* FeedView.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
 				3DE5E1322B9CE45D00EA85DF /* FirestoreRealInsightsDataSourceImpl.swift in Sources */,
+				3D68D53F2BBC7B81001538EB /* FormField.swift in Sources */,
 				3DE5E1292B9CE33D00EA85DF /* StorageFilesDataSource.swift in Sources */,
 				3D7862752B9B98B700A9424C /* Container.swift in Sources */,
 				3DFEB7672B9C8FAD000E0D11 /* BaseViewModel.swift in Sources */,

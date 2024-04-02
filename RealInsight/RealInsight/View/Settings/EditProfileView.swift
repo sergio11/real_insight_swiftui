@@ -124,41 +124,22 @@ private struct EditProfileFieldRow: View {
             }
             .frame(width: UIScreen.main.bounds.width * 0.22)
             HStack {
-                if field.requireTextEditor, #available(iOS 16, *) {
-                    TextEditor(text: $field.value)
-                        .foregroundColor(.white)
-                        .background(.black)
-                        .scrollContentBackground(.hidden)
-                        .frame(height: 100)
-                        .padding(.leading, UIScreen.main.bounds.width * 0.05)
-                        .overlay(
-                           VStack {
-                                HStack {
-                                    if field.placeholder.isEmpty {
-                                         Text(field.placeholder)
-                                             .foregroundColor(.gray)
-                                             .font(.system(size: 16))
-                                             .zIndex(1)
-                                            .padding(.top, 8)
-                                    }
-                                    Spacer()
-                                }
-                                Spacer()
-                            }
-                        )
-                        .padding(.top, -8)
-                        .frame(width: UIScreen.main.bounds.width * 0.63)
-                } else {
-                    TextField("", text: $field.value)
-                        .font(.system(size: 16))
-                        .placeholder(when: field.value.isEmpty) {
-                            Text(field.placeholder)
-                                .foregroundColor(.white)
-                                .font(.system(size: 16))
-                        }
-                        .foregroundColor(.white)
-                        .padding(.leading, UIScreen.main.bounds.width * 0.05)
-                }
+                if field is TextFormField {
+                    TextFormFieldView(textValue: Binding(
+                        get: { field.getValue() ?? "" },
+                        set: { newValue in field.setValue(newValue) }
+                    ), placeholder: field.placeholder)
+               } else if field is TextAreaFormField {
+                   let fieldBinding = Binding<String>(
+                    get: { field.getValue() ?? "" },
+                    set: { newValue in field.setValue(newValue)}
+                   )
+                   if #available(iOS 16, *) {
+                       TextEditorFormFieldView(textValue: fieldBinding, placeholder: field.placeholder)
+                   } else {
+                       TextFormFieldView(textValue: fieldBinding, placeholder: field.placeholder)
+                   }
+               }
                 Spacer()
             }
             .frame(width: UIScreen.main.bounds.width * 0.63)
@@ -167,6 +148,56 @@ private struct EditProfileFieldRow: View {
             .frame(width: UIScreen.main.bounds.width * 0.9, height: 0.7)
             .foregroundColor(.gray)
             .opacity(0.3)
+    }
+}
+
+private struct TextFormFieldView: View {
+    
+    @Binding var textValue: String
+    var placeholder: String
+    
+    var body: some View {
+        TextField("", text: $textValue)
+            .font(.system(size: 16))
+            .placeholder(when: textValue.isEmpty) {
+                Text(placeholder)
+                    .foregroundColor(.white)
+                    .font(.system(size: 16))
+            }
+            .foregroundColor(.white)
+            .padding(.leading, UIScreen.main.bounds.width * 0.05)
+    }
+}
+
+private struct TextEditorFormFieldView: View {
+    
+    @Binding var textValue: String
+    var placeholder: String
+    
+    var body: some View {
+        TextEditor(text: $textValue)
+            .foregroundColor(.white)
+            .background(.black)
+            .scrollContentBackground(.hidden)
+            .frame(height: 100)
+            .padding(.leading, UIScreen.main.bounds.width * 0.05)
+            .overlay(
+               VStack {
+                    HStack {
+                        if placeholder.isEmpty {
+                             Text(placeholder)
+                                 .foregroundColor(.gray)
+                                 .font(.system(size: 16))
+                                 .zIndex(1)
+                                .padding(.top, 8)
+                        }
+                        Spacer()
+                    }
+                    Spacer()
+                }
+            )
+            .padding(.top, -8)
+            .frame(width: UIScreen.main.bounds.width * 0.63)
     }
 }
 
