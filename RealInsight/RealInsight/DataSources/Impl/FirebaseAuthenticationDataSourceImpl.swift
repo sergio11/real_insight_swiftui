@@ -26,6 +26,12 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
         }
     }
         
+    /// Verifies the OTP (One-Time Password) code received through SMS verification.
+        /// - Parameters:
+        ///   - verificationCode: The verification ID received during phone number verification.
+        ///   - otpCode: The OTP code received via SMS.
+        /// - Returns: The user ID associated with the successfully signed-in user.
+        /// - Throws: An `AuthenticationError` in case of failure, including `signInFailed` if sign-in fails.
     func verifyOTP(verificationCode: String, otpCode: String) async throws -> String {
         do {
             let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationCode, verificationCode: otpCode)
@@ -37,7 +43,8 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
         }
     }
     
-
+    /// Signs out the current user.
+        /// - Throws: An `AuthenticationError` in case of failure, including `signOutFailed` if sign-out fails.
     func signOut() async throws {
         do {
             try Auth.auth().signOut()
@@ -47,7 +54,9 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
         }
     }
         
-
+    /// Retrieves the ID of the current user.
+        /// - Returns: The user ID if the user is signed in, otherwise `nil`.
+        /// - Throws: An `AuthenticationError` in case of failure.
     func getCurrentUserId() async throws -> String? {
         guard let userSession = Auth.auth().currentUser else {
             return nil
