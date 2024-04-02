@@ -9,77 +9,103 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
+/// A data source responsible for managing real insights data using Firestore.
 internal class FirestoreRealInsightsDataSourceImpl: RealInsightsDataSource {
     
+    /// The name of the Firestore collection containing real insights data.
     private let insightsCollection = "reals_insights"
     
+    /// Fetches all real insights for a given date asynchronously.
+    /// - Parameters:
+    ///   - date: The date for which real insights are to be fetched.
+    /// - Returns: An array of `RealInsightDTO` objects representing the fetched real insights.
+    /// - Throws: An `RealInsightsDataSourceError` in case of failure, including `realInsightNotFound` if no real insights are found.
     func fetchAllRealInsights(forDate date: Date) async throws -> [RealInsightDTO] {
         let db = Firestore.firestore()
-        // Convert the provided date string to a Timestamp representing the start of the day
         let startDate = date.startOfDay
-        // Convert the provided date string to a Timestamp representing the end of the day
         guard let endDate = date.endOfDay else {
-            throw RealInsightsDataSourceError.realInsightNotFound
+            throw RealInsightsDataSourceError.realInsightNotFound(message: "End of day not found.")
         }
-        // Query to retrieve documents filtered by createdAt within the time range
-        let data = try await db.collection(insightsCollection)
-            .whereField("createdAt", isGreaterThanOrEqualTo: startDate)
-            .whereField("createdAt", isLessThanOrEqualTo: endDate)
-            .getDocuments()
-        var insights: [RealInsightDTO] = []
-        // For each document obtained in the query
-        for document in data.documents {
-            guard let insight = try? document.data(as: RealInsightDTO.self) else { continue }
-            // Add the complete document to the list of Real Insights
-            insights.append(insight)
+        do {
+            let data = try await db.collection(insightsCollection)
+                .whereField("createdAt", isGreaterThanOrEqualTo: startDate)
+                .whereField("createdAt", isLessThanOrEqualTo: endDate)
+                .getDocuments()
+            var insights: [RealInsightDTO] = []
+            for document in data.documents {
+                guard let insight = try? document.data(as: RealInsightDTO.self) else {
+                    throw RealInsightsDataSourceError.fetchFailed(message: "Failed to parse real insight data.")
+                }
+                insights.append(insight)
+            }
+            return insights
+        } catch let error as RealInsightsDataSourceError {
+            throw error
+        } catch {
+            throw RealInsightsDataSourceError.fetchFailed(message: error.localizedDescription)
         }
-        return insights
     }
         
+    /// Fetches real insights posted by a specific user within the last specified days asynchronously.
+    /// - Parameters:
+    ///   - lastDays: The number of days to consider for fetching real insights.
+    ///   - userId: The ID of the user for whom real insights are to be fetched.
+    /// - Returns: An array of `RealInsightDTO` objects representing the fetched real insights.
+    /// - Throws: An `RealInsightsDataSourceError` in case of failure, including `realInsightNotFound` if no real insights are found.
     func fetchOwnRealInsight(lastDays days: Int, userId: String) async throws -> [RealInsightDTO] {
         let db = Firestore.firestore()
-        // Get the current date
         let currentDate = Date()
-        // Calculate the start date by subtracting the specified days
         guard let startDate = Calendar.current.date(byAdding: .day, value: -days, to: currentDate) else {
-            throw RealInsightsDataSourceError.realInsightNotFound
+            throw RealInsightsDataSourceError.realInsightNotFound(message: "Start date not found.")
         }
-        // Create a query for documents for the user and within the date range
-        let querySnapshot = try await db.collection(insightsCollection)
-            .whereField("userId", isEqualTo: userId)
-            .whereField("createdAt", isGreaterThanOrEqualTo: startDate)
-            .getDocuments()
-        
-        // Check if there are any returned documents
-        guard !querySnapshot.isEmpty else {
-            throw RealInsightsDataSourceError.realInsightNotFound
-        }
-        // Create a list to store RealInsightDTO objects
-        var insights: [RealInsightDTO] = []
-        // Iterate over each document and convert it into a RealInsightDTO object
-        for document in querySnapshot.documents {
-            guard let insightData = try? document.data(as: RealInsightDTO.self) else {
-                throw RealInsightsDataSourceError.realInsightNotFound
+        do {
+            let querySnapshot = try await db.collection(insightsCollection)
+                .whereField("userId", isEqualTo: userId)
+                .whereField("createdAt", isGreaterThanOrEqualTo: startDate)
+                .getDocuments()
+            guard !querySnapshot.isEmpty else {
+                throw RealInsightsDataSourceError.realInsightNotFound(message: "No real insights found.")
             }
-            insights.append(insightData)
+            var insights: [RealInsightDTO] = []
+            for document in querySnapshot.documents {
+                guard let insightData = try? document.data(as: RealInsightDTO.self) else {
+                    throw RealInsightsDataSourceError.fetchFailed(message: "Failed to parse real insight data.")
+                }
+                insights.append(insightData)
+            }
+            return insights
+        } catch let error as RealInsightsDataSourceError {
+            throw error
+        } catch {
+            throw RealInsightsDataSourceError.fetchFailed(message: error.localizedDescription)
         }
-        // Return the list of converted RealInsightDTO objects
-        return insights
     }
     
+    /// Posts a new real insight asynchronously.
+    /// - Parameters:
+    ///   - userId: The ID of the user posting the real insight.
+    ///   - backImageUrl: The URL of the back image of the real insight.
+    ///   - frontImageUrl: The URL of the front image of the real insight.
+    /// - Returns: A `RealInsightDTO` object representing the posted real insight.
+    /// - Throws: An `RealInsightsDataSourceError` in case of failure, including `postFailed` if the real insight posting fails.
     func postRealInsight(userId: String, backImageUrl: String, frontImageUrl: String) async throws -> RealInsightDTO {
         let db = Firestore.firestore()
         let currentDate = Date()
         let uuid = UUID()
         let uuidString = uuid.uuidString
-        try await db.collection(insightsCollection).addDocument(data: [
-            "id": uuidString,
-            "frontImageUrl": frontImageUrl,
-            "backImageUrl": backImageUrl,
-            "userId": userId,
-            "createdAt": Timestamp(date: currentDate)
-        ])
-        let realInsight = RealInsightDTO(id: uuidString, backImageUrl: backImageUrl, frontImageUrl: frontImageUrl, userId: userId)
-        return realInsight
+        do {
+            try await db.collection(insightsCollection).addDocument(data: [
+                "id": uuidString,
+                "frontImageUrl": frontImageUrl,
+                "backImageUrl": backImageUrl,
+                "userId": userId,
+                "createdAt": Timestamp(date: currentDate)
+            ])
+            let realInsight = RealInsightDTO(id: uuidString, backImageUrl: backImageUrl, frontImageUrl: frontImageUrl, userId: userId)
+            return realInsight
+        } catch {
+            throw RealInsightsDataSourceError.postFailed(message: error.localizedDescription)
+        }
     }
 }
+
