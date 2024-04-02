@@ -8,11 +8,13 @@
 import Foundation
 
 extension Date {
-    var formattedString: String {
+    
+    func formattedString(withFormat format: String = "dd/MM/yyyy") -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yy"
+        formatter.dateFormat = format
         return formatter.string(from: self)
     }
+
     
     var startOfDay: Date {
         return Calendar.current.startOfDay(for: self)

@@ -17,6 +17,7 @@ struct UpdateUserParams {
     let username: String?
     let location: String?
     let bio: String?
+    let birthdate: String?
     let selectedImage: Data?
 }
 
@@ -26,7 +27,7 @@ struct UpdateUserUseCase {
     
     func execute(params: UpdateUserParams) async throws -> User {
         if let userId = try await authRepository.getCurrentUserId() {
-            return try await userRepository.updateUser(userId: userId, fullname: params.fullname, username: params.username, location: params.location, bio: params.bio, selectedImage: params.selectedImage)
+            return try await userRepository.updateUser(userId: userId, fullname: params.fullname, username: params.username, location: params.location, bio: params.bio, birthdate: params.birthdate, selectedImage: params.selectedImage)
         } else {
             throw UpdateUserError.updateFailed
         }
