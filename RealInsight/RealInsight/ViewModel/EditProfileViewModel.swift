@@ -10,14 +10,6 @@ import Factory
 import UIKit
 import SwiftUI
 
-struct FormField {
-    let key: String
-    var label: String
-    var placeholder: String
-    var value: String
-    var requireTextEditor: Bool = false
-}
-
 class EditProfileViewModel: BaseUserViewModel {
     
     let fullnameKey = "fullname"
@@ -37,10 +29,10 @@ class EditProfileViewModel: BaseUserViewModel {
     override func onCurrentUserLoaded(user: User) {
         super.onCurrentUserLoaded(user: user)
         fields = [
-            FormField(key: fullnameKey, label: "Full name", placeholder: "Enter your full name", value: user.fullname ?? ""),
-            FormField(key: usernameKey, label: "Username", placeholder: "Enter your username", value: user.username),
-            FormField(key: bioKey, label: "Bio", placeholder: "Write a short bio about yourself", value: user.bio ?? "", requireTextEditor: true),
-            FormField(key: locationKey, label: "Location", placeholder: "Enter your location", value: user.location ?? "")
+            TextFormField(key: fullnameKey, label: "Full name", placeholder: "Enter your full name", value: user.fullname ?? ""),
+            TextFormField(key: usernameKey, label: "Username", placeholder: "Enter your username", value: user.username),
+            TextAreaFormField(key: bioKey, label: "Bio", placeholder: "Write a short bio about yourself", value: user.bio ?? ""),
+            TextFormField(key: locationKey, label: "Location", placeholder: "Enter your location", value: user.location ?? "")
         ]
     }
     
@@ -64,10 +56,11 @@ class EditProfileViewModel: BaseUserViewModel {
 
     private func updateUserWithImageData(_ imageData: Data?) {
         // Get the values of the fields
-        let fullname = fields.first(where: { $0.key == fullnameKey })?.value ?? ""
-        let username = fields.first(where: { $0.key == usernameKey })?.value
-        let location = fields.first(where: { $0.key == locationKey })?.value
-        let bio = fields.first(where: { $0.key == bioKey })?.value
+        let fullname = fields.value(for: fullnameKey)
+        let username = fields.value(for: usernameKey)
+        let location = fields.value(for: locationKey)
+        let bio = fields.value(for: bioKey)
+    
         
         // Update user data
         executeAsyncTask({
