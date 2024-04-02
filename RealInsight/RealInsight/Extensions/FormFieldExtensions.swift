@@ -14,7 +14,7 @@ extension FormField {
 }
 
 extension Array where Element == FormField {
-    func value(for key: String) -> String {
-        return self.first(where: { $0.key == key })?.getValue() ?? ""
+    func value<T>(for key: String, defaultValue: T) -> T {
+        return self.first(where: { $0.key == key })?.getValue() ?? defaultValue
     }
 }

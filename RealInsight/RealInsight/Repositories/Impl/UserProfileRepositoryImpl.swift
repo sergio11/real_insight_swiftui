@@ -19,13 +19,13 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
         self.userMapper = userMapper
     }
     
-    func updateUser(userId: String, fullname: String, username: String?, location: String?, bio: String?, selectedImage: Data?) async throws -> User {
+    func updateUser(userId: String, fullname: String, username: String?, location: String?, bio: String?, birthdate: String?, selectedImage: Data?) async throws -> User {
         do {
             var profileImageUrl: String? = nil
             if let selectedImage = selectedImage {
                 profileImageUrl = try await storageFilesDataSource.uploadImage(imageData: selectedImage, type: .profile)
             }
-            let userData = try await userDataSource.updateUser(data: UpdateUserDTO(userId: userId, fullname: fullname, username: username, location: location, bio: bio, profileImageUrl: profileImageUrl))
+            let userData = try await userDataSource.updateUser(data: UpdateUserDTO(userId: userId, fullname: fullname, username: username, location: location, bio: bio, birthdate: birthdate, profileImageUrl: profileImageUrl))
             return userMapper.map(userData)
         } catch {
             print(error.localizedDescription)

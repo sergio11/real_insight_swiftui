@@ -129,7 +129,7 @@ private struct EditProfileFieldRow: View {
                         get: { field.getValue() ?? "" },
                         set: { newValue in field.setValue(newValue) }
                     ), placeholder: field.placeholder)
-               } else if field is TextAreaFormField {
+                } else if field is TextAreaFormField {
                    let fieldBinding = Binding<String>(
                     get: { field.getValue() ?? "" },
                     set: { newValue in field.setValue(newValue)}
@@ -139,7 +139,12 @@ private struct EditProfileFieldRow: View {
                    } else {
                        TextFormFieldView(textValue: fieldBinding, placeholder: field.placeholder)
                    }
-               }
+                } else if field is DatePickerFormField {
+                    DatePickerFormFieldView(dateValue: Binding<Date>(
+                        get: { field.getValue() ?? Date() },
+                        set: { newValue in field.setValue(newValue)}
+                    ), placeholder: field.placeholder)
+                }
                 Spacer()
             }
             .frame(width: UIScreen.main.bounds.width * 0.63)
@@ -166,6 +171,22 @@ private struct TextFormFieldView: View {
             }
             .foregroundColor(.white)
             .padding(.leading, UIScreen.main.bounds.width * 0.05)
+    }
+}
+
+
+private struct DatePickerFormFieldView: View {
+    
+    @Binding var dateValue: Date
+    var placeholder: String
+    
+    var body: some View {
+        DatePicker("", selection: $dateValue, in: ...Date(), displayedComponents: .date)
+        .datePickerStyle(.automatic)
+        .foregroundColor(.black)
+        .background(Color.white.opacity(0.9).cornerRadius(10))
+        .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
+        .labelsHidden()
     }
 }
 

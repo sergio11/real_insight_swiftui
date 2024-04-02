@@ -13,5 +13,6 @@ internal struct UpdateUserDTO: Decodable {
     var username: String?
     var location: String?
     var bio: String?
+    var birthdate: String?
     var profileImageUrl: String?
 }

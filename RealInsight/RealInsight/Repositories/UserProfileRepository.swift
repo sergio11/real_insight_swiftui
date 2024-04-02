@@ -15,6 +15,7 @@ protocol UserProfileRepository {
         username: String?,
         location: String?,
         bio: String?,
+        birthdate: String?,
         selectedImage: Data?
     ) async throws -> User
     
