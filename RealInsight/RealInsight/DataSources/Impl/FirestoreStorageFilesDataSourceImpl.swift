@@ -39,7 +39,7 @@ internal class FirestoreStorageFilesDataSourceImpl: StorageFilesDataSource {
             return url
         } catch {
             print(error)
-            throw error
+            throw StorageFilesError.uploadFailed(message: "Failed to upload image: \(error.localizedDescription)")
         }
     }
 }
