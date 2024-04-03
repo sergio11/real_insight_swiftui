@@ -8,27 +8,11 @@
 import Foundation
 
 protocol UserProfileRepository {
-    
-    func updateUser(
-        userId: String,
-        fullname: String,
-        username: String?,
-        location: String?,
-        bio: String?,
-        birthdate: String?,
-        selectedImage: Data?
-    ) async throws -> User
-    
-    func createUser(
-        userId: String,
-        username: String,
-        birthdate: String,
-        phoneNumber: String
-    ) async throws -> User
-    
+    func updateUser(userId: String, fullname: String, username: String?, location: String?, bio: String?, birthdate: String?, selectedImage: Data?) async throws -> User
+    func createUser(userId: String, username: String, birthdate: String, phoneNumber: String) async throws -> User
     func getUser(userId: String) async throws -> User
-    
     func checkUsernameAvailability(username: String) async throws -> Bool
-    
+    func fetchFriendsForUser(authUserId: String) async throws -> [User]
+    func fetchFollowerRequestsForUser(authUserId: String) async throws -> [User]
     func getSuggestions(authUserId: String) async throws -> [User]
 }

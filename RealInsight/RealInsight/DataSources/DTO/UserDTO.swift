@@ -16,4 +16,7 @@ internal struct UserDTO: Decodable {
     var location: String?
     var bio: String?
     var profileImageUrl: String?
+    var friends: [String]
+    var followerRequests: [String]
+    var followingRequests: [String]
 }

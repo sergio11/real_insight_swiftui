@@ -5,7 +5,6 @@
 //  Created by Sergio Sánchez Sánchez on 29/2/24.
 //
 
-
 struct User: Decodable, Identifiable {
     var id: String
     var username: String
@@ -15,4 +14,5 @@ struct User: Decodable, Identifiable {
     var profileImageUrl: String?
     var bio: String?
     var location: String?
+    var friendsCount: Int
 }

@@ -47,10 +47,12 @@
 		3D7A4A232BBDC77E00CC1C14 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A222BBDC77E00CC1C14 /* SuggestionsView.swift */; };
 		3D7A4A252BBDCD3D00CC1C14 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A242BBDCD3C00CC1C14 /* FriendsViewModel.swift */; };
 		3D7A4A272BBDCDC900CC1C14 /* RequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A262BBDCDC900CC1C14 /* RequestsViewModel.swift */; };
+		3D7A4A292BBDD7A000CC1C14 /* FetchFriendsForUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A282BBDD7A000CC1C14 /* FetchFriendsForUserUseCase.swift */; };
+		3D7A4A2B2BBDD82000CC1C14 /* FetchFollowerRequestsForUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A2A2BBDD82000CC1C14 /* FetchFollowerRequestsForUserUseCase.swift */; };
+		3D7A4A2D2BBDDA8100CC1C14 /* NoDataFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A2C2BBDDA8100CC1C14 /* NoDataFoundView.swift */; };
 		3D8BAE2D2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */; };
 		3D8BAE2F2BB5E89F0069D41D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */; };
 		3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */; };
-		3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */; };
 		3D8DE6C72BB4A55E00814C35 /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DE6C62BB4A55E00814C35 /* EventBus.swift */; };
 		3D8DE6C92BB4A8C700814C35 /* BaseAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DE6C82BB4A8C700814C35 /* BaseAuthViewModel.swift */; };
 		3D94873C2B924B03001C5676 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94873B2B924B03001C5676 /* ImagePicker.swift */; };
@@ -170,10 +172,12 @@
 		3D7A4A222BBDC77E00CC1C14 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
 		3D7A4A242BBDCD3C00CC1C14 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		3D7A4A262BBDCDC900CC1C14 /* RequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsViewModel.swift; sourceTree = "<group>"; };
+		3D7A4A282BBDD7A000CC1C14 /* FetchFriendsForUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFriendsForUserUseCase.swift; sourceTree = "<group>"; };
+		3D7A4A2A2BBDD82000CC1C14 /* FetchFollowerRequestsForUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFollowerRequestsForUserUseCase.swift; sourceTree = "<group>"; };
+		3D7A4A2C2BBDDA8100CC1C14 /* NoDataFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataFoundView.swift; sourceTree = "<group>"; };
 		3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOwnRealInsightsUseCase.swift; sourceTree = "<group>"; };
 		3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
-		3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellView.swift; sourceTree = "<group>"; };
 		3D8DE6C62BB4A55E00814C35 /* EventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
 		3D8DE6C82BB4A8C700814C35 /* BaseAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewModel.swift; sourceTree = "<group>"; };
 		3D94873B2B924B03001C5676 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 				3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */,
 				3D09A64D2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift */,
 				3D7A4A1E2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift */,
+				3D7A4A282BBDD7A000CC1C14 /* FetchFriendsForUserUseCase.swift */,
+				3D7A4A2A2BBDD82000CC1C14 /* FetchFollowerRequestsForUserUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -416,7 +422,6 @@
 				3D9A35B52B718B22000F51AC /* LeftMenu.swift */,
 				3D9A35B72B718B4D000F51AC /* LeftMenuTopView.swift */,
 				3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */,
-				3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */,
 				3DD405172B7BF1F600C39D5C /* RequestsView.swift */,
 				3D7A4A222BBDC77E00CC1C14 /* SuggestionsView.swift */,
 			);
@@ -589,6 +594,7 @@
 				3DA71E662BB43519005577DF /* BackgroundImage.swift */,
 				3DA959DE2BB583BA00EB01EF /* IconCircleView.swift */,
 				3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */,
+				3D7A4A2C2BBDDA8100CC1C14 /* NoDataFoundView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -757,6 +763,7 @@
 				3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */,
 				3D8DE6C72BB4A55E00814C35 /* EventBus.swift in Sources */,
 				3D7A4A212BBDC70000CC1C14 /* SuggestionsViewModel.swift in Sources */,
+				3D7A4A2B2BBDD82000CC1C14 /* FetchFollowerRequestsForUserUseCase.swift in Sources */,
 				3DEF78792B8D10CB0081AFD9 /* SelectCountryView.swift in Sources */,
 				3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCellView.swift in Sources */,
@@ -765,6 +772,7 @@
 				3D7A4A1F2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
 				3DE5E1322B9CE45D00EA85DF /* FirestoreRealInsightsDataSourceImpl.swift in Sources */,
+				3D7A4A2D2BBDDA8100CC1C14 /* NoDataFoundView.swift in Sources */,
 				3D68D53F2BBC7B81001538EB /* FormField.swift in Sources */,
 				3DE5E1292B9CE33D00EA85DF /* StorageFilesDataSource.swift in Sources */,
 				3D7862752B9B98B700A9424C /* Container.swift in Sources */,
@@ -774,8 +782,8 @@
 				3DA71E692BB44547005577DF /* ValidateOTPView.swift in Sources */,
 				3DD405292B7C134600C39D5C /* WhiteButtonView.swift in Sources */,
 				3D53875D2BB0419200E69294 /* CreateUserDTO+Dictionary.swift in Sources */,
-				3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */,
 				3D22D5272BB59AB70033E8F4 /* HomeViewModel.swift in Sources */,
+				3D7A4A292BBDD7A000CC1C14 /* FetchFriendsForUserUseCase.swift in Sources */,
 				3D22D5292BB59E420033E8F4 /* LeftMenuViewModel.swift in Sources */,
 				3D9DE1E82B9333040033B173 /* FeedViewModel.swift in Sources */,
 				3DFEB7722B9CA1C0000E0D11 /* AuthenticationViewModel.swift in Sources */,

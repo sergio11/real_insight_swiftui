@@ -39,8 +39,12 @@ private struct SuggestionsContacts: View {
                     .fontWeight(.semibold)
                     .font(.system(size: 14))
             }
-            ForEach(suggestions) { user in
-                SuggestionCellView(user: user)
+            if suggestions.count > 0 {
+                ForEach(suggestions) { user in
+                    SuggestionCellView(user: user)
+                }
+            } else {
+                NoDataFoundView(title: "No Suggestions", description: "There are no user suggestions available at the moment.")
             }
         }.padding(.top)
     }

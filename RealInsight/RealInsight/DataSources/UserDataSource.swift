@@ -16,6 +16,7 @@ protocol UserDataSource {
     func updateUser(data: UpdateUserDTO) async throws -> UserDTO
     func createUser(data: CreateUserDTO) async throws -> UserDTO
     func getUserById(userId: String) async throws -> UserDTO
+    func getUserByIdList(userIds: [String]) async throws -> [UserDTO]
     func getSuggestions(authUserId: String) async throws -> [UserDTO]
     func checkUsernameAvailability(username: String) async throws -> Bool
 }
