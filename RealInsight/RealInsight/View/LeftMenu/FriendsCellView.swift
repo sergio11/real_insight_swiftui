@@ -8,35 +8,25 @@
 import SwiftUI
 
 struct FriendsCellView: View {
+    
+    @Binding var user: User
+    
     var body: some View {
         HStack {
-            Image("example")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 65, height: 65)
-                .cornerRadius(65/2)
-            
+            ProfileImageView(size: 65, cornerRadius: 65/2, profileImageUrl: user.profileImageUrl, fullName: user.fullname)
             VStack(alignment: .leading) {
-                Text("Sergio")
+                Text(user.fullname ?? user.username)
                     .foregroundColor(.white)
                     .fontWeight(.semibold)
-                Text("dreamsoftware")
+                Text(user.username)
                     .foregroundColor(.gray)
             }
-            
             Spacer()
-            
             Image(systemName: "xmark")
                 .foregroundColor(.gray)
                 .font(.system(size: 16))
                 .padding(.leading, 6)
             
         }.padding(.horizontal)
-    }
-}
-
-struct FriendsCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        FriendsCellView()
     }
 }

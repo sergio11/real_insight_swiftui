@@ -20,7 +20,8 @@ class UserMapper: Mapper {
             fullname: input.fullname,
             profileImageUrl: input.profileImageUrl,
             bio: input.bio,
-            location: input.location
+            location: input.location,
+            friendsCount: input.friends.count
         )
     }
 }

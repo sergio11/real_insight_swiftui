@@ -13,7 +13,10 @@ internal extension CreateUserDTO {
             "userId": userId,
             "username": username,
             "birthdate": birthdate,
-            "phoneNumber": phoneNumber
+            "phoneNumber": phoneNumber,
+            "friends": [String](),
+            "followerRequests": [String](),
+            "followingRequests": [String]()
         ]
     }
 }

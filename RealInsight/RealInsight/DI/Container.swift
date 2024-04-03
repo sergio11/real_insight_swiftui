@@ -84,6 +84,14 @@ extension Container {
     var getSuggestionsUseCase: Factory<GetSuggestionsUseCase> {
         self { GetSuggestionsUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
+    
+    var fetchFriendsUseCase: Factory<FetchFriendsUseCase> {
+        self { FetchFriendsUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var fetchFollowersRequestsUseCase: Factory<FetchFollowersRequestsUseCase> {
+        self { FetchFollowersRequestsUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
 
 

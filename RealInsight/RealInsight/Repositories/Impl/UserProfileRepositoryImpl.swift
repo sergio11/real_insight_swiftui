@@ -64,6 +64,30 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
         }
     }
     
+    func fetchFriendsForUser(authUserId: String) async throws -> [User] {
+        do {
+            let userData = try await userDataSource.getUserById(userId: authUserId)
+            guard !userData.friends.isEmpty else { return [] }
+            let friendsData = try await userDataSource.getUserByIdList(userIds: userData.friends)
+            return friendsData.map { userMapper.map($0) }
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
+    func fetchFollowerRequestsForUser(authUserId: String) async throws -> [User] {
+        do {
+            let userData = try await userDataSource.getUserById(userId: authUserId)
+            guard !userData.followerRequests.isEmpty else { return [] }
+            let requestsData = try await userDataSource.getUserByIdList(userIds: userData.followerRequests)
+            return requestsData.map { userMapper.map($0) }
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
     func checkUsernameAvailability(username: String) async throws -> Bool {
         do {
             return try await userDataSource.checkUsernameAvailability(username: username)

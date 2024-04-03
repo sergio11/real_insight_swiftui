@@ -16,22 +16,26 @@ struct RequestsView: View {
             ScrollView {
                 VStack {
                     InviteFriendsView(authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername, authUserProfileImageUrl: $viewModel.authUserProfileImageUrl)
-                    FindingRequestList()
+                    FindingRequestList(requests: $viewModel.requests)
                     Spacer()
                 }.padding(.top, 20)
             }
             .padding(.top, 110)
         }.onAppear {
             viewModel.loadCurrentUser()
+            viewModel.loadRequests()
         }
     }
 }
 
 private struct FindingRequestList: View {
+    
+    @Binding var requests: [User]
+    
     var body: some View {
         VStack {
             HStack {
-                Text("FINDING REQUESTS (21)")
+                Text("FINDING REQUESTS (\(requests.count))")
                     .foregroundColor(Color(red: 205/255, green: 204/255, blue: 209/255))
                     .fontWeight(.semibold)
                     .font(.system(size: 14))
@@ -48,28 +52,11 @@ private struct FindingRequestList: View {
                 
             }.padding(.horizontal)
             
-            RoundedRectangle(cornerRadius: 18)
-                .frame(width: UIScreen.main.bounds.width * 0.95, height: 90)
-                .foregroundColor(Color(red: 28/255, green: 28/255, blue: 30/255))
-                .overlay(
-                    VStack(spacing: 8) {
-                        HStack {
-                            Spacer()
-                            Text("No pending requests")
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            Spacer()
-                            Text("You don't have any pending requests.")
-                                .foregroundColor(.white)
-                            Spacer()
-                        }
-                    }
-                )
-            
+            if requests.count > 0 {
+                
+            } else {
+                NoDataFoundView(title: "No pending requests", description: "You don't have any pending requests.")
+            }
         }.padding(.top)
     }
 }
