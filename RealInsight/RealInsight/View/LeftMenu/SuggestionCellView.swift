@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SuggestionCellView: View {
+
+    var user: User
+    
     var body: some View {
         HStack {
             Image("example")
@@ -17,11 +20,13 @@ struct SuggestionCellView: View {
                 .cornerRadius(65/2)
             
             VStack(alignment: .leading) {
-                Text("Sergio")
+                Text(user.fullname ?? user.username)
                     .foregroundColor(.white)
                     .fontWeight(.semibold)
-                Text("Sanchez")
-                    .foregroundColor(.gray)
+                if let location = user.location {
+                    Text(location)
+                        .foregroundColor(.gray)
+                }
                 HStack {
                     Image(systemName: "person.crop.circle")
                         .foregroundColor(.gray)
@@ -40,18 +45,11 @@ struct SuggestionCellView: View {
                         .font(.system(size: 12))
                         .fontWeight(.bold)
                 )
-            
             Image(systemName: "xmark")
                 .foregroundColor(.gray)
                 .font(.system(size: 16))
                 .padding(.leading, 6)
         }
         .padding(.horizontal)
-    }
-}
-
-struct SuggestionCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        SuggestionCellView()
     }
 }

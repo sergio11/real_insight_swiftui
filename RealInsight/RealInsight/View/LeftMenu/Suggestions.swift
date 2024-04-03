@@ -18,7 +18,6 @@ struct Suggestions: View {
                 }.padding(.top, 20)
                 
             }.padding(.top, 110)
-        
         }
     }
 }

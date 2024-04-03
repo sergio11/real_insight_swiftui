@@ -80,6 +80,10 @@ extension Container {
     var verifyUsernameAvailabilityUseCase: Factory<VerifyUsernameAvailabilityUseCase> {
         self { VerifyUsernameAvailabilityUseCase(userProfileRepository: self.userProfileRepository()) }
     }
+    
+    var getSuggestionsUseCase: Factory<GetSuggestionsUseCase> {
+        self { GetSuggestionsUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
 
 

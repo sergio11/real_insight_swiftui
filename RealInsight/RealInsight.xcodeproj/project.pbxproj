@@ -42,10 +42,11 @@
 		3D78626F2B9B930F00A9424C /* FetchRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */; };
 		3D7862722B9B96FD00A9424C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 3D7862712B9B96FD00A9424C /* Factory */; };
 		3D7862752B9B98B700A9424C /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7862742B9B98B700A9424C /* Container.swift */; };
+		3D7A4A1F2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A1E2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift */; };
+		3D7A4A212BBDC70000CC1C14 /* SuggestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A202BBDC70000CC1C14 /* SuggestionsViewModel.swift */; };
+		3D7A4A232BBDC77E00CC1C14 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A222BBDC77E00CC1C14 /* SuggestionsView.swift */; };
 		3D8BAE2D2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */; };
 		3D8BAE2F2BB5E89F0069D41D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */; };
-		3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF532B75725B00C6C1F3 /* Suggestions.swift */; };
-		3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */; };
 		3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */; };
 		3D8CDF5A2B75770D00C6C1F3 /* FriendsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */; };
 		3D8DE6C72BB4A55E00814C35 /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DE6C62BB4A55E00814C35 /* EventBus.swift */; };
@@ -162,10 +163,11 @@
 		3D78626C2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealInsightsRepositoryImpl.swift; sourceTree = "<group>"; };
 		3D78626E2B9B930F00A9424C /* FetchRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRealInsightsUseCase.swift; sourceTree = "<group>"; };
 		3D7862742B9B98B700A9424C /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		3D7A4A1E2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSuggestionsUseCase.swift; sourceTree = "<group>"; };
+		3D7A4A202BBDC70000CC1C14 /* SuggestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsViewModel.swift; sourceTree = "<group>"; };
+		3D7A4A222BBDC77E00CC1C14 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
 		3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOwnRealInsightsUseCase.swift; sourceTree = "<group>"; };
 		3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
-		3D8CDF532B75725B00C6C1F3 /* Suggestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestions.swift; sourceTree = "<group>"; };
-		3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCellView.swift; sourceTree = "<group>"; };
 		3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellView.swift; sourceTree = "<group>"; };
 		3D8DE6C62BB4A55E00814C35 /* EventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				3D2256DA2BB1EED500F87A4B /* GetCurrentUserUseCase.swift */,
 				3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */,
 				3D09A64D2BB6D48E000C54A1 /* VerifyUsernameAvailabilityUseCase.swift */,
+				3D7A4A1E2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				3D2256DE2BB1F91500F87A4B /* ProfileViewModel.swift */,
 				3D22D5262BB59AB70033E8F4 /* HomeViewModel.swift */,
 				3D22D5282BB59E420033E8F4 /* LeftMenuViewModel.swift */,
+				3D7A4A202BBDC70000CC1C14 /* SuggestionsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -405,11 +409,10 @@
 			children = (
 				3D9A35B52B718B22000F51AC /* LeftMenu.swift */,
 				3D9A35B72B718B4D000F51AC /* LeftMenuTopView.swift */,
-				3D8CDF532B75725B00C6C1F3 /* Suggestions.swift */,
-				3D8CDF552B75739E00C6C1F3 /* SuggestionCellView.swift */,
 				3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */,
 				3D8CDF592B75770D00C6C1F3 /* FriendsCellView.swift */,
 				3DD405172B7BF1F600C39D5C /* RequestsView.swift */,
+				3D7A4A222BBDC77E00CC1C14 /* SuggestionsView.swift */,
 			);
 			path = LeftMenu;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				3D53875F2BB0446300E69294 /* SignUpUseCase.swift in Sources */,
 				3DF6EA122B6FB9BE00CE0D95 /* MemoryView.swift in Sources */,
 				3D9DE1EA2B9333B80033B173 /* RealInsight.swift in Sources */,
+				3D7A4A232BBDC77E00CC1C14 /* SuggestionsView.swift in Sources */,
 				3DE5E12D2B9CE3D800EA85DF /* RealInsightsDataSource.swift in Sources */,
 				3D2256E22BB1FBC500F87A4B /* BaseUserViewModel.swift in Sources */,
 				3DD405272B7C0E8C00C39D5C /* NotificationsButtonView.swift in Sources */,
@@ -705,9 +709,7 @@
 				3D09A64C2BB6CC51000C54A1 /* ExplanationText.swift in Sources */,
 				3DE5E1242B9CE0B000EA85DF /* AuthenticationDataSource.swift in Sources */,
 				3D5387572BB0409B00E69294 /* CreateUserDTO.swift in Sources */,
-				3D8CDF562B75739E00C6C1F3 /* SuggestionCellView.swift in Sources */,
 				3D33CAAF2B97AE34001721A2 /* InviteFriendsView.swift in Sources */,
-				3D8CDF542B75725B00C6C1F3 /* Suggestions.swift in Sources */,
 				3DFEB7692B9C9491000E0D11 /* AccountCreatedView.swift in Sources */,
 				3D68D5412BBC7EF9001538EB /* FormFieldExtensions.swift in Sources */,
 				3D4066F92B911B2D00785E5E /* LoadingView.swift in Sources */,
@@ -747,11 +749,13 @@
 				3D78626D2B9B92F000A9424C /* RealInsightsRepositoryImpl.swift in Sources */,
 				3D33CFF42B7164D90053C59F /* Extensions.swift in Sources */,
 				3D8DE6C72BB4A55E00814C35 /* EventBus.swift in Sources */,
+				3D7A4A212BBDC70000CC1C14 /* SuggestionsViewModel.swift in Sources */,
 				3DEF78792B8D10CB0081AFD9 /* SelectCountryView.swift in Sources */,
 				3DD405222B7C027300C39D5C /* MemoriesView.swift in Sources */,
 				3DF6EA0A2B6FAD9700CE0D95 /* FeedCellView.swift in Sources */,
 				3D2256DD2BB1F6E000F87A4B /* SettingsViewModel.swift in Sources */,
 				3DF6EA082B6FABE900CE0D95 /* FeedView.swift in Sources */,
+				3D7A4A1F2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift in Sources */,
 				3DF6E9FA2B6FABAA00CE0D95 /* RealInsightApp.swift in Sources */,
 				3DE5E1322B9CE45D00EA85DF /* FirestoreRealInsightsDataSourceImpl.swift in Sources */,
 				3D68D53F2BBC7B81001538EB /* FormField.swift in Sources */,

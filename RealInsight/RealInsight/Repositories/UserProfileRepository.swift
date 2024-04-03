@@ -29,4 +29,6 @@ protocol UserProfileRepository {
     func getUser(userId: String) async throws -> User
     
     func checkUsernameAvailability(username: String) async throws -> Bool
+    
+    func getSuggestions(authUserId: String) async throws -> [User]
 }

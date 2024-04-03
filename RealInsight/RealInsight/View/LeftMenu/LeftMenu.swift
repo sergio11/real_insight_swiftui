@@ -19,7 +19,7 @@ struct LeftMenu: View {
                 Color.black.ignoresSafeArea()
                 LeftMenuTopView(isOpened: $isOpened)
                 if viewModel.tabSelected == "Suggestions" {
-                    Suggestions()
+                    SuggestionsView()
                 } else if viewModel.tabSelected == "Friends" {
                     FriendsView()
                 } else if viewModel.tabSelected == "Requests" {

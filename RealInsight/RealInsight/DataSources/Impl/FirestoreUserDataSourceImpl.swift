@@ -68,6 +68,22 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         return userData
     }
     
+    func getSuggestions(authUserId: String) async throws -> [UserDTO] {
+        // Get all users except the authenticated user
+        let querySnapshot = try await Firestore
+            .firestore()
+            .collection(usersCollection)
+            .whereField("userId", isNotEqualTo: authUserId)
+            .getDocuments()
+        var suggestions: [UserDTO] = []
+        for document in querySnapshot.documents {
+            if let userData = try? document.data(as: UserDTO.self) {
+                suggestions.append(userData)
+            }
+        }
+        return suggestions
+    }
+    
     func checkUsernameAvailability(username: String) async throws -> Bool {
         let querySnapshot = try await Firestore
             .firestore()
