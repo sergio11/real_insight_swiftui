@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct RequestsView: View {
+    
+    @StateObject var viewModel = RequestsViewModel()
+    
     var body: some View {
         VStack {
             ScrollView {
                 VStack {
-                    InviteFriendsView()
+                    InviteFriendsView(authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername, authUserProfileImageUrl: $viewModel.authUserProfileImageUrl)
                     FindingRequestList()
                     Spacer()
                 }.padding(.top, 20)
             }
             .padding(.top, 110)
+        }.onAppear {
+            viewModel.loadCurrentUser()
         }
     }
 }

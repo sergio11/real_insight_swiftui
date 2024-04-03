@@ -15,14 +15,14 @@ struct SuggestionsView: View {
         VStack {
             ScrollView {
                 VStack {
-                    InviteFriendsView()
+                    InviteFriendsView(authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername, authUserProfileImageUrl: $viewModel.authUserProfileImageUrl)
                     SuggestionsContacts(suggestions: $viewModel.suggestions)
                     Spacer()
                 }.padding(.top, 20)
-                
             }.padding(.top, 110)
         }.onAppear {
             viewModel.loadSuggestions()
+            viewModel.loadCurrentUser()
         }
     }
 }
