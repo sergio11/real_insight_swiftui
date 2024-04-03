@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Factory
 
-class SuggestionsViewModel: BaseViewModel {
+class SuggestionsViewModel: BaseUserViewModel {
     
     @Published var suggestions: [User] = []
     

@@ -8,18 +8,22 @@
 import SwiftUI
 
 struct FriendsView: View {
+    
+    @StateObject var viewModel = FriendsViewModel()
+    
     var body: some View {
         VStack {
             ScrollView {
                 VStack {
-                    InviteFriendsView()
+                    InviteFriendsView(authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername, authUserProfileImageUrl: $viewModel.authUserProfileImageUrl)
                     MyFriendsList()
                     Spacer()
                 }.padding(.top, 20)
             }
             .padding(.top, 110)
+        }.onAppear {
+            viewModel.loadCurrentUser()
         }
-        
     }
 }
 
@@ -39,11 +43,5 @@ private struct MyFriendsList: View {
             }
             
         }.padding(.top)
-    }
-}
-
-struct FriendsView_Previews: PreviewProvider {
-    static var previews: some View {
-        FriendsView()
     }
 }

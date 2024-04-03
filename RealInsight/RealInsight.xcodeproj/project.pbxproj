@@ -45,6 +45,8 @@
 		3D7A4A1F2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A1E2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift */; };
 		3D7A4A212BBDC70000CC1C14 /* SuggestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A202BBDC70000CC1C14 /* SuggestionsViewModel.swift */; };
 		3D7A4A232BBDC77E00CC1C14 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A222BBDC77E00CC1C14 /* SuggestionsView.swift */; };
+		3D7A4A252BBDCD3D00CC1C14 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A242BBDCD3C00CC1C14 /* FriendsViewModel.swift */; };
+		3D7A4A272BBDCDC900CC1C14 /* RequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A262BBDCDC900CC1C14 /* RequestsViewModel.swift */; };
 		3D8BAE2D2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */; };
 		3D8BAE2F2BB5E89F0069D41D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */; };
 		3D8CDF582B75764E00C6C1F3 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */; };
@@ -166,6 +168,8 @@
 		3D7A4A1E2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSuggestionsUseCase.swift; sourceTree = "<group>"; };
 		3D7A4A202BBDC70000CC1C14 /* SuggestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsViewModel.swift; sourceTree = "<group>"; };
 		3D7A4A222BBDC77E00CC1C14 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
+		3D7A4A242BBDCD3C00CC1C14 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
+		3D7A4A262BBDCDC900CC1C14 /* RequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsViewModel.swift; sourceTree = "<group>"; };
 		3D8BAE2C2BB5E5010069D41D /* FetchOwnRealInsightsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOwnRealInsightsUseCase.swift; sourceTree = "<group>"; };
 		3D8BAE2E2BB5E89F0069D41D /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		3D8CDF572B75764E00C6C1F3 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
@@ -371,6 +375,8 @@
 				3D22D5262BB59AB70033E8F4 /* HomeViewModel.swift */,
 				3D22D5282BB59E420033E8F4 /* LeftMenuViewModel.swift */,
 				3D7A4A202BBDC70000CC1C14 /* SuggestionsViewModel.swift */,
+				3D7A4A242BBDCD3C00CC1C14 /* FriendsViewModel.swift */,
+				3D7A4A262BBDCDC900CC1C14 /* RequestsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -706,6 +712,7 @@
 				3DE5E1342B9CE50300EA85DF /* UserDataSource.swift in Sources */,
 				3D67564D2B97B7CC006DD1BE /* DateExtensions.swift in Sources */,
 				3D9D04E12B96425000DCC894 /* ViewExtensions.swift in Sources */,
+				3D7A4A272BBDCDC900CC1C14 /* RequestsViewModel.swift in Sources */,
 				3D09A64C2BB6CC51000C54A1 /* ExplanationText.swift in Sources */,
 				3DE5E1242B9CE0B000EA85DF /* AuthenticationDataSource.swift in Sources */,
 				3D5387572BB0409B00E69294 /* CreateUserDTO.swift in Sources */,
@@ -762,6 +769,7 @@
 				3DE5E1292B9CE33D00EA85DF /* StorageFilesDataSource.swift in Sources */,
 				3D7862752B9B98B700A9424C /* Container.swift in Sources */,
 				3DFEB7672B9C8FAD000E0D11 /* BaseViewModel.swift in Sources */,
+				3D7A4A252BBDCD3D00CC1C14 /* FriendsViewModel.swift in Sources */,
 				3DC429A92B9BA6C700C0548B /* UpdateUserUseCase.swift in Sources */,
 				3DA71E692BB44547005577DF /* ValidateOTPView.swift in Sources */,
 				3DD405292B7C134600C39D5C /* WhiteButtonView.swift in Sources */,
