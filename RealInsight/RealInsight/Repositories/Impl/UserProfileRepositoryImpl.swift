@@ -53,6 +53,17 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
         }
     }
     
+    func getSuggestions(authUserId: String) async throws -> [User] {
+        do {
+            let userData = try await userDataSource.getSuggestions(authUserId: authUserId)
+            let users = userData.map { userMapper.map($0) }
+            return users
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
     func checkUsernameAvailability(username: String) async throws -> Bool {
         do {
             return try await userDataSource.checkUsernameAvailability(username: username)
