@@ -118,7 +118,7 @@ extension Container {
     }
     
     var fetchRealInsightsUseCase: Factory<FetchRealInsightsUseCase> {
-        self { FetchRealInsightsUseCase(repository: self.realInsightsRepository(), authRepository: self.authenticationRepository()) }
+        self { FetchRealInsightsUseCase(repository: self.realInsightsRepository(), userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
     
     var postRealInsightUseCase: Factory<PostRealInsightUseCase> {

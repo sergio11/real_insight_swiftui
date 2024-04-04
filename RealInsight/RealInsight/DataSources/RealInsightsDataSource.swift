@@ -30,9 +30,10 @@ protocol RealInsightsDataSource {
     /// Fetches all real insights for the specified date asynchronously.
     /// - Parameters:
     ///   - date: The date for which to fetch real insights.
+    ///   - userIds: An array of user IDs for which to fetch real insights.
     /// - Returns: An array of `RealInsightDTO` representing the fetched real insights.
     /// - Throws: An error if the operation fails, including `realInsightNotFound` if no real insights are found.
-    func fetchAllRealInsights(forDate date: Date) async throws -> [RealInsightDTO]
+    func fetchAllRealInsights(forDate date: Date, userIds: [String]) async throws -> [RealInsightDTO]
     
     /// Fetches own real insights posted within the last specified days asynchronously.
     /// - Parameters:
