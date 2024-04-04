@@ -130,12 +130,9 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             .collection(usersCollection)
             .document(toUserId)
         do {
-            // Update followingRequests for the "from" user
             try await fromUserReference.updateData([
                 "followingRequests": FieldValue.arrayUnion([toUserId])
             ])
-                    
-            // Update followerRequests for the "to" user
             try await toUserReference.updateData([
                 "followerRequests": FieldValue.arrayUnion([fromUserId])
             ])
@@ -154,14 +151,11 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             .collection(usersCollection)
             .document(toUserId)
         do {
-            // Remove toUserId from followingRequests of fromUserId
             try await fromUserReference.updateData([
-                "followingRequests": FieldValue.arrayRemove([toUserId])
+                "followerRequests": FieldValue.arrayRemove([toUserId])
             ])
-            
-            // Remove fromUserId from followerRequests of toUserId
             try await toUserReference.updateData([
-                "followerRequests": FieldValue.arrayRemove([fromUserId])
+                "followingRequests": FieldValue.arrayRemove([fromUserId])
             ])
         } catch {
             print(error.localizedDescription)
@@ -179,12 +173,12 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             .document(toUserId)
         do {
             try await fromUserReference.updateData([
-                "followingRequests": FieldValue.arrayRemove([toUserId]),
+                "followerRequests": FieldValue.arrayRemove([toUserId]),
                 "friends": FieldValue.arrayUnion([toUserId])
             ])
             try await toUserReference.updateData([
-                "followerRequests": FieldValue.arrayRemove([fromUserId]),
-                "friends": FieldValue.arrayUnion([toUserId])
+                "followingRequests": FieldValue.arrayRemove([fromUserId]),
+                "friends": FieldValue.arrayUnion([fromUserId])
             ])
         } catch {
             print(error.localizedDescription)

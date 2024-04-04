@@ -24,6 +24,9 @@ struct FriendsView: View {
         }.onAppear {
             viewModel.loadCurrentUser()
             viewModel.loadFriends()
+        }.overlay {
+            LoadingView()
+                .opacity(viewModel.isLoading ? 1 : 0)
         }
     }
 }

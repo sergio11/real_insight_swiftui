@@ -67,8 +67,7 @@ private struct Actions: View {
                         .padding()
                         .background(Color.gray)
                         .cornerRadius(10)
-                }
-                            
+                } 
                 NavigationLink(destination: AuthenticationView(isAuthenticated: $isAccountAuthenticated)
                     .navigationBarBackButtonHidden()) {
                     Text("Get Started!")

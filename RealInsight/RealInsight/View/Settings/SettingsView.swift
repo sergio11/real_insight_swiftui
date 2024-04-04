@@ -54,7 +54,6 @@ struct SettingsView: View {
                     }
                     AppVersion()
                 }
-                
             }
         }
         .navigationBarHidden(true)
