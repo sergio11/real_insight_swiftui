@@ -10,6 +10,9 @@ import Foundation
 enum UserDataSourceError: Error {
     case saveFailed
     case userNotFound
+    case friendAlreadyAdded(message: String)
+    case invalidUserId(message: String)
+    case requestAlreadyExists(message: String)
 }
 
 protocol UserDataSource {
