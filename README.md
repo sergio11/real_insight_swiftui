@@ -96,6 +96,26 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" align="left" src="doc/images/picture_13.png" />
 <img width="260px" src="doc/images/picture_14.png" />
 
+</br>
+</br>
+
+<img width="260px" align="left" src="doc/images/picture_15.png" />
+<img width="260px" align="left" src="doc/images/picture_16.png" />
+<img width="260px" src="doc/images/picture_17.png" />
+
+</br>
+</br>
+
+<img width="260px" align="left" src="doc/images/picture_18.png" />
+<img width="260px" align="left" src="doc/images/picture_19.png" />
+<img width="260px" src="doc/images/picture_20.png" />
+
+</br>
+</br>
+
+<img width="260px" align="left" src="doc/images/picture_21.png" />
+<img width="260px" src="doc/images/picture_22.png" />
+
 ## Contributing 🤝
 
 Contributions are welcome! If you'd like to contribute to RealInsight, please fork the repository and create a pull request with your changes.
