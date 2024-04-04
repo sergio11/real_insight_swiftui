@@ -29,7 +29,12 @@ struct FeedView: View {
                                 }
                             }
                             ForEach(viewModel.realInsightList, id: \.backImageUrl) { realInsight in
-                                FeedCellView(realInsight: realInsight, hasOwnRealInsightPublished: viewModel.hasOwnRealInsightPublished)
+                                FeedCellView(
+                                    realInsight: realInsight,
+                                    hasOwnRealInsightPublished: viewModel.hasOwnRealInsightPublished,
+                                    onPostLateRealInsight: {
+                                        viewModel.cameraViewPressented.toggle()
+                                    })
                             }
                         }.padding(.top, 80)
                     }
