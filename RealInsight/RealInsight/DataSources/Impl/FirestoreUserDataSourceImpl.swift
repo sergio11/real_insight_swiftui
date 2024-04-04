@@ -123,12 +123,21 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
     
     func createFriendRequest(from fromUserId: String, to toUserId: String) async throws {
         let db = Firestore.firestore()
-        let fromUserReference = db
-            .collection(usersCollection)
-            .document(fromUserId)
-        let toUserReference = db
-            .collection(usersCollection)
-            .document(toUserId)
+        let fromUserReference = db.collection(usersCollection).document(fromUserId)
+        let toUserReference = db.collection(usersCollection).document(toUserId)
+        // Check if fromUserId is already in the friends list of toUserId
+        let toUserSnapshot = try await toUserReference.getDocument()
+        if let data = toUserSnapshot.data(), let friends = data["friends"] as? [String], friends.contains(fromUserId) {
+            // fromUserId is already a friend of toUserId
+            throw UserDataSourceError.friendAlreadyAdded(message: "This user is already your friend.")
+        }
+        // Check if toUserId is already in the friends list of fromUserId
+        let fromUserSnapshot = try await fromUserReference.getDocument()
+        if let data = fromUserSnapshot.data(), let friends = data["friends"] as? [String], friends.contains(toUserId) {
+            // toUserId is already a friend of fromUserId
+            throw UserDataSourceError.friendAlreadyAdded(message: "This user is already your friend.")
+        }
+        // If they are not already connected as friends, update the requests
         do {
             try await fromUserReference.updateData([
                 "followingRequests": FieldValue.arrayUnion([toUserId])
