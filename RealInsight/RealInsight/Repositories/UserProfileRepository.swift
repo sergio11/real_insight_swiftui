@@ -15,4 +15,7 @@ protocol UserProfileRepository {
     func fetchFriendsForUser(authUserId: String) async throws -> [User]
     func fetchFollowerRequestsForUser(authUserId: String) async throws -> [User]
     func getSuggestions(authUserId: String) async throws -> [User]
+    func createFriendRequest(from fromUserId: String, to toUserId: String) async throws
+    func cancelFriendRequest(from fromUserId: String, to toUserId: String) async throws
+    func confirmFriendRequest(from fromUserId: String, to toUserId: String) async throws
 }

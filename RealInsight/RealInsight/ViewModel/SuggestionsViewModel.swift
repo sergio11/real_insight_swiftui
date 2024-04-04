@@ -14,6 +14,7 @@ class SuggestionsViewModel: BaseUserViewModel {
     @Published var suggestions: [User] = []
     
     @Injected(\.getSuggestionsUseCase) private var getSuggestionsUseCase: GetSuggestionsUseCase
+    @Injected(\.createFriendsRequestUseCase) private var createFriendsRequestUseCase: CreateFriendsRequestUseCase
     
     func loadSuggestions() {
         executeAsyncTask({
@@ -23,5 +24,23 @@ class SuggestionsViewModel: BaseUserViewModel {
                 self?.suggestions = suggestions
             }
         })
+    }
+    
+    func createFriendRequest(toUserId: String) {
+        executeAsyncTask({
+            return try await self.createFriendsRequestUseCase.execute(params: CreateFriendsRequestParams(toUserId: toUserId))
+        }, completion: { [weak self] result in
+            self?.removeUserById(userId: toUserId)
+        })
+    }
+    
+    func discardSuggestion(toUserId: String) {
+        removeUserById(userId: toUserId)
+    }
+    
+    private func removeUserById(userId: String) {
+        if let userIdx = suggestions.firstIndex(where: { $0.id == userId}) {
+            suggestions.remove(at: userIdx)
+        }
     }
 }

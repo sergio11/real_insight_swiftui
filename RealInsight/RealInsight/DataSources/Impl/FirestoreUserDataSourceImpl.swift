@@ -35,6 +35,10 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         }
     }
     
+    /// Creates a new user in Firestore with the provided user data.
+    /// - Parameter data: The data of the user to be created.
+    /// - Returns: A `UserDTO` object representing the created user.
+    /// - Throws: An error if the operation fails.
     func createUser(data: CreateUserDTO) async throws -> UserDTO {
         let documentReference = Firestore
                 .firestore()
@@ -84,11 +88,19 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
     }
     
     func getSuggestions(authUserId: String) async throws -> [UserDTO] {
-        // Get all users except the authenticated user
+        let documentSnapshot = try await Firestore
+            .firestore()
+            .collection(usersCollection)
+            .document(authUserId)
+            .getDocument()
+        guard let userData = try? documentSnapshot.data(as: UserDTO.self) else {
+            throw UserDataSourceError.userNotFound
+        }
+        let allIds = [authUserId] + userData.friends + userData.followingRequests + userData.followerRequests
         let querySnapshot = try await Firestore
             .firestore()
             .collection(usersCollection)
-            .whereField("userId", isNotEqualTo: authUserId)
+            .whereField("userId", notIn: allIds)
             .getDocuments()
         var suggestions: [UserDTO] = []
         for document in querySnapshot.documents {
@@ -106,5 +118,77 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             .whereField("username", isEqualTo: username)
             .getDocuments()
         return querySnapshot.isEmpty
+    }
+    
+    
+    func createFriendRequest(from fromUserId: String, to toUserId: String) async throws {
+        let db = Firestore.firestore()
+        let fromUserReference = db
+            .collection(usersCollection)
+            .document(fromUserId)
+        let toUserReference = db
+            .collection(usersCollection)
+            .document(toUserId)
+        do {
+            // Update followingRequests for the "from" user
+            try await fromUserReference.updateData([
+                "followingRequests": FieldValue.arrayUnion([toUserId])
+            ])
+                    
+            // Update followerRequests for the "to" user
+            try await toUserReference.updateData([
+                "followerRequests": FieldValue.arrayUnion([fromUserId])
+            ])
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
+    func cancelFriendRequest(from fromUserId: String, to toUserId: String) async throws {
+        let db = Firestore.firestore()
+        let fromUserReference = db
+            .collection(usersCollection)
+            .document(fromUserId)
+        let toUserReference = db
+            .collection(usersCollection)
+            .document(toUserId)
+        do {
+            // Remove toUserId from followingRequests of fromUserId
+            try await fromUserReference.updateData([
+                "followingRequests": FieldValue.arrayRemove([toUserId])
+            ])
+            
+            // Remove fromUserId from followerRequests of toUserId
+            try await toUserReference.updateData([
+                "followerRequests": FieldValue.arrayRemove([fromUserId])
+            ])
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
+    func confirmFriendRequest(from fromUserId: String, to toUserId: String) async throws {
+        let db = Firestore.firestore()
+        let fromUserReference = db
+            .collection(usersCollection)
+            .document(fromUserId)
+        let toUserReference = db
+            .collection(usersCollection)
+            .document(toUserId)
+        do {
+            try await fromUserReference.updateData([
+                "followingRequests": FieldValue.arrayRemove([toUserId]),
+                "friends": FieldValue.arrayUnion([toUserId])
+            ])
+            try await toUserReference.updateData([
+                "followerRequests": FieldValue.arrayRemove([fromUserId]),
+                "friends": FieldValue.arrayUnion([toUserId])
+            ])
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
     }
 }

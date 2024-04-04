@@ -96,4 +96,31 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             throw error
         }
     }
+    
+    func createFriendRequest(from fromUserId: String, to toUserId: String) async throws {
+        do {
+            return try await userDataSource.createFriendRequest(from: fromUserId, to: toUserId)
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
+    func cancelFriendRequest(from fromUserId: String, to toUserId: String) async throws {
+        do {
+            return try await userDataSource.cancelFriendRequest(from: fromUserId, to: toUserId)
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
+    func confirmFriendRequest(from fromUserId: String, to toUserId: String) async throws {
+        do {
+            return try await userDataSource.confirmFriendRequest(from: fromUserId, to: toUserId)
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
 }

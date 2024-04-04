@@ -73,6 +73,9 @@
 		3DA959DF2BB583BB00EB01EF /* IconCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA959DE2BB583BA00EB01EF /* IconCircleView.swift */; };
 		3DAE5C7D2B9102A30019787D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE5C7C2B9102A30019787D /* User.swift */; };
 		3DAE5C7F2B9104180019787D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE5C7E2B9104180019787D /* MainView.swift */; };
+		3DBB8F022BBF0F4600635738 /* CreateFriendRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB8F012BBF0F4600635738 /* CreateFriendRequestUseCase.swift */; };
+		3DBB8F042BBF104A00635738 /* CancelFriendRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB8F032BBF104A00635738 /* CancelFriendRequestUseCase.swift */; };
+		3DBB8F062BBF10C600635738 /* ConfirmFriendRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB8F052BBF10C600635738 /* ConfirmFriendRequestUseCase.swift */; };
 		3DC0E8632B9C717300C5AE60 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0E8622B9C717300C5AE60 /* OnboardingView.swift */; };
 		3DC0E8672B9C7B3A00C5AE60 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0E8662B9C7B3A00C5AE60 /* Launch Screen.storyboard */; };
 		3DC0E86A2B9C8B1200C5AE60 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0E8692B9C8B1200C5AE60 /* CreateAccountView.swift */; };
@@ -197,6 +200,9 @@
 		3DA959DE2BB583BA00EB01EF /* IconCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCircleView.swift; sourceTree = "<group>"; };
 		3DAE5C7C2B9102A30019787D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3DAE5C7E2B9104180019787D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3DBB8F012BBF0F4600635738 /* CreateFriendRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFriendRequestUseCase.swift; sourceTree = "<group>"; };
+		3DBB8F032BBF104A00635738 /* CancelFriendRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelFriendRequestUseCase.swift; sourceTree = "<group>"; };
+		3DBB8F052BBF10C600635738 /* ConfirmFriendRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmFriendRequestUseCase.swift; sourceTree = "<group>"; };
 		3DC0E8622B9C717300C5AE60 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		3DC0E8662B9C7B3A00C5AE60 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3DC0E8692B9C8B1200C5AE60 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
@@ -341,6 +347,9 @@
 				3D7A4A1E2BBDC54200CC1C14 /* GetSuggestionsUseCase.swift */,
 				3D7A4A282BBDD7A000CC1C14 /* FetchFriendsForUserUseCase.swift */,
 				3D7A4A2A2BBDD82000CC1C14 /* FetchFollowerRequestsForUserUseCase.swift */,
+				3DBB8F012BBF0F4600635738 /* CreateFriendRequestUseCase.swift */,
+				3DBB8F032BBF104A00635738 /* CancelFriendRequestUseCase.swift */,
+				3DBB8F052BBF10C600635738 /* ConfirmFriendRequestUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -703,6 +712,7 @@
 				3DF6E9FC2B6FABAA00CE0D95 /* HomeView.swift in Sources */,
 				3DC429A72B9BA14500C0548B /* VerifySessionUseCase.swift in Sources */,
 				3DC4299B2B9B9E5600C0548B /* AuthenticationRepositoryImpl.swift in Sources */,
+				3DBB8F042BBF104A00635738 /* CancelFriendRequestUseCase.swift in Sources */,
 				3D2256DB2BB1EED500F87A4B /* GetCurrentUserUseCase.swift in Sources */,
 				3D8BAE2F2BB5E89F0069D41D /* ArrayExtensions.swift in Sources */,
 				3DC4299D2B9B9E6D00C0548B /* UserProfileRepository.swift in Sources */,
@@ -748,6 +758,7 @@
 				3DE5E13D2B9CEC1B00EA85DF /* Mapper.swift in Sources */,
 				3DEF787C2B8D144F0081AFD9 /* EnterPhoneNumberView.swift in Sources */,
 				3DA959DF2BB583BB00EB01EF /* IconCircleView.swift in Sources */,
+				3DBB8F022BBF0F4600635738 /* CreateFriendRequestUseCase.swift in Sources */,
 				3D9DE1EC2B9338F40033B173 /* FeedCellViewModel.swift in Sources */,
 				3DEF786E2B8D01680081AFD9 /* EnterNameView.swift in Sources */,
 				3DD4051E2B7BFF5300C39D5C /* ChevronButtonView.swift in Sources */,
@@ -790,6 +801,7 @@
 				3DC4299F2B9B9E8100C0548B /* UserProfileRepositoryImpl.swift in Sources */,
 				3DFEB76E2B9C9EF7000E0D11 /* TopBarView.swift in Sources */,
 				3DE5E1272B9CE10D00EA85DF /* FirebaseAuthenticationDataSourceImpl.swift in Sources */,
+				3DBB8F062BBF10C600635738 /* ConfirmFriendRequestUseCase.swift in Sources */,
 				3D33CFF12B7161E40053C59F /* EditProfileView.swift in Sources */,
 				3D33CAAD2B97A6E2001721A2 /* TabBarMenuView.swift in Sources */,
 				3DC429A12B9BA0FD00C0548B /* SendOtpUseCase.swift in Sources */,

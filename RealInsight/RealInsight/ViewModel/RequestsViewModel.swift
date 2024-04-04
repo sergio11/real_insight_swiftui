@@ -14,6 +14,8 @@ class RequestsViewModel: BaseUserViewModel {
     @Published var requests: [User] = []
     
     @Injected(\.fetchFollowersRequestsUseCase) private var fetchFollowersRequestsUseCase: FetchFollowersRequestsUseCase
+    @Injected(\.confirmFriendsRequestUseCase) private var confirmFriendsRequestUseCase: ConfirmFriendsRequestUseCase
+    @Injected(\.cancelFriendsRequestUseCase) private var cancelFriendsRequestUseCase: CancelFriendsRequestUseCase
     
     func loadRequests() {
         executeAsyncTask({

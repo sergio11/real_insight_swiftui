@@ -16,7 +16,7 @@ struct SuggestionsView: View {
             ScrollView {
                 VStack {
                     InviteFriendsView(authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername, authUserProfileImageUrl: $viewModel.authUserProfileImageUrl)
-                    SuggestionsContacts(suggestions: $viewModel.suggestions)
+                    SuggestionsContacts(suggestions: $viewModel.suggestions, onCreateFriendRequest: viewModel.createFriendRequest, onDiscardSuggestion: viewModel.discardSuggestion)
                     Spacer()
                 }.padding(.top, 20)
             }.padding(.top, 110)
@@ -30,6 +30,8 @@ struct SuggestionsView: View {
 private struct SuggestionsContacts: View {
     
     @Binding var suggestions: [User]
+    var onCreateFriendRequest: (String) -> Void = { _ in }
+    var onDiscardSuggestion: (String) -> Void = { _ in }
     
     var body: some View {
         VStack {
@@ -41,7 +43,11 @@ private struct SuggestionsContacts: View {
             }
             if suggestions.count > 0 {
                 ForEach(suggestions) { user in
-                    SuggestionCellView(user: user)
+                    SuggestionCellView(
+                        user: user,
+                        onCreateFriendRequest: onCreateFriendRequest,
+                        onDiscardSuggestion: onDiscardSuggestion
+                    )
                 }
             } else {
                 NoDataFoundView(title: "No Suggestions", description: "There are no user suggestions available at the moment.")
@@ -54,6 +60,9 @@ private struct SuggestionsContacts: View {
 private struct SuggestionCellView: View {
 
     var user: User
+    
+    var onCreateFriendRequest: (String) -> Void = { _ in }
+    var onDiscardSuggestion: (String) -> Void = { _ in }
     
     var body: some View {
         HStack {
@@ -74,19 +83,27 @@ private struct SuggestionCellView: View {
                 }
             }
             Spacer()
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundColor(Color(red: 44/255, green: 44/255, blue: 46/255))
-                .frame(width: 45, height: 25)
-                .overlay(
-                    Text("ADD")
-                        .foregroundColor(.white)
-                        .font(.system(size: 12))
-                        .fontWeight(.bold)
-                )
-            Image(systemName: "xmark")
-                .foregroundColor(.gray)
-                .font(.system(size: 16))
-                .padding(.leading, 6)
+            Button(action: {
+                onCreateFriendRequest(user.id)
+            }) {
+                RoundedRectangle(cornerRadius: 12)
+                    .foregroundColor(Color(red: 44/255, green: 44/255, blue: 46/255))
+                    .frame(width: 45, height: 25)
+                    .overlay(
+                        Text("ADD")
+                            .foregroundColor(.white)
+                            .font(.system(size: 12))
+                            .fontWeight(.bold)
+                        )
+            }
+            Button(action: {
+                onDiscardSuggestion(user.id)
+            }) {
+                Image(systemName: "xmark")
+                    .foregroundColor(.gray)
+                    .font(.system(size: 16))
+                    .padding(.leading, 6)
+            }
         }
         .padding(.horizontal)
     }
