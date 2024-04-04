@@ -97,10 +97,7 @@ private struct DeactivateMemoriesBox: View {
                     }
                 }
                 .padding(.top, -6)
-                
-                
                 DeactivateMemoriesButton()
-                
             }.padding(.leading)
         }
         .padding(.top, 22)

@@ -26,4 +26,26 @@ class RequestsViewModel: BaseUserViewModel {
             }
         })
     }
+    
+    func confirmFriendRequest(userId: String) {
+        executeAsyncTask({
+            return try await self.confirmFriendsRequestUseCase.execute(params: ConfirmFriendsRequestParams(toUserId: userId))
+        }, completion: { [weak self] result in
+            self?.removeUserById(userId: userId)
+        })
+    }
+    
+    func cancelFriendRequest(userId: String) {
+        executeAsyncTask({
+            return try await self.cancelFriendsRequestUseCase.execute(params: CancelFriendsRequestParams(toUserId: userId))
+        }, completion: { [weak self] result in
+            self?.removeUserById(userId: userId)
+        })
+    }
+    
+    private func removeUserById(userId: String) {
+        if let userIdx = requests.firstIndex(where: { $0.id == userId}) {
+            requests.remove(at: userIdx)
+        }
+    }
 }

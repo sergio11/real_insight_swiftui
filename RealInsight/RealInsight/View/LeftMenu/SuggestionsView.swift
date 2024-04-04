@@ -23,6 +23,9 @@ struct SuggestionsView: View {
         }.onAppear {
             viewModel.loadSuggestions()
             viewModel.loadCurrentUser()
+        }.overlay {
+            LoadingView()
+                .opacity(viewModel.isLoading ? 1 : 0)
         }
     }
 }
