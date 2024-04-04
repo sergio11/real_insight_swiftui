@@ -68,66 +68,39 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" align="left" src="doc/images/picture_2.png" />
 <img width="260px" align="left" src="doc/images/picture_1.png" />
 <img width="260px"  src="doc/images/picture_3.png" />
-
 </br>
-</br>
-
 <img width="260px" align="left" src="doc/images/picture_4.png" />
 <img width="260px" align="left" src="doc/images/picture_5.png" />
 <img width="260px" src="doc/images/picture_6.png" />
-
 </br>
-</br>
-
 <img width="260px" align="left" src="doc/images/picture_7.png" />
 <img width="260px" align="left" src="doc/images/picture_8.png" />
 <img width="260px" src="doc/images/picture_9.png" />
-
 </br>
-</br>
-
 <img width="260px" align="left" src="doc/images/picture_10.png" />
 <img width="260px" align="left" src="doc/images/picture_11.png" />
 <img width="260px" src="doc/images/picture_12.png" />
-
 </br>
-</br>
-
 <img width="260px" align="left" src="doc/images/picture_13.png" />
-<img width="260px" src="doc/images/picture_14.png" />
-
+<img width="260px" align="left" src="doc/images/picture_14.png" />
+<img width="260px" src="doc/images/picture_15.png" />
 </br>
-</br>
-
-<img width="260px" align="left" src="doc/images/picture_15.png" />
 <img width="260px" align="left" src="doc/images/picture_16.png" />
-<img width="260px" src="doc/images/picture_17.png" />
-
+<img width="260px" align="left" src="doc/images/picture_17.png" />
+<img width="260px" src="doc/images/picture_18.png" />
 </br>
-</br>
-
-<img width="260px" align="left" src="doc/images/picture_18.png" />
 <img width="260px" align="left" src="doc/images/picture_19.png" />
-<img width="260px" src="doc/images/picture_20.png" />
-
+<img width="260px" align="left" src="doc/images/picture_20.png" />
+<img width="260px" src="doc/images/picture_21.png" />
 </br>
-</br>
-
-<img width="260px" align="left" src="doc/images/picture_21.png" />
 <img width="260px" align="left" src="doc/images/picture_22.png" />
-<img width="260px" src="doc/images/picture_23.png" />
-
+<img width="260px" align="left" src="doc/images/picture_23.png" />
+<img width="260px" src="doc/images/picture_24.png" />
 </br>
-</br>
-
-<img width="260px" align="left" src="doc/images/picture_24.png" />
 <img width="260px" align="left" src="doc/images/picture_25.png" />
-<img width="260px" src="doc/images/picture_26.png" />
-
+<img width="260px" align="left" src="doc/images/picture_26.png" />
+<img width="260px" src="doc/images/picture_27.png" />
 </br>
-</br>
-
-<img width="260px" align="left" src="doc/images/picture_27.png" />
 <img width="260px" src="doc/images/picture_28.png" />
 
 ## Contributing 🤝
