@@ -38,7 +38,8 @@ internal class RealInsightsRepositoryImpl: RealInsightsRepository {
     func fetchAllRealInsights(date: Date, userId: String) async throws -> [RealInsight] {
         do {
             let userData = try await userDataSource.getUserById(userId: userId)
-            let realInsightsData = try await realInsightsDataSource.fetchAllRealInsights(forDate: date, userIds: userData.friends)
+            let userIds = [userId] + userData.friends
+            let realInsightsData = try await realInsightsDataSource.fetchAllRealInsights(forDate: date, userIds: userIds)
             var realInsights: [RealInsight] = []
             for realInsightData in realInsightsData {
                 let user = try await userDataSource.getUserById(userId: realInsightData.userId)

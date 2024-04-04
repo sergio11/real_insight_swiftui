@@ -52,7 +52,7 @@ struct FeedView: View {
                 }
             }
         }.fullScreenCover(isPresented: $viewModel.cameraViewPressented) {
-            onFetchData()
+            viewModel.fetchData()
         } content: {
             CameraView()
         }.onAppear {
