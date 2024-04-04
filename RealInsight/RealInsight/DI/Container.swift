@@ -92,6 +92,18 @@ extension Container {
     var fetchFollowersRequestsUseCase: Factory<FetchFollowersRequestsUseCase> {
         self { FetchFollowersRequestsUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
+    
+    var createFriendsRequestUseCase: Factory<CreateFriendsRequestUseCase> {
+        self { CreateFriendsRequestUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var cancelFriendsRequestUseCase: Factory<CancelFriendsRequestUseCase> {
+        self { CancelFriendsRequestUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var confirmFriendsRequestUseCase: Factory<ConfirmFriendsRequestUseCase> {
+        self { ConfirmFriendsRequestUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
 
 
