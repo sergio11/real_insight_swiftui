@@ -20,7 +20,7 @@ internal class FirestoreRealInsightsDataSourceImpl: RealInsightsDataSource {
     ///   - date: The date for which real insights are to be fetched.
     /// - Returns: An array of `RealInsightDTO` objects representing the fetched real insights.
     /// - Throws: An `RealInsightsDataSourceError` in case of failure, including `realInsightNotFound` if no real insights are found.
-    func fetchAllRealInsights(forDate date: Date) async throws -> [RealInsightDTO] {
+    func fetchAllRealInsights(forDate date: Date, userIds: [String]) async throws -> [RealInsightDTO] {
         let db = Firestore.firestore()
         let startDate = date.startOfDay
         guard let endDate = date.endOfDay else {
@@ -30,6 +30,7 @@ internal class FirestoreRealInsightsDataSourceImpl: RealInsightsDataSource {
             let data = try await db.collection(insightsCollection)
                 .whereField("createdAt", isGreaterThanOrEqualTo: startDate)
                 .whereField("createdAt", isLessThanOrEqualTo: endDate)
+                .whereField("userId", in: userIds)
                 .getDocuments()
             var insights: [RealInsightDTO] = []
             for document in data.documents {
