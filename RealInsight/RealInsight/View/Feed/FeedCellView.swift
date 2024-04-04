@@ -12,10 +12,12 @@ struct FeedCellView: View {
 
     private var hasOwnRealInsightPublished: Bool
     @StateObject var viewModel: FeedCellViewModel
+    private var onPostLateRealInsight: () -> Void
     
-    init(realInsight: RealInsight, hasOwnRealInsightPublished: Bool) {
+    init(realInsight: RealInsight, hasOwnRealInsightPublished: Bool, onPostLateRealInsight: @escaping () -> Void) {
         self.hasOwnRealInsightPublished = hasOwnRealInsightPublished
         _viewModel = StateObject(wrappedValue: FeedCellViewModel(realInsight: realInsight))
+        self.onPostLateRealInsight = onPostLateRealInsight
     }
     
     var body: some View {
@@ -30,7 +32,7 @@ struct FeedCellView: View {
                             PreviewView(realInsightBackImageUrl: viewModel.realInsightBackImageUrl, realInsightFrontImageUrl: viewModel.realInsightFrontImageUrl)
                         }.blur(radius: hasOwnRealInsightPublished ? 0 : 8)
                         if !hasOwnRealInsightPublished {
-                            LockedView()
+                            LockedView(onPostLateRealInsight: onPostLateRealInsight)
                         }
                     }
                     if hasOwnRealInsightPublished {
@@ -146,6 +148,9 @@ private struct ActionsView: View {
 }
 
 private struct LockedView: View {
+    
+    var onPostLateRealInsight: () -> Void
+    
     var body: some View {
         VStack {
             Image(systemName: "eye.slash.fill")
@@ -159,15 +164,17 @@ private struct LockedView: View {
                 .foregroundColor(.white)
                 .font(.system(size: 14))
                 .padding(.top, -4)
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundColor(.white)
-                .frame(width: 180, height: 40)
-                .overlay(
-                    Text("Post a Late RealInsight")
-                        .foregroundColor(.black)
-                        .font(.system(size: 12))
-                )
-                .padding(.top, 6)
+            Button(action: onPostLateRealInsight, label: {
+                RoundedRectangle(cornerRadius: 12)
+                    .foregroundColor(.white)
+                    .frame(width: 180, height: 40)
+                    .overlay(
+                        Text("Post a Late RealInsight")
+                            .foregroundColor(.black)
+                            .font(.system(size: 12))
+                    )
+                    .padding(.top, 6)
+            })
         }
     }
 }
