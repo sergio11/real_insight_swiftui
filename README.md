@@ -114,7 +114,21 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 </br>
 
 <img width="260px" align="left" src="doc/images/picture_21.png" />
-<img width="260px" src="doc/images/picture_22.png" />
+<img width="260px" align="left" src="doc/images/picture_22.png" />
+<img width="260px" src="doc/images/picture_23.png" />
+
+</br>
+</br>
+
+<img width="260px" align="left" src="doc/images/picture_24.png" />
+<img width="260px" align="left" src="doc/images/picture_25.png" />
+<img width="260px" src="doc/images/picture_26.png" />
+
+</br>
+</br>
+
+<img width="260px" align="left" src="doc/images/picture_27.png" />
+<img width="260px" src="doc/images/picture_28.png" />
 
 ## Contributing 🤝
 
