@@ -72,6 +72,10 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         return userData
     }
     
+    /// Retrieves user data for a list of user IDs asynchronously.
+    /// - Parameter userIds: An array of user IDs to retrieve user data for.
+    /// - Returns: An array of `UserDTO` objects containing the user data.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func getUserByIdList(userIds: [String]) async throws -> [UserDTO] {
         let querySnapshot = try await Firestore
             .firestore()
@@ -87,6 +91,10 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         return usersData
     }
     
+    /// Retrieves suggestions for users based on the authenticated user ID asynchronously.
+    /// - Parameter authUserId: The ID of the authenticated user.
+    /// - Returns: An array of `UserDTO` objects representing user suggestions.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func getSuggestions(authUserId: String) async throws -> [UserDTO] {
         let documentSnapshot = try await Firestore
             .firestore()
@@ -111,6 +119,10 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         return suggestions
     }
     
+    /// Checks the availability of a username asynchronously.
+    /// - Parameter username: The username to check for availability.
+    /// - Returns: A Boolean value indicating whether the username is available.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func checkUsernameAvailability(username: String) async throws -> Bool {
         let querySnapshot = try await Firestore
             .firestore()
@@ -120,7 +132,11 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         return querySnapshot.isEmpty
     }
     
-    
+    /// Creates a friend request from one user to another asynchronously.
+    /// - Parameters:
+    ///   - fromUserId: The ID of the user sending the friend request.
+    ///   - toUserId: The ID of the user receiving the friend request.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func createFriendRequest(from fromUserId: String, to toUserId: String) async throws {
         let db = Firestore.firestore()
         let fromUserReference = db.collection(usersCollection).document(fromUserId)
@@ -151,6 +167,11 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         }
     }
     
+    /// Cancels a friend request from one user to another asynchronously.
+    /// - Parameters:
+    ///   - fromUserId: The ID of the user canceling the friend request.
+    ///   - toUserId: The ID of the user whose friend request is being canceled.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func cancelFriendRequest(from fromUserId: String, to toUserId: String) async throws {
         let db = Firestore.firestore()
         let fromUserReference = db
@@ -172,6 +193,11 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
         }
     }
     
+    /// Confirms a friend request from one user to another asynchronously.
+    /// - Parameters:
+    ///   - fromUserId: The ID of the user confirming the friend request.
+    ///   - toUserId: The ID of the user whose friend request is being confirmed.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func confirmFriendRequest(from fromUserId: String, to toUserId: String) async throws {
         let db = Firestore.firestore()
         let fromUserReference = db
