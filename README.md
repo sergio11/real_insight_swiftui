@@ -103,7 +103,8 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" align="left" src="doc/images/picture_26.png" />
 <img width="260px" src="doc/images/picture_27.png" />
 </br>
-<img width="260px" src="doc/images/picture_28.png" />
+<img width="260px" align="left" src="doc/images/picture_28.png" />
+<img width="260px" src="doc/images/picture_29.png" />
 
 ## Contributing 🤝
 
