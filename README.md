@@ -24,6 +24,8 @@ Whether it's reflecting on personal growth journeys, sharing inspirational momen
 - **Search:** 🔍 Discover posts and users through a robust search feature.
 - **Notifications:** 📲 Stay informed with real-time notifications for likes, comments, and follows.
 
+<img src="doc/images/picture_30.png" />
+
 ## Why SwiftUI and MVVM? 🧐
 
 RealInsight leverages SwiftUI for its user interface implementation due to several advantages it offers:
@@ -101,7 +103,8 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" align="left" src="doc/images/picture_26.png" />
 <img width="260px" src="doc/images/picture_27.png" />
 </br>
-<img width="260px" src="doc/images/picture_28.png" />
+<img width="260px" align="left" src="doc/images/picture_28.png" />
+<img width="260px" src="doc/images/picture_29.png" />
 
 ## Contributing 🤝
 
@@ -118,3 +121,10 @@ RealInsight is available under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgements 🙏
 
 RealInsight is inspired by the functionality and design of BeReal.
+
+## Please Share & Star the repository to keep me motivated.
+<a href = "https://github.com/sergio11/real_insight_swiftui/stargazers">
+   <img src = "https://img.shields.io/github/stars/sergio11/real_insight_swiftui" />
+</a>
+
+Template mockup from https://previewed.app/template/AFC0B4CB
