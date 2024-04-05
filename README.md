@@ -24,6 +24,8 @@ Whether it's reflecting on personal growth journeys, sharing inspirational momen
 - **Search:** 🔍 Discover posts and users through a robust search feature.
 - **Notifications:** 📲 Stay informed with real-time notifications for likes, comments, and follows.
 
+<img src="doc/images/picture_30.png" />
+
 ## Why SwiftUI and MVVM? 🧐
 
 RealInsight leverages SwiftUI for its user interface implementation due to several advantages it offers:
