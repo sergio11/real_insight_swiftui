@@ -121,3 +121,10 @@ RealInsight is available under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgements 🙏
 
 RealInsight is inspired by the functionality and design of BeReal.
+
+## Please Share & Star the repository to keep me motivated.
+<a href = "https://github.com/sergio11/real_insight_swiftui/stargazers">
+   <img src = "https://img.shields.io/github/stars/sergio11/real_insight_swiftui" />
+</a>
+
+Template mockup from https://previewed.app/template/AFC0B4CB
