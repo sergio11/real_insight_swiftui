@@ -15,10 +15,14 @@ struct CancelFriendsRequestParams {
     let toUserId: String
 }
 
+/// An entity responsible for canceling friend requests.
 struct CancelFriendsRequestUseCase {
     let userRepository: UserProfileRepository
     let authRepository: AuthenticationRepository
     
+    /// Executes the process of canceling a friend request asynchronously.
+        /// - Parameter params: The parameters needed for canceling a friend request.
+        /// - Throws: An error if the cancellation process fails.
     func execute(params: CancelFriendsRequestParams) async throws {
         guard let userId = try await authRepository.getCurrentUserId() else {
             throw CancelFriendsRequestError.cancelFailed
