@@ -76,6 +76,8 @@
 		3DBB8F022BBF0F4600635738 /* CreateFriendRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB8F012BBF0F4600635738 /* CreateFriendRequestUseCase.swift */; };
 		3DBB8F042BBF104A00635738 /* CancelFriendRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB8F032BBF104A00635738 /* CancelFriendRequestUseCase.swift */; };
 		3DBB8F062BBF10C600635738 /* ConfirmFriendRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB8F052BBF10C600635738 /* ConfirmFriendRequestUseCase.swift */; };
+		3DBB8F082BBF2C7100635738 /* ContactCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB8F072BBF2C7100635738 /* ContactCellView.swift */; };
+		3DBB8F0A2BBF2D0800635738 /* ContactsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB8F092BBF2D0800635738 /* ContactsListView.swift */; };
 		3DC0E8632B9C717300C5AE60 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0E8622B9C717300C5AE60 /* OnboardingView.swift */; };
 		3DC0E8672B9C7B3A00C5AE60 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0E8662B9C7B3A00C5AE60 /* Launch Screen.storyboard */; };
 		3DC0E86A2B9C8B1200C5AE60 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0E8692B9C8B1200C5AE60 /* CreateAccountView.swift */; };
@@ -203,6 +205,8 @@
 		3DBB8F012BBF0F4600635738 /* CreateFriendRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFriendRequestUseCase.swift; sourceTree = "<group>"; };
 		3DBB8F032BBF104A00635738 /* CancelFriendRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelFriendRequestUseCase.swift; sourceTree = "<group>"; };
 		3DBB8F052BBF10C600635738 /* ConfirmFriendRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmFriendRequestUseCase.swift; sourceTree = "<group>"; };
+		3DBB8F072BBF2C7100635738 /* ContactCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellView.swift; sourceTree = "<group>"; };
+		3DBB8F092BBF2D0800635738 /* ContactsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListView.swift; sourceTree = "<group>"; };
 		3DC0E8622B9C717300C5AE60 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		3DC0E8662B9C7B3A00C5AE60 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3DC0E8692B9C8B1200C5AE60 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
@@ -604,6 +608,8 @@
 				3DA959DE2BB583BA00EB01EF /* IconCircleView.swift */,
 				3D09A64B2BB6CC51000C54A1 /* ExplanationText.swift */,
 				3D7A4A2C2BBDDA8100CC1C14 /* NoDataFoundView.swift */,
+				3DBB8F072BBF2C7100635738 /* ContactCellView.swift */,
+				3DBB8F092BBF2D0800635738 /* ContactsListView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -722,6 +728,7 @@
 				3DE5E12B2B9CE37500EA85DF /* FirestoreStorageFilesDataSourceImpl.swift in Sources */,
 				3D9A35B32B7182C2000F51AC /* TimeZoneView.swift in Sources */,
 				3DF6EA102B6FB6FF00CE0D95 /* ProfileView.swift in Sources */,
+				3DBB8F082BBF2C7100635738 /* ContactCellView.swift in Sources */,
 				3DE5E1302B9CE41D00EA85DF /* RealInsightDTO.swift in Sources */,
 				3DFEB7702B9CA133000E0D11 /* AuthenticationView.swift in Sources */,
 				3D9A35B82B718B4D000F51AC /* LeftMenuTopView.swift in Sources */,
@@ -797,6 +804,7 @@
 				3D7A4A292BBDD7A000CC1C14 /* FetchFriendsForUserUseCase.swift in Sources */,
 				3D22D5292BB59E420033E8F4 /* LeftMenuViewModel.swift in Sources */,
 				3D9DE1E82B9333040033B173 /* FeedViewModel.swift in Sources */,
+				3DBB8F0A2BBF2D0800635738 /* ContactsListView.swift in Sources */,
 				3DFEB7722B9CA1C0000E0D11 /* AuthenticationViewModel.swift in Sources */,
 				3DC4299F2B9B9E8100C0548B /* UserProfileRepositoryImpl.swift in Sources */,
 				3DFEB76E2B9C9EF7000E0D11 /* TopBarView.swift in Sources */,

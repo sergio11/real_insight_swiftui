@@ -16,102 +16,23 @@ struct SuggestionsView: View {
             ScrollView {
                 VStack {
                     InviteFriendsView(authUserFullName: $viewModel.authUserFullName, authUserUsername: $viewModel.authUserUsername, authUserProfileImageUrl: $viewModel.authUserProfileImageUrl)
-                    SuggestionsContacts(suggestions: $viewModel.suggestions, onCreateFriendRequest: viewModel.createFriendRequest, onDiscardSuggestion: viewModel.discardSuggestion)
+                    ContactsListView(contacts: $viewModel.suggestions, mainTitle: "ADD YOUR CONTACTS", noDataTitle: "No Suggestions", noDataDescription: "There are no user suggestions available at the moment.", onAccept: viewModel.createFriendRequest, onDiscard: viewModel.discardSuggestion)
                     Spacer()
                 }.padding(.top, 20)
             }.padding(.top, 110)
         }.onAppear {
-            viewModel.loadSuggestions()
-            viewModel.loadCurrentUser()
+            loadData()
         }.overlay {
             LoadingView()
                 .opacity(viewModel.isLoading ? 1 : 0)
         }
     }
-}
-
-private struct SuggestionsContacts: View {
     
-    @Binding var suggestions: [User]
-    var onCreateFriendRequest: (String) -> Void = { _ in }
-    var onDiscardSuggestion: (String) -> Void = { _ in }
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Text("ADD YOUR CONTACTS")
-                    .foregroundColor(Color(red: 205/255, green: 204/255, blue: 209/255))
-                    .fontWeight(.semibold)
-                    .font(.system(size: 14))
-            }
-            if suggestions.count > 0 {
-                ForEach(suggestions) { user in
-                    SuggestionCellView(
-                        user: user,
-                        onCreateFriendRequest: onCreateFriendRequest,
-                        onDiscardSuggestion: onDiscardSuggestion
-                    )
-                }
-            } else {
-                NoDataFoundView(title: "No Suggestions", description: "There are no user suggestions available at the moment.")
-            }
-        }.padding(.top)
+    private func loadData() {
+        viewModel.loadSuggestions()
+        viewModel.loadCurrentUser()
     }
 }
-
-
-private struct SuggestionCellView: View {
-
-    var user: User
-    
-    var onCreateFriendRequest: (String) -> Void = { _ in }
-    var onDiscardSuggestion: (String) -> Void = { _ in }
-    
-    var body: some View {
-        HStack {
-            ProfileImageView(size: 65, cornerRadius: 65/2, profileImageUrl: user.profileImageUrl, fullName: user.fullname)
-            VStack(alignment: .leading) {
-                Text(user.fullname ?? user.username)
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                if let location = user.location {
-                    Text(location)
-                        .foregroundColor(.gray)
-                }
-                HStack {
-                    Image(systemName: "person.crop.circle")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 14))
-                        .padding(.leading, -4)
-                }
-            }
-            Spacer()
-            Button(action: {
-                onCreateFriendRequest(user.id)
-            }) {
-                RoundedRectangle(cornerRadius: 12)
-                    .foregroundColor(Color(red: 44/255, green: 44/255, blue: 46/255))
-                    .frame(width: 45, height: 25)
-                    .overlay(
-                        Text("ADD")
-                            .foregroundColor(.white)
-                            .font(.system(size: 12))
-                            .fontWeight(.bold)
-                        )
-            }
-            Button(action: {
-                onDiscardSuggestion(user.id)
-            }) {
-                Image(systemName: "xmark")
-                    .foregroundColor(.gray)
-                    .font(.system(size: 16))
-                    .padding(.leading, 6)
-            }
-        }
-        .padding(.horizontal)
-    }
-}
-
 
 struct SuggestionsView_Previews: PreviewProvider {
     static var previews: some View {
