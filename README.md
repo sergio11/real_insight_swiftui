@@ -132,6 +132,14 @@ RealInsight is available under the MIT License. See the [LICENSE](LICENSE) file 
 
 RealInsight is inspired by the functionality and design of BeReal.
 
+A huge thank you to **Cem Salta** for the fantastic SwiftUI course on Udemy! Your teachings have been instrumental in inspiring and guiding the development of this project.
+
+[Link to the Course](https://www.udemy.com/course/swiftui-4-build-bereal-clone-ios-16-best-practices/)
+
+ ## Visitors Count
+
+<img width="auto" src="https://profile-counter.glitch.me/real_insight_swiftui/count.svg" />
+
 ## Please Share & Star the repository to keep me motivated.
 <a href = "https://github.com/sergio11/real_insight_swiftui/stargazers">
    <img src = "https://img.shields.io/github/stars/sergio11/real_insight_swiftui" />
