@@ -6,6 +6,8 @@
 
 Whether it's reflecting on personal growth journeys, sharing inspirational moments, or discussing thought-provoking topics, RealInsight provides a space where users can authentically express themselves and engage with a diverse community of like-minded individuals. Through its intuitive interface and robust feature set, RealInsight encourages users to explore, connect, and discover new perspectives, ultimately fostering a sense of belonging and camaraderie among its users. 🚀
 
+I want to express my sincere gratitude to [Eren Cem Salta](https://www.udemy.com/user/eren-cem-salta/) for his outstanding course on Udemy, "[Build BeReal Clone (IOS 17) - SwiftUI 5 & Firebase](https://www.udemy.com/course/swiftui-4-build-bereal-clone-ios-16-best-practices/)". Thanks to his teachings, which served as a solid foundation, I was able to develop this iOS application using [SwiftUI](https://www.udemy.com/user/eren-cem-salta/) and [Firebase](https://firebase.google.com/) effectively. Building upon this knowledge, I expanded and refactored it to suit the needs of this project.
+
 <p align="center">
   <img src="https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white" />
   <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white" />
