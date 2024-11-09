@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 enum UpdateUserError: Error {
     case updateFailed
