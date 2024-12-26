@@ -8,6 +8,8 @@ Whether it's reflecting on personal growth journeys, sharing inspirational momen
 
 I want to express my sincere gratitude to [Eren Cem Salta](https://www.udemy.com/user/eren-cem-salta/) for his outstanding course on Udemy, "[Build BeReal Clone (IOS 17) - SwiftUI 5 & Firebase](https://www.udemy.com/course/swiftui-4-build-bereal-clone-ios-16-best-practices/)". Thanks to his teachings, which served as a solid foundation, I was able to develop this iOS application using [SwiftUI](https://www.udemy.com/user/eren-cem-salta/) and [Firebase](https://firebase.google.com/) effectively. Building upon this knowledge, I expanded and refactored it to suit the needs of this project.
 
+This app, includes images and resources designed by [Freepik](https://www.freepik.com). We would like to acknowledge and thank Freepik for their incredible design assets. The images used in the app are provided with attribution, as required by Freepik's licensing terms. For more information on Freepik's resources, please visit [www.freepik.com](https://www.freepik.com).
+
 <p align="center">
   <img src="https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white" />
   <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white" />
