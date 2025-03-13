@@ -162,6 +162,8 @@ A huge thank you to **Cem Salta** for the fantastic SwiftUI course on Udemy! You
 
 [Link to the Course](https://www.udemy.com/course/swiftui-4-build-bereal-clone-ios-16-best-practices/)
 
+Template mockup from https://previewed.app/template/AFC0B4CB
+
  ## Visitors Count
 
 <img width="auto" src="https://profile-counter.glitch.me/real_insight_swiftui/count.svg" />
@@ -170,5 +172,3 @@ A huge thank you to **Cem Salta** for the fantastic SwiftUI course on Udemy! You
 <a href = "https://github.com/sergio11/real_insight_swiftui/stargazers">
    <img src = "https://img.shields.io/github/stars/sergio11/real_insight_swiftui" />
 </a>
-
-Template mockup from https://previewed.app/template/AFC0B4CB
