@@ -28,6 +28,16 @@ This app, includes images and resources designed by [Freepik](https://www.freepi
 
 Slides are built using the  template from [Previewed](https://previewed.app/template/AFC0B4CB). I extend my gratitude to them for their remarkable work and contribution.
 
+## ⚠️ Disclaimer
+
+**RealInsight** is an **experimental and educational project** developed to explore and demonstrate the capabilities of **SwiftUI** for building engaging and interactive iOS applications. The app aims to create a platform for authentic, meaningful connections between users by allowing them to share their insights, thoughts, and experiences.
+
+The name **"RealInsight"** and the logo were created as part of a **brainstorming session with AI**, and any resemblance to existing brands or services is purely coincidental.
+
+This project is intended solely for **learning and experimentation purposes**. It is not intended for commercial use or production deployment.
+
+The repository is shared as an open-source resource for individuals interested in learning how to develop iOS applications with **SwiftUI** and **modern UI practices**.
+
 ## Features 🚀
 
 - **User Authentication:** Secure sign-up and login functionality.
@@ -131,6 +141,16 @@ For support, bug reports, or feature requests, please open an issue on the GitHu
 ## License 📄
 
 RealInsight is available under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## ⚠️ Disclaimer
+
+**RealInsight** is an **experimental and educational project** developed to explore and demonstrate the capabilities of **SwiftUI** for building engaging and interactive iOS applications. The app aims to create a platform for authentic, meaningful connections between users by allowing them to share their insights, thoughts, and experiences.
+
+The name **"RealInsight"** and the logo were created as part of a **brainstorming session with AI**, and any resemblance to existing brands or services is purely coincidental.
+
+This project is intended solely for **learning and experimentation purposes**. It is not intended for commercial use or production deployment.
+
+The repository is shared as an open-source resource for individuals interested in learning how to develop iOS applications with **SwiftUI** and **modern UI practices**.
 
 ## Acknowledgements 🙏
 
