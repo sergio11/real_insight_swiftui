@@ -1,6 +1,6 @@
 # RealInsight 🌟: Where Authentic Connections Happen 🌐
 
-<img width="300px" align="left" src="./doc/images/logo.png" />
+<img width="300px" align="left" src="./doc/real_insight_logo.webp" />
 
 🌟 RealInsight is an innovative iOS application crafted using SwiftUI, designed to offer users an engaging platform akin to BeReal. With RealInsight, users are empowered to connect with one another and foster meaningful interactions by sharing their insights, thoughts, and experiences within a supportive community environment. 
 
